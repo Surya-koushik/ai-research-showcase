@@ -1,0 +1,29 @@
+﻿{
+    "name":  "Claude",
+    "one_liner":  "Smart-stub auto-generated project for AI research and development.",
+    "description":  "This is a smart-stub auto-generated project folder for Claude, an AI research tool. It inherits master rules from `0_RULES/claudemaster.md` and contains files relevant to ongoing AI projects in the NIGHT test - docs area of Z:\folder structure. The project includes guidelines on how to work within this directory, including default save locations and workflow procedures.",
+    "category":  "research",
+    "status":  "in-progress",
+    "tech":  [
+                 "AI",
+                 "smart-stub"
+             ],
+    "workflow_stage":  "read this + `0_RULES/CLAUDE.md` -\u003e state a 2-3 sentence plan -\u003e back up before risky edits -\u003e log the session to `5_OPS\\history\\`.",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "CLAUDE.md"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u012",
+    "source_name":  "NIGHT test - docs",
+    "source_path":  "/z/00 SM TEAM/AI Research/Claude direct access folder/2_MCPS/NIGHT test - docs",
+    "detected_ports":  ""
+}

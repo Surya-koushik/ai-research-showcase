@@ -1,0 +1,31 @@
+﻿{
+    "name":  "Revit Dynamo",
+    "one_liner":  "A powerful automation and visualization tool for Revit models using Python scripts.",
+    "description":  "Revit Dynamo is a graphical programming environment that allows users to create custom workflows, automate repetitive tasks, and visualize complex data within Autodesk Revit. It leverages the power of Python scripting to extend the capabilities of Revit by enabling users to define their own algorithms for model manipulation and analysis.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "Python",
+                 ".NET SDK"
+             ],
+    "workflow_stage":  "automation",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "dynamo\rebar_dimension.py",
+                      "dynamo\rebar_dimension/TestRebar.cs",
+                      "dynamo\rebar_dimension/README.md"
+                  ],
+    "related_tools":  [
+                          "pyRevit"
+                      ],
+    "efficiency_hint":  "null",
+    "confidential":  false,
+    "id":  "u021",
+    "source_name":  "7 - Revit Dynamo",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/7 - Revit Dynamo",
+    "detected_ports":  ""
+}

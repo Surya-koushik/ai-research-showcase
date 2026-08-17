@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Team Hub — Asure Design Studio</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+<body>
+  <div class="app">
+    <button id="sidebar-toggle">☰</button>
+
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <h2>AI Team Hub</h2>
+        <div class="subtitle">Asure Design Studio</div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">Overview</div>
+        <a class="nav-item active" data-nav="dashboard" href="#dashboard">
+          <span class="icon">📊</span> Dashboard
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">Work</div>
+        <a class="nav-item" data-nav="priorities" href="#priorities">
+          <span class="icon">🎯</span> Priorities
+        </a>
+        <a class="nav-item" data-nav="requirements" href="#requirements">
+          <span class="icon">📥</span> Requirements
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">People</div>
+        <a class="nav-item" data-nav="team" href="#team">
+          <span class="icon">👥</span> Team
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">Knowledge</div>
+        <a class="nav-item" data-nav="procedures" href="#procedures">
+          <span class="icon">📋</span> Procedures
+        </a>
+        <a class="nav-item" data-nav="tools" href="#tools">
+          <span class="icon">🛠</span> Tools
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">System</div>
+        <a class="nav-item" data-nav="settings" href="#settings">
+          <span class="icon">⚙</span> Settings
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <span id="role-indicator" class="role-badge role-admin">Admin</span>
+      </div>
+    </nav>
+
+    <main class="main" id="main-content">
+    </main>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

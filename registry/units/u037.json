@@ -1,0 +1,31 @@
+﻿{
+    "name":  "AI Team Hub",
+    "one_liner":  "A dashboard for managing AI team projects and resources.",
+    "description":  "AI Team Hub is a web-based application designed to streamline the management of AI-related projects within Asure Design Studio. It provides an overview, work priorities, requirements, team information, procedures, tools, settings, and more, all accessible from a single interface.",
+    "category":  "dashboard",
+    "status":  "production",
+    "tech":  [
+                 "HTML",
+                 "CSS",
+                 "JavaScript"
+             ],
+    "workflow_stage":  "core",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "index.html",
+                      "css/styles.css"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u037",
+    "source_name":  "ai-team-hub",
+    "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/ai-team-hub",
+    "detected_ports":  ""
+}

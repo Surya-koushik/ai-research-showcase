@@ -1,0 +1,30 @@
+﻿{
+    "name":  "ChatGPT",
+    "one_liner":  "A broad everyday AI assistant for writing and reasoning.",
+    "description":  "ChatGPT is a versatile AI tool designed to assist with various tasks including writing, reasoning, and providing general information. It\u0027s particularly useful for everyday interactions and can handle a wide range of queries and topics.",
+    "category":  "ai-agent",
+    "status":  "production",
+    "tech":  [
+                 "AI",
+                 "Natural Language Processing"
+             ],
+    "workflow_stage":  "initial stages (e.g., ideation, research)",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "README.md",
+                      "..\\_INBOX\tool_suggestion.txt"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u052",
+    "source_name":  "03_Tools",
+    "source_path":  "/z/Knowledge Centre/AI Tools/03_Tools",
+    "detected_ports":  ""
+}

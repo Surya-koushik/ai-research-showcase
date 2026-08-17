@@ -1,0 +1,36 @@
+﻿{
+    "name":  "ADS Phoenix L1",
+    "one_liner":  "Weekly Level-1 self-certification checklist runner for Revit models.",
+    "description":  "A native C# add-in for Revit 2025 that runs a fixed 22-item Level-1 self-certification checklist across five hard-stop gates, auto-fixes whitelisted issues, and produces a PDF report and a populated checklist workbook to upload alongside the model in ACC.",
+    "category":  "plugin",
+    "status":  "production",
+    "tech":  [
+                 "C#",
+                 ".NET 8",
+                 "RevitAPI.dll",
+                 "ClosedXML",
+                 "HTMLâ†’PDF (headless Edge)"
+             ],
+    "workflow_stage":  "post-production",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "README.md",
+                      "build.ps1",
+                      "dist\\\\",
+                      "src\\\\",
+                      "ARCHITECTURE.md"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  "Not explicitly stated in the provided files.",
+    "confidential":  false,
+    "id":  "u043",
+    "source_name":  "AdsPhoenixL1",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/AdsPhoenixL1",
+    "detected_ports":  ""
+}

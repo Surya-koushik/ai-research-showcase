@@ -1,0 +1,34 @@
+﻿{
+    "name":  "malaxmi_ai_story",
+    "one_liner":  "A collection of AI-related videos and resources for learning about AI tools and their applications.",
+    "description":  "This project compiles a series of video tutorials and articles covering various aspects of artificial intelligence, including AI assistants, agents, and open-source models. It provides concrete use cases and examples to demonstrate how businesses can adopt AI technologies in areas such as email automation, workflow management, content creation, and more.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "puppeteer-core",
+                 "YouTube"
+             ],
+    "workflow_stage":  null,
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "package.json",
+                      "ALL_CARDS.md",
+                      "01_ai_X1a7pY5GNjs.md",
+                      "02_ai_UUPiLFA-Og4.md",
+                      "03_ai_NlT0UBhzxVU.md",
+                      "04_ai_kKNoBH0iE1k.md"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u030",
+    "source_name":  "malaxmi_ai_story",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/malaxmi_ai_story",
+    "detected_ports":  ""
+}

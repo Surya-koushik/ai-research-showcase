@@ -1,0 +1,33 @@
+﻿{
+    "name":  "LIVE_CODES_REGULATIONS_DATABASE",
+    "one_liner":  "A long-term knowledge base of codes and regulations for building design.",
+    "description":  "Tracks and manages the regulatory landscape for various jurisdictions, including national, state, local, and specialist layers. It provides a structured database with active/inactive status tracking, jurisdiction matrices, topic mappings, and rule cards verified by human review.",
+    "category":  "knowledge",
+    "status":  "production",
+    "tech":  [
+                 "MarkItDown",
+                 "Python script"
+             ],
+    "workflow_stage":  "ingestion and extraction",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  "python 06_AUTOMATION/markitdown_conversion_script/codes_db_update.py"
+               },
+    "key_files":  [
+                      "README.md",
+                      "active_inactive_status_register.md",
+                      "ASURE_CODES_KNOWLEDGE_BASE.md",
+                      "01_RAW_SOURCE_REGISTER/JSON state + MD of the source folders",
+                      "02_CONVERTED_MARKDOWN/MarkItDown output, bucketed with QA front-matter"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u041",
+    "source_name":  "LIVE_CODES_REGULATIONS_DATABASE",
+    "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/LIVE_CODES_REGULATIONS_DATABASE",
+    "detected_ports":  ""
+}

@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE EARTH PROJECTS Dashboard — ASURE Design Studio</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" crossorigin="anonymous"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --earth-dark: #4a2317;
+  --earth-deep: #7a3a23;
+  --earth-mid:  #a85638;
+  --earth-sage: #c47a52;
+  --earth-light:#ddae8a;
+  --earth-mist: #f0dcc6;
+  --earth-cream:#faf6f0;
+  --earth-sand: #e9d6bd;
+  --gold:       #c9a84c;
+  --gold-light: #e4c97e;
+  --teal:       #2e6b6b;
+  --teal-light: #4a9898;
+  --white:      #ffffff;
+  --grey-50:    #f9fafb;
+  --grey-100:   #f3f4f6;
+  --grey-200:   #e5e7eb;
+  --grey-300:   #d1d5db;
+  --grey-600:   #4b5563;
+  --grey-800:   #1f2937;
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.1);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.12);
+  --radius:     12px;
+  --radius-sm:  8px;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+body{ font-family:'DM Sans',sans-serif; background:var(--earth-cream); color:var(--grey-800); min-height:100vh; font-size:14px; line-height:1.6; }
+
+/* ── HEADER ── */
+.header{
+  background:linear-gradient(135deg,#4a2317 0%,#7a3a23 50%,#5e2c1c 100%);
+  color:var(--white); padding:22px 36px 18px; position:relative; overflow:hidden;
+}
+.header::before{ content:''; position:absolute; top:-60px; right:-80px; width:300px; height:300px; border-radius:50%; background:rgba(201,168,76,.08); pointer-events:none; }
+.header-inner{ display:flex; justify-content:space-between; align-items:flex-start; position:relative; z-index:1; max-width:1700px; margin:0 auto; }
+.header-brand{ display:flex; flex-direction:column; gap:3px; }
+.header-eyebrow{ font-size:9.5px; letter-spacing:3px; text-transform:uppercase; color:var(--gold-light); font-weight:500; }
+.header-title{ font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:600; letter-spacing:.5px; line-height:1.1; }
+.header-title span{ color:var(--gold-light); }
+.header-subtitle{ font-size:11.5px; color:var(--earth-mist); margin-top:4px; opacity:.82; }
+.header-meta{ display:flex; flex-direction:column; gap:5px; align-items:flex-end; }
+.meta-date{ background:rgba(201,168,76,.15); border:1px solid rgba(201,168,76,.3); color:var(--gold-light); border-radius:6px; padding:2px 10px; font-size:11px; outline:none; font-family:'DM Sans',sans-serif; width:120px; text-align:center; }
+.header-actions{ display:flex; gap:7px; margin-top:8px; align-items:center; flex-wrap:wrap; }
+.btn{ display:inline-flex; align-items:center; gap:5px; padding:6px 14px; border-radius:7px; border:none; cursor:pointer; font-size:12px; font-family:'DM Sans',sans-serif; font-weight:500; transition:all .2s; }
+.btn-gold{ background:var(--gold); color:var(--earth-dark); } .btn-gold:hover{ background:var(--gold-light); }
+.btn-outline{ background:transparent; border:1px solid rgba(255,255,255,.25); color:var(--white); } .btn-outline:hover{ background:rgba(255,255,255,.08); }
+.btn-sm{ background:var(--earth-mid); color:var(--white); border:1px solid rgba(255,255,255,.15); } .btn-sm:hover{ background:var(--earth-sage); }
+.btn-teal{ background:var(--teal); color:var(--white); } .btn-teal:hover{ background:var(--teal-light); }
+
+/* ── TABS NAV ── */
+.tab-nav{
+  background:var(--earth-dark);
+  border-bottom:2px solid var(--gold);
+  display:flex; overflow-x:auto; gap:0;
+  position:sticky; top:0; z-index:100;
+  scrollbar-width:thin;
+}
+.tab-nav::-webkit-scrollbar{ height:3px; }
+.tab-nav::-webkit-scrollbar-track{ background:var(--earth-dark); }
+.tab-nav::-webkit-scrollbar-thumb{ background:var(--gold); }
+.tab-btn{
+  padding:11px 18px; background:transparent; border:none; cursor:pointer;
+  color:rgba(255,255,255,.55); font-size:12px; font-family:'DM Sans',sans-serif;
+  font-weight:500; white-space:nowrap; border-bottom:2px solid transparent;
+  margin-bottom:-2px; transition:all .2s; letter-spacing:.3px;
+  display:flex; align-items:center; gap:6px;
+}
+.tab-btn:hover{ color:var(--gold-light); background:rgba(255,255,255,.05); }
+.tab-btn.active{ color:var(--gold-light); border-bottom-color:var(--gold); background:rgba(201,168,76,.08); }
+.tab-icon{ font-size:13px; }
+
+/* ── TAB CONTENT ── */
+.tab-content{ display:none; }
+.tab-content.active{ display:block; }
+.main{ max-width:1700px; margin:0 auto; padding:24px 36px 60px; }
+
+/* ── SECTION TITLES ── */
+.section-title{ font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:600; color:var(--earth-deep); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+.section-title::after{ content:''; flex:1; height:1px; background:var(--earth-mist); }
+.dot{ width:8px; height:8px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+
+/* ── SUMMARY CARDS ── */
+.cards-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:26px; }
+.cards-grid-8{ grid-template-columns:repeat(4,1fr); }
+.card{ background:var(--white); border-radius:var(--radius); padding:18px 20px; box-shadow:var(--shadow-sm); border-top:3px solid transparent; transition:box-shadow .2s,transform .2s; position:relative; overflow:hidden; }
+.card:hover{ box-shadow:var(--shadow-md); transform:translateY(-2px); }
+.card.green{ border-top-color:var(--earth-mid); }
+.card.gold{ border-top-color:var(--gold); }
+.card.teal{ border-top-color:var(--teal); }
+.card.sage{ border-top-color:var(--earth-sage); }
+.card.warn{ border-top-color:#e07b39; }
+.card.red{ border-top-color:#c0392b; }
+.card-label{ font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--grey-600); font-weight:500; margin-bottom:6px; }
+.card-value{ font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:700; color:var(--earth-dark); line-height:1; margin-bottom:3px; }
+.card-sub{ font-size:10.5px; color:var(--grey-600); opacity:.75; }
+.card-icon{ position:absolute; right:16px; top:50%; transform:translateY(-50%); font-size:28px; opacity:.07; }
+
+/* ── NOTICE ── */
+.notice{ background:linear-gradient(90deg,rgba(201,168,76,.1),rgba(221,174,138,.08)); border:1px solid rgba(201,168,76,.25); border-radius:8px; padding:9px 14px; font-size:12px; color:var(--earth-deep); margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+
+/* ── FILTERS ── */
+.filters-panel{ background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:16px 22px; margin-bottom:18px; display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end; }
+.filter-group{ display:flex; flex-direction:column; gap:3px; min-width:130px; }
+.filter-group label{ font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--grey-600); font-weight:500; }
+.filter-group select,.filter-group input{ padding:6px 9px; border:1px solid var(--grey-200); border-radius:6px; font-size:12.5px; font-family:'DM Sans',sans-serif; color:var(--grey-800); background:var(--grey-50); transition:border .2s; }
+.filter-group select:focus,.filter-group input:focus{ outline:none; border-color:var(--earth-sage); background:var(--white); }
+.search-group{ flex:1; min-width:200px; }
+.filter-actions{ display:flex; gap:8px; align-items:flex-end; }
+
+/* ── TABLE ── */
+.table-wrap{ background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow-md); overflow:hidden; margin-bottom:26px; }
+.table-toolbar{ display:flex; justify-content:space-between; align-items:center; padding:14px 18px; border-bottom:1px solid var(--grey-100); background:var(--grey-50); }
+.table-title{ font-weight:600; font-size:13.5px; color:var(--earth-dark); }
+.table-actions{ display:flex; gap:7px; }
+.table-outer{ overflow-x:auto; max-height:500px; }
+table{ width:100%; border-collapse:collapse; font-size:12.5px; }
+thead th{ position:sticky; top:0; background:var(--earth-deep); color:var(--white); padding:10px 9px; text-align:left; font-weight:500; font-size:11px; letter-spacing:.4px; white-space:nowrap; z-index:2; border-right:1px solid rgba(255,255,255,.08); }
+tbody tr:nth-child(even){ background:#fdf9f5; }
+tbody tr:hover{ background:#f7ede0; }
+tbody td{ padding:8px 9px; border-bottom:1px solid var(--grey-100); vertical-align:middle; border-right:1px solid var(--grey-100); }
+tbody td:last-child{ border-right:none; }
+tbody td input[type="text"],tbody td input[type="number"],tbody td input[type="date"],tbody td select{ width:100%; padding:4px 6px; border:1px solid transparent; border-radius:5px; font-family:'DM Sans',sans-serif; font-size:12px; background:transparent; color:var(--grey-800); transition:border .15s,background .15s; }
+tbody td input:focus,tbody td select:focus{ outline:none; border-color:var(--earth-sage); background:var(--white); box-shadow:0 0 0 2px rgba(168,86,56,.12); }
+.fee-cell{ background:rgba(122,58,35,.05); font-weight:600; color:var(--earth-deep); font-size:12px; white-space:nowrap; text-align:right; padding-right:11px!important; }
+.total-fee-cell{ background:rgba(201,168,76,.12)!important; font-weight:700; color:var(--earth-dark); font-size:12.5px; text-align:right; padding-right:11px!important; }
+.delete-btn{ background:none; border:none; cursor:pointer; color:#cc4444; font-size:14px; padding:3px 6px; border-radius:4px; transition:background .15s; }
+.delete-btn:hover{ background:#ffe0e0; }
+.totals-row td{ background:var(--earth-dark)!important; color:var(--white)!important; font-weight:600; font-size:12.5px; padding:11px 9px!important; border-right:1px solid rgba(255,255,255,.1)!important; }
+.totals-row td.fee-cell,.totals-row td.total-fee-cell{ background:var(--earth-dark)!important; color:var(--gold-light)!important; }
+
+/* ── STATUS BADGES ── */
+.status-badge{ display:inline-flex; align-items:center; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:500; white-space:nowrap; }
+.status-ongoing{ background:#d4edda; color:#155724; }
+.status-pending{ background:#fff3cd; color:#856404; }
+.status-hold{ background:#f8d7da; color:#721c24; }
+.status-discussion{ background:#cce5ff; color:#004085; }
+.status-notstarted{ background:#e2e3e5; color:#383d41; }
+.status-completed{ background:#d1ecf1; color:#0c5460; }
+
+/* ── CHARTS ── */
+.charts-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; margin-bottom:24px; }
+.charts-grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:24px; }
+.chart-card{ background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:18px; }
+.chart-title{ font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--earth-deep); margin-bottom:12px; }
+.chart-container{ position:relative; height:180px; }
+.chart-card-wide .chart-container{ height:210px; }
+
+/* ── PROJECT SHEET ── */
+.project-header-card{ background:linear-gradient(135deg,var(--earth-dark) 0%,var(--earth-deep) 100%); border-radius:var(--radius); padding:26px 30px; color:var(--white); margin-bottom:22px; display:flex; justify-content:space-between; align-items:flex-start; gap:20px; }
+.ph-left{ flex:1; }
+.ph-eyebrow{ font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold-light); opacity:.8; margin-bottom:6px; }
+.ph-name{ font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:600; line-height:1.1; margin-bottom:8px; }
+.ph-loc{ font-size:13px; color:var(--earth-mist); opacity:.85; margin-bottom:12px; }
+.ph-tags{ display:flex; gap:8px; flex-wrap:wrap; }
+.ph-tag{ background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:var(--white); padding:4px 12px; border-radius:20px; font-size:11.5px; }
+.ph-tag.gold{ background:rgba(201,168,76,.2); border-color:rgba(201,168,76,.4); color:var(--gold-light); }
+.ph-right{ display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
+.ph-stat{ text-align:right; }
+.ph-stat-val{ font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:700; color:var(--gold-light); line-height:1; }
+.ph-stat-label{ font-size:10px; color:var(--earth-mist); opacity:.7; text-transform:uppercase; letter-spacing:1px; }
+
+.proj-metrics{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:22px; }
+.proj-metric{ background:var(--white); border-radius:var(--radius-sm); padding:14px 16px; box-shadow:var(--shadow-sm); border-left:3px solid var(--gold); }
+.proj-metric-label{ font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--grey-600); margin-bottom:5px; }
+.proj-metric-val{ font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:700; color:var(--earth-dark); line-height:1; }
+.proj-metric-sub{ font-size:10px; color:var(--grey-600); margin-top:2px; }
+
+.proj-edit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:22px; }
+.proj-edit-form{ background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:22px 24px; }
+.form-title{ font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--earth-deep); margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--grey-100); }
+.form-row{ display:flex; flex-direction:column; gap:4px; margin-bottom:12px; }
+.form-row label{ font-size:11px; color:var(--grey-600); font-weight:500; }
+.form-row input,.form-row select,.form-row textarea{ padding:7px 10px; border:1px solid var(--grey-200); border-radius:7px; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--grey-800); background:var(--grey-50); transition:border .2s; }
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{ outline:none; border-color:var(--earth-sage); background:var(--white); }
+
+.fee-breakdown{ background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:22px 24px; }
+.fee-row{ display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1px solid var(--grey-100); }
+.fee-row:last-child{ border-bottom:none; }
+.fee-row-label{ font-size:13px; color:var(--grey-600); }
+.fee-row-val{ font-size:14px; font-weight:600; color:var(--earth-deep); font-family:'Cormorant Garamond',serif; }
+.fee-row-val.total{ font-size:18px; color:var(--earth-dark); font-weight:700; }
+.fee-row-note{ font-size:10.5px; color:var(--grey-600); opacity:.7; margin-top:2px; }
+.fee-row-rule{ display:inline-block; background:var(--earth-mist); color:var(--earth-deep); padding:1px 8px; border-radius:10px; font-size:10px; margin-left:6px; }
+
+/* ── ASSUMPTION PANEL ── */
+.assumption-panel{ background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow-md); padding:22px 26px; margin-bottom:26px; border-left:4px solid var(--gold); }
+.assumption-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin-top:14px; }
+.assumption-block h4{ font-size:10.5px; text-transform:uppercase; letter-spacing:1.8px; color:var(--earth-sage); font-weight:600; margin-bottom:10px; padding-bottom:7px; border-bottom:1px solid var(--grey-200); }
+.assumption-row{ display:flex; justify-content:space-between; align-items:center; margin-bottom:9px; gap:10px; }
+.assumption-label{ font-size:12px; color:var(--grey-600); flex:1; }
+.assumption-input{ width:130px; padding:5px 9px; border:1px solid var(--grey-200); border-radius:6px; font-size:12.5px; text-align:right; color:var(--earth-dark); background:var(--grey-50); font-family:'DM Sans',sans-serif; transition:border .2s; }
+.assumption-input:focus{ outline:none; border-color:var(--earth-sage); background:var(--white); }
+.recalc-btn{ margin-top:14px; background:var(--earth-deep); color:var(--white); border:none; padding:8px 20px; border-radius:7px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; cursor:pointer; display:flex; align-items:center; gap:6px; transition:background .2s; }
+.recalc-btn:hover{ background:var(--earth-mid); }
+
+/* ── FOOTER ── */
+.footer{ background:var(--earth-dark); color:var(--earth-mist); text-align:center; padding:16px; font-size:11px; opacity:.9; }
+.footer span{ color:var(--gold-light); }
+
+@media print{
+  .tab-nav,.header-actions,.filter-actions,.table-actions,.btn,.delete-btn,.recalc-btn,.filters-panel{ display:none!important; }
+  .main{ padding:10px; }
+  body{ background:white; }
+  .tab-content{ display:block!important; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-eyebrow">ASURE Design Studio + The Earth Projects</div>
+      <div class="header-title">THE EARTH PROJECTS <span>Dashboard</span></div>
+      <div class="header-subtitle">Project Register · Fee Calculator · Individual Project Sheets · Fee Assumptions</div>
+    </div>
+    <div class="header-meta">
+      <input class="meta-date" type="text" id="dashDate" value="">
+      <div class="header-actions">
+        <span id="saveIndicator" style="font-size:11px;color:var(--gold-light);opacity:0;transition:opacity .4s;padding:0 6px;">✓ Saved</span>
+        <button class="btn btn-gold" onclick="saveData()">💾 Save</button>
+        <button class="btn btn-outline" onclick="exportCSV()">↓ CSV</button>
+        <button class="btn btn-outline" onclick="window.print()">⎙ Print</button>
+        <button class="btn btn-sm" onclick="resetData()">↺ Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<nav class="tab-nav" id="tabNav">
+  <button class="tab-btn active" onclick="switchTab('dashboard')" id="tab-dashboard"><span class="tab-icon">⬡</span> Main Dashboard</button>
+  <button class="tab-btn" onclick="switchTab('register')" id="tab-register"><span class="tab-icon">▤</span> All Projects</button>
+  <button class="tab-btn" onclick="switchTab('proj-0')" id="tab-proj-0"><span class="tab-icon">◈</span> Humming Grove</button>
+  <button class="tab-btn" onclick="switchTab('proj-1')" id="tab-proj-1"><span class="tab-icon">◈</span> The HydeAway</button>
+  <button class="tab-btn" onclick="switchTab('proj-2')" id="tab-proj-2"><span class="tab-icon">◈</span> Eco Biome Retreat</button>
+  <button class="tab-btn" onclick="switchTab('proj-3')" id="tab-proj-3"><span class="tab-icon">◈</span> Soul Springs</button>
+  <button class="tab-btn" onclick="switchTab('proj-4')" id="tab-proj-4"><span class="tab-icon">◈</span> Meadow Springs</button>
+  <button class="tab-btn" onclick="switchTab('proj-5')" id="tab-proj-5"><span class="tab-icon">◈</span> The Sky Fields</button>
+  <button class="tab-btn" onclick="switchTab('proj-6')" id="tab-proj-6"><span class="tab-icon">◈</span> Thimmaipalli Site</button>
+  <button class="tab-btn" onclick="switchTab('assumptions')" id="tab-assumptions"><span class="tab-icon">⚙</span> Fee Assumptions</button>
+</nav>
+
+<!-- ══════════════════════════════════════
+     TAB 1 — MAIN DASHBOARD
+════════════════════════════════════════ -->
+<div class="tab-content active" id="content-dashboard">
+<div class="main">
+
+  <div class="section-title"><div class="dot"></div> Summary Overview</div>
+  <div class="cards-grid">
+    <div class="card green"><div class="card-label">Total Projects</div><div class="card-value" id="c_total">0</div><div class="card-sub">All registered</div><div class="card-icon">⬡</div></div>
+    <div class="card gold"><div class="card-label">Total Acreage</div><div class="card-value" id="c_acres">0</div><div class="card-sub">Acres</div><div class="card-icon">◈</div></div>
+    <div class="card teal"><div class="card-label">Total Clubhouse Area</div><div class="card-value" id="c_sft">0</div><div class="card-sub">SFT</div><div class="card-icon">⬜</div></div>
+    <div class="card gold"><div class="card-label">Total Design Fee</div><div class="card-value" id="c_fee" style="font-size:20px;">₹0</div><div class="card-sub">Acreage + Club + Villa + Arch</div><div class="card-icon">₹</div></div>
+    <div class="card green"><div class="card-label">Ongoing Projects</div><div class="card-value" id="c_ongoing">0</div><div class="card-sub">Active</div><div class="card-icon">▶</div></div>
+    <div class="card sage"><div class="card-label">Pending Confirmation</div><div class="card-value" id="c_pending">0</div><div class="card-sub">Projects</div><div class="card-icon">◎</div></div>
+    <div class="card warn"><div class="card-label">On Hold</div><div class="card-value" id="c_hold">0</div><div class="card-sub">Projects</div><div class="card-icon">‖</div></div>
+    <div class="card teal"><div class="card-label">Completed</div><div class="card-value" id="c_completed">0</div><div class="card-sub">Projects</div><div class="card-icon">✓</div></div>
+  </div>
+
+  <div class="section-title" style="margin-top:6px;"><div class="dot"></div> Visual Analytics</div>
+  <div class="charts-grid">
+    <div class="chart-card"><div class="chart-title">Project Status</div><div class="chart-container"><canvas id="statusChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Typology Distribution</div><div class="chart-container"><canvas id="typologyChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Collaboration Type</div><div class="chart-container"><canvas id="collabChart"></canvas></div></div>
+  </div>
+  <div class="charts-grid-2">
+    <div class="chart-card chart-card-wide"><div class="chart-title">Project-wise Total Fee (₹ Lakhs)</div><div class="chart-container"><canvas id="feeChart"></canvas></div></div>
+    <div class="chart-card chart-card-wide"><div class="chart-title">Acreage by Project</div><div class="chart-container"><canvas id="acreChart"></canvas></div></div>
+  </div>
+  <div class="charts-grid-2">
+    <div class="chart-card"><div class="chart-title">Fee Split: Acreage · Clubhouse · Villa · Architecture</div><div class="chart-container"><canvas id="splitChart"></canvas></div></div>
+    <div class="chart-card" style="display:flex;flex-direction:column;justify-content:center;gap:12px;">
+      <div class="chart-title">Key Stats</div>
+      <div id="statsPanel" style="font-size:13px;color:var(--grey-600);display:flex;flex-direction:column;gap:9px;"></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TAB 2 — ALL PROJECTS REGISTER
+════════════════════════════════════════ -->
+<div class="tab-content" id="content-register">
+<div class="main">
+
+  <div class="section-title"><div class="dot"></div> All Projects Register</div>
+  <div class="notice">ℹ Edit any field directly. Fee columns recalculate instantly. BUA applies only to Hospitality/Apartment typologies; Villa Size & Types apply to Villas/Farm Villas.</div>
+
+  <div class="filters-panel">
+    <div class="filter-group search-group"><label>Search</label><input type="text" id="searchBox" placeholder="Name, location, partner, remarks…" oninput="applyFilters()"></div>
+    <div class="filter-group"><label>Typology</label>
+      <select id="f_typology" onchange="applyFilters()">
+        <option value="">All</option>
+        <option>Plotting</option><option>Farm Plotting</option><option>Villas</option><option>Farm Villas</option>
+        <option>Gated Community</option><option>Hospitality</option><option>Apartments</option><option>Senior Living</option>
+        <option>Managed Homes</option><option>Service Apartments</option><option>Mixed Use</option><option>Clubhouse</option><option>Other</option>
+      </select>
+    </div>
+    <div class="filter-group"><label>Status</label>
+      <select id="f_status" onchange="applyFilters()">
+        <option value="">All</option><option>Not Started</option><option>Under Discussion</option>
+        <option>Pending Confirmation</option><option>Ongoing</option><option>On Hold</option><option>Completed</option>
+      </select>
+    </div>
+    <div class="filter-group"><label>Collab Type</label>
+      <select id="f_collab" onchange="applyFilters()"><option value="">All</option><option>Own Project</option><option>Joint Development</option></select>
+    </div>
+    <div class="filter-group"><label>Min Acres</label><input type="number" id="f_minAcre" placeholder="e.g. 5" oninput="applyFilters()"></div>
+    <div class="filter-group"><label>Max Acres</label><input type="number" id="f_maxAcre" placeholder="e.g. 50" oninput="applyFilters()"></div>
+    <div class="filter-actions">
+      <button class="btn btn-sm" onclick="addRow()">＋ Add Project</button>
+      <button class="btn btn-sm" style="background:var(--earth-sage);" onclick="clearFilters()">Clear</button>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-toolbar">
+      <span class="table-title" id="tableCount">All projects</span>
+      <div class="table-actions">
+        <button class="btn btn-sm" onclick="addRow()">＋ Add Row</button>
+        <button class="btn btn-teal" onclick="exportCSV()">↓ Export CSV</button>
+      </div>
+    </div>
+    <div class="table-outer">
+      <table id="projectTable">
+        <thead>
+          <tr>
+            <th>No.</th><th>Project Name</th><th>Location</th><th>Project Acreage</th>
+            <th>Typology</th><th>Clubhouse (SFT)</th><th>BUA (SFT)</th>
+            <th>Villa Size (SFT)</th><th>Villa Types</th>
+            <th>Acreage Fee</th><th>Clubhouse Fee</th><th>Architecture Fee</th><th>Villa Fee</th>
+            <th>Total Fee</th><th>Status</th><th>Collab Type</th><th>Collab With</th><th>Remarks</th><th>Del</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+        <tfoot><tr id="totalsRow" class="totals-row"></tr></tfoot>
+      </table>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TABS 3-9 — INDIVIDUAL PROJECT SHEETS
+     Generated dynamically by JS
+════════════════════════════════════════ -->
+<div id="projectSheets"></div>
+
+<!-- ══════════════════════════════════════
+     TAB 10 — FEE ASSUMPTIONS
+════════════════════════════════════════ -->
+<div class="tab-content" id="content-assumptions">
+<div class="main">
+
+  <div class="section-title"><div class="dot"></div> Fee Assumption Panel</div>
+  <div class="assumption-panel">
+    <div style="font-size:12px;color:var(--grey-600);margin-bottom:4px;">Edit values below. All project sheets and the register recalculate automatically when you click Recalculate.</div>
+    <div class="assumption-grid">
+      <div class="assumption-block">
+        <h4>Acreage-Based Fee</h4>
+        <div class="assumption-row"><span class="assumption-label">Below 10 acres — ₹/acre</span><input class="assumption-input" id="a_below10" type="number" value="200000" onchange="recalcAll()"></div>
+        <div class="assumption-row"><span class="assumption-label">10 – 20 acres — ₹/acre</span><input class="assumption-input" id="a_10to20" type="number" value="150000" onchange="recalcAll()"></div>
+        <div class="assumption-row"><span class="assumption-label">Above 20 acres — ₹/acre</span><input class="assumption-input" id="a_above20" type="number" value="100000" onchange="recalcAll()"></div>
+      </div>
+      <div class="assumption-block">
+        <h4>Clubhouse Fee</h4>
+        <div class="assumption-row"><span class="assumption-label">Below 10,000 SFT — Lump sum ₹</span><input class="assumption-input" id="c_below10k" type="number" value="2500000" onchange="recalcAll()"></div>
+        <div class="assumption-row"><span class="assumption-label">10,000 – 20,000 SFT — Lump sum ₹</span><input class="assumption-input" id="c_10to20k" type="number" value="4000000" onchange="recalcAll()"></div>
+        <div class="assumption-row"><span class="assumption-label">Above 20,000 SFT — ₹/SFT</span><input class="assumption-input" id="c_rate_high" type="number" value="350" onchange="recalcAll()"></div>
+      </div>
+      <div class="assumption-block">
+        <h4>Hospitality Architecture Fee</h4>
+        <div class="assumption-row"><span class="assumption-label">Up to 10,00,000 SFT — ₹/SFT</span><input class="assumption-input" id="h_rate_low" type="number" value="75" onchange="recalcAll()"></div>
+        <div class="assumption-row"><span class="assumption-label">Above 10,00,000 SFT — ₹/SFT</span><input class="assumption-input" id="h_rate_high" type="number" value="65" onchange="recalcAll()"></div>
+        <h4 style="margin-top:14px;">Apartments Architecture Fee</h4>
+        <div class="assumption-row"><span class="assumption-label">Up to 10,00,000 SFT — ₹/SFT</span><input class="assumption-input" id="ap_rate_low" type="number" value="38" onchange="recalcAll()"></div>
+        <div class="assumption-row"><span class="assumption-label">Above 10,00,000 SFT — ₹/SFT</span><input class="assumption-input" id="ap_rate_high" type="number" value="28" onchange="recalcAll()"></div>
+      </div>
+      <div class="assumption-block">
+        <h4>Villa Design Fee <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--grey-600);">(lump sum per design)</span></h4>
+        <div class="assumption-row"><span class="assumption-label">1,000 – 3,000 SFT — ₹ lump sum</span><input class="assumption-input" id="v_band1" type="number" value="1500000" onchange="recalcAll()"></div>
+        <div class="assumption-row"><span class="assumption-label">3,000 – 6,000 SFT — ₹ lump sum</span><input class="assumption-input" id="v_band2" type="number" value="2500000" onchange="recalcAll()"></div>
+        <div class="assumption-row"><span class="assumption-label">6,000 – 10,000 SFT — ₹ lump sum</span><input class="assumption-input" id="v_band3" type="number" value="4500000" onchange="recalcAll()"></div>
+        <div style="font-size:10.5px;color:var(--grey-600);margin-top:6px;line-height:1.4;">Fee = band lump sum × number of villa design types. Villas outside 1,000–10,000 SFT = ₹0.</div>
+      </div>
+    </div>
+    <button class="recalc-btn" onclick="recalcAll()">⟳ Recalculate All Fees</button>
+  </div>
+
+  <!-- Assumption summary table -->
+  <div class="section-title" style="margin-top:10px;"><div class="dot"></div> Applied Rates Summary</div>
+  <div class="table-wrap">
+    <div class="table-outer">
+      <table>
+        <thead><tr><th>Rule</th><th>Slab / Condition</th><th>Rate / Amount</th><th>Applies To</th></tr></thead>
+        <tbody>
+          <tr><td>Acreage Fee</td><td>Below 10 acres</td><td id="sr_a1">—</td><td>All non-arch typologies</td></tr>
+          <tr><td>Acreage Fee</td><td>10 – 20 acres</td><td id="sr_a2">—</td><td>All non-arch typologies</td></tr>
+          <tr><td>Acreage Fee</td><td>Above 20 acres</td><td id="sr_a3">—</td><td>All non-arch typologies</td></tr>
+          <tr><td>Clubhouse Fee</td><td>Below 10,000 SFT</td><td id="sr_c1">—</td><td>Lump sum</td></tr>
+          <tr><td>Clubhouse Fee</td><td>10,000 – 20,000 SFT</td><td id="sr_c2">—</td><td>Lump sum</td></tr>
+          <tr><td>Clubhouse Fee</td><td>Above 20,000 SFT</td><td id="sr_c3">—</td><td>Per SFT</td></tr>
+          <tr><td>Hospitality Architecture</td><td>Up to 10,00,000 SFT</td><td id="sr_h1">—</td><td>Per SFT</td></tr>
+          <tr><td>Hospitality Architecture</td><td>Above 10,00,000 SFT</td><td id="sr_h2">—</td><td>Per SFT</td></tr>
+          <tr><td>Apartments Architecture</td><td>Up to 10,00,000 SFT</td><td id="sr_ap1">—</td><td>Per SFT</td></tr>
+          <tr><td>Apartments Architecture</td><td>Above 10,00,000 SFT</td><td id="sr_ap2">—</td><td>Per SFT</td></tr>
+          <tr><td>Villa Design Fee</td><td>1,000 – 3,000 SFT</td><td id="sr_v1">—</td><td>Lump sum × no. of types</td></tr>
+          <tr><td>Villa Design Fee</td><td>3,000 – 6,000 SFT</td><td id="sr_v2">—</td><td>Lump sum × no. of types</td></tr>
+          <tr><td>Villa Design Fee</td><td>6,000 – 10,000 SFT</td><td id="sr_v3">—</td><td>Lump sum × no. of types</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="footer">
+  <strong>THE EARTH PROJECTS Dashboard</strong> — <span>ASURE Design Studio + The Earth Projects</span> &nbsp;|&nbsp; For internal review and partner discussion only &nbsp;|&nbsp; ASURE Design Studio, Hyderabad
+</div>
+
+<script>
+// ══════════════════════════ DATA ══════════════════════════
+let projects = [
+  { id:'EP-001', name:'Humming Grove',     loc:'Sarpanpalli, Telangana',        acres:12.46, typology:'Farm Villas', collab:'Joint Development', collabWith:'The Earth Project', clubSFT:0, bua:0, villaSFT:600,  villaTypes:1, status:'Ongoing',          remarks:'600 SQY Plots with 600 sq.ft Villa.' },
+  { id:'EP-002', name:'The HydeAway',      loc:'Manneguda, Telangana',          acres:12.33, typology:'Farm Villas', collab:'Joint Development', collabWith:'The Earth Project', clubSFT:0, bua:0, villaSFT:1200, villaTypes:1, status:'Ongoing',          remarks:'600 SQY Plots with 1200 sq.ft Villa.' },
+  { id:'EP-003', name:'Eco Biome Retreat', loc:'Debbadaguda, Telangana',        acres:50,    typology:'Farm Villas', collab:'Joint Development', collabWith:'The Earth Project', clubSFT:0, bua:0, villaSFT:2000, villaTypes:2, status:'Ongoing',          remarks:'1200 SQY Plots with 2000 sq.ft Villa & 600 SQY Plots with 1200 sq.ft Villa.' },
+  { id:'EP-004', name:'Soul Springs',      loc:'Sadenahalli, Karnataka',        acres:56,    typology:'Farm Villas', collab:'Joint Development', collabWith:'The Earth Project', clubSFT:0, bua:0, villaSFT:0,    villaTypes:1, status:'Ongoing',          remarks:'Groundbreaking ceremony June 2026.' },
+  { id:'EP-005', name:'Meadow Springs',    loc:'Pudur, Telangana',              acres:27.6,  typology:'Farm Villas', collab:'Joint Development', collabWith:'The Earth Project', clubSFT:0, bua:0, villaSFT:1200, villaTypes:1, status:'Ongoing',          remarks:'600 SQY Plots with 1200 sq.ft Villa.' },
+  { id:'EP-006', name:'The Sky Fields',    loc:'Madgul Chittempalle, Telangana',acres:11.09, typology:'Farm Villas', collab:'Joint Development', collabWith:'The Earth Project', clubSFT:0, bua:0, villaSFT:1200, villaTypes:1, status:'Ongoing',          remarks:'1200 SQY Plots with 1200 sq.ft Villa.' },
+  { id:'EP-007', name:'Thimmaipalli Site', loc:'Thimmaipalli, Telangana',       acres:10.98, typology:'Villas',      collab:'Joint Development', collabWith:'The Earth Project', clubSFT:0, bua:0, villaSFT:0,    villaTypes:1, status:'Under Discussion', remarks:'180 & 222 SQY Plots.' },
+];
+
+// ══════════════════════════ CONSTANTS ══════════════════════════
+const TYPOLOGIES = ['Plotting','Farm Plotting','Villas','Farm Villas','Gated Community','Hospitality','Apartments','Senior Living','Managed Homes','Service Apartments','Mixed Use','Clubhouse','Other'];
+const COLLABS    = ['Own Project','Joint Development'];
+const STATUSES   = ['Not Started','Under Discussion','Pending Confirmation','Ongoing','On Hold','Completed'];
+const HOSPITALITY_TYPES = ['Hospitality'];
+const APARTMENT_TYPES   = ['Apartments','Senior Living','Managed Homes','Service Apartments'];
+const VILLA_TYPES       = ['Villas','Farm Villas'];
+const PALETTE = ['#a85638','#c9a84c','#2e6b6b','#c47a52','#e07b39','#4a9898','#8f6b3d','#5e6b8f','#6b8f5e','#9b5e8f'];
+
+function isArchProject(t)  { return HOSPITALITY_TYPES.includes(t)||APARTMENT_TYPES.includes(t); }
+function isVillaProject(t) { return VILLA_TYPES.includes(t); }
+
+// ══════════════════════════ ASSUMPTIONS ══════════════════════════
+function getAssumptions() {
+  const g = id => +document.getElementById(id).value;
+  return {
+    a_below10:g('a_below10'), a_10to20:g('a_10to20'), a_above20:g('a_above20'),
+    c_below10k:g('c_below10k'), c_10to20k:g('c_10to20k'), c_rate_high:g('c_rate_high'),
+    h_rate_low:g('h_rate_low'), h_rate_high:g('h_rate_high'),
+    ap_rate_low:g('ap_rate_low'), ap_rate_high:g('ap_rate_high'),
+    v_band1:g('v_band1'), v_band2:g('v_band2'), v_band3:g('v_band3'),
+  };
+}
+
+// ══════════════════════════ CALC FUNCTIONS ══════════════════════════
+function calcAcrageFee(acres, a) {
+  if (acres<=0) return 0;
+  if (acres<10) return acres*a.a_below10;
+  if (acres<=20) return acres*a.a_10to20;
+  return acres*a.a_above20;
+}
+function calcClubFee(sft, a) {
+  if (sft<=0) return 0;
+  if (sft<10000) return a.c_below10k;
+  if (sft<=20000) return Math.max(a.c_10to20k, sft*a.c_rate_high);
+  return sft*a.c_rate_high;
+}
+function calcArchFee(typology, bua, a) {
+  if (bua<=0) return 0;
+  if (HOSPITALITY_TYPES.includes(typology)) return bua*(bua<=1000000?a.h_rate_low:a.h_rate_high);
+  if (APARTMENT_TYPES.includes(typology))   return bua*(bua<=1000000?a.ap_rate_low:a.ap_rate_high);
+  return 0;
+}
+function calcVillaFee(villaSFT, villaTypes, a) {
+  if (villaSFT<=0||villaTypes<=0) return 0;
+  let band=0;
+  if      (villaSFT>=1000&&villaSFT<=3000) band=a.v_band1;
+  else if (villaSFT>3000&&villaSFT<=6000)  band=a.v_band2;
+  else if (villaSFT>6000&&villaSFT<=10000) band=a.v_band3;
+  return band*villaTypes;
+}
+function calcTotal(p, a) {
+  const acFee   = isArchProject(p.typology) ? 0 : calcAcrageFee(p.acres, a);
+  const clFee   = calcClubFee(p.clubSFT, a);
+  const archFee = calcArchFee(p.typology, p.bua, a);
+  const villaFee= isVillaProject(p.typology) ? calcVillaFee(p.villaSFT, p.villaTypes, a) : 0;
+  return { acFee, clFee, archFee, villaFee, total: acFee+clFee+archFee+villaFee };
+}
+
+// ══════════════════════════ FORMATTING ══════════════════════════
+function inr(n) {
+  if (!n&&n!==0) return '—';
+  let v=Math.round(n), s=v.toString();
+  let lt=s.slice(-3), rest=s.slice(0,-3);
+  if (rest) rest=rest.replace(/\B(?=(\d{2})+(?!\d))/g,',');
+  return '₹'+(rest?rest+',':'')+lt;
+}
+function num(n) { return n.toLocaleString('en-IN'); }
+function inrL(n) { return (n/100000).toFixed(2)+'L'; }
+
+// ══════════════════════════ TABS ══════════════════════════
+let activeTab = 'dashboard';
+function switchTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
+  const content = document.getElementById('content-'+id);
+  if (content) content.classList.add('active');
+  const btn = document.getElementById('tab-'+id);
+  if (btn) btn.classList.add('active');
+  activeTab = id;
+  // refresh charts when switching back to dashboard
+  if (id==='dashboard') { updateCards(getAssumptions()); updateCharts(); }
+  // refresh project sheet
+  if (id.startsWith('proj-')) {
+    const idx = parseInt(id.split('-')[1]);
+    renderProjectSheet(idx);
+  }
+  if (id==='assumptions') updateAssumptionSummary();
+}
+
+// ══════════════════════════ READ ROW ══════════════════════════
+function readRow(i) {
+  const b = document.getElementById('tableBody');
+  if (!b) return;
+  const row = b.rows[i];
+  if (!row) return;
+  const c = row.cells;
+  const p = projects[i];
+  p.id         = c[0].querySelector('input').value;
+  p.name       = c[1].querySelector('input').value;
+  p.loc        = c[2].querySelector('input').value;
+  p.acres      = parseFloat(c[3].querySelector('input').value)||0;
+  p.typology   = c[4].querySelector('select').value;
+  p.clubSFT    = parseFloat(c[5].querySelector('input').value)||0;
+  p.bua        = parseFloat(c[6].querySelector('input').value)||0;
+  p.villaSFT   = parseFloat(c[7].querySelector('input').value)||0;
+  p.villaTypes = parseInt(c[8].querySelector('input').value)||0;
+  p.status     = c[14].querySelector('select').value;
+  p.collab     = c[15].querySelector('select').value;
+  p.collabWith = c[16].querySelector('input').value;
+  p.remarks    = c[17].querySelector('input').value;
+}
+
+function syncAll() {
+  const b = document.getElementById('tableBody');
+  if (!b) return;
+  for (let i=0;i<projects.length;i++) { if(b.rows[i]) readRow(i); }
+}
+
+// ══════════════════════════ RENDER REGISTER TABLE ══════════════════════════
+let filterState = { search:'', typology:'', status:'', collab:'', minAcre:'', maxAcre:'' };
+
+function renderTable() {
+  const a = getAssumptions();
+  const b = document.getElementById('tableBody');
+  if (!b) return;
+  const search = filterState.search.toLowerCase();
+  b.innerHTML = '';
+  let shown = 0;
+
+  projects.forEach((p, i) => {
+    const ms = !search || [p.id,p.name,p.loc,p.collabWith,p.remarks].some(v=>v.toLowerCase().includes(search));
+    const mt = !filterState.typology || p.typology===filterState.typology;
+    const mst= !filterState.status   || p.status===filterState.status;
+    const mc = !filterState.collab   || p.collab===filterState.collab;
+    const mn = !filterState.minAcre  || p.acres>=parseFloat(filterState.minAcre);
+    const mx = !filterState.maxAcre  || p.acres<=parseFloat(filterState.maxAcre);
+    if (!ms||!mt||!mst||!mc||!mn||!mx) return;
+    shown++;
+
+    const { acFee, clFee, archFee, villaFee, total } = calcTotal(p, a);
+    const villaOn = isVillaProject(p.typology);
+    const archOn  = isArchProject(p.typology);
+
+    const tr = document.createElement('tr');
+    tr.dataset.idx = i;
+    const dash = '<span style="opacity:.3">—</span>';
+    tr.innerHTML = `
+      <td><input type="text"   value="${esc(p.id)}"         style="width:68px;"  onchange="syncAndUpdate(${i})"></td>
+      <td><input type="text"   value="${esc(p.name)}"       style="width:150px;" onchange="syncAndUpdate(${i})"></td>
+      <td><input type="text"   value="${esc(p.loc)}"        style="width:120px;" onchange="syncAndUpdate(${i})"></td>
+      <td><input type="number" value="${p.acres}"           style="width:72px;"  onchange="syncAndUpdate(${i})"></td>
+      <td><select onchange="syncAndUpdate(${i})">${TYPOLOGIES.map(t=>`<option${p.typology===t?' selected':''}>${t}</option>`).join('')}</select></td>
+      <td><input type="number" value="${p.clubSFT}"         style="width:85px;"  onchange="syncAndUpdate(${i})"></td>
+      <td><input type="number" value="${p.bua}"             style="width:85px;${!archOn?'opacity:.38;':''}" ${!archOn?'disabled':''} onchange="syncAndUpdate(${i})"></td>
+      <td><input type="number" value="${p.villaSFT}"        style="width:85px;${!villaOn?'opacity:.38;':''}" ${!villaOn?'disabled':''} onchange="syncAndUpdate(${i})"></td>
+      <td><input type="number" value="${p.villaTypes}"      style="width:58px;${!villaOn?'opacity:.38;':''}" ${!villaOn?'disabled':''} onchange="syncAndUpdate(${i})"></td>
+      <td class="fee-cell">${acFee   ? inr(acFee)   : dash}</td>
+      <td class="fee-cell">${clFee   ? inr(clFee)   : dash}</td>
+      <td class="fee-cell">${archFee ? inr(archFee) : dash}</td>
+      <td class="fee-cell">${villaFee? inr(villaFee): dash}</td>
+      <td class="total-fee-cell">${inr(total)}</td>
+      <td><select onchange="syncAndUpdate(${i})">${STATUSES.map(s=>`<option${p.status===s?' selected':''}>${s}</option>`).join('')}</select></td>
+      <td><select onchange="syncAndUpdate(${i})">${COLLABS.map(c=>`<option${p.collab===c?' selected':''}>${c}</option>`).join('')}</select></td>
+      <td><input type="text"   value="${esc(p.collabWith)}" style="width:130px;" onchange="syncAndUpdate(${i})"></td>
+      <td><input type="text"   value="${esc(p.remarks)}"   style="width:170px;" onchange="syncAndUpdate(${i})"></td>
+      <td><button class="delete-btn" onclick="deleteRow(${i})">✕</button></td>`;
+    b.appendChild(tr);
+  });
+
+  document.getElementById('tableCount').textContent = `Showing ${shown} of ${projects.length} projects`;
+  renderTotals(a);
+  updateCards(a);
+  updateCharts();
+  // update tab names if project names changed
+  projects.forEach((p,i)=>{
+    const btn=document.getElementById(`tab-proj-${i}`);
+    if(btn) btn.innerHTML=`<span class="tab-icon">◈</span> ${p.name}`;
+  });
+}
+
+function esc(v) { return String(v||'').replace(/"/g,'&quot;'); }
+
+function syncAndUpdate(i) { readRow(i); renderTable(); autoSave(); }
+
+// ══════════════════════════ TOTALS ROW ══════════════════════════
+function renderTotals(a) {
+  let totAcres=0,totSFT=0,totBUA=0,totAcFee=0,totClFee=0,totArchFee=0,totVillaFee=0,totTotal=0;
+  projects.forEach(p=>{
+    totAcres+=p.acres; totSFT+=p.clubSFT; totBUA+=p.bua;
+    const {acFee,clFee,archFee,villaFee,total}=calcTotal(p,a);
+    totAcFee+=acFee; totClFee+=clFee; totArchFee+=archFee; totVillaFee+=villaFee; totTotal+=total;
+  });
+  const tr=document.getElementById('totalsRow');
+  tr.innerHTML=`
+    <td colspan="3" style="font-weight:600;">TOTALS — ${projects.length} Projects</td>
+    <td style="font-weight:700;">${num(totAcres)} ac</td><td></td>
+    <td style="font-weight:700;">${num(totSFT)} sft</td>
+    <td style="font-weight:700;">${num(totBUA)} sft</td>
+    <td></td><td></td>
+    <td class="fee-cell">${inr(totAcFee)}</td>
+    <td class="fee-cell">${inr(totClFee)}</td>
+    <td class="fee-cell">${inr(totArchFee)}</td>
+    <td class="fee-cell">${inr(totVillaFee)}</td>
+    <td class="total-fee-cell">${inr(totTotal)}</td>
+    <td></td><td></td><td></td><td></td><td></td>`;
+}
+
+// ══════════════════════════ DASHBOARD CARDS ══════════════════════════
+function updateCards(a) {
+  let totAcres=0,totSFT=0,totFee=0,ongoing=0,pending=0,hold=0,completed=0;
+  projects.forEach(p=>{
+    totAcres+=p.acres; totSFT+=p.clubSFT;
+    totFee+=calcTotal(p,a).total;
+    if(p.status==='Ongoing') ongoing++;
+    if(p.status==='Pending Confirmation') pending++;
+    if(p.status==='On Hold') hold++;
+    if(p.status==='Completed') completed++;
+  });
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  set('c_total',projects.length); set('c_acres',num(totAcres)); set('c_sft',num(totSFT));
+  set('c_fee',inr(totFee)); set('c_ongoing',ongoing); set('c_pending',pending);
+  set('c_hold',hold); set('c_completed',completed);
+  const avg = projects.length ? totFee/projects.length : 0;
+  const sp=document.getElementById('statsPanel');
+  if(sp) sp.innerHTML=`
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Total Projects</span><strong>${projects.length}</strong></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Total Acreage</span><strong>${num(totAcres)} acres</strong></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Total Clubhouse SFT</span><strong>${num(totSFT)} SFT</strong></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Total Design Fee</span><strong style="color:var(--earth-deep);">${inr(totFee)}</strong></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Avg Fee / Project</span><strong>${inr(avg)}</strong></div>
+    <div style="display:flex;justify-content:space-between;"><span>Active Projects</span><strong style="color:var(--earth-mid);">${ongoing}</strong></div>`;
+}
+
+// ══════════════════════════ CHARTS ══════════════════════════
+let charts={};
+function destroyCharts() { Object.values(charts).forEach(c=>{if(c)c.destroy();}); charts={}; }
+
+function updateCharts() {
+  if(activeTab!=='dashboard') return;
+  destroyCharts();
+  const a=getAssumptions();
+
+  // Status
+  const sc={};STATUSES.forEach(s=>sc[s]=0);projects.forEach(p=>{if(sc[p.status]!==undefined)sc[p.status]++;});
+  charts.status=new Chart(document.getElementById('statusChart'),{type:'doughnut',data:{labels:Object.keys(sc),datasets:[{data:Object.values(sc),backgroundColor:PALETTE,borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:10}}}}});
+
+  // Typology
+  const tc={};TYPOLOGIES.forEach(t=>tc[t]=0);projects.forEach(p=>{if(tc[p.typology]!==undefined)tc[p.typology]++;});
+  const tcKeys=Object.keys(tc).filter(k=>tc[k]>0);
+  charts.typology=new Chart(document.getElementById('typologyChart'),{type:'doughnut',data:{labels:tcKeys,datasets:[{data:tcKeys.map(k=>tc[k]),backgroundColor:PALETTE.slice(2),borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:10}}}}});
+
+  // Collab
+  const cc={};COLLABS.forEach(c=>cc[c]=0);projects.forEach(p=>{if(cc[p.collab]!==undefined)cc[p.collab]++;});
+  charts.collab=new Chart(document.getElementById('collabChart'),{type:'pie',data:{labels:Object.keys(cc),datasets:[{data:Object.values(cc),backgroundColor:['#7a3a23','#c9a84c','#2e6b6b','#c47a52'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:10}}}}});
+
+  // Fee bar
+  charts.fee=new Chart(document.getElementById('feeChart'),{type:'bar',data:{labels:projects.map(p=>p.id),datasets:[{label:'Total Fee (₹L)',data:projects.map(p=>(calcTotal(p,a).total/100000).toFixed(2)),backgroundColor:'#a85638',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{font:{size:10}}},x:{ticks:{font:{size:10}}}}}});
+
+  // Acreage bar
+  charts.acre=new Chart(document.getElementById('acreChart'),{type:'bar',data:{labels:projects.map(p=>p.id),datasets:[{label:'Acres',data:projects.map(p=>p.acres),backgroundColor:'#c9a84c',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{font:{size:10}}},x:{ticks:{font:{size:10}}}}}});
+
+  // Fee split
+  let tAc=0,tCl=0,tAr=0,tVi=0;
+  projects.forEach(p=>{const f=calcTotal(p,a);tAc+=f.acFee;tCl+=f.clFee;tAr+=f.archFee;tVi+=f.villaFee;});
+  charts.split=new Chart(document.getElementById('splitChart'),{type:'doughnut',data:{labels:['Acreage','Clubhouse','Architecture','Villa'],datasets:[{data:[tAc,tCl,tAr,tVi],backgroundColor:['#a85638','#c9a84c','#2e6b6b','#c47a52'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11}}},tooltip:{callbacks:{label:ctx=>' '+inr(ctx.raw)}}}}});
+}
+
+// ══════════════════════════ PROJECT SHEET GENERATOR ══════════════════════════
+function generateProjectSheets() {
+  const container = document.getElementById('projectSheets');
+  container.innerHTML = '';
+  projects.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'tab-content';
+    div.id = `content-proj-${i}`;
+    div.innerHTML = buildProjectSheetHTML(i);
+    container.appendChild(div);
+  });
+}
+
+function buildProjectSheetHTML(i) {
+  return `
+  <div class="main">
+    <div id="psh-header-${i}"></div>
+    <div id="psh-metrics-${i}" class="proj-metrics"></div>
+    <div class="proj-edit-grid">
+      <div class="proj-edit-form">
+        <div class="form-title">Edit Project Details</div>
+        <div class="form-row"><label>Project No.</label><input id="pf-id-${i}" type="text" oninput="updateProjFromSheet(${i})"></div>
+        <div class="form-row"><label>Project Name</label><input id="pf-name-${i}" type="text" oninput="updateProjFromSheet(${i})"></div>
+        <div class="form-row"><label>Location</label><input id="pf-loc-${i}" type="text" oninput="updateProjFromSheet(${i})"></div>
+        <div class="form-row"><label>Typology</label>
+          <select id="pf-typ-${i}" onchange="updateProjFromSheet(${i})">
+            ${TYPOLOGIES.map(t=>`<option>${t}</option>`).join('')}
+          </select>
+        </div>
+        <div class="form-row"><label>Status</label>
+          <select id="pf-status-${i}" onchange="updateProjFromSheet(${i})">
+            ${STATUSES.map(s=>`<option>${s}</option>`).join('')}
+          </select>
+        </div>
+        <div class="form-row"><label>Collaboration Type</label>
+          <select id="pf-collab-${i}" onchange="updateProjFromSheet(${i})">
+            ${COLLABS.map(c=>`<option>${c}</option>`).join('')}
+          </select>
+        </div>
+        <div class="form-row"><label>Collaboration With</label><input id="pf-collabWith-${i}" type="text" oninput="updateProjFromSheet(${i})"></div>
+        <div class="form-row"><label>Remarks</label><textarea id="pf-remarks-${i}" rows="2" oninput="updateProjFromSheet(${i})"></textarea></div>
+      </div>
+      <div class="proj-edit-form">
+        <div class="form-title">Design Fee Inputs</div>
+        <div class="form-row"><label>Project Acreage (acres)</label><input id="pf-acres-${i}" type="number" oninput="updateProjFromSheet(${i})"></div>
+        <div class="form-row"><label>Clubhouse Area (SFT)</label><input id="pf-club-${i}" type="number" oninput="updateProjFromSheet(${i})"></div>
+        <div class="form-row"><label>BUA — SFT (Hospitality / Apartments only)</label><input id="pf-bua-${i}" type="number" oninput="updateProjFromSheet(${i})"></div>
+        <div class="form-row"><label>Villa Size — SFT (Villas / Farm Villas only)</label><input id="pf-villaSFT-${i}" type="number" oninput="updateProjFromSheet(${i})"></div>
+        <div class="form-row"><label>No. of Villa Design Types</label><input id="pf-villaTypes-${i}" type="number" oninput="updateProjFromSheet(${i})"></div>
+        <!-- fee breakdown -->
+        <div class="fee-breakdown" style="margin-top:16px;">
+          <div class="form-title">Fee Calculation Summary</div>
+          <div id="pf-feebreak-${i}"></div>
+        </div>
+      </div>
+    </div>
+    <!-- mini chart -->
+    <div class="charts-grid-2">
+      <div class="chart-card chart-card-wide">
+        <div class="chart-title">Fee Split — ${projects[i]?projects[i].name:''}</div>
+        <div class="chart-container"><canvas id="pf-chart-${i}"></canvas></div>
+      </div>
+      <div class="chart-card chart-card-wide" style="display:flex;flex-direction:column;gap:10px;justify-content:center;">
+        <div class="chart-title">Project At a Glance</div>
+        <div id="pf-glance-${i}" style="font-size:13px;color:var(--grey-600);display:flex;flex-direction:column;gap:9px;"></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+let projCharts = {};
+function renderProjectSheet(i) {
+  const p = projects[i];
+  if (!p) return;
+  const a = getAssumptions();
+  const { acFee, clFee, archFee, villaFee, total } = calcTotal(p, a);
+
+  // Header card
+  const statusMap={'Ongoing':'ongoing','Pending Confirmation':'pending','On Hold':'hold','Under Discussion':'discussion','Not Started':'notstarted','Completed':'completed'};
+  const hd = document.getElementById(`psh-header-${i}`);
+  if(hd) hd.innerHTML=`
+    <div class="project-header-card">
+      <div class="ph-left">
+        <div class="ph-eyebrow">${p.id} · Earth Projects</div>
+        <div class="ph-name">${p.name}</div>
+        <div class="ph-loc">📍 ${p.loc}</div>
+        <div class="ph-tags">
+          <span class="ph-tag">${p.typology}</span>
+          <span class="ph-tag">${p.collab}</span>
+          <span class="ph-tag">${p.collabWith}</span>
+          <span class="ph-tag gold"><span class="status-badge status-${statusMap[p.status]||'notstarted'}" style="background:transparent;color:inherit;padding:0;">${p.status}</span></span>
+        </div>
+        ${p.remarks?`<div style="margin-top:10px;font-size:12px;color:var(--earth-mist);opacity:.75;">${p.remarks}</div>`:''}
+      </div>
+      <div class="ph-right">
+        <div class="ph-stat"><div class="ph-stat-val">${num(p.acres)}</div><div class="ph-stat-label">Acres</div></div>
+        <div class="ph-stat"><div class="ph-stat-val" style="font-size:18px;">${inr(total)}</div><div class="ph-stat-label">Total Design Fee</div></div>
+      </div>
+    </div>`;
+
+  // Metric cards
+  const villaOn=isVillaProject(p.typology), archOn=isArchProject(p.typology);
+  const mt=document.getElementById(`psh-metrics-${i}`);
+  if(mt) mt.innerHTML=`
+    <div class="proj-metric"><div class="proj-metric-label">Acreage</div><div class="proj-metric-val">${num(p.acres)}</div><div class="proj-metric-sub">Acres</div></div>
+    <div class="proj-metric" style="border-left-color:var(--teal);"><div class="proj-metric-label">Clubhouse</div><div class="proj-metric-val">${num(p.clubSFT)||'—'}</div><div class="proj-metric-sub">SFT</div></div>
+    <div class="proj-metric" style="border-left-color:#2e6b6b;opacity:${archOn?1:.4};"><div class="proj-metric-label">BUA (Arch)</div><div class="proj-metric-val">${archOn&&p.bua?num(p.bua):'—'}</div><div class="proj-metric-sub">SFT</div></div>
+    <div class="proj-metric" style="border-left-color:var(--earth-mid);opacity:${villaOn?1:.4};"><div class="proj-metric-label">Villa Size</div><div class="proj-metric-val">${villaOn&&p.villaSFT?num(p.villaSFT):'—'}</div><div class="proj-metric-sub">SFT</div></div>
+    <div class="proj-metric" style="border-left-color:var(--earth-mid);opacity:${villaOn?1:.4};"><div class="proj-metric-label">Villa Design Types</div><div class="proj-metric-val">${villaOn?p.villaTypes:'—'}</div><div class="proj-metric-sub">No. of types</div></div>`;
+
+  // Populate form fields
+  const setVal=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v;};
+  setVal(`pf-id-${i}`,p.id); setVal(`pf-name-${i}`,p.name); setVal(`pf-loc-${i}`,p.loc);
+  setVal(`pf-typ-${i}`,p.typology); setVal(`pf-status-${i}`,p.status);
+  setVal(`pf-collab-${i}`,p.collab); setVal(`pf-collabWith-${i}`,p.collabWith);
+  setVal(`pf-remarks-${i}`,p.remarks);
+  setVal(`pf-acres-${i}`,p.acres); setVal(`pf-club-${i}`,p.clubSFT);
+  setVal(`pf-bua-${i}`,p.bua); setVal(`pf-villaSFT-${i}`,p.villaSFT);
+  setVal(`pf-villaTypes-${i}`,p.villaTypes);
+
+  // Fee breakdown
+  function ruleNote(label){ return `<span class="fee-row-rule">${label}</span>`; }
+  const acreRule = p.acres<10?'<10 ac slab':p.acres<=20?'10–20 ac slab':'above 20 ac slab';
+  const clubRule = p.clubSFT<=0?'N/A':p.clubSFT<10000?'lump sum <10k':p.clubSFT<=20000?'lump sum 10–20k':'rate >20k';
+  const archRule = archOn ? (p.bua<=1000000?'up to 10L sft rate':'above 10L sft rate') : 'N/A';
+  const villaRule= villaOn&&p.villaSFT>0?(p.villaSFT<=3000?'band 1–3k sft':p.villaSFT<=6000?'band 3–6k sft':p.villaSFT<=10000?'band 6–10k sft':'outside slab'):'N/A';
+  const fb=document.getElementById(`pf-feebreak-${i}`);
+  if(fb) fb.innerHTML=`
+    <div class="fee-row"><div><div class="fee-row-label">Acreage Fee ${ruleNote(acreRule)}</div></div><div class="fee-row-val">${acFee?inr(acFee):'—'}</div></div>
+    <div class="fee-row"><div><div class="fee-row-label">Clubhouse Fee ${ruleNote(clubRule)}</div></div><div class="fee-row-val">${clFee?inr(clFee):'—'}</div></div>
+    <div class="fee-row"><div><div class="fee-row-label">Architecture Fee ${ruleNote(archRule)}</div></div><div class="fee-row-val">${archFee?inr(archFee):'—'}</div></div>
+    <div class="fee-row"><div><div class="fee-row-label">Villa Design Fee ${ruleNote(villaRule)}</div></div><div class="fee-row-val">${villaFee?inr(villaFee):'—'}</div></div>
+    <div class="fee-row" style="background:var(--earth-mist);border-radius:8px;padding:10px 12px;margin-top:4px;">
+      <div class="fee-row-label" style="font-weight:700;color:var(--earth-dark);">Total Design Fee</div>
+      <div class="fee-row-val total">${inr(total)}</div>
+    </div>`;
+
+  // At a glance
+  const gl=document.getElementById(`pf-glance-${i}`);
+  if(gl) gl.innerHTML=`
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Project No.</span><strong>${p.id}</strong></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Typology</span><strong>${p.typology}</strong></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Location</span><strong>${p.loc}</strong></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Status</span><strong>${p.status}</strong></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Acreage</span><strong>${num(p.acres)} ac</strong></div>
+    <div style="display:flex;justify-content:space-between;"><span>Total Fee</span><strong style="color:var(--earth-deep);">${inr(total)}</strong></div>`;
+
+  // Mini chart
+  if(projCharts[i]) { try{projCharts[i].destroy();}catch(e){} }
+  const canvas=document.getElementById(`pf-chart-${i}`);
+  if(canvas) {
+    projCharts[i]=new Chart(canvas,{
+      type:'doughnut',
+      data:{
+        labels:['Acreage Fee','Clubhouse Fee','Architecture Fee','Villa Fee'],
+        datasets:[{data:[acFee,clFee,archFee,villaFee],backgroundColor:['#a85638','#c9a84c','#2e6b6b','#c47a52'],borderWidth:2,borderColor:'#fff'}]
+      },
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{position:'right',labels:{font:{size:11}}},
+        tooltip:{callbacks:{label:ctx=>' '+inr(ctx.raw)}}}}
+    });
+  }
+}
+
+// Update project data from individual sheet form
+function updateProjFromSheet(i) {
+  const p = projects[i];
+  const g=(id)=>{ const el=document.getElementById(id); return el?el.value:''; };
+  p.id         = g(`pf-id-${i}`);
+  p.name       = g(`pf-name-${i}`);
+  p.loc        = g(`pf-loc-${i}`);
+  p.typology   = g(`pf-typ-${i}`);
+  p.status     = g(`pf-status-${i}`);
+  p.collab     = g(`pf-collab-${i}`);
+  p.collabWith = g(`pf-collabWith-${i}`);
+  p.remarks    = g(`pf-remarks-${i}`);
+  p.acres      = parseFloat(g(`pf-acres-${i}`))||0;
+  p.clubSFT    = parseFloat(g(`pf-club-${i}`))||0;
+  p.bua        = parseFloat(g(`pf-bua-${i}`))||0;
+  p.villaSFT   = parseFloat(g(`pf-villaSFT-${i}`))||0;
+  p.villaTypes = parseInt(g(`pf-villaTypes-${i}`))||0;
+  // update tab label
+  const btn=document.getElementById(`tab-proj-${i}`);
+  if(btn) btn.innerHTML=`<span class="tab-icon">◈</span> ${p.name}`;
+  // re-render the sheet metrics/breakdown only (no full re-render to avoid losing focus)
+  renderProjectSheetLive(i);
+  // mark unsaved
+  autoSave();
+}
+
+function renderProjectSheetLive(i) {
+  // just refresh metrics, fee breakdown, glance, header stat, chart — not the forms
+  const p=projects[i];
+  const a=getAssumptions();
+  const {acFee,clFee,archFee,villaFee,total}=calcTotal(p,a);
+  // header ph-stat
+  const hd=document.getElementById(`psh-header-${i}`);
+  if(hd){
+    const statEl=hd.querySelector('.ph-stat-val:last-of-type');
+    if(statEl) statEl.textContent=inr(total);
+    const nameEl=hd.querySelector('.ph-name');
+    if(nameEl) nameEl.textContent=p.name;
+    const locEl=hd.querySelector('.ph-loc');
+    if(locEl) locEl.textContent='📍 '+p.loc;
+  }
+  // fee breakdown
+  const villaOn=isVillaProject(p.typology),archOn=isArchProject(p.typology);
+  const acreRule=p.acres<10?'<10 ac slab':p.acres<=20?'10–20 ac slab':'above 20 ac slab';
+  const clubRule=p.clubSFT<=0?'N/A':p.clubSFT<10000?'lump sum <10k':p.clubSFT<=20000?'lump sum 10–20k':'rate >20k';
+  const archRule=archOn?(p.bua<=1000000?'up to 10L sft rate':'above 10L sft rate'):'N/A';
+  const villaRule=villaOn&&p.villaSFT>0?(p.villaSFT<=3000?'band 1–3k':p.villaSFT<=6000?'band 3–6k':p.villaSFT<=10000?'band 6–10k':'outside slab'):'N/A';
+  const ruleNote=l=>`<span class="fee-row-rule">${l}</span>`;
+  const fb=document.getElementById(`pf-feebreak-${i}`);
+  if(fb) fb.innerHTML=`
+    <div class="fee-row"><div class="fee-row-label">Acreage Fee ${ruleNote(acreRule)}</div><div class="fee-row-val">${acFee?inr(acFee):'—'}</div></div>
+    <div class="fee-row"><div class="fee-row-label">Clubhouse Fee ${ruleNote(clubRule)}</div><div class="fee-row-val">${clFee?inr(clFee):'—'}</div></div>
+    <div class="fee-row"><div class="fee-row-label">Architecture Fee ${ruleNote(archRule)}</div><div class="fee-row-val">${archFee?inr(archFee):'—'}</div></div>
+    <div class="fee-row"><div class="fee-row-label">Villa Design Fee ${ruleNote(villaRule)}</div><div class="fee-row-val">${villaFee?inr(villaFee):'—'}</div></div>
+    <div class="fee-row" style="background:var(--earth-mist);border-radius:8px;padding:10px 12px;margin-top:4px;">
+      <div class="fee-row-label" style="font-weight:700;color:var(--earth-dark);">Total Design Fee</div>
+      <div class="fee-row-val total">${inr(total)}</div>
+    </div>`;
+  // glance
+  const gl=document.getElementById(`pf-glance-${i}`);
+  if(gl) gl.innerHTML=`
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Project No.</span><strong>${p.id}</strong></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Typology</span><strong>${p.typology}</strong></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Location</span><strong>${p.loc}</strong></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Status</span><strong>${p.status}</strong></div>
+    <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-100);padding-bottom:7px;"><span>Acreage</span><strong>${num(p.acres)} ac</strong></div>
+    <div style="display:flex;justify-content:space-between;"><span>Total Fee</span><strong style="color:var(--earth-deep);">${inr(total)}</strong></div>`;
+  // mini chart
+  if(projCharts[i]) { try{projCharts[i].destroy();}catch(e){} }
+  const canvas=document.getElementById(`pf-chart-${i}`);
+  if(canvas) projCharts[i]=new Chart(canvas,{type:'doughnut',data:{labels:['Acreage','Clubhouse','Architecture','Villa'],datasets:[{data:[acFee,clFee,archFee,villaFee],backgroundColor:['#a85638','#c9a84c','#2e6b6b','#c47a52'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11}}},tooltip:{callbacks:{label:ctx=>' '+inr(ctx.raw)}}}}});
+}
+
+// ══════════════════════════ ASSUMPTION SUMMARY TABLE ══════════════════════════
+function updateAssumptionSummary() {
+  const a=getAssumptions();
+  const s=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  s('sr_a1',`₹${num(a.a_below10)}/acre`); s('sr_a2',`₹${num(a.a_10to20)}/acre`); s('sr_a3',`₹${num(a.a_above20)}/acre`);
+  s('sr_c1',inr(a.c_below10k)+' lump sum'); s('sr_c2',inr(a.c_10to20k)+' lump sum'); s('sr_c3',`₹${a.c_rate_high}/sft`);
+  s('sr_h1',`₹${a.h_rate_low}/sft`); s('sr_h2',`₹${a.h_rate_high}/sft`);
+  s('sr_ap1',`₹${a.ap_rate_low}/sft`); s('sr_ap2',`₹${a.ap_rate_high}/sft`);
+  s('sr_v1',inr(a.v_band1)); s('sr_v2',inr(a.v_band2)); s('sr_v3',inr(a.v_band3));
+}
+
+// ══════════════════════════ ACTIONS ══════════════════════════
+function addRow() {
+  projects.push({ id:`EP-${String(projects.length+1).padStart(3,'0')}`, name:'New Project', loc:'', acres:0, typology:'Plotting', collab:'Own Project', collabWith:'', clubSFT:0, bua:0, villaSFT:0, villaTypes:1, status:'Not Started', remarks:'' });
+  generateProjectSheets();
+  renderTable();
+  autoSave();
+}
+function deleteRow(i) {
+  if(!confirm(`Delete "${projects[i].name}"?`)) return;
+  projects.splice(i,1);
+  generateProjectSheets();
+  renderTable();
+  autoSave();
+}
+function recalcAll() { syncAll(); renderTable(); autoSave(); }
+
+function applyFilters() {
+  filterState.search   = document.getElementById('searchBox').value;
+  filterState.typology = document.getElementById('f_typology').value;
+  filterState.status   = document.getElementById('f_status').value;
+  filterState.collab   = document.getElementById('f_collab').value;
+  filterState.minAcre  = document.getElementById('f_minAcre').value;
+  filterState.maxAcre  = document.getElementById('f_maxAcre').value;
+  renderTable();
+}
+function clearFilters() {
+  ['searchBox','f_typology','f_status','f_collab','f_minAcre','f_maxAcre'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  filterState={ search:'', typology:'', status:'', collab:'', minAcre:'', maxAcre:'' };
+  renderTable();
+}
+
+// ══════════════════════════ PERSIST ══════════════════════════
+function saveData() {
+  syncAll();
+  localStorage.setItem('tep_projects', JSON.stringify(projects));
+  const ids=['a_below10','a_10to20','a_above20','c_below10k','c_10to20k','c_rate_high','h_rate_low','h_rate_high','ap_rate_low','ap_rate_high','v_band1','v_band2','v_band3'];
+  const asmpt={};
+  ids.forEach(id=>{ asmpt[id]=document.getElementById(id).value; });
+  localStorage.setItem('tep_assumptions',JSON.stringify(asmpt));
+  localStorage.setItem('tep_date',document.getElementById('dashDate').value);
+  showSaved();
+}
+function loadData() {
+  const saved=localStorage.getItem('tep_projects');
+  if(saved){ try{ projects=JSON.parse(saved); }catch(e){} }
+  projects.forEach(p=>{
+    if(p.villaSFT===undefined||isNaN(p.villaSFT)) p.villaSFT=0;
+    if(p.villaTypes===undefined||isNaN(p.villaTypes)) p.villaTypes=isVillaProject(p.typology)?1:0;
+    if(p.clubSFT===undefined) p.clubSFT=0;
+    if(p.bua===undefined) p.bua=0;
+  });
+  const savedA=localStorage.getItem('tep_assumptions');
+  if(savedA){ try{ const asmpt=JSON.parse(savedA); Object.entries(asmpt).forEach(([id,val])=>{ const el=document.getElementById(id); if(el) el.value=val; }); }catch(e){} }
+  const savedDate=localStorage.getItem('tep_date');
+  if(savedDate) document.getElementById('dashDate').value=savedDate;
+}
+function resetData() {
+  if(!confirm('Reset to original TEP project data? All edits will be lost.')) return;
+  localStorage.removeItem('tep_projects'); localStorage.removeItem('tep_assumptions'); localStorage.removeItem('tep_date');
+  location.reload();
+}
+let saveTimer=null;
+function autoSave(){ clearTimeout(saveTimer); saveTimer=setTimeout(saveData,700); }
+function showSaved(){
+  const ind=document.getElementById('saveIndicator');
+  if(!ind) return;
+  ind.style.opacity='1';
+  clearTimeout(ind._t);
+  ind._t=setTimeout(()=>{ ind.style.opacity='0'; },2200);
+}
+
+function exportCSV() {
+  syncAll();
+  const a=getAssumptions();
+  const hdr=['Project No.','Project Name','Location','Project Acreage','Typology','Clubhouse (SFT)','BUA (SFT)','Villa Size (SFT)','Villa Types','Acreage Fee','Clubhouse Fee','Architecture Fee','Villa Fee','Total Fee','Status','Collab Type','Collab With','Remarks'];
+  const rows=projects.map(p=>{
+    const {acFee,clFee,archFee,villaFee,total}=calcTotal(p,a);
+    return [p.id,p.name,p.loc,p.acres,p.typology,p.clubSFT,p.bua,p.villaSFT,p.villaTypes,acFee,clFee,archFee,villaFee,total,p.status,p.collab,p.collabWith,p.remarks]
+      .map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',');
+  });
+  const csv=[hdr.join(','),...rows].join('\n');
+  const a2=document.createElement('a');
+  a2.href='data:text/csv;charset=utf-8,'+encodeURIComponent('\uFEFF'+csv);
+  a2.download='TEP_Dashboard.csv'; a2.click();
+}
+
+// ══════════════════════════ INIT ══════════════════════════
+const savedDate=localStorage.getItem('tep_date');
+document.getElementById('dashDate').value=savedDate||new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+document.getElementById('dashDate').addEventListener('change',autoSave);
+['a_below10','a_10to20','a_above20','c_below10k','c_10to20k','c_rate_high','h_rate_low','h_rate_high','ap_rate_low','ap_rate_high','v_band1','v_band2','v_band3'].forEach(id=>{
+  document.getElementById(id).addEventListener('change',()=>{ recalcAll(); updateAssumptionSummary(); });
+});
+
+loadData();
+generateProjectSheets();
+renderTable();
+updateCards(getAssumptions());
+updateCharts();
+updateAssumptionSummary();
+</script>
+</body>
+</html>

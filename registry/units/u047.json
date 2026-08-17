@@ -1,0 +1,42 @@
+﻿{
+    "name":  "Feasibility \u0026 Massing Tool",
+    "one_liner":  "End-to-end browser-based feasibility and massing tool for site development projects.",
+    "description":  "A web application that allows users to draw a site, apply NBC + Telangana GO rules, generate massing, export geometry to Rhino/Grasshopper, and download a PPTX deck. It supports project types like highrise, mid-rise, villa township, mixed-use, and more.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "FastAPI",
+                 "uvicorn",
+                 "Pydantic",
+                 "Pandas",
+                 "OpenPyXL",
+                 "ezdxf",
+                 "Shapely",
+                 "pyproj",
+                 "Requests",
+                 "python-pptx",
+                 "Python-multipart",
+                 "Pillow"
+             ],
+    "workflow_stage":  "tool",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  "python -m uvicorn backend.main:app --host 127.0.0.1 --port 3000"
+               },
+    "key_files":  [
+                      "BUILD_LOG.md",
+                      "README.md",
+                      "requirements.txt",
+                      "rules_inventory.md"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u047",
+    "source_name":  "10 - AI Feasibility Tool",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/10 - AI Feasibility Tool",
+    "detected_ports":  "3000"
+}

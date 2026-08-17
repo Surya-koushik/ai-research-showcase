@@ -1,0 +1,29 @@
+﻿{
+    "name":  "Malaxmi",
+    "one_liner":  "AI-transformation corpus for electricity to AI HTML deck",
+    "description":  "The Malaxmi project is an active work in progress that involves transforming a group\u0027s AI research into an HTML deck focused on electricity and its AI applications.",
+    "category":  "research",
+    "status":  "in-progress",
+    "tech":  [
+                 "AI",
+                 "HTML"
+             ],
+    "workflow_stage":  "active use, not moved",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "..\\malaxmi_group_research\\"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u020",
+    "source_name":  "6 - Malaxmi",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/6 - Malaxmi",
+    "detected_ports":  ""
+}

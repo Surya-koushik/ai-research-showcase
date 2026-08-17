@@ -1,0 +1,31 @@
+﻿{
+    "name":  "Dorothy",
+    "one_liner":  "Desktop app to orchestrate multiple AI CLI agents (Claude, Codex, Gemini)",
+    "description":  "A desktop application designed for managing and orchestrating multiple AI Command Line Interface (CLI) agents such as Claude, Codex, and Gemini. It provides a user-friendly interface for setting up and executing tasks with these agents.",
+    "category":  "ai-agent",
+    "status":  "production",
+    "tech":  [
+                 "Electron",
+                 "npm"
+             ],
+    "workflow_stage":  "tool",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "agent_teams_evaluation.md",
+                      "asure_agent_team_prompts.md"
+                  ],
+    "related_tools":  [
+                          "777genius/agent-teams-ai",
+                          "untra/operator"
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u022",
+    "source_name":  "9 - Agent Teams",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/9 - Agent Teams",
+    "detected_ports":  ""
+}

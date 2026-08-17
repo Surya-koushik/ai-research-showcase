@@ -1,0 +1,30 @@
+﻿{
+    "name":  "H10_BIM_Dashboard",
+    "one_liner":  "A dashboard for tracking BIM progress and project status.",
+    "description":  "This dashboard provides real-time updates on the progress of a Building Information Modeling (BIM) project, including key metrics such as completion percentages and resource utilization. It is designed to help stakeholders monitor and manage their projects more effectively.",
+    "category":  "dashboard",
+    "status":  "production",
+    "tech":  [
+                 "HTML",
+                 "CSS",
+                 "JavaScript"
+             ],
+    "workflow_stage":  "monitoring",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "H10_BIM_Dashboard (2).html"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u056",
+    "source_name":  "H10_BIM_Dashboard (2).html",
+    "source_path":  "/c/Users/surya ASURE/Downloads/H10_BIM_Dashboard (2).html",
+    "detected_ports":  ""
+}

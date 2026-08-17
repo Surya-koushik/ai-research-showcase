@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Research & Innovation — Asure</title>
+<meta name="description" content="AI Research & Innovation. Increasing Efficiency. One Tool at a Time. A living showcase of AI tools, automations, plugins, dashboards and research.">
+<meta property="og:title" content="AI Research & Innovation — Asure">
+<meta property="og:description" content="Increasing Efficiency. One Tool at a Time.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/logos/brand/favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<script src="assets/js/supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/auth.js"></script>
+</head>
+<body>
+<div class="app">
+
+  <!-- ================= LEFT RAIL ================= -->
+  <aside class="rail" id="rail">
+    <div class="brand">
+      <img class="brandlogo lightonly" src="assets/logos/brand/asure_wordmark.png" alt="Asure">
+      <img class="brandlogo darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="Asure" aria-hidden="true">
+      <div class="who"><span>AI Research &amp; Innovation</span></div>
+    </div>
+    <nav id="nav"><!-- categories injected --></nav>
+    <div id="railEff"><!-- efficiency card injected --></div>
+    <div id="railProfile"><!-- profile injected --></div>
+    <div class="rail-foot">
+      <button class="btn icon ghost" id="themeBtn" title="Toggle theme" aria-label="Toggle theme"></button>
+      <span class="small mono" style="margin-left:auto">v2 · template</span>
+    </div>
+  </aside>
+
+  <!-- ================= CONTENT ================= -->
+  <main class="content">
+    <div class="wrap">
+
+      <div class="topbar">
+        <button class="btn icon ghost rail-toggle" id="railToggle" aria-label="Menu"></button>
+        <div class="topbar-utils" style="margin-left:auto">
+          <button class="theme-top" id="themeTop" title="Toggle light / dark"></button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- HERO — full-bleed, outside .wrap so the canvas isn't capped by the content max-width -->
+    <section class="hero2">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="hero-copy reveal in">
+        <span class="badge-pill"><span class="pdot"></span>Innovation in Motion</span>
+        <h1 class="h-display" style="margin:18px 0 4px;max-width:14ch">
+          AI Research &amp; Innovation
+        </h1>
+        <p class="h-1 gradient-text" style="letter-spacing:-.03em;line-height:1.08">Increasing Efficiency.<br>One Tool at a Time.</p>
+        <p class="lead" style="margin-top:18px;max-width:44ch">
+          We turn scattered information into structured knowledge — and structured
+          knowledge into tools that save time and create measurable impact.
+        </p>
+        <div class="cta">
+          <a class="btn primary lg" id="exploreBtn">Explore All Projects <span id="exIc"></span></a>
+          <a class="btn lg" id="watchBtn"><span id="wIc"></span> Watch Overview</a>
+        </div>
+      </div>
+      <div class="hero-flow" aria-hidden="true">
+        <span>Unstructured&nbsp;input</span><i>→</i><span>Structured&nbsp;knowledge</span>
+      </div>
+    </section>
+
+    <div class="wrap">
+
+      <!-- KPI STRIP -->
+      <section class="reveal">
+        <div class="kpi-strip" id="kpis"><!-- injected --></div>
+        <p class="small" style="margin-top:10px">
+          <span class="badge draft"><span>DRAFT</span></span>
+          Counts and hours are auto-derived from each tool by one consistent formula — no inflated figures.
+        </p>
+      </section>
+
+      <!-- HOW THE SYSTEM WORKS -->
+      <section class="section reveal" id="system" style="margin-top:48px">
+        <div class="section-head">
+          <div class="t"><div class="eyebrow">The System</div><h2 class="h-2">From information to measurable impact</h2></div>
+          <p class="small" style="max-width:34ch;text-align:right;color:var(--text-3)">Every Asure tool is one link in the same chain — raw information becomes structured knowledge, then working tools, then time saved.</p>
+        </div>
+        <div class="flow-steps" id="flowSteps"><!-- injected --></div>
+      </section>
+
+      <!-- CAN / CAN'T / R&D -->
+      <section class="section" id="capability" style="margin-top:44px">
+        <div class="tri" id="tri"><!-- injected --></div>
+      </section>
+
+      <!-- FEATURED -->
+      <section class="section" id="featured">
+        <div class="section-head">
+          <div class="t"><div class="eyebrow">Highlights</div><h2 class="h-2">Featured Tools &amp; Projects</h2></div>
+          <a class="btn ghost" id="viewAll">View All Projects <span id="vaIc"></span></a>
+        </div>
+        <div class="feat-row" id="featRow"><!-- injected --></div>
+      </section>
+
+      <!-- ALL PROJECTS (full browse) -->
+      <section class="section" id="projects">
+        <div class="section-head">
+          <div class="t"><div class="eyebrow">The Ecosystem</div><h2 class="h-2">All Projects</h2></div>
+          <label class="search" style="max-width:340px">
+            <span id="searchIc"></span>
+            <input id="search" type="search" placeholder="Search tools, tech, code…" autocomplete="off">
+            <kbd>/</kbd>
+          </label>
+        </div>
+        <div class="chips" id="statusFilter" style="margin-bottom:18px"><!-- injected --></div>
+        <div class="grid-tools" id="tools"><!-- injected --></div>
+        <div class="empty" id="emptyState" style="display:none">
+          <div id="emptyIc"></div><p>No tools match that search or filter yet.</p>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <span>© <span id="yr"></span> Asure Design Studio · AI Research &amp; Innovation</span>
+        <span class="tag gradient-text">Increasing Efficiency. One Tool at a Time.</span>
+      </footer>
+
+    </div>
+  </main>
+</div>
+
+<div class="lightbox" id="lightbox"><div class="x" id="lbClose"></div><img id="lbImg" alt=""></div>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/registry_projects.js"></script>
+<script src="assets/js/projects.js"></script>
+<script src="data/ai_capability_map.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/hero.js"></script>
+</body>
+</html>

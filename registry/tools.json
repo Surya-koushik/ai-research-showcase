@@ -1,0 +1,1329 @@
+﻿[
+    {
+        "name":  "ChatGPT",
+        "one_liner":  "A broad everyday AI assistant for writing and reasoning.",
+        "description":  "ChatGPT is a versatile AI tool designed to assist with various tasks including writing, reasoning, and providing general information. It\u0027s particularly useful for everyday interactions and can handle a wide range of queries and topics.",
+        "category":  "ai-agent",
+        "status":  "production",
+        "tech":  [
+                     "AI",
+                     "Natural Language Processing"
+                 ],
+        "workflow_stage":  "initial stages (e.g., ideation, research)",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "README.md",
+                          "..\\_INBOX\tool_suggestion.txt"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u052",
+        "source_name":  "03_Tools",
+        "source_path":  "/z/Knowledge Centre/AI Tools/03_Tools",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "Dorothy",
+        "one_liner":  "Desktop app to orchestrate multiple AI CLI agents (Claude, Codex, Gemini)",
+        "description":  "A desktop application designed for managing and orchestrating multiple AI Command Line Interface (CLI) agents such as Claude, Codex, and Gemini. It provides a user-friendly interface for setting up and executing tasks with these agents.",
+        "category":  "ai-agent",
+        "status":  "production",
+        "tech":  [
+                     "Electron",
+                     "npm"
+                 ],
+        "workflow_stage":  "tool",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "agent_teams_evaluation.md",
+                          "asure_agent_team_prompts.md"
+                      ],
+        "related_tools":  [
+                              "777genius/agent-teams-ai",
+                              "untra/operator"
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u022",
+        "source_name":  "9 - Agent Teams",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/9 - Agent Teams",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "AI Team Hub",
+        "one_liner":  "A dashboard for managing AI team projects and resources.",
+        "description":  "AI Team Hub is a web-based application designed to streamline the management of AI-related projects within Asure Design Studio. It provides an overview, work priorities, requirements, team information, procedures, tools, settings, and more, all accessible from a single interface.",
+        "category":  "dashboard",
+        "status":  "production",
+        "tech":  [
+                     "HTML",
+                     "CSS",
+                     "JavaScript"
+                 ],
+        "workflow_stage":  "core",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "index.html",
+                          "css/styles.css"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u037",
+        "source_name":  "ai-team-hub",
+        "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/ai-team-hub",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "Asure Document Platform",
+        "one_liner":  "Self-hosted document generation platform for branded MOU/contract PDFs.",
+        "description":  "A self-hosted web application designed to generate branded MOUs and contracts as PDFs from a guided form. It runs on Surya\u0027s Windows 11 PC using FastAPI, PostgreSQL, WeasyPrint, Caddy, and Redis.",
+        "category":  "dashboard",
+        "status":  "in-progress",
+        "tech":  [
+                     "FastAPI",
+                     "PostgreSQL",
+                     "WeasyPrint",
+                     "Caddy",
+                     "Redis"
+                 ],
+        "workflow_stage":  "foundation -\u003e auth -\u003e mou editor -\u003e pdf export -\u003e audit/dashboard -\u003e deploy",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  "py -3.12 -m venv .venv; .\\venv\\Scripts\\python.exe -m pip install -r requirements.txt; .\\venv\\Scripts\\python.exe -m pytest; docker compose up -d"
+                   },
+        "key_files":  [
+                          "README.md",
+                          "main.py",
+                          "CONTEXT.md"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u028",
+        "source_name":  "asure-doc-platform",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/asure-doc-platform",
+        "detected_ports":  "8000"
+    },
+    {
+        "name":  "H10_BIM_Dashboard",
+        "one_liner":  "A dashboard for tracking BIM progress and project status.",
+        "description":  "This dashboard provides real-time updates on the progress of a Building Information Modeling (BIM) project, including key metrics such as completion percentages and resource utilization. It is designed to help stakeholders monitor and manage their projects more effectively.",
+        "category":  "dashboard",
+        "status":  "production",
+        "tech":  [
+                     "HTML",
+                     "CSS",
+                     "JavaScript"
+                 ],
+        "workflow_stage":  "monitoring",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "H10_BIM_Dashboard (2).html"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u056",
+        "source_name":  "H10_BIM_Dashboard (2).html",
+        "source_path":  "/c/Users/surya ASURE/Downloads/H10_BIM_Dashboard (2).html",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "P25 Predictability Dashboard",
+        "one_liner":  "A dashboard for tracking and analyzing project predictability metrics.",
+        "description":  "The P25 Predictability Dashboard provides a comprehensive view of various project metrics to help teams identify trends, optimize processes, and improve overall project predictability. It integrates data from multiple sources to offer real-time insights into the likelihood of meeting deadlines and budget constraints.",
+        "category":  "dashboard",
+        "status":  "production",
+        "tech":  [
+                     "HTML",
+                     "CSS",
+                     "JavaScript"
+                 ],
+        "workflow_stage":  "post-production",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "P25_Predictability_Dashboard (2).html"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u057",
+        "source_name":  "P25_Predictability_Dashboard (2).html",
+        "source_path":  "/c/Users/surya ASURE/Downloads/P25_Predictability_Dashboard (2).html",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "TEP_Dashboard_v2",
+        "one_liner":  "A dashboard for visualizing Earth-related projects.",
+        "description":  "The TEP Dashboard is a web-based tool designed to provide an overview of various Earth projects, using interactive charts and graphs. It leverages Chart.js for data visualization and includes custom CSS styles for a unique user experience.",
+        "category":  "dashboard",
+        "status":  "production",
+        "tech":  [
+                     "HTML",
+                     "CSS",
+                     "JavaScript",
+                     "Chart.js"
+                 ],
+        "workflow_stage":  "completed",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "TEP_Dashboard_v2.html"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u058",
+        "source_name":  "TEP_Dashboard_v2.html",
+        "source_path":  "/z/00 SM TEAM/AI Research/TEP_Dashboard_v2.html",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "LIVE_CODES_REGULATIONS_DATABASE",
+        "one_liner":  "A long-term knowledge base of codes and regulations for building design.",
+        "description":  "Tracks and manages the regulatory landscape for various jurisdictions, including national, state, local, and specialist layers. It provides a structured database with active/inactive status tracking, jurisdiction matrices, topic mappings, and rule cards verified by human review.",
+        "category":  "knowledge",
+        "status":  "production",
+        "tech":  [
+                     "MarkItDown",
+                     "Python script"
+                 ],
+        "workflow_stage":  "ingestion and extraction",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  "python 06_AUTOMATION/markitdown_conversion_script/codes_db_update.py"
+                   },
+        "key_files":  [
+                          "README.md",
+                          "active_inactive_status_register.md",
+                          "ASURE_CODES_KNOWLEDGE_BASE.md",
+                          "01_RAW_SOURCE_REGISTER/JSON state + MD of the source folders",
+                          "02_CONVERTED_MARKDOWN/MarkItDown output, bucketed with QA front-matter"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u041",
+        "source_name":  "LIVE_CODES_REGULATIONS_DATABASE",
+        "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/LIVE_CODES_REGULATIONS_DATABASE",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "ads-bridge",
+        "one_liner":  "Local MCP server for driving Revit from chat using pyRevit ADS_Bridge.",
+        "description":  "Drive Revit directly from chat with a local MCP server exposing the pyRevit ADS_Bridge HTTP API. Supports various tools like querying, executing IronPython scripts, setting parameters, running pipelines, and taking screenshots.",
+        "category":  "mcp-server",
+        "status":  "production",
+        "tech":  [
+                     "python",
+                     "FastMCP"
+                 ],
+        "workflow_stage":  "tool",
+        "server":  {
+                       "runs_as_server":  true,
+                       "endpoint":  null,
+                       "start_command":  "C:\\Users\\accou\\.ads-cad\\mcp\\.venv\\Scripts\\python.exe ${__dirname}/server.py"
+                   },
+        "key_files":  [
+                          "server.py",
+                          "requirements.txt",
+                          "install.ps1",
+                          "claude_desktop_config.snippet.json"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u001",
+        "source_name":  "ads-bridge",
+        "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/2_MCPS/ads-bridge",
+        "detected_ports":  "48884"
+    },
+    {
+        "name":  "get_revit_status",
+        "one_liner":  "Check if the Revit-MCP API is active and responding.",
+        "description":  "This tool verifies whether the Model Context Protocol (MCP) server for Autodesk Revit is operational by sending a request to the MCP server endpoint. It returns a status indicating whether the connection is successful or not, which helps in diagnosing connectivity issues with the MCP server.",
+        "category":  "mcp-server",
+        "status":  "experimental",
+        "tech":  [
+                     "FastMCP",
+                     "HTTP requests"
+                 ],
+        "workflow_stage":  "diagnostic",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "README.md",
+                          "pyproject.toml"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u010",
+        "source_name":  "mcp-server-for-revit-python.extension",
+        "source_path":  "/z/00 SM TEAM/AI Research/Claude direct access folder/2_MCPS/mcp-server-for-revit-python.extension",
+        "detected_ports":  "48884"
+    },
+    {
+        "name":  "NavisBridge",
+        "one_liner":  "Drive Autodesk Navisworks Manage live from Claude: run/update clash tests, export branded clash reports, pull element properties, append models, and publish NWD/NWF.",
+        "description":  "The NavisBridge plugin allows users to interact with Autodesk Navisworks Manage directly through the AI platform Claude. It enables running and updating clash tests, exporting branded clash reports, pulling element properties, appending model files into an open document, and saving or publishing federated models (NWD/NWF).",
+        "category":  "mcp-server",
+        "status":  "production",
+        "tech":  [
+                     "C#",
+                     ".NET Framework",
+                     "Python",
+                     "FastMCP"
+                 ],
+        "workflow_stage":  "integration",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  "http://127.0.0.1:47885/navis-bridge",
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "plugin/NavisBridge.cs",
+                          "server.py",
+                          "requirements.txt",
+                          "install.ps1",
+                          "claude_desktop_config.snippet.json"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u011",
+        "source_name":  "navis-bridge",
+        "source_path":  "/z/00 SM TEAM/AI Research/Claude direct access folder/2_MCPS/navis-bridge",
+        "detected_ports":  "47885"
+    },
+    {
+        "name":  "ADS Phoenix L1",
+        "one_liner":  "Weekly Level-1 self-certification checklist runner for Revit models.",
+        "description":  "A native C# add-in for Revit 2025 that runs a fixed 22-item Level-1 self-certification checklist across five hard-stop gates, auto-fixes whitelisted issues, and produces a PDF report and a populated checklist workbook to upload alongside the model in ACC.",
+        "category":  "plugin",
+        "status":  "production",
+        "tech":  [
+                     "C#",
+                     ".NET 8",
+                     "RevitAPI.dll",
+                     "ClosedXML",
+                     "HTMLâ†’PDF (headless Edge)"
+                 ],
+        "workflow_stage":  "post-production",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "README.md",
+                          "build.ps1",
+                          "dist\\\\",
+                          "src\\\\",
+                          "ARCHITECTURE.md"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  "Not explicitly stated in the provided files.",
+        "confidential":  false,
+        "id":  "u025",
+        "source_name":  "AdsPhoenixL1",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/AdsPhoenixL1",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "ADS Revit Toolbox",
+        "one_liner":  "A standalone Revit 2025 add-in suite of productivity/QA tools.",
+        "description":  "This is a standalone Revit 2025 add-in suite driven by market research into the most common Revit pain points. It includes reusable foundations from AdsPhoenixL1 and is project-agnostic, meaning it works on any model with zero project configuration.",
+        "category":  "plugin",
+        "status":  "research",
+        "tech":  [
+                     "Revit",
+                     "market research"
+                 ],
+        "workflow_stage":  "research phase (2026-07-01)",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "RESEARCH_REVIT_PAIN_POINTS.md",
+                          "README.md"
+                      ],
+        "related_tools":  [
+                              "PHX_ADS (AdsPhoenixL1)"
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u026",
+        "source_name":  "AdsRevitToolbox",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/AdsRevitToolbox",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "ads-lifecycle",
+        "one_liner":  "Runs NBC compliance checks and Revit probes on an open model.",
+        "description":  "The `ads-lifecycle` plugin automates the process of running NBC compliance checks, Revit probes, and Forma pulls for Asure Design projects. It requires a one-time setup involving cloning or copying files to your machine, installing the plugin in Claude Code, creating an APS config file, performing OAuth login, and then executing commands within the tool.",
+        "category":  "plugin",
+        "status":  "production",
+        "tech":  [
+                     "Windows",
+                     "Claude Code",
+                     "Python 3.10+",
+                     "pyRevit",
+                     "Revit 2023",
+                     "Autodesk ID"
+                 ],
+        "workflow_stage":  "integration",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  "/plugin marketplace add C:/Users/\u003cyou\u003e/Downloads/Claude/ads-marketplace \u0026\u0026 /plugin install ads-lifecycle@asure-design"
+                   },
+        "key_files":  [
+                          "SETUP_TEAM.md",
+                          "C:\\",
+                          "\u003cyou\u003e\\.ads-forma\\\nconfig.json",
+                          "C:\\Users\\\u003cyou\u003e\\Downloads\\Claude\\ads-marketplace\\scripts\\aps_auth.py"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u002",
+        "source_name":  "ads-marketplace",
+        "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/2_MCPS/ads-marketplace",
+        "detected_ports":  "8080"
+    },
+    {
+        "name":  "ads-marketplace",
+        "one_liner":  "A suite of plugins for managing and automating tasks related to ads lifecycle in Revit and Forma.",
+        "description":  "The `ads-marketplace` is a collection of plugins designed to streamline the process of managing and automating various tasks within an architectural design workflow, specifically focusing on Revit and Forma. It includes tools for model health checks, compliance checks, and data extraction from Forma, all managed through a CLI interface.",
+        "category":  "plugin",
+        "status":  "production",
+        "tech":  [
+                     "Python",
+                     "pyRevit",
+                     "Claude Code"
+                 ],
+        "workflow_stage":  "tool",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "0_RULES/claudemaster.md",
+                          "Z:\folder\file1.py",
+                          "Z:\folder\file2.json"
+                      ],
+        "related_tools":  [
+                              "ads-lifecycle"
+                          ],
+        "efficiency_hint":  "Not explicitly stated in the provided files.",
+        "confidential":  false,
+        "id":  "u007",
+        "source_name":  "ads-marketplace",
+        "source_path":  "/z/00 SM TEAM/AI Research/Claude direct access folder/2_MCPS/ads-marketplace",
+        "detected_ports":  "8080"
+    },
+    {
+        "name":  "AsureBimQc",
+        "one_liner":  "Login and Autodesk ACC access control for BIM QC plugin",
+        "description":  "This tool provides the login plumbing for an Asure BIM Quality Control (QC) plugin, enabling users to authenticate with Autodesk\u0027s Account Center (ACC). It includes features such as 3-legged OAuth with PKCE, silent refresh of tokens encrypted at rest using DPAPI, and discovery of hubs and projects. The tool is decoupled from Revit for end-to-end testing.",
+        "category":  "plugin",
+        "status":  "in-progress",
+        "tech":  [
+                     "C#",
+                     ".NET Core",
+                     "OAuth",
+                     "PKCE",
+                     "DPAPI"
+                 ],
+        "workflow_stage":  "foundation",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  "dotnet run --project src/AsureBimQc.AuthTester"
+                   },
+        "key_files":  [
+                          "README.md",
+                          "src/AsureBimQc.Core/ApsConfig.cs",
+                          "src/AsureBimQc.Core/PkceHelper.cs",
+                          "src/AsureBimQc.Core/TokenCache.cs",
+                          "src/AsureBimQc.Core/ApsAuthService.cs",
+                          "src/AsureBimQc.Core/AccService.cs",
+                          "src/AsureBimQc.Core/Models.cs"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u045",
+        "source_name":  "AsureBimQc",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/AsureBimQc",
+        "detected_ports":  "8080"
+    },
+    {
+        "name":  "CADBridge",
+        "one_liner":  "Connects Claude live to AutoCAD for exporting site layouts as lossless JSON.",
+        "description":  "Automatically loads a .NET add-in in AutoCAD that listens on port 48810 and exports the current selection of objects into a lossless, scale-preserving JSON file. The same export can be done offline using ZWCAD\u0027s `SITEJSON` command without an active listener.",
+        "category":  "plugin",
+        "status":  "production",
+        "tech":  [
+                     "AutoCAD",
+                     ".NET API (v8)",
+                     "HTTP server"
+                 ],
+        "workflow_stage":  "integration",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  "http://127.0.0.1:48810/cad-bridge/",
+                       "start_command":  "powershell -ExecutionPolicy Bypass -File .\\build.ps1 -Deploy"
+                   },
+        "key_files":  [
+                          "README.md",
+                          "manifest.json"
+                      ],
+        "related_tools":  [
+                              "cad_status",
+                              "cad_export",
+                              "cad_read_export",
+                              "cad_validate_export",
+                              "cad_summarize_layout",
+                              "cad_stage_import"
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u008",
+        "source_name":  "cad-bridge",
+        "source_path":  "/z/00 SM TEAM/AI Research/Claude direct access folder/2_MCPS/cad-bridge",
+        "detected_ports":  "48810"
+    },
+    {
+        "name":  "Computational Design Skills",
+        "one_liner":  "A plugin for computational design covering geometry, parametric modeling, and more.",
+        "description":  "A comprehensive plugin with over 35,000 lines of code across 75 files, offering 18 interconnected skills in areas like parametric modeling, generative design, structural computation, environmental simulation, facade engineering, digital fabrication, BIM scripting, and machine learning for AEC. It includes 7 Python calculators for various computations.",
+        "category":  "plugin",
+        "status":  "production",
+        "tech":  [
+                     "Python",
+                     "Claude"
+                 ],
+        "workflow_stage":  "early design phase",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "README.md",
+                          "cd-foundations.md",
+                          "cd-calculator.md"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u005",
+        "source_name":  "skill-repos",
+        "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/2_MCPS/skill-repos",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "Layout Plotter",
+        "one_liner":  "A plugin for creating detailed layout plots in architectural design.",
+        "description":  "The Layout Plotter is a specialized plugin designed to generate high-quality layout plots from architectural designs. It supports various features such as precise line editing, polygonal area calculations, and the ability to export data into JSON format for further analysis or integration with other tools. The plugin has been updated multiple times (v3.6+) and integrates well with existing design workflows.",
+        "category":  "plugin",
+        "status":  "production",
+        "tech":  [
+                     "C#",
+                     ".NET",
+                     "JSON"
+                 ],
+        "workflow_stage":  "tool",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "Dhanushya/Layout plotting tool\format_version.json",
+                          "Dhanushya/Layout plotting tool\test_data.json"
+                      ],
+        "related_tools":  [
+                              "SiteJsonExport plugin",
+                              "Gmail Reply Tracker"
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u050",
+        "source_name":  "Team Assessments",
+        "source_path":  "/z/00 SM TEAM/AI Research/Team Assessments",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "Obsidian",
+        "one_liner":  "A personal digital vault for organizing notes and projects.",
+        "description":  "Obsidian is a powerful tool that allows users to create and manage their own digital vaults. It supports markdown formatting, tags, and links between notes, making it an excellent platform for knowledge management and project organization.",
+        "category":  "plugin",
+        "status":  "production",
+        "tech":  [
+                     "Markdown",
+                     "JavaScript"
+                 ],
+        "workflow_stage":  "tool",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "create a link.md",
+                          "2026-07-20.md",
+                          "Welcome.md"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u039",
+        "source_name":  "AI SERVER",
+        "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/AI SERVER",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "Revit Plugin",
+        "one_liner":  "A suite of plugins for Autodesk Revit.",
+        "description":  "This is a collection of plugins designed to enhance the functionality and efficiency of Autodesk Revit. It includes tools such as ADS Phoenix L1 Checklist, ADS Revit Toolbox, Asure BIM QC, and others that provide additional features like reference data management, test harnesses, and maintenance scripts for pyRevit.",
+        "category":  "plugin",
+        "status":  "production",
+        "tech":  [
+                     "C#",
+                     ".NET",
+                     "Python"
+                 ],
+        "workflow_stage":  "active use",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "..\\AdsPhoenixL1\\",
+                          "..\\AdsRevitToolbox\\",
+                          "..\\AsureBimQc\\",
+                          "..\\RevitAddinHarness\\",
+                          "..\\_PhoenixReport\\",
+                          "..\\Uniclass2015\\",
+                          "..\\P25_*\\",
+                          "..\\Phoenix_Uniclass_*\\",
+                          "..\\Project1*.rvt\\",
+                          "..\\pyrevit-*.ps1 / *.log / *.txt\\",
+                          "..\\asure-famlib-sync.*\\",
+                          "..\\_scratch\\h10_plugin_site\\"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u017",
+        "source_name":  "3 - Revit Plugin",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/3 - Revit Plugin",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "RevitAddinHarness",
+        "one_liner":  "A minimal setup for writing and testing native C# Revit plugins.",
+        "description":  "A complete solution for developing and deploying native C# Revit add-ins, including a real `.addin` manifest, one-command build/deploy process, and F5 debugging into running Revit. Supports both Revit 2024 and 2025 with .NET Framework 4.8 and .NET 8 respectively.",
+        "category":  "plugin",
+        "status":  "production",
+        "tech":  [
+                     "C#",
+                     ".NET Framework",
+                     ".NET 8"
+                 ],
+        "workflow_stage":  "development",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "RevitAddinHarness.sln",
+                          "build.ps1",
+                          "manifest/*.addin.template",
+                          "src/RevitAddinHarness/RevitAddinHarness.csproj",
+                          "src/RevitAddinHarness/App.cs",
+                          "src/RevitAddinHarness/IconFactory.cs",
+                          "src/RevitAddinHarness/Properties/launchSettings.json",
+                          "src/RevitAddinHarness/Commands/Cmd_HelloWorld.cs",
+                          "src/RevitAddinHarness/Commands/Cmd_ModelInfo.cs",
+                          "src/RevitAddinHarness/Commands/Cmd_PickElement.cs",
+                          "src/RevitAddinHarness/Commands/Cmd_CreateModelLine.cs",
+                          "src/RevitAddinHarness/Commands/Cmd_ShowPanel.cs"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u032",
+        "source_name":  "RevitAddinHarness",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/RevitAddinHarness",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "Claude",
+        "one_liner":  "Smart-stub auto-generated project for AI research and development.",
+        "description":  "This is a smart-stub auto-generated project folder for Claude, an AI research tool. It inherits master rules from `0_RULES/claudemaster.md` and contains files relevant to ongoing AI projects in the NIGHT test - docs area of Z:\folder structure. The project includes guidelines on how to work within this directory, including default save locations and workflow procedures.",
+        "category":  "research",
+        "status":  "in-progress",
+        "tech":  [
+                     "AI",
+                     "smart-stub"
+                 ],
+        "workflow_stage":  "read this + `0_RULES/CLAUDE.md` -\u003e state a 2-3 sentence plan -\u003e back up before risky edits -\u003e log the session to `5_OPS\\history\\`.",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "CLAUDE.md"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u012",
+        "source_name":  "NIGHT test - docs",
+        "source_path":  "/z/00 SM TEAM/AI Research/Claude direct access folder/2_MCPS/NIGHT test - docs",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "Malaxmi",
+        "one_liner":  "AI-transformation corpus for electricity to AI HTML deck",
+        "description":  "The Malaxmi project is an active work in progress that involves transforming a group\u0027s AI research into an HTML deck focused on electricity and its AI applications.",
+        "category":  "research",
+        "status":  "in-progress",
+        "tech":  [
+                     "AI",
+                     "HTML"
+                 ],
+        "workflow_stage":  "active use, not moved",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "..\\malaxmi_group_research\\"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u020",
+        "source_name":  "6 - Malaxmi",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/6 - Malaxmi",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "ADS CAD3D Studio",
+        "one_liner":  "CAD drawings to semantic 3D building models with Layer Standardizer and Three.js QA viewer.",
+        "description":  "A local tool for Asure Design Studio that ingests consultant CAD drawings (DWG/DXF), standardizes every layer to the ten ADS standard layers, extracts a semantic building model per level, and exports to various formats including ADS Bridge JSON, IFC4, glTF+DAE, and Rhino 3dm.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "Python",
+                     "FastAPI",
+                     "ezdxf",
+                     "numpy",
+                     "shapely",
+                     "pyyaml"
+                 ],
+        "workflow_stage":  "M7 IFC/glTF/Rhino",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  ".\\Start-ADS-CAD3D-Studio.ps1"
+                   },
+        "key_files":  [
+                          "README.md",
+                          "pyproject.toml",
+                          "layer_convention_analysis.md"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  "80/123 wall face segments paired into 40 extruded walls with zero manual work.",
+        "confidential":  false,
+        "id":  "u023",
+        "source_name":  "ads-cad3d-studio",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/ads-cad3d-studio",
+        "detected_ports":  "8712"
+    },
+    {
+        "name":  "ADS_AI_BIM_Build_Tracker",
+        "one_liner":  "Tracks AI and BIM build progress across projects.",
+        "description":  "The ADS_AI_BIM_Build_Tracker is a tool designed to monitor the status of AI-driven building information modeling (BIM) projects, ensuring that all tasks related to design, construction, and maintenance are on track. It provides real-time updates and analytics for project managers to make informed decisions.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "HTML",
+                     "CSS",
+                     "JavaScript"
+                 ],
+        "workflow_stage":  "integration",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "ADS_AI_BIM_Build_Tracker.html"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u055",
+        "source_name":  "ADS_AI_BIM_Build_Tracker.html",
+        "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/ADS_AI_BIM_Build_Tracker.html",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "agent-browser",
+        "one_liner":  "Rust-native browser-automation CLI for AI agents.",
+        "description":  "A Rust-based command-line interface designed to automate web interactions and tasks using AI-driven commands. It allows direct control of a Chrome browser instance from the command line, enabling efficient automation without requiring an intermediate Python agent framework.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "Rust",
+                     "Node.js",
+                     "Chrome"
+                 ],
+        "workflow_stage":  "automation",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  "npm install -g agent-browser \u0026\u0026 agent-browser install"
+                   },
+        "key_files":  [
+                          "README.md",
+                          "agent_browser_install.md"
+                      ],
+        "related_tools":  [
+                              "Browser-Use"
+                          ],
+        "efficiency_hint":  "Replaces one-off Selenium scripts and simplifies BIM/AI research tasks.",
+        "confidential":  false,
+        "id":  "u048",
+        "source_name":  "4 - Local AI Models",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/4 - Local AI Models",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "Architecture AI",
+        "one_liner":  "AI-driven architecture visualization and analysis tools for designers.",
+        "description":  "A suite of AI-powered tools designed to enhance architectural design processes by automating the creation of photorealistic renders, validating Revit models in real-time, and generating fly-through videos. These tools are tailored specifically for architects, visualizers, and BIM staff, integrating seamlessly with existing workflows to improve efficiency.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "AI",
+                     "MLSD",
+                     "LoRA training",
+                     "Revit integration"
+                 ],
+        "workflow_stage":  "integration into design workflow for real-time feedback and visualization",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "README.md",
+                          "BIG_ATN_AI_Deep_Analysis.md"
+                      ],
+        "related_tools":  [
+                              "Sketch-to-render",
+                              "ControlNet",
+                              "LoRA training",
+                              "Revit + AI",
+                              "AI video",
+                              "Failure modes"
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u054",
+        "source_name":  "04_Architecture_AI",
+        "source_path":  "/z/Knowledge Centre/AI Tools/04_Architecture_AI",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "Architecture BOQ Template",
+        "one_liner":  "A BIM-driven template for generating quantity-based Building Operations and Maintenance (BOM) documents.",
+        "description":  "This tool automates the creation of detailed building operation and maintenance (BOM) documents from a BIM model. It leverages native Revit parameters to extract quantities, classifies them using Uniclass codes, and formats them into structured BOQ lines for fabric, finishes, openings, and joinery.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "BIM",
+                     "Revit",
+                     "Uniclass"
+                 ],
+        "workflow_stage":  "post-BIM modeling",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "01_FINDINGS_and_GAPS.md",
+                          "02_PARAMETER_MAPPING.md",
+                          "03_ARCHITECTURE_BOQ_TEMPLATE.md"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  "Hours/time saved not specified.",
+        "confidential":  false,
+        "id":  "u019",
+        "source_name":  "5 - H10",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/5 - H10",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "asure-claude-prompting-guide",
+        "one_liner":  "A comprehensive guide for using Claude in prompting.",
+        "description":  "This HTML file serves as the studio\u0027s full prompting guide for using Claude. It provides detailed instructions and examples to help users effectively utilize Claude for various tasks, ensuring a smooth workflow experience.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "HTML"
+                 ],
+        "workflow_stage":  "initial setup",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "asure-claude-prompting-guide.html"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u053",
+        "source_name":  "08_Tools",
+        "source_path":  "/z/Knowledge Centre/AI Tools/08_Tools",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "big-ai-playbook",
+        "one_liner":  "BIG (Bjarke Ingels Group) AI-in-architecture playbook adapted for Asure Design Studio.",
+        "description":  "Comprehensive deep analysis of Herman\u0027s ATN Summit 2026 talk on BIG\u0027s AI adoption, cross-verified with 10 web research streams and adapted to Asure Design Studio\u0027s scale and hardware. It covers firm/conference context, evolution timeline, image generation stack, knowledge management \u0026 BIGSTER, Revit integration, video generation, philosophy, peer adoption, enterprise LLM cases, and Asure-specific application.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "AI",
+                     "LoRA training",
+                     "ComfyUI + ControlNet",
+                     "MLSD",
+                     "Revit MCP-server"
+                 ],
+        "workflow_stage":  "knowledge",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "Y:\\CLAUDE DIRECT ACCESS FOLDER\\BIG_ATN_AI_Deep_Analysis.md"
+                      ],
+        "related_tools":  [
+                              "ComfyUI",
+                              "ControlNet",
+                              "MLSD",
+                              "Revit MCP-server"
+                          ],
+        "efficiency_hint":  "20-35%",
+        "confidential":  false,
+        "id":  "u051",
+        "source_name":  "Skills_Library_Master",
+        "source_path":  "/z/00 SM TEAM/AI Research/Skills_Library_Master",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "cad2revit",
+        "one_liner":  "Converts AutoCAD DWG plans into Revit elements with detailed uncertainty reporting.",
+        "description":  "A tool that bridges the gap between AutoCAD and Revit by converting 2D AutoCAD drawings into editable native Revit elements. It uses a plugin registry to detect walls, columns, doors, windows, rooms, slabs, and grids, providing per-element confidence + evidence and topology cleanup (endpoint snap, L/T junction extend/trim). The tool supports the ADS office layer standard as default config and offers an optional IFC4 export.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "Python",
+                     "ezdxf",
+                     "pyyaml",
+                     "shapely",
+                     "networkx",
+                     "ifcopenshell"
+                 ],
+        "workflow_stage":  "modeling",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  "pip install -r requirements.txt"
+                   },
+        "key_files":  [
+                          "README.md",
+                          "cad2revit/inventory.py",
+                          "cad2revit/extract.py",
+                          "cad2revit/preview.py",
+                          "cad2revit/ifc.py",
+                          "benchmarks/run.py"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u036",
+        "source_name":  "cad2revit",
+        "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/cad2revit",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "Evolve Asure",
+        "one_liner":  "Design intelligence for the built environment using BIM tools and AI explorations.",
+        "description":  "Evolve Asure is a software tool that combines Building Information Modeling (BIM) tools with artificial intelligence to enhance project command centers, providing real-time insights and automation capabilities in architectural design and construction management.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "HTML",
+                     "CSS",
+                     "JavaScript",
+                     "Web Fonts",
+                     "SVG Filters"
+                 ],
+        "workflow_stage":  "design-intelligence",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "index.html"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u014",
+        "source_name":  "1 - Website UI",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/1 - Website UI",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "Feasibility \u0026 Massing Tool",
+        "one_liner":  "End-to-end browser-based feasibility and massing tool for site development projects.",
+        "description":  "A web application that allows users to draw a site, apply NBC + Telangana GO rules, generate massing, export geometry to Rhino/Grasshopper, and download a PPTX deck. It supports project types like highrise, mid-rise, villa township, mixed-use, and more.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "FastAPI",
+                     "uvicorn",
+                     "Pydantic",
+                     "Pandas",
+                     "OpenPyXL",
+                     "ezdxf",
+                     "Shapely",
+                     "pyproj",
+                     "Requests",
+                     "python-pptx",
+                     "Python-multipart",
+                     "Pillow"
+                 ],
+        "workflow_stage":  "tool",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  "python -m uvicorn backend.main:app --host 127.0.0.1 --port 3000"
+                   },
+        "key_files":  [
+                          "backend/main.py",
+                          "backend/rules_engine.py",
+                          "backend/geometry.py",
+                          "rules_inventory.md",
+                          "requirements.txt",
+                          "BUILD_LOG.md",
+                          "README.md"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u015",
+        "source_name":  "10 - AI Feasibility Tool",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/10 - AI Feasibility Tool",
+        "detected_ports":  "3000"
+    },
+    {
+        "name":  "Headroom",
+        "one_liner":  "A context-compression proxy for Claude Code that reduces token usage on large payloads.",
+        "description":  "Headroom is a context-compression proxy designed to sit between Claude Code and the Anthropic API. It compresses big/repetitive context (tool outputs, logs, history) before it reaches the model, typically cutting token usage significantly on bulky payloads.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "Python",
+                     "Rust",
+                     "ONNX"
+                 ],
+        "workflow_stage":  "pre-processing",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  "/usr/local/bin/headroom-proxy-start.sh"
+                   },
+        "key_files":  [
+                          "Launch-Claude-Fable5-Headroom.bat",
+                          "Headroom-Status.bat",
+                          "Stop-Headroom.bat"
+                      ],
+        "related_tools":  [
+                              "Claude Code",
+                              "Anthropic API"
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u038",
+        "source_name":  "headroom",
+        "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/headroom",
+        "detected_ports":  "8787"
+    },
+    {
+        "name":  "Malaxmi AI Integration Strategy",
+        "one_liner":  "A comprehensive AI backbone and vertical-specific playbooks for Malaxmi Group\u0027s diverse business units.",
+        "description":  "This strategy outlines a group-wide AI backbone designed to unify knowledge, automate document intelligence, provide a shared digital assistant, and establish governance. It also includes per-vertical playbooks tailored for property development, infrastructure/EPC, hospitality, logistics/food park, and energy sectors, leveraging AI for various operational tasks.",
+        "category":  "tool",
+        "status":  "in-progress",
+        "tech":  [
+                     "AI",
+                     "RAG",
+                     "Supabase",
+                     "Phoenix/Toolbox"
+                 ],
+        "workflow_stage":  "analysis",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "ai_integration_strategy.md",
+                          "known_facts_register.md"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  "Noy-Zhang -40% time; support +14/34%",
+        "confidential":  false,
+        "id":  "u031",
+        "source_name":  "malaxmi_group_research",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/malaxmi_group_research",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "malaxmi_ai_story",
+        "one_liner":  "A collection of AI-related videos and resources for learning about AI tools and their applications.",
+        "description":  "This project compiles a series of video tutorials and articles covering various aspects of artificial intelligence, including AI assistants, agents, and open-source models. It provides concrete use cases and examples to demonstrate how businesses can adopt AI technologies in areas such as email automation, workflow management, content creation, and more.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "puppeteer-core",
+                     "YouTube"
+                 ],
+        "workflow_stage":  null,
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "package.json",
+                          "ALL_CARDS.md",
+                          "01_ai_X1a7pY5GNjs.md",
+                          "02_ai_UUPiLFA-Og4.md",
+                          "03_ai_NlT0UBhzxVU.md",
+                          "04_ai_kKNoBH0iE1k.md"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  null,
+        "confidential":  false,
+        "id":  "u030",
+        "source_name":  "malaxmi_ai_story",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/malaxmi_ai_story",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "MCP Revit",
+        "one_liner":  "A framework for autonomous error handling and chat-driven operations in Revit workflows.",
+        "description":  "MCP Revit is a tool designed to handle errors autonomously, with structured responses from every bridge call. It categorizes errors into known classes (e.g., timeout, wedge) and applies recovery patterns automatically. The system verifies the fix\u0027s success before continuing or escalating issues if necessary.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "Revit",
+                     "HTTP",
+                     "error handling"
+                 ],
+        "workflow_stage":  "integration with Revit workflows for autonomous operations",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "README.md",
+                          "interaction-model-analysis.md",
+                          "error-handling-strategy.md"
+                      ],
+        "related_tools":  [
+
+                          ],
+        "efficiency_hint":  "silent recovery should be the default, only escalating when model risk or design ambiguity is present.",
+        "confidential":  false,
+        "id":  "u003",
+        "source_name":  "MCP Revit",
+        "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/2_MCPS/MCP Revit",
+        "detected_ports":  ""
+    },
+    {
+        "name":  "Plannerly",
+        "one_liner":  "Automates BIM execution planning and tracking across multiple projects.",
+        "description":  "A comprehensive tool for managing the entire lifecycle of a building information model (BIM) project, including scope definition, document management, and verification. It automates tasks such as LOD progression, stage gate audits, and milestone tracking to streamline project management processes.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "Revit",
+                     "Python",
+                     "APIs"
+                 ],
+        "workflow_stage":  "BIM execution planning and tracking",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "00_MEETING_BRIEFING.md",
+                          "01_TEMPLATE_TEACHING_WALKTHROUGH.md",
+                          "11_REVIT_AUTOCONNECT_PLAN.md"
+                      ],
+        "related_tools":  [
+                              "Revit",
+                              "pyRevit Bridge"
+                          ],
+        "efficiency_hint":  "70 hrs / project saved in BEP planning, ~3 months setup time per future project reduced.",
+        "confidential":  false,
+        "id":  "u042",
+        "source_name":  "Plannerly",
+        "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/Plannerly",
+        "detected_ports":  "48884"
+    },
+    {
+        "name":  "Revit Dynamo",
+        "one_liner":  "A powerful automation and visualization tool for Revit models using Python scripts.",
+        "description":  "Revit Dynamo is a graphical programming environment that allows users to create custom workflows, automate repetitive tasks, and visualize complex data within Autodesk Revit. It leverages the power of Python scripting to extend the capabilities of Revit by enabling users to define their own algorithms for model manipulation and analysis.",
+        "category":  "tool",
+        "status":  "production",
+        "tech":  [
+                     "Python",
+                     ".NET SDK"
+                 ],
+        "workflow_stage":  "automation",
+        "server":  {
+                       "runs_as_server":  false,
+                       "endpoint":  null,
+                       "start_command":  null
+                   },
+        "key_files":  [
+                          "dynamo\rebar_dimension.py",
+                          "dynamo\rebar_dimension/TestRebar.cs",
+                          "dynamo\rebar_dimension/README.md"
+                      ],
+        "related_tools":  [
+                              "pyRevit"
+                          ],
+        "efficiency_hint":  "null",
+        "confidential":  false,
+        "id":  "u021",
+        "source_name":  "7 - Revit Dynamo",
+        "source_path":  "/c/Users/surya ASURE/Downloads/Claude/7 - Revit Dynamo",
+        "detected_ports":  ""
+    }
+]

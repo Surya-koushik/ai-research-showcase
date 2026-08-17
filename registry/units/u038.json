@@ -1,0 +1,33 @@
+﻿{
+    "name":  "Headroom",
+    "one_liner":  "A context-compression proxy for Claude Code that reduces token usage on large payloads.",
+    "description":  "Headroom is a context-compression proxy designed to sit between Claude Code and the Anthropic API. It compresses big/repetitive context (tool outputs, logs, history) before it reaches the model, typically cutting token usage significantly on bulky payloads.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "Python",
+                 "Rust",
+                 "ONNX"
+             ],
+    "workflow_stage":  "pre-processing",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  "/usr/local/bin/headroom-proxy-start.sh"
+               },
+    "key_files":  [
+                      "Launch-Claude-Fable5-Headroom.bat",
+                      "Headroom-Status.bat",
+                      "Stop-Headroom.bat"
+                  ],
+    "related_tools":  [
+                          "Claude Code",
+                          "Anthropic API"
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u038",
+    "source_name":  "headroom",
+    "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/headroom",
+    "detected_ports":  "8787"
+}

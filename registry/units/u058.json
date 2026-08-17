@@ -1,0 +1,31 @@
+﻿{
+    "name":  "TEP_Dashboard_v2",
+    "one_liner":  "A dashboard for visualizing Earth-related projects.",
+    "description":  "The TEP Dashboard is a web-based tool designed to provide an overview of various Earth projects, using interactive charts and graphs. It leverages Chart.js for data visualization and includes custom CSS styles for a unique user experience.",
+    "category":  "dashboard",
+    "status":  "production",
+    "tech":  [
+                 "HTML",
+                 "CSS",
+                 "JavaScript",
+                 "Chart.js"
+             ],
+    "workflow_stage":  "completed",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "TEP_Dashboard_v2.html"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u058",
+    "source_name":  "TEP_Dashboard_v2.html",
+    "source_path":  "/z/00 SM TEAM/AI Research/TEP_Dashboard_v2.html",
+    "detected_ports":  ""
+}

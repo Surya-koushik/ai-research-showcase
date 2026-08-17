@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ai-team-hub",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "Y:/CLAUDE DIRECT ACCESS FOLDER/ai-team-hub", "-l", "3847", "--no-clipboard"],
+      "port": 3847
+    }
+  ]
+}

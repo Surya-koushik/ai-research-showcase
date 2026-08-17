@@ -1,0 +1,32 @@
+﻿{
+    "name":  "Layout Plotter",
+    "one_liner":  "A plugin for creating detailed layout plots in architectural design.",
+    "description":  "The Layout Plotter is a specialized plugin designed to generate high-quality layout plots from architectural designs. It supports various features such as precise line editing, polygonal area calculations, and the ability to export data into JSON format for further analysis or integration with other tools. The plugin has been updated multiple times (v3.6+) and integrates well with existing design workflows.",
+    "category":  "plugin",
+    "status":  "production",
+    "tech":  [
+                 "C#",
+                 ".NET",
+                 "JSON"
+             ],
+    "workflow_stage":  "tool",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "Dhanushya/Layout plotting tool\format_version.json",
+                      "Dhanushya/Layout plotting tool\test_data.json"
+                  ],
+    "related_tools":  [
+                          "SiteJsonExport plugin",
+                          "Gmail Reply Tracker"
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u050",
+    "source_name":  "Team Assessments",
+    "source_path":  "/z/00 SM TEAM/AI Research/Team Assessments",
+    "detected_ports":  ""
+}

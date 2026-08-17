@@ -1,0 +1,37 @@
+﻿{
+    "name":  "AsureBimQc",
+    "one_liner":  "A plugin for managing Autodesk Account Center (ACC) and Autodesk Platform Services (APS) authentication flows.",
+    "description":  "This is the login + ACC plumbing for the Asure BIM QC plugin, built first and decoupled from Revit so the flows can be proven end-to-end with a console tester. It includes APS 3-legged OAuth with PKCE, silent refresh, ACC discovery, user profile management, and token caching.",
+    "category":  "plugin",
+    "status":  "in-progress",
+    "tech":  [
+                 "C#",
+                 ".NET Core",
+                 "Windows DPAPI"
+             ],
+    "workflow_stage":  "foundation",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  "dotnet run --project src/AsureBimQc.AuthTester"
+               },
+    "key_files":  [
+                      "README.md",
+                      "src/AsureBimQc.Core/ApsConfig.cs",
+                      "src/AsureBimQc.Core/PkceHelper.cs",
+                      "src/AsureBimQc.Core/TokenCache.cs",
+                      "src/AsureBimQc.Core/ApsAuthService.cs",
+                      "src/AsureBimQc.Core/AccService.cs",
+                      "src/AsureBimQc.Core/Models.cs",
+                      "src/AsureBimQc.AuthTester/"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u027",
+    "source_name":  "AsureBimQc",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/AsureBimQc",
+    "detected_ports":  "8080"
+}

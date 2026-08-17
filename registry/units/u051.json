@@ -1,0 +1,35 @@
+﻿{
+    "name":  "big-ai-playbook",
+    "one_liner":  "BIG (Bjarke Ingels Group) AI-in-architecture playbook adapted for Asure Design Studio.",
+    "description":  "Comprehensive deep analysis of Herman\u0027s ATN Summit 2026 talk on BIG\u0027s AI adoption, cross-verified with 10 web research streams and adapted to Asure Design Studio\u0027s scale and hardware. It covers firm/conference context, evolution timeline, image generation stack, knowledge management \u0026 BIGSTER, Revit integration, video generation, philosophy, peer adoption, enterprise LLM cases, and Asure-specific application.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "AI",
+                 "LoRA training",
+                 "ComfyUI + ControlNet",
+                 "MLSD",
+                 "Revit MCP-server"
+             ],
+    "workflow_stage":  "knowledge",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "Y:\\CLAUDE DIRECT ACCESS FOLDER\\BIG_ATN_AI_Deep_Analysis.md"
+                  ],
+    "related_tools":  [
+                          "ComfyUI",
+                          "ControlNet",
+                          "MLSD",
+                          "Revit MCP-server"
+                      ],
+    "efficiency_hint":  "20-35%",
+    "confidential":  false,
+    "id":  "u051",
+    "source_name":  "Skills_Library_Master",
+    "source_path":  "/z/00 SM TEAM/AI Research/Skills_Library_Master",
+    "detected_ports":  ""
+}

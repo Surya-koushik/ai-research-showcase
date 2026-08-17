@@ -1,0 +1,38 @@
+﻿{
+    "name":  "cad2revit",
+    "one_liner":  "Converts AutoCAD DWG plans into Revit elements with detailed uncertainty reporting.",
+    "description":  "A tool that bridges the gap between AutoCAD and Revit by converting 2D AutoCAD drawings into editable native Revit elements. It uses a plugin registry to detect walls, columns, doors, windows, rooms, slabs, and grids, providing per-element confidence + evidence and topology cleanup (endpoint snap, L/T junction extend/trim). The tool supports the ADS office layer standard as default config and offers an optional IFC4 export.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "Python",
+                 "ezdxf",
+                 "pyyaml",
+                 "shapely",
+                 "networkx",
+                 "ifcopenshell"
+             ],
+    "workflow_stage":  "modeling",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  "pip install -r requirements.txt"
+               },
+    "key_files":  [
+                      "README.md",
+                      "cad2revit/inventory.py",
+                      "cad2revit/extract.py",
+                      "cad2revit/preview.py",
+                      "cad2revit/ifc.py",
+                      "benchmarks/run.py"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u036",
+    "source_name":  "cad2revit",
+    "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/cad2revit",
+    "detected_ports":  ""
+}

@@ -1,0 +1,32 @@
+﻿{
+    "name":  "ads-bridge",
+    "one_liner":  "Local MCP server for driving Revit from chat using pyRevit ADS_Bridge.",
+    "description":  "Drive Revit directly from chat with a local MCP server exposing the pyRevit ADS_Bridge HTTP API. Supports various tools like querying, executing IronPython scripts, setting parameters, running pipelines, and taking screenshots.",
+    "category":  "mcp-server",
+    "status":  "production",
+    "tech":  [
+                 "python",
+                 "FastMCP"
+             ],
+    "workflow_stage":  "tool",
+    "server":  {
+                   "runs_as_server":  true,
+                   "endpoint":  null,
+                   "start_command":  "C:\\Users\\accou\\.ads-cad\\mcp\\.venv\\Scripts\\python.exe ${__dirname}/server.py"
+               },
+    "key_files":  [
+                      "server.py",
+                      "requirements.txt",
+                      "install.ps1",
+                      "claude_desktop_config.snippet.json"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u006",
+    "source_name":  "ads-bridge",
+    "source_path":  "/z/00 SM TEAM/AI Research/Claude direct access folder/2_MCPS/ads-bridge",
+    "detected_ports":  "48884"
+}

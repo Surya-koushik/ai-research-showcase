@@ -1,0 +1,30 @@
+﻿{
+    "name":  "ADS Revit Toolbox",
+    "one_liner":  "A standalone Revit 2025 add-in suite of productivity/QA tools.",
+    "description":  "A standalone Revit 2025 add-in suite of productivity/QA tools, driven by market research into the most common Revit pain points. This toolbox is project-agnostic and must work on any model with zero project config.",
+    "category":  "plugin",
+    "status":  "research",
+    "tech":  [
+                 "Revit",
+                 "market research"
+             ],
+    "workflow_stage":  "research phase (2026-07-01)",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "RESEARCH_REVIT_PAIN_POINTS.md",
+                      "README.md"
+                  ],
+    "related_tools":  [
+                          "PHX_ADS (AdsPhoenixL1)"
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u044",
+    "source_name":  "AdsRevitToolbox",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/AdsRevitToolbox",
+    "detected_ports":  ""
+}

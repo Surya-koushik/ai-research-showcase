@@ -1,0 +1,31 @@
+﻿{
+    "name":  "Obsidian",
+    "one_liner":  "A personal digital vault for organizing notes and projects.",
+    "description":  "Obsidian is a powerful tool that allows users to create and manage their own digital vaults. It supports markdown formatting, tags, and links between notes, making it an excellent platform for knowledge management and project organization.",
+    "category":  "plugin",
+    "status":  "production",
+    "tech":  [
+                 "Markdown",
+                 "JavaScript"
+             ],
+    "workflow_stage":  "tool",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "create a link.md",
+                      "2026-07-20.md",
+                      "Welcome.md"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u039",
+    "source_name":  "AI SERVER",
+    "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/AI SERVER",
+    "detected_ports":  ""
+}

@@ -1,0 +1,30 @@
+﻿{
+    "name":  "Evolve Asure",
+    "one_liner":  "A unified platform for showcasing and managing projects with role-based access.",
+    "description":  "A single-platform solution at evolveasure.in that provides a concise public showcase of the studio\u0027s vertical, with everything operational (projects, dashboards, data) behind a sign-in. Access is requested by users, reviewed by the owner, and granted based on their role; no public self-registration. Signed-in users see only the projects they\u0027re entitled to.",
+    "category":  "dashboard",
+    "status":  "in-progress",
+    "tech":  [
+                 "Supabase",
+                 "Vanilla ES-module SPA"
+             ],
+    "workflow_stage":  "architecture design",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "2026-06-29-evolveasure-platform-architecture-design.md",
+                      "SYSTEM_ARCHITECTURE_BRIEF.md"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u016",
+    "source_name":  "2 - Website Architecture",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/2 - Website Architecture",
+    "detected_ports":  ""
+}

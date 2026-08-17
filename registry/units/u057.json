@@ -1,0 +1,30 @@
+﻿{
+    "name":  "P25 Predictability Dashboard",
+    "one_liner":  "A dashboard for tracking and analyzing project predictability metrics.",
+    "description":  "The P25 Predictability Dashboard provides a comprehensive view of various project metrics to help teams identify trends, optimize processes, and improve overall project predictability. It integrates data from multiple sources to offer real-time insights into the likelihood of meeting deadlines and budget constraints.",
+    "category":  "dashboard",
+    "status":  "production",
+    "tech":  [
+                 "HTML",
+                 "CSS",
+                 "JavaScript"
+             ],
+    "workflow_stage":  "post-production",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "P25_Predictability_Dashboard (2).html"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u057",
+    "source_name":  "P25_Predictability_Dashboard (2).html",
+    "source_path":  "/c/Users/surya ASURE/Downloads/P25_Predictability_Dashboard (2).html",
+    "detected_ports":  ""
+}

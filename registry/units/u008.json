@@ -1,0 +1,36 @@
+﻿{
+    "name":  "CADBridge",
+    "one_liner":  "Connects Claude live to AutoCAD for exporting site layouts as lossless JSON.",
+    "description":  "Automatically loads a .NET add-in in AutoCAD that listens on port 48810 and exports the current selection of objects into a lossless, scale-preserving JSON file. The same export can be done offline using ZWCAD\u0027s `SITEJSON` command without an active listener.",
+    "category":  "plugin",
+    "status":  "production",
+    "tech":  [
+                 "AutoCAD",
+                 ".NET API (v8)",
+                 "HTTP server"
+             ],
+    "workflow_stage":  "integration",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  "http://127.0.0.1:48810/cad-bridge/",
+                   "start_command":  "powershell -ExecutionPolicy Bypass -File .\\build.ps1 -Deploy"
+               },
+    "key_files":  [
+                      "README.md",
+                      "manifest.json"
+                  ],
+    "related_tools":  [
+                          "cad_status",
+                          "cad_export",
+                          "cad_read_export",
+                          "cad_validate_export",
+                          "cad_summarize_layout",
+                          "cad_stage_import"
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u008",
+    "source_name":  "cad-bridge",
+    "source_path":  "/z/00 SM TEAM/AI Research/Claude direct access folder/2_MCPS/cad-bridge",
+    "detected_ports":  "48810"
+}

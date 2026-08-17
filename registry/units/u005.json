@@ -1,0 +1,31 @@
+﻿{
+    "name":  "Computational Design Skills",
+    "one_liner":  "A plugin for computational design covering geometry, parametric modeling, and more.",
+    "description":  "A comprehensive plugin with over 35,000 lines of code across 75 files, offering 18 interconnected skills in areas like parametric modeling, generative design, structural computation, environmental simulation, facade engineering, digital fabrication, BIM scripting, and machine learning for AEC. It includes 7 Python calculators for various computations.",
+    "category":  "plugin",
+    "status":  "production",
+    "tech":  [
+                 "Python",
+                 "Claude"
+             ],
+    "workflow_stage":  "early design phase",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "README.md",
+                      "cd-foundations.md",
+                      "cd-calculator.md"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u005",
+    "source_name":  "skill-repos",
+    "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/2_MCPS/skill-repos",
+    "detected_ports":  ""
+}

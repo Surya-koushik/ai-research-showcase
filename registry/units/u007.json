@@ -1,0 +1,32 @@
+﻿{
+    "name":  "ads-marketplace",
+    "one_liner":  "A suite of plugins for managing and automating tasks related to ads lifecycle in Revit and Forma.",
+    "description":  "The `ads-marketplace` is a collection of plugins designed to streamline the process of managing and automating various tasks within an architectural design workflow, specifically focusing on Revit and Forma. It includes tools for model health checks, compliance checks, and data extraction from Forma, all managed through a CLI interface.",
+    "category":  "plugin",
+    "status":  "production",
+    "tech":  [
+                 "Python",
+                 "pyRevit",
+                 "Claude Code"
+             ],
+    "workflow_stage":  "tool",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "0_RULES/claudemaster.md",
+                      "Z:\folder\file1.py",
+                      "Z:\folder\file2.json"
+                  ],
+    "related_tools":  [
+                          "ads-lifecycle"
+                      ],
+    "efficiency_hint":  "Not explicitly stated in the provided files.",
+    "confidential":  false,
+    "id":  "u007",
+    "source_name":  "ads-marketplace",
+    "source_path":  "/z/00 SM TEAM/AI Research/Claude direct access folder/2_MCPS/ads-marketplace",
+    "detected_ports":  "8080"
+}

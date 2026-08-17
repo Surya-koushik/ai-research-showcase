@@ -1,0 +1,29 @@
+Code,Tool,Type,DesignStage,Language_Tech,HasHTMLPreview,Server_Endpoint,NeedsVideo,NeedsScreenshots,LogoToUse,SourceLocation
+P01,ADS Phoenix L1,Plugin,Coordination & Documentation,C# / .NET 8 / RevitAPI,No,-,Yes,Yes,Revit,Downloads\Claude\AdsPhoenixL1
+P02,H10 BIM Progress Dashboard,Dashboard,Reporting & Leadership,HTML / CSS / JS,Yes,-,No,Yes,Asure,Downloads\H10_BIM_Dashboard (2).html
+P03,P25 Predictability Dashboard,Dashboard,Reporting & Leadership,HTML / CSS / JS,Yes,-,No,Yes,Asure,Downloads\P25_Predictability_Dashboard (2).html
+P04,CAD3D Studio,Web App,Schematic Design,Python / FastAPI / ezdxf,No,http://127.0.0.1:8712,Yes,Yes,Asure,Downloads\Claude\ads-cad3d-studio
+P05,Revit-Claude MCP Bridge,MCP Server,Coordination & Documentation,Python / FastMCP,No,http://localhost:48884,Yes,Yes,MCP,Z\2_MCPS\mcp-server-for-revit-python.extension
+P06,ArchViz AI Suite,Tool,Conceptual / Feasibility,ComfyUI / AI / Python,No,-,Yes,Yes,Asure,Downloads\Claude (ArchViz spec)
+P07,Headroom,Tool,Infrastructure / R&D,Python / Rust / ONNX,No,http://127.0.0.1:8787,Yes,Yes,Asure,Y\CLAUDE DIRECT ACCESS FOLDER\headroom
+P08,Docs to Markdown Corpus,Automation,Infrastructure / R&D,Python / MarkItDown,No,-,Yes,Yes,Asure,Downloads\_Downloads_Vault (docs-to-md)
+P09,Team AI-Usage Assessment,Automation,Infrastructure / R&D,Python / Claude Code,No,-,Yes,Yes,Asure,Z\00 SM TEAM\AI Research\Team Assessments
+P10,ADS Revit Toolbox,Plugin,Design Development,C# / .NET / Revit 2025,No,-,Yes,Yes,Revit,Downloads\Claude\AdsRevitToolbox
+P11,AI Team Hub,Dashboard,Reporting & Leadership,HTML / CSS / JS,Yes,-,No,Yes,Asure,Y\CLAUDE DIRECT ACCESS FOLDER\ai-team-hub
+P12,Asure Document Platform,Web App,Finance & Commercial,Python / FastAPI / PostgreSQL,No,http://127.0.0.1:8000,Yes,Yes,Asure,Downloads\Claude\asure-doc-platform
+P13,TEP Dashboard,Dashboard,Finance & Commercial,HTML / CSS / JS / Chart.js,Yes,-,No,Yes,Asure,Z\00 SM TEAM\AI Research\TEP_Dashboard_v2.html
+P14,ads-bridge,MCP Server,Coordination & Documentation,Python / FastMCP,No,http://localhost:48884,Yes,Yes,MCP,Y\CLAUDE DIRECT ACCESS FOLDER\2_MCPS\ads-bridge
+P15,NavisBridge,MCP Server,Coordination & Documentation,C# / .NET / Python / FastMCP,No,http://127.0.0.1:47885/navis-bridge,Yes,Yes,Autodesk,Z\2_MCPS\navis-bridge
+P16,ads-lifecycle,Plugin,Coordination & Documentation,Python / pyRevit / Claude Code,No,http://127.0.0.1:8080,Yes,Yes,Revit,Y\CLAUDE DIRECT ACCESS FOLDER\2_MCPS\ads-marketplace
+P17,AsureBimQc,Plugin,Coordination & Documentation,C# / .NET / OAuth PKCE,No,-,Yes,Yes,Autodesk,Downloads\Claude\AsureBimQc
+P18,CADBridge,Plugin,Schematic Design,AutoCAD / .NET (v8),No,http://127.0.0.1:48810/cad-bridge/,Yes,Yes,AutoCAD,Z\2_MCPS\cad-bridge
+P19,ADS AI BIM Build Tracker,Dashboard,Reporting & Leadership,HTML / CSS / JS,Yes,-,No,Yes,Asure,Y\CLAUDE DIRECT ACCESS FOLDER\ADS_AI_BIM_Build_Tracker.html
+P20,Architecture AI,Research,Conceptual / Feasibility,AI / MLSD / LoRA / Revit,No,-,Yes,Yes,Revit,Z\Knowledge Centre\AI Tools\04_Architecture_AI
+P21,Architecture BOQ Template,Tool,Design Development,Revit / Uniclass / BIM,No,-,Yes,Yes,Revit,Downloads\Claude\5 - H10
+P22,cad2revit,Tool,Schematic Design,Python / ezdxf / shapely / ifcopenshell,No,-,Yes,Yes,Revit,Y\CLAUDE DIRECT ACCESS FOLDER\cad2revit
+P23,Feasibility & Massing Tool,Web App,Conceptual / Feasibility,Python / FastAPI / Shapely,No,http://127.0.0.1:3000,Yes,Yes,Asure,Downloads\Claude\10 - AI Feasibility Tool
+P24,Construction Takeoff AI,Automation,Documentation & Takeoff,Python / MCP / Ollama / PaddleOCR,No,-,Yes,Yes,Asure,Z\AI Research\New folder (Construction Takeoff AI)
+P25,[CONFIDENTIAL] ADS Finance App,Web App,Finance & Commercial,Python / SQLite / HTML,Internal,-,No,No,Asure,Z\AI Research\Finance (LOCKED - internal only)
+P26,[CONFIDENTIAL] H10 Tower-3 Payment Dashboard,Dashboard,Finance & Commercial,HTML / Python,Internal,-,No,No,Asure,Z\AI Research\Finace (LOCKED - internal only)
+P27,[CONFIDENTIAL] APNRT Accounts Dashboards,Dashboard,Finance & Commercial,HTML / PowerBI / Python,Internal,-,No,No,PowerBI,Z\AI Research\Accounts (LOCKED - internal only)
+P28,[CONFIDENTIAL] ADS AI Heads Deck + Dashboard,Dashboard,Leadership,HTML,Internal,-,No,No,Asure,Z\AI Research\Report and road map (LOCKED - internal only)

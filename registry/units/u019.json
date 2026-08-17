@@ -1,0 +1,32 @@
+﻿{
+    "name":  "Architecture BOQ Template",
+    "one_liner":  "A BIM-driven template for generating quantity-based Building Operations and Maintenance (BOM) documents.",
+    "description":  "This tool automates the creation of detailed building operation and maintenance (BOM) documents from a BIM model. It leverages native Revit parameters to extract quantities, classifies them using Uniclass codes, and formats them into structured BOQ lines for fabric, finishes, openings, and joinery.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "BIM",
+                 "Revit",
+                 "Uniclass"
+             ],
+    "workflow_stage":  "post-BIM modeling",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "01_FINDINGS_and_GAPS.md",
+                      "02_PARAMETER_MAPPING.md",
+                      "03_ARCHITECTURE_BOQ_TEMPLATE.md"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  "Hours/time saved not specified.",
+    "confidential":  false,
+    "id":  "u019",
+    "source_name":  "5 - H10",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/5 - H10",
+    "detected_ports":  ""
+}

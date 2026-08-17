@@ -1,0 +1,35 @@
+﻿{
+    "name":  "NavisBridge",
+    "one_liner":  "Drive Autodesk Navisworks Manage live from Claude: run/update clash tests, export branded clash reports, pull element properties, append models, and publish NWD/NWF.",
+    "description":  "The NavisBridge plugin allows users to interact with Autodesk Navisworks Manage directly through the AI platform Claude. It enables running and updating clash tests, exporting branded clash reports, pulling element properties, appending model files into an open document, and saving or publishing federated models (NWD/NWF).",
+    "category":  "mcp-server",
+    "status":  "production",
+    "tech":  [
+                 "C#",
+                 ".NET Framework",
+                 "Python",
+                 "FastMCP"
+             ],
+    "workflow_stage":  "integration",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  "http://127.0.0.1:47885/navis-bridge",
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "plugin/NavisBridge.cs",
+                      "server.py",
+                      "requirements.txt",
+                      "install.ps1",
+                      "claude_desktop_config.snippet.json"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u011",
+    "source_name":  "navis-bridge",
+    "source_path":  "/z/00 SM TEAM/AI Research/Claude direct access folder/2_MCPS/navis-bridge",
+    "detected_ports":  "47885"
+}

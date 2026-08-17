@@ -1,0 +1,36 @@
+﻿{
+    "name":  "ads-lifecycle",
+    "one_liner":  "Runs NBC compliance checks and Revit probes on an open model.",
+    "description":  "The `ads-lifecycle` plugin automates the process of running NBC compliance checks, Revit probes, and Forma pulls for Asure Design projects. It requires a one-time setup involving cloning or copying files to your machine, installing the plugin in Claude Code, creating an APS config file, performing OAuth login, and then executing commands within the tool.",
+    "category":  "plugin",
+    "status":  "production",
+    "tech":  [
+                 "Windows",
+                 "Claude Code",
+                 "Python 3.10+",
+                 "pyRevit",
+                 "Revit 2023",
+                 "Autodesk ID"
+             ],
+    "workflow_stage":  "integration",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  "/plugin marketplace add C:/Users/\u003cyou\u003e/Downloads/Claude/ads-marketplace \u0026\u0026 /plugin install ads-lifecycle@asure-design"
+               },
+    "key_files":  [
+                      "SETUP_TEAM.md",
+                      "C:\\",
+                      "\u003cyou\u003e\\.ads-forma\\\nconfig.json",
+                      "C:\\Users\\\u003cyou\u003e\\Downloads\\Claude\\ads-marketplace\\scripts\\aps_auth.py"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u002",
+    "source_name":  "ads-marketplace",
+    "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/2_MCPS/ads-marketplace",
+    "detected_ports":  "8080"
+}

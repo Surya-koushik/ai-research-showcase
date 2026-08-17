@@ -1,0 +1,31 @@
+﻿{
+    "name":  "agent-browser",
+    "one_liner":  "Rust-native browser-automation CLI for AI agents.",
+    "description":  "A Rust-based command-line interface designed to automate web interactions and tasks using AI-driven commands. It allows direct control of a Chrome browser instance from the command line, enabling efficient automation without requiring an intermediate Python agent framework.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "Rust",
+                 "Node.js",
+                 "Chrome"
+             ],
+    "workflow_stage":  "automation",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  "npm install -g agent-browser \u0026\u0026 agent-browser install"
+               },
+    "key_files":  [
+                      "README.md",
+                      "agent_browser_install.md"
+                  ],
+    "related_tools":  [
+                          "Browser-Use"
+                      ],
+    "efficiency_hint":  "Replaces one-off Selenium scripts and simplifies BIM/AI research tasks.",
+    "confidential":  false,
+    "id":  "u048",
+    "source_name":  "4 - Local AI Models",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/4 - Local AI Models",
+    "detected_ports":  ""
+}

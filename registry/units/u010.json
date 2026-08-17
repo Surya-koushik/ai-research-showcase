@@ -1,0 +1,30 @@
+﻿{
+    "name":  "get_revit_status",
+    "one_liner":  "Check if the Revit-MCP API is active and responding.",
+    "description":  "This tool verifies whether the Model Context Protocol (MCP) server for Autodesk Revit is operational by sending a request to the MCP server endpoint. It returns a status indicating whether the connection is successful or not, which helps in diagnosing connectivity issues with the MCP server.",
+    "category":  "mcp-server",
+    "status":  "experimental",
+    "tech":  [
+                 "FastMCP",
+                 "HTTP requests"
+             ],
+    "workflow_stage":  "diagnostic",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "README.md",
+                      "pyproject.toml"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u010",
+    "source_name":  "mcp-server-for-revit-python.extension",
+    "source_path":  "/z/00 SM TEAM/AI Research/Claude direct access folder/2_MCPS/mcp-server-for-revit-python.extension",
+    "detected_ports":  "48884"
+}

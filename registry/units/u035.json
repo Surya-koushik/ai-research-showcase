@@ -1,0 +1,44 @@
+﻿{
+    "name":  "ADS CAD3D Studio",
+    "one_liner":  "CAD drawings to semantic 3D building models with Layer Standardizer and Three.js QA viewer.",
+    "description":  "A local tool for Asure Design Studio that ingests consultant CAD drawings (DWG/DXF), standardizes every layer to the ten ADS standard layers, extracts a semantic building model per level, and exports to various formats including ADS Bridge JSON, IFC4, glTF+Collada .dae, and Rhino 3dm + companion JSON. It runs offline with zero network calls.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "Python",
+                 "FastAPI",
+                 "ezdxf",
+                 "numpy",
+                 "shapely",
+                 "pyyaml"
+             ],
+    "workflow_stage":  "M7 IFC/glTF/Rhino",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  ".\\Start-ADS-CAD3D-Studio.ps1"
+               },
+    "key_files":  [
+                      "README.md",
+                      "pyproject.toml",
+                      "docs/PHASE0.md",
+                      "docs/SPEC_master_prompt.md",
+                      "docs/SPEC_addendum01.md",
+                      "src/adscad3d_core/",
+                      "src/adscad3d_studio/",
+                      "viewer/",
+                      "schema/",
+                      "tests/",
+                      "profiles/",
+                      "workdir/"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u035",
+    "source_name":  "ads-cad3d-studio",
+    "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/ads-cad3d-studio",
+    "detected_ports":  "8712"
+}

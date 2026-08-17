@@ -1,0 +1,32 @@
+﻿{
+    "name":  "Evolve Asure",
+    "one_liner":  "Design intelligence for the built environment using BIM tools and AI explorations.",
+    "description":  "Evolve Asure is a software tool that combines Building Information Modeling (BIM) tools with artificial intelligence to enhance project command centers, providing real-time insights and automation capabilities in architectural design and construction management.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "HTML",
+                 "CSS",
+                 "JavaScript",
+                 "Web Fonts",
+                 "SVG Filters"
+             ],
+    "workflow_stage":  "design-intelligence",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "index.html"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u014",
+    "source_name":  "1 - Website UI",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/1 - Website UI",
+    "detected_ports":  ""
+}

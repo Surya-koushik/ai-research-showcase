@@ -1,0 +1,41 @@
+﻿{
+    "name":  "Revit Plugin",
+    "one_liner":  "A suite of plugins for Autodesk Revit.",
+    "description":  "This is a collection of plugins designed to enhance the functionality and efficiency of Autodesk Revit. It includes tools such as ADS Phoenix L1 Checklist, ADS Revit Toolbox, Asure BIM QC, and others that provide additional features like reference data management, test harnesses, and maintenance scripts for pyRevit.",
+    "category":  "plugin",
+    "status":  "production",
+    "tech":  [
+                 "C#",
+                 ".NET",
+                 "Python"
+             ],
+    "workflow_stage":  "active use",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "..\\AdsPhoenixL1\\",
+                      "..\\AdsRevitToolbox\\",
+                      "..\\AsureBimQc\\",
+                      "..\\RevitAddinHarness\\",
+                      "..\\_PhoenixReport\\",
+                      "..\\Uniclass2015\\",
+                      "..\\P25_*\\",
+                      "..\\Phoenix_Uniclass_*\\",
+                      "..\\Project1*.rvt\\",
+                      "..\\pyrevit-*.ps1 / *.log / *.txt\\",
+                      "..\\asure-famlib-sync.*\\",
+                      "..\\_scratch\\h10_plugin_site\\"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u017",
+    "source_name":  "3 - Revit Plugin",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/3 - Revit Plugin",
+    "detected_ports":  ""
+}

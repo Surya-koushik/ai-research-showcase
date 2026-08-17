@@ -1,0 +1,32 @@
+﻿{
+    "name":  "Malaxmi AI Integration Strategy",
+    "one_liner":  "A comprehensive AI backbone and vertical-specific playbooks for Malaxmi Group\u0027s diverse business units.",
+    "description":  "This strategy outlines a group-wide AI backbone designed to unify knowledge, automate document intelligence, provide a shared digital assistant, and establish governance. It also includes per-vertical playbooks tailored for property development, infrastructure/EPC, hospitality, logistics/food park, and energy sectors, leveraging AI for various operational tasks.",
+    "category":  "tool",
+    "status":  "in-progress",
+    "tech":  [
+                 "AI",
+                 "RAG",
+                 "Supabase",
+                 "Phoenix/Toolbox"
+             ],
+    "workflow_stage":  "analysis",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "ai_integration_strategy.md",
+                      "known_facts_register.md"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  "Noy-Zhang -40% time; support +14/34%",
+    "confidential":  false,
+    "id":  "u031",
+    "source_name":  "malaxmi_group_research",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/malaxmi_group_research",
+    "detected_ports":  ""
+}

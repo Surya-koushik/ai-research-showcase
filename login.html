@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in — AI Research & Innovation</title>
+<link rel="icon" href="assets/logos/brand/favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<script src="assets/js/supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  .login-wrap{min-height:100vh;display:grid;place-items:center;padding:24px;position:relative}
+  .login-card{width:min(420px,100%);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);
+    box-shadow:var(--shadow-card);padding:34px 30px;position:relative;z-index:1}
+  .login-card .lg{height:26px;width:auto;margin-bottom:6px}
+  .login-card .darkonly{display:none}
+  :root[data-theme="dark"] .login-card .lightonly{display:none}
+  :root[data-theme="dark"] .login-card .darkonly{display:block}
+  .login-card h1{font-size:20px;font-weight:800;letter-spacing:-.02em;margin:14px 0 4px}
+  .login-card p.sub{color:var(--text-3);font-size:13px;margin-bottom:22px}
+  .fld{display:block;margin-bottom:12px}
+  .fld span{display:block;font-size:12px;color:var(--text-2);margin-bottom:6px;font-weight:600}
+  .fld input{width:100%;padding:12px 14px;border-radius:var(--r-md);border:1px solid var(--line-2);
+    background:var(--surface-2);color:var(--text);font-size:14px;font-family:inherit}
+  .fld input:focus{outline:none;border-color:var(--violet-500);box-shadow:0 0 0 3px rgba(124,92,255,.18)}
+  .btn-primary{width:100%;padding:13px;border:none;border-radius:var(--r-full);background:var(--grad-primary);
+    color:#fff;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 12px 26px -13px rgba(124,92,255,.75);
+    transition:transform .15s var(--ease)}
+  .btn-primary:hover{transform:translateY(-2px)} .btn-primary:disabled{opacity:.6;cursor:default;transform:none}
+  .row-links{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:12.5px}
+  .row-links a{color:var(--violet-500);cursor:pointer;text-decoration:none}
+  .divider{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--text-3);font-size:11px}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line-2)}
+  .btn-oauth{width:100%;padding:12px;border:1px solid var(--line-2);border-radius:var(--r-full);background:var(--surface-2);
+    color:var(--text);font-weight:600;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px}
+  .btn-oauth:hover{border-color:var(--violet-400)}
+  .msg{margin-top:14px;font-size:12.5px;padding:10px 12px;border-radius:var(--r-sm);display:none}
+  .msg.err{display:block;background:rgba(255,90,90,.12);color:#ff6b6b}
+  .msg.ok{display:block;background:rgba(34,230,168,.12);color:var(--emerald-500)}
+  .setup-note{position:fixed;bottom:14px;left:0;right:0;text-align:center;font-size:11.5px;color:var(--text-3)}
+</style>
+</head>
+<body>
+<div class="login-wrap">
+  <div class="login-card">
+    <img class="lg lightonly" src="assets/logos/brand/asure_wordmark.png" alt="Asure">
+    <img class="lg darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="Asure" aria-hidden="true">
+    <h1>AI Research &amp; Innovation</h1>
+    <p class="sub">Sign in to access the studio's AI tools showcase.</p>
+
+    <form id="loginForm">
+      <label class="fld"><span>Work email</span><input id="email" type="email" autocomplete="email" placeholder="you@asure.in" required></label>
+      <label class="fld"><span>Password</span><input id="password" type="password" autocomplete="current-password" placeholder="••••••••"></label>
+      <button class="btn-primary" id="signInBtn" type="submit">Sign in</button>
+      <div class="row-links">
+        <a id="magicLink">Email me a magic link instead</a>
+        <a id="signUpLink">Create account</a>
+      </div>
+    </form>
+
+    <div class="divider">or</div>
+    <button class="btn-oauth" id="googleBtn" type="button">Continue with Google</button>
+
+    <div class="msg" id="msg"></div>
+  </div>
+  <div class="setup-note" id="setupNote"></div>
+</div>
+
+<script>
+(function(){
+  var cfg = window.SB_CONFIG || {};
+  var ready = cfg.url && cfg.anon && cfg.anon.indexOf('PASTE_') !== 0 && window.supabase;
+  var msg = document.getElementById('msg');
+  function show(t, ok){ msg.textContent = t; msg.className = 'msg ' + (ok ? 'ok' : 'err'); }
+  function nextUrl(){ var p = new URLSearchParams(location.search).get('next'); return p || 'index.html'; }
+
+  if(!ready){
+    document.getElementById('setupNote').textContent = 'Setup: paste your Supabase anon key in assets/js/supabase-config.js to activate sign-in.';
+    document.getElementById('signInBtn').disabled = true;
+    return;
+  }
+  var client = window.supabase.createClient(cfg.url, cfg.anon, { auth:{ persistSession:true, autoRefreshToken:true, detectSessionInUrl:true }});
+
+  function domainOK(email){ return !cfg.allowedDomain || (email||'').toLowerCase().endsWith('@'+cfg.allowedDomain); }
+
+  // already signed in (or just returned from OAuth) -> go through
+  client.auth.getSession().then(function(res){
+    var s = res && res.data && res.data.session;
+    if(s){ location.replace(nextUrl()); }
+  });
+
+  document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('email').value.trim();
+    var pw = document.getElementById('password').value;
+    if(!pw){ show('Enter your password, or use the magic-link option.'); return; }
+    show('Signing in…', true);
+    client.auth.signInWithPassword({ email:email, password:pw }).then(function(r){
+      if(r.error){ show(r.error.message); return; }
+      if(!domainOK(email)){ client.auth.signOut(); show('That account is not on the '+cfg.allowedDomain+' domain — ask an admin to approve it.'); return; }
+      location.replace(nextUrl());
+    });
+  });
+
+  document.getElementById('magicLink').addEventListener('click', function(){
+    var email = document.getElementById('email').value.trim();
+    if(!email){ show('Enter your email first.'); return; }
+    show('Sending link…', true);
+    client.auth.signInWithOtp({ email:email, options:{ emailRedirectTo: location.origin + location.pathname } }).then(function(r){
+      if(r.error){ show(r.error.message); } else { show('Check your inbox for the sign-in link.', true); }
+    });
+  });
+
+  document.getElementById('signUpLink').addEventListener('click', function(){
+    var email = document.getElementById('email').value.trim();
+    var pw = document.getElementById('password').value;
+    if(!email || !pw){ show('Enter an email and a password to create an account.'); return; }
+    if(!domainOK(email)){ show('Sign-up is limited to '+cfg.allowedDomain+' emails.'); return; }
+    show('Creating account…', true);
+    client.auth.signUp({ email:email, password:pw }).then(function(r){
+      if(r.error){ show(r.error.message); } else { show('Account created — check your email to confirm, then sign in.', true); }
+    });
+  });
+
+  document.getElementById('googleBtn').addEventListener('click', function(){
+    client.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.origin + location.pathname + '?next=' + encodeURIComponent(nextUrl()) }});
+  });
+})();
+</script>
+</body>
+</html>

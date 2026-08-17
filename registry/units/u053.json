@@ -1,0 +1,28 @@
+﻿{
+    "name":  "asure-claude-prompting-guide",
+    "one_liner":  "A comprehensive guide for using Claude in prompting.",
+    "description":  "This HTML file serves as the studio\u0027s full prompting guide for using Claude. It provides detailed instructions and examples to help users effectively utilize Claude for various tasks, ensuring a smooth workflow experience.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "HTML"
+             ],
+    "workflow_stage":  "initial setup",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "asure-claude-prompting-guide.html"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u053",
+    "source_name":  "08_Tools",
+    "source_path":  "/z/Knowledge Centre/AI Tools/08_Tools",
+    "detected_ports":  ""
+}

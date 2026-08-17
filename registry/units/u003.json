@@ -1,0 +1,32 @@
+﻿{
+    "name":  "MCP Revit",
+    "one_liner":  "A framework for autonomous error handling and chat-driven operations in Revit workflows.",
+    "description":  "MCP Revit is a tool designed to handle errors autonomously, with structured responses from every bridge call. It categorizes errors into known classes (e.g., timeout, wedge) and applies recovery patterns automatically. The system verifies the fix\u0027s success before continuing or escalating issues if necessary.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "Revit",
+                 "HTTP",
+                 "error handling"
+             ],
+    "workflow_stage":  "integration with Revit workflows for autonomous operations",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "README.md",
+                      "interaction-model-analysis.md",
+                      "error-handling-strategy.md"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  "silent recovery should be the default, only escalating when model risk or design ambiguity is present.",
+    "confidential":  false,
+    "id":  "u003",
+    "source_name":  "MCP Revit",
+    "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/2_MCPS/MCP Revit",
+    "detected_ports":  ""
+}

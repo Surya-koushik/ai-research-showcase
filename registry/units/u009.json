@@ -1,0 +1,32 @@
+﻿{
+    "name":  "MCP Revit",
+    "one_liner":  "A framework for autonomous error handling and chat-driven operations in Revit workflows.",
+    "description":  "This tool provides an autonomous error-handling strategy for chat-driven Revit operations, covering up to 85% of errors with automatic recovery patterns. It includes a five-step autonomous framework: detect, diagnose, fix, verify, and continue/escalate as needed.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "Revit",
+                 "HTTP",
+                 "Autonomous error handling"
+             ],
+    "workflow_stage":  "integration with studio workflows for Revit operations",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "README.md",
+                      "error-handling-strategy.md",
+                      "interaction-model-analysis.md"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  "Silent recovery is the default, escalating only when model risk or design ambiguity is present.",
+    "confidential":  false,
+    "id":  "u009",
+    "source_name":  "MCP Revit",
+    "source_path":  "/z/00 SM TEAM/AI Research/Claude direct access folder/2_MCPS/MCP Revit",
+    "detected_ports":  ""
+}

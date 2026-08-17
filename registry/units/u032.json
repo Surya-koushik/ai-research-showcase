@@ -1,0 +1,41 @@
+﻿{
+    "name":  "RevitAddinHarness",
+    "one_liner":  "A minimal setup for writing and testing native C# Revit plugins.",
+    "description":  "A complete solution for developing and deploying native C# Revit add-ins, including a real `.addin` manifest, one-command build/deploy process, and F5 debugging into running Revit. Supports both Revit 2024 and 2025 with .NET Framework 4.8 and .NET 8 respectively.",
+    "category":  "plugin",
+    "status":  "production",
+    "tech":  [
+                 "C#",
+                 ".NET Framework",
+                 ".NET 8"
+             ],
+    "workflow_stage":  "development",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "RevitAddinHarness.sln",
+                      "build.ps1",
+                      "manifest/*.addin.template",
+                      "src/RevitAddinHarness/RevitAddinHarness.csproj",
+                      "src/RevitAddinHarness/App.cs",
+                      "src/RevitAddinHarness/IconFactory.cs",
+                      "src/RevitAddinHarness/Properties/launchSettings.json",
+                      "src/RevitAddinHarness/Commands/Cmd_HelloWorld.cs",
+                      "src/RevitAddinHarness/Commands/Cmd_ModelInfo.cs",
+                      "src/RevitAddinHarness/Commands/Cmd_PickElement.cs",
+                      "src/RevitAddinHarness/Commands/Cmd_CreateModelLine.cs",
+                      "src/RevitAddinHarness/Commands/Cmd_ShowPanel.cs"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u032",
+    "source_name":  "RevitAddinHarness",
+    "source_path":  "/c/Users/surya ASURE/Downloads/Claude/RevitAddinHarness",
+    "detected_ports":  ""
+}

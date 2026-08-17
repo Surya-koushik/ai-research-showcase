@@ -1,0 +1,37 @@
+﻿{
+    "name":  "Architecture AI",
+    "one_liner":  "AI-driven architecture visualization and analysis tools for designers.",
+    "description":  "A suite of AI-powered tools designed to enhance architectural design processes by automating the creation of photorealistic renders, validating Revit models in real-time, and generating fly-through videos. These tools are tailored specifically for architects, visualizers, and BIM staff, integrating seamlessly with existing workflows to improve efficiency.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "AI",
+                 "MLSD",
+                 "LoRA training",
+                 "Revit integration"
+             ],
+    "workflow_stage":  "integration into design workflow for real-time feedback and visualization",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "README.md",
+                      "BIG_ATN_AI_Deep_Analysis.md"
+                  ],
+    "related_tools":  [
+                          "Sketch-to-render",
+                          "ControlNet",
+                          "LoRA training",
+                          "Revit + AI",
+                          "AI video",
+                          "Failure modes"
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u054",
+    "source_name":  "04_Architecture_AI",
+    "source_path":  "/z/Knowledge Centre/AI Tools/04_Architecture_AI",
+    "detected_ports":  ""
+}

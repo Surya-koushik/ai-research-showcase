@@ -1,0 +1,30 @@
+﻿{
+    "name":  "ADS_AI_BIM_Build_Tracker",
+    "one_liner":  "Tracks AI and BIM build progress across projects.",
+    "description":  "The ADS_AI_BIM_Build_Tracker is a tool designed to monitor the status of AI-driven building information modeling (BIM) projects, ensuring that all tasks related to design, construction, and maintenance are on track. It provides real-time updates and analytics for project managers to make informed decisions.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "HTML",
+                 "CSS",
+                 "JavaScript"
+             ],
+    "workflow_stage":  "integration",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "ADS_AI_BIM_Build_Tracker.html"
+                  ],
+    "related_tools":  [
+
+                      ],
+    "efficiency_hint":  null,
+    "confidential":  false,
+    "id":  "u055",
+    "source_name":  "ADS_AI_BIM_Build_Tracker.html",
+    "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/ADS_AI_BIM_Build_Tracker.html",
+    "detected_ports":  ""
+}

@@ -1,0 +1,33 @@
+﻿{
+    "name":  "Plannerly",
+    "one_liner":  "Automates BIM execution planning and tracking across multiple projects.",
+    "description":  "A comprehensive tool for managing the entire lifecycle of a building information model (BIM) project, including scope definition, document management, and verification. It automates tasks such as LOD progression, stage gate audits, and milestone tracking to streamline project management processes.",
+    "category":  "tool",
+    "status":  "production",
+    "tech":  [
+                 "Revit",
+                 "Python",
+                 "APIs"
+             ],
+    "workflow_stage":  "BIM execution planning and tracking",
+    "server":  {
+                   "runs_as_server":  false,
+                   "endpoint":  null,
+                   "start_command":  null
+               },
+    "key_files":  [
+                      "00_MEETING_BRIEFING.md",
+                      "01_TEMPLATE_TEACHING_WALKTHROUGH.md",
+                      "11_REVIT_AUTOCONNECT_PLAN.md"
+                  ],
+    "related_tools":  [
+                          "Revit",
+                          "pyRevit Bridge"
+                      ],
+    "efficiency_hint":  "70 hrs / project saved in BEP planning, ~3 months setup time per future project reduced.",
+    "confidential":  false,
+    "id":  "u042",
+    "source_name":  "Plannerly",
+    "source_path":  "/y/CLAUDE DIRECT ACCESS FOLDER/Plannerly",
+    "detected_ports":  "48884"
+}
