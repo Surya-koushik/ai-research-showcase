@@ -679,45 +679,46 @@ h1,h2,h3{letter-spacing:-.02em;line-height:1.1;font-weight:700}
 
 /* ============================================================================
    Generated placeholder art  (assets/js/placeholder.js)
-   Shown wherever a project has no real screenshot yet. Deliberately designed
-   rather than a broken-image icon — but honestly tagged "awaiting capture"
-   so a placeholder is never mistaken for a real product shot.
+   Shown wherever a project has no real screenshot yet. Deliberately quiet: a
+   dark ground, a masked drafting grid and one soft glow in the colour of the
+   project's kind, so the tile carries information rather than shouting. Still
+   honestly tagged "awaiting capture".
    ============================================================================ */
 .ph.phold{
   position:absolute;inset:0;display:block;place-items:initial;overflow:hidden;
-  background:linear-gradient(var(--pa,135deg),var(--p1,#7C5CFF),var(--p2,#00D4FF));
+  background:linear-gradient(165deg,var(--surface) 0%,var(--bg-2) 62%,var(--bg) 100%);
 }
-.ph.phold::after{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(120% 90% at 18% -10%,rgba(255,255,255,.24),transparent 58%),
-    linear-gradient(180deg,transparent 42%,rgba(6,9,18,.46));
+.ph.phold .phglow{
+  position:absolute;left:var(--gx,30%);top:var(--gy,20%);
+  width:62%;aspect-ratio:1;transform:translate(-50%,-50%);
+  background:var(--ph,#7C5CFF);border-radius:50%;filter:blur(52px);opacity:.34;pointer-events:none;
+}
+.ph.phold .phgrid{
+  position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:28px 28px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 90% at 40% 30%,#000 10%,transparent 78%);
+          mask-image:radial-gradient(ellipse 90% 90% at 40% 30%,#000 10%,transparent 78%);
 }
 .ph.phold .phart{position:absolute;inset:0;width:100%;height:100%;opacity:1}
-.ph.phold .phart .lk line{stroke:rgba(255,255,255,.34);stroke-width:.9;fill:none}
-.ph.phold .phart .nd circle{fill:rgba(255,255,255,.88)}
-.ph.phold .phgrid{
-  position:absolute;inset:0;pointer-events:none;opacity:.45;mix-blend-mode:overlay;
-  background-image:radial-gradient(rgba(255,255,255,.30) 1px,transparent 1px);
-  background-size:14px 14px;
-}
+.ph.phold .phart .lk{stroke:var(--ph,#7C5CFF);stroke-width:1.1;fill:none;opacity:.55}
+.ph.phold .phart .nd circle{fill:var(--ph,#7C5CFF);opacity:.9}
 .ph.phold .phcode{
-  position:absolute;right:14px;bottom:6px;z-index:2;line-height:1;
-  font-family:var(--f-mono);font-size:38px;font-weight:800;letter-spacing:-.05em;
-  color:rgba(255,255,255,.32);
+  position:absolute;right:16px;bottom:8px;z-index:2;line-height:1;
+  font-family:var(--f-mono);font-size:36px;font-weight:800;letter-spacing:-.05em;
+  color:var(--text);opacity:.13;
 }
 .ph.phold .phlabel{
-  position:absolute;left:16px;top:16px;z-index:2;max-width:64%;line-height:1.3;
-  font-size:12px;font-weight:600;color:rgba(255,255,255,.94);
-  text-shadow:0 1px 8px rgba(6,9,18,.5);
+  position:absolute;left:18px;top:18px;z-index:2;max-width:64%;line-height:1.3;
+  font-size:12px;font-weight:600;color:var(--text-2);
 }
 .ph.phold .phmark{
-  position:absolute;left:14px;bottom:14px;z-index:2;
+  position:absolute;left:16px;bottom:16px;z-index:2;
   font-family:var(--f-mono);font-size:8.5px;font-weight:700;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(255,255,255,.78);
-  padding:3px 8px;border-radius:var(--r-full);
-  background:rgba(6,9,18,.32);border:1px solid rgba(255,255,255,.24);
-  backdrop-filter:blur(3px);
+  text-transform:uppercase;color:var(--text-3);
+  padding:3px 9px;border-radius:var(--r-full);
+  border:1px solid var(--line-2);background:var(--glass);
 }
 
 /* Beat the icon-placeholder rules these containers already define. */

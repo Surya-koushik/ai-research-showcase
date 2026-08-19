@@ -1,143 +1,126 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Research & Innovation — Asure</title>
-<meta name="description" content="AI Research & Innovation. Increasing Efficiency. One Tool at a Time. A living showcase of AI tools, automations, plugins, dashboards and research.">
-<meta property="og:title" content="AI Research & Innovation — Asure">
+<title>AI Research &amp; Innovation — Asure</title>
+<meta name="description" content="AI Research & Innovation at Asure Design Studio. Increasing efficiency, one tool at a time — plugins, dashboards, pipelines, connectors, platforms, agents and research.">
+<meta property="og:title" content="AI Research &amp; Innovation — Asure">
 <meta property="og:description" content="Increasing Efficiency. One Tool at a Time.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/logos/brand/favicon.png">
 <link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/deck.css">
 <script src="assets/js/supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/auth.js"></script>
 </head>
-<body>
-<div class="app">
+<body class="deck">
 
-  <!-- ================= LEFT RAIL ================= -->
-  <aside class="rail" id="rail">
-    <div class="brand">
-      <img class="brandlogo lightonly" src="assets/logos/brand/asure_wordmark.png" alt="Asure">
-      <img class="brandlogo darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="Asure" aria-hidden="true">
-      <div class="who"><span>AI Research &amp; Innovation</span></div>
+<!-- ============================== NAV ============================== -->
+<nav class="topnav">
+  <a href="index.html" style="display:flex;align-items:center;text-decoration:none">
+    <img class="wm lightonly" src="assets/logos/brand/asure_wordmark.png" alt="Asure">
+    <img class="wm darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="Asure" aria-hidden="true">
+  </a>
+  <span class="who">AI Research &amp; Innovation</span>
+  <span class="spacer"></span>
+  <a class="nl opt" href="#system">The&nbsp;system</a>
+  <a class="nl opt" href="#kinds">What&nbsp;we&nbsp;build</a>
+  <a class="nl" href="#ecosystem">All&nbsp;work</a>
+  <button class="btn icon ghost" id="themeBtn" title="Toggle theme" aria-label="Toggle theme"></button>
+</nav>
+
+<!-- ============================== HERO ============================== -->
+<section class="band tall" id="top">
+  <div class="bg-grid"></div>
+  <div class="glow" style="width:620px;height:620px;background:#7C5CFF;left:-140px;top:-160px"></div>
+  <div class="glow" style="width:520px;height:520px;background:#00D4FF;right:-120px;bottom:-180px;opacity:.32"></div>
+  <canvas id="heroCanvas" aria-hidden="true"
+          style="position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.85"></canvas>
+
+  <div style="max-width:1100px">
+    <div class="eyebrow-rule">Asure Design Studio</div>
+    <h1 class="d1">We build the tools<br>the studio was<br><span class="g-primary">missing.</span></h1>
+    <p class="lede">Fifty-two of them so far — plugins that live inside Revit, dashboards a client can read,
+      pipelines that turn drawings into quantities, and agents that decide their own next step.</p>
+    <div style="margin-top:38px;display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn primary lg" href="#ecosystem">See all 52</a>
+      <a class="btn lg" href="#kinds">What each one is</a>
     </div>
-    <nav id="nav"><!-- categories injected --></nav>
-    <div id="railEff"><!-- efficiency card injected --></div>
-    <div id="railProfile"><!-- profile injected --></div>
-    <div class="rail-foot">
-      <button class="btn icon ghost" id="themeBtn" title="Toggle theme" aria-label="Toggle theme"></button>
-      <span class="small mono" style="margin-left:auto">v2 · template</span>
+  </div>
+</section>
+
+<!-- ============================== NUMBERS ============================== -->
+<section class="band" id="numbers">
+  <div class="eyebrow-rule rv">By the numbers</div>
+  <h2 class="d2 rv" style="max-width:20ch">Counted, not claimed.</h2>
+  <div class="statrow" id="stats"><!-- injected --></div>
+</section>
+
+<!-- ============================== THE SYSTEM ============================== -->
+<section class="band" id="system">
+  <div class="bg-grid" style="opacity:.3"></div>
+  <div style="display:grid;grid-template-columns:minmax(280px,1fr) minmax(300px,1.15fr);gap:clamp(32px,5vw,80px);align-items:center">
+    <div>
+      <div class="eyebrow-rule rv">The system</div>
+      <h2 class="d2 rv">From scattered<br>information to<br><span class="g-cool">hours back.</span></h2>
+      <p class="lede rv">Nothing here is a standalone gadget. Every tool is one link in the same chain:
+        raw information becomes structured knowledge, structured knowledge becomes a working tool,
+        and the tool hands a week back to whoever was doing it by hand.</p>
     </div>
-  </aside>
+    <div class="rv" id="systemArt"></div>
+  </div>
+</section>
 
-  <!-- ================= CONTENT ================= -->
-  <main class="content">
-    <div class="wrap">
+<!-- ============================== KINDS ============================== -->
+<section class="band" id="kinds">
+  <div class="eyebrow-rule rv">What we actually build</div>
+  <h2 class="d2 rv" style="max-width:22ch">Eight kinds of thing. Each one earns its name.</h2>
+  <p class="lede rv">“AI tool” describes nothing. These do. A plugin is not a pipeline, and almost
+    nothing is an agent — so almost nothing is called one.</p>
+  <div class="kinds" id="kindGrid"><!-- injected --></div>
+</section>
 
-      <div class="topbar">
-        <button class="btn icon ghost rail-toggle" id="railToggle" aria-label="Menu"></button>
-        <div class="topbar-utils" style="margin-left:auto">
-          <button class="theme-top" id="themeTop" title="Toggle light / dark"></button>
-        </div>
-      </div>
+<!-- ============================== ECOSYSTEM ============================== -->
+<section class="band" id="ecosystem">
+  <div class="eyebrow-rule rv">The ecosystem</div>
+  <h2 class="d2 rv">Everything, filterable.</h2>
 
-    </div>
+  <label class="searchline rv">
+    <span id="searchIc"></span>
+    <input id="search" type="search" placeholder="Search tools, decks, technology…" autocomplete="off">
+  </label>
 
-    <!-- HERO — full-bleed, outside .wrap so the canvas isn't capped by the content max-width -->
-    <section class="hero2">
-      <canvas id="heroCanvas" aria-hidden="true"></canvas>
-      <div class="hero-copy reveal in">
-        <span class="badge-pill"><span class="pdot"></span>Innovation in Motion</span>
-        <h1 class="h-display" style="margin:18px 0 4px;max-width:14ch">
-          AI Research &amp; Innovation
-        </h1>
-        <p class="h-1 gradient-text" style="letter-spacing:-.03em;line-height:1.08">Increasing Efficiency.<br>One Tool at a Time.</p>
-        <p class="lead" style="margin-top:18px;max-width:44ch">
-          We turn scattered information into structured knowledge — and structured
-          knowledge into tools that save time and create measurable impact.
-        </p>
-        <div class="cta">
-          <a class="btn primary lg" id="exploreBtn">Explore All Projects <span id="exIc"></span></a>
-          <a class="btn lg" id="watchBtn"><span id="wIc"></span> Watch Overview</a>
-        </div>
-      </div>
-      <div class="hero-flow" aria-hidden="true">
-        <span>Unstructured&nbsp;input</span><i>→</i><span>Structured&nbsp;knowledge</span>
-      </div>
-    </section>
+  <div class="filterbar rv" id="kindFilter"><!-- injected --></div>
+  <div class="filterbar rv" id="domainFilter" style="margin-top:12px"><!-- injected --></div>
 
-    <div class="wrap">
+  <div class="toolgrid" id="grid"><!-- injected --></div>
+  <p id="empty" style="display:none;color:var(--text-3);margin-top:40px;font-size:14px">
+    Nothing matches that filter yet.</p>
+</section>
 
-      <!-- KPI STRIP -->
-      <section class="reveal">
-        <div class="kpi-strip" id="kpis"><!-- injected --></div>
-        <p class="small" style="margin-top:10px">
-          <span class="badge draft"><span>DRAFT</span></span>
-          Counts and hours are auto-derived from each tool by one consistent formula — no inflated figures.
-        </p>
-      </section>
+<!-- ============================== CLOSE ============================== -->
+<section class="band closeband" id="close">
+  <div class="glow" style="width:640px;height:420px;background:#7C5CFF;left:50%;top:20%;transform:translateX(-50%);opacity:.28"></div>
+  <div class="eyebrow-rule rv" style="justify-content:center">Increasing efficiency</div>
+  <h2 class="d1 rv"><span class="g-primary">One tool at a time.</span></h2>
+  <p class="lede rv">Built inside a working architecture practice, against real projects,
+    on our own hardware.</p>
+</section>
 
-      <!-- HOW THE SYSTEM WORKS -->
-      <section class="section reveal" id="system" style="margin-top:48px">
-        <div class="section-head">
-          <div class="t"><div class="eyebrow">The System</div><h2 class="h-2">From information to measurable impact</h2></div>
-          <p class="small" style="max-width:34ch;text-align:right;color:var(--text-3)">Every Asure tool is one link in the same chain — raw information becomes structured knowledge, then working tools, then time saved.</p>
-        </div>
-        <div class="flow-steps" id="flowSteps"><!-- injected --></div>
-      </section>
-
-      <!-- CAN / CAN'T / R&D -->
-      <section class="section" id="capability" style="margin-top:44px">
-        <div class="tri" id="tri"><!-- injected --></div>
-      </section>
-
-      <!-- FEATURED -->
-      <section class="section" id="featured">
-        <div class="section-head">
-          <div class="t"><div class="eyebrow">Highlights</div><h2 class="h-2">Featured Tools &amp; Projects</h2></div>
-          <a class="btn ghost" id="viewAll">View All Projects <span id="vaIc"></span></a>
-        </div>
-        <div class="feat-row" id="featRow"><!-- injected --></div>
-      </section>
-
-      <!-- ALL PROJECTS (full browse) -->
-      <section class="section" id="projects">
-        <div class="section-head">
-          <div class="t"><div class="eyebrow">The Ecosystem</div><h2 class="h-2">All Projects</h2></div>
-          <label class="search" style="max-width:340px">
-            <span id="searchIc"></span>
-            <input id="search" type="search" placeholder="Search tools, tech, code…" autocomplete="off">
-            <kbd>/</kbd>
-          </label>
-        </div>
-        <div class="chips" id="statusFilter" style="margin-bottom:18px"><!-- injected --></div>
-        <div class="grid-tools" id="tools"><!-- injected --></div>
-        <div class="empty" id="emptyState" style="display:none">
-          <div id="emptyIc"></div><p>No tools match that search or filter yet.</p>
-        </div>
-      </section>
-
-      <footer class="foot">
-        <span>© <span id="yr"></span> Asure Design Studio · AI Research &amp; Innovation</span>
-        <span class="tag gradient-text">Increasing Efficiency. One Tool at a Time.</span>
-      </footer>
-
-    </div>
-  </main>
-</div>
-
-<div class="lightbox" id="lightbox"><div class="x" id="lbClose"></div><img id="lbImg" alt=""></div>
+<footer class="deckfoot">
+  <span>© <span id="yr"></span> Asure Design Studio</span>
+  <span>AI Research &amp; Innovation</span>
+</footer>
 
 <script src="assets/js/icons.js"></script>
 <script src="assets/js/placeholder.js"></script>
+<script src="assets/js/diagrams.js"></script>
 <script src="assets/js/registry_projects.js"></script>
 <script src="assets/js/projects_expansion.js"></script>
 <script src="assets/js/projects.js"></script>
-<script src="data/ai_capability_map.js"></script>
-<script src="assets/js/app.js"></script>
+<script src="assets/js/home.js"></script>
 <script src="assets/js/hero.js"></script>
 </body>
 </html>

@@ -1,16 +1,21 @@
 /* ============================================================================
    placeholder.js — branded stand-in art for any project with no real capture.
    ----------------------------------------------------------------------------
-   Generated, not stored. The artwork is deterministic from the project id, so a
-   tool always gets the same tile and the grid stays stable between reloads.
+   Generated, not stored. Deterministic from the project id, so a tool always
+   gets the same tile and the grid stays stable between reloads.
+
+   Drawn in the deck language: a dark ground, a masked drafting grid, one soft
+   glow in the colour of the project's KIND, and a quiet code numeral. The first
+   version used saturated candy gradients, which shouted over a page built to be
+   restrained — and the random constellation read as arbitrary. This version
+   carries information instead: the colour tells you what kind of thing it is.
 
    TO REPLACE WITH A REAL SCREENSHOT: drop the file at
        projects/<id>/screenshots/hero.png
-   and set  media.hero  on the project. The image wins automatically — nothing
-   in this file ever has to change. cms.html lists every slot and its path.
+   and set  media.hero  on the project. The image wins automatically.
 
    PLACEHOLDER(project, opts) -> HTML string
-     opts.code   show the big project code            (default true)
+     opts.code   show the project code               (default true)
      opts.label  show a caption line (workflow stage) (default false)
      opts.mark   show the "awaiting capture" tag      (default true)
      opts.hidden render it display:none, to sit behind an <img> that may fail
@@ -18,19 +23,18 @@
 (function () {
   'use strict';
 
-  /* Brand gradients, drawn from the same tokens as theme.css. */
-  var GRADS = [
-    ['#7C5CFF', '#00D4FF'],
-    ['#22E6A8', '#00D4FF'],
-    ['#8A77FF', '#FF6FB1'],
-    ['#FF6FB1', '#FFB020'],
-    ['#00D4FF', '#22E6A8'],
-    ['#A89BFF', '#3DE0FF'],
-    ['#6748E8', '#3DE0FF'],
-    ['#FFB020', '#FF4D6D']
-  ];
+  /* One colour per kind, matching the diagrams and the grid labels. */
+  var KIND_HUE = {
+    plugin:    '#8A77FF',
+    dashboard: '#00D4FF',
+    pipeline:  '#22E6A8',
+    connector: '#7C5CFF',
+    platform:  '#FFB020',
+    agent:     '#FF6FB1',
+    study:     '#7C849F',
+    deck:      '#FF6B85'
+  };
 
-  /* FNV-1a — stable across browsers, unlike anything using Math.random(). */
   function fnv(str) {
     var h = 2166136261 >>> 0;
     for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
@@ -46,45 +50,44 @@
     });
   }
 
-  /* A small constellation — the same visual idea as the landing hero canvas. */
+  /* A short chain of nodes rather than a scattered web — it reads as a
+     connected system, which is what these tools are, instead of noise. */
   function art(seed) {
-    var r = lcg(seed), i, N = 7, nodes = [];
-    for (i = 0; i < N; i++) nodes.push({ x: 22 + r() * 356, y: 22 + r() * 181, s: 1.6 + r() * 3.6 });
-
-    var links = [];
-    for (i = 0; i < N - 1; i++) links.push([i, i + 1]);
-    links.push([0, 3 + (seed >> 3) % 3]);
-    links.push([2, (5 + seed % 2) % N]);
-
-    var lines = links.map(function (p) {
-      var a = nodes[p[0]], b = nodes[p[1]];
-      return '<line x1="' + a.x.toFixed(1) + '" y1="' + a.y.toFixed(1) +
-             '" x2="' + b.x.toFixed(1) + '" y2="' + b.y.toFixed(1) + '"/>';
+    var r = lcg(seed), i, N = 5, nodes = [];
+    for (i = 0; i < N; i++) {
+      nodes.push({
+        x: 46 + (i * 68) + (r() - 0.5) * 26,
+        y: 62 + r() * 100,
+        s: 2.0 + r() * 2.2
+      });
+    }
+    var path = 'M' + nodes.map(function (n) { return n.x.toFixed(1) + ' ' + n.y.toFixed(1); }).join('L');
+    var dots = nodes.map(function (n) {
+      return '<circle cx="' + n.x.toFixed(1) + '" cy="' + n.y.toFixed(1) + '" r="' + n.s.toFixed(1) + '"/>';
     }).join('');
-    var dots = nodes.map(function (a) {
-      return '<circle cx="' + a.x.toFixed(1) + '" cy="' + a.y.toFixed(1) + '" r="' + a.s.toFixed(1) + '"/>';
-    }).join('');
-
-    return '<g class="lk">' + lines + '</g><g class="nd">' + dots + '</g>';
+    return '<path class="lk" d="' + path + '"/><g class="nd">' + dots + '</g>';
   }
 
   window.PLACEHOLDER = function (p, opts) {
     opts = opts || {};
     var id   = (p && p.id) || 'unknown';
     var seed = fnv(id);
-    var g    = GRADS[seed % GRADS.length];
-    var ang  = 110 + (seed >> 5) % 70;
+    var hue  = KIND_HUE[(p && p.kind)] || '#7C5CFF';
+    /* Glow position varies per project so the grid does not look stamped. */
+    var gx   = 18 + (seed % 60);
+    var gy   = 10 + ((seed >> 6) % 40);
 
     var code  = opts.code  === false ? '' : esc((p && p.code) || '');
     var label = opts.label === true  ? esc((p && p.workflowStage) || '') : '';
     var mark  = opts.mark  === false ? '' : 'awaiting capture';
     var hide  = opts.hidden ? 'display:none;' : '';
 
-    return '<div class="ph phold" style="' + hide + '--pa:' + ang + 'deg;--p1:' + g[0] + ';--p2:' + g[1] + '">' +
-             '<svg class="phart" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
+    return '<div class="ph phold" style="' + hide + '--ph:' + hue + ';--gx:' + gx + '%;--gy:' + gy + '%">' +
+             '<span class="phgrid" aria-hidden="true"></span>' +
+             '<span class="phglow" aria-hidden="true"></span>' +
+             '<svg class="phart" viewBox="0 0 340 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
                art(seed) +
              '</svg>' +
-             '<span class="phgrid" aria-hidden="true"></span>' +
              (code  ? '<span class="phcode">'  + code  + '</span>' : '') +
              (label ? '<span class="phlabel">' + label + '</span>' : '') +
              (mark  ? '<span class="phmark">'  + mark  + '</span>' : '') +
