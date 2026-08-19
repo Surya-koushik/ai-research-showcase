@@ -56,7 +56,7 @@ const LOGOS = {
   rhino:     { label:'Rhino',      file:'rhino.svg' },
   grasshopper:{label:'Grasshopper',file:'grasshopper.svg' },
   python:    { label:'Python',     file:'python.svg' },
-  csharp:    { label:'C#',         file:'csharp.svg' },
+  csharp:    { label:'C#',         file:'dotnet.svg' },
   dotnet:    { label:'.NET',       file:'dotnet.svg' },
   pyrevit:   { label:'pyRevit',    file:'pyrevit.svg' },
   anthropic: { label:'Claude',     file:'anthropic.svg' },
@@ -85,6 +85,10 @@ const LOGOS = {
   brain:     { label:'LLM',        file:'brain.svg' },
   asure:     { label:'Asure',      file:'../brand/asure_mark.png' },
 };
+/* Marks drawn in near-black. On the dark theme they are invisible, so CSS
+   inverts anything carrying .logo-dark (see theme.css). */
+const DARK_LOGOS = new Set(['ollama','anthropic','github','openai','comfyui','vscode']);
+
 function logoImg(key, size){
   if(key==='asure'){ const s0=size||16; return `<img class="asure-mark" src="assets/logos/brand/asure_mark.png" alt="Asure" title="Asure" width="${s0}" height="${s0}" style="object-fit:contain">`; }
   const l = LOGOS[key];
@@ -92,7 +96,8 @@ function logoImg(key, size){
   const mono = (label[0]||'?').toUpperCase();
   if(!l) return `<span style="font-size:9px;font-family:var(--f-mono);color:var(--text-3);font-weight:700">${mono}</span>`;
   const s = size||16;
-  return `<img src="assets/logos/software/${l.file}" alt="${label}" title="${label}" width="${s}" height="${s}"
+  const dk = DARK_LOGOS.has(key) ? ' class="logo-dark"' : '';
+  return `<img${dk} src="assets/logos/software/${l.file}" alt="${label}" title="${label}" width="${s}" height="${s}"
     onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${mono}',style:'font-size:9px;font-family:var(--f-mono);color:var(--text-3);font-weight:700'}))">`;
 }
 function logoLabel(key){ return (LOGOS[key]&&LOGOS[key].label) || key; }

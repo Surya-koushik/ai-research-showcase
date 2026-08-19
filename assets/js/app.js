@@ -3,7 +3,7 @@
    ============================================================================ */
 (function(){
   const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
-  const state={ cat:'all', status:'all', q:'' };
+  const state={ kind:'all', domain:'all', status:'all', q:'' };
 
   /* ---------- Theme (light-primary) ---------- */
   const themeBtn=$('#themeBtn'), themeTop=$('#themeTop');
@@ -31,21 +31,30 @@
   function avgEfficiency(){const m=measured();return m.length?Math.round(m.reduce((a,x)=>a+x.d.pct,0)/m.length):0;}
   function totalSaved(){return Math.round(measured().reduce((a,x)=>a+x.d.saved,0));}
 
-  /* ---------- Rail: nav ---------- */
-  function catCount(id){return id==='all'?PROJECTS.length:PROJECTS.filter(p=>p.categories.includes(id)).length;}
-  function navItem(c){
-    return `<a class="nav-item ${c.id===state.cat?'active':''}" data-cat="${c.id}">
-      <span class="ic">${ICON(c.icon)}</span><span>${c.label}</span><span class="count">${catCount(c.id)}</span></a>`;
+  /* ---------- Rail: nav — two axes, one filter active at a time ---------- */
+  function kindCount(id){return id==='all'?PROJECTS.length:PROJECTS.filter(p=>p.kind===id).length;}
+  function domCount(id){return PROJECTS.filter(p=>p.domain===id).length;}
+
+  function navItem(c,axis,n){
+    const on = axis==='kind' ? (state.kind===c.id&&state.domain==='all')
+                             : (state.domain===c.id);
+    /* An empty kind still earns its row — a visible zero is information. */
+    return `<a class="nav-item ${on?'active':''}" data-axis="${axis}" data-id="${c.id}" title="${c.blurb||''}">
+      <span class="ic">${ICON(c.icon)}</span><span>${c.label}</span><span class="count">${n}</span></a>`;
   }
-  $('#nav').innerHTML=
-    `<div class="nav-group-label">Research</div>`+
-    TAXONOMY.filter(c=>['all','ai-agents','automation','dashboards','plugins','bim','experiments','research'].includes(c.id)).map(navItem).join('')+
-    `<div class="nav-group-label">Domains</div>`+
-    TAXONOMY.filter(c=>['revit','data','vision','llm','mcp','future'].includes(c.id)).map(navItem).join('');
+  function renderNav(){
+    $('#nav').innerHTML=
+      `<div class="nav-group-label">What kind of thing it is</div>`+
+      KINDS.map(k=>navItem(k,'kind',kindCount(k.id))).join('')+
+      `<div class="nav-group-label">What work it serves</div>`+
+      DOMAINS.map(x=>navItem(x,'domain',domCount(x.id))).join('');
+  }
+  renderNav();
   $('#nav').addEventListener('click',e=>{
     const el=e.target.closest('.nav-item'); if(!el)return;
-    state.cat=el.dataset.cat; $$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.cat===state.cat));
-    $('#rail').classList.remove('open'); render(); goProjects();
+    if(el.dataset.axis==='kind'){ state.kind=el.dataset.id; state.domain='all'; }
+    else { state.domain = state.domain===el.dataset.id ? 'all' : el.dataset.id; state.kind='all'; }
+    renderNav(); $('#rail').classList.remove('open'); render(); goProjects();
   });
 
   /* ---------- Rail: efficiency + profile ---------- */
@@ -96,11 +105,11 @@
     const prod=PROJECTS.filter(p=>p.status==='production').length;
     const exp=PROJECTS.filter(p=>p.status==='experimental').length;
     const active=PROJECTS.filter(p=>['experimental','research','in-progress'].includes(p.status)).length;
-    const autom=PROJECTS.filter(p=>p.categories.includes('automation')).length;
+    const shipped=PROJECTS.filter(p=>['pipeline','connector','plugin'].includes(p.kind)).length;
     return [
       {v:PROJECTS.length,u:'',l:'Projects Built',ic:'layers',sub:'in the ecosystem',live:true},
       {v:totalSaved(),u:'hrs/wk',l:'Hours Saved',ic:'clock',sub:'measured tools',up:true},
-      {v:autom,u:'',l:'Processes Automated',ic:'zap',sub:'workflows'},
+      {v:shipped,u:'',l:'Processes Automated',ic:'zap',sub:'plugins, pipelines, connectors'},
       {v:active,u:'',l:'Active Research',ic:'flask',sub:'ongoing'},
       {v:prod,u:'',l:'Tools in Production',ic:'check',sub:'shipped'},
       {v:exp,u:'',l:'Experimental Tools',ic:'beaker',sub:'in testing'},
@@ -141,18 +150,26 @@
   }
 
   /* ---------- Featured row ---------- */
-  const CAT_LABEL={dashboards:'Dashboard','ai-agents':'AI Agent',automation:'Automation',plugins:'Plugin',bim:'BIM',revit:'Revit',research:'Research',vision:'Vision AI',mcp:'MCP',llm:'LLM',data:'Data'};
-  function primaryCat(p){for(const c of p.categories){if(CAT_LABEL[c])return CAT_LABEL[c];}return 'Tool';}
+  function primaryCat(p){return kindMeta(p.kind).label;}
   function featuredList(){
     const withEff=measured().sort((a,b)=>b.d.pct-a.d.pct).map(x=>x.p);
     const rest=PROJECTS.filter(p=>!withEff.includes(p));
     return [...withEff,...rest].slice(0,5);
   }
+  /* Hero art for a card. A real screenshot wins; otherwise the generated
+     placeholder stands in (see assets/js/placeholder.js). If the file is
+     declared but missing, the <img> removes itself and reveals the placeholder. */
+  function heroArt(p,opts){
+    if(p.media&&p.media.hero){
+      const ph=PLACEHOLDER(p,Object.assign({},opts,{hidden:true}));
+      return `<img src="${p.media.hero}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">${ph}`;
+    }
+    return PLACEHOLDER(p,opts);
+  }
+
   function featCard(p){
     const d=derive(p.efficiency);
-    const hero=p.media&&p.media.hero
-      ? `<img src="${p.media.hero}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="ph" style="display:none">${ICON('image')}</div>`
-      : `<div class="ph">${ICON('image')}</div>`;
+    const hero=heroArt(p,{code:false,mark:false});
     const pct=d?`<span class="pct">+${d.pct}% <span style="font-size:11px;color:var(--text-3);font-weight:500">efficiency</span></span>`
                :`<span class="pct na">Impact TBD</span>`;
     const techs=(p.tech||[]).slice(0,4).map(t=>`<span class="tl" title="${logoLabel(t)}">${logoImg(t,14)}</span>`).join('');
@@ -183,9 +200,10 @@
 
   /* ---------- Full grid cards ---------- */
   function match(p){
-    if(state.cat!=='all'&&!p.categories.includes(state.cat))return false;
+    if(state.kind!=='all'&&p.kind!==state.kind)return false;
+    if(state.domain!=='all'&&p.domain!==state.domain)return false;
     if(state.status!=='all'&&p.status!==state.status)return false;
-    if(state.q){const hay=[p.name,p.code,p.tagline,p.description,p.workflowStage,(p.tech||[]).map(logoLabel).join(' '),p.categories.join(' '),p.status].join(' ').toLowerCase();
+    if(state.q){const hay=[p.name,p.code,p.tagline,p.description,kindMeta(p.kind).label,domainMeta(p.domain).label,(p.tech||[]).map(logoLabel).join(' '),p.status].join(' ').toLowerCase();
       if(!hay.includes(state.q))return false;}
     return true;
   }
@@ -193,9 +211,7 @@
     const d=derive(p.efficiency), st=STATUS[p.status];
     const techs=(p.tech||[]).slice(0,5).map(t=>`<span class="tl" title="${logoLabel(t)}">${logoImg(t,15)}</span>`).join('')
       +((p.tech||[]).length>5?`<span class="more">+${p.tech.length-5}</span>`:'');
-    const hero=p.media&&p.media.hero
-      ? `<img src="${p.media.hero}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="ph" style="display:none">${ICON('image')}</div>`
-      : `<div class="ph">${ICON('image')}</div>`;
+    const hero=heroArt(p,{code:true,mark:true});
     const eff=d
       ? `<div class="eff"><div><div class="big gradient-text">${d.saved}<span style="font-size:12px;color:var(--text-3)"> hrs/wk</span></div>
            <div class="lbl">saved · ${d.speed?d.speed+'× faster':'—'} · ${d.pct}% efficiency</div></div><span class="arrow">${ICON('arrow')}</span></div>`

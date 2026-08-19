@@ -29,152 +29,161 @@
   $('#crumbNow').textContent=p.name;
 
   const d=derive(p.efficiency), st=STATUS[p.status], pg=p.page||{}, m=p.media||{};
+  const km=kindMeta(p.kind), dm=domainMeta(p.domain);
 
-  /* ---- section nav (jump links, only for sections that exist) ---- */
-  const sections=[];
-  const has=(k)=>sections.push(k);
-  has('overview'); if(d||p.efficiency===null) has('efficiency');
-  if(pg.problem||pg.solution) has('problem');
-  if(pg.howItWorks&&pg.howItWorks.length) has('how');
-  if(p.tech&&p.tech.length) has('tech');
-  has('media');
-  if(pg.timeline&&pg.timeline.length) has('timeline');
-  if((pg.challenges&&pg.challenges.length)||(pg.lessons&&pg.lessons.length)) has('notes');
-  if(pg.roadmap&&pg.roadmap.length) has('roadmap');
-  if(p.related&&p.related.length) has('related');
-  const SEC_LABEL={overview:'Overview',efficiency:'Efficiency',problem:'Problem & Solution',how:'How it works',tech:'Tech stack',media:'Media',timeline:'Timeline',notes:'Notes',roadmap:'Roadmap',related:'Related'};
-  const SEC_ICON={overview:'target',efficiency:'gauge',problem:'route',how:'layers',tech:'code',media:'film',timeline:'clock',notes:'book',roadmap:'sparkle',related:'grid'};
-  $('#nav').innerHTML=`<div class="nav-group-label">On this page</div>`+
-    sections.map(s=>`<a class="nav-item" href="#${s}"><span class="ic">${ICON(SEC_ICON[s])}</span><span>${SEC_LABEL[s]}</span></a>`).join('')+
+  /* ---- what this page actually has ---- */
+  const hasMedia  = !!((m.videos&&m.videos.length)||(m.html&&m.html.length)||(m.gallery&&m.gallery.length)||
+                       (m.docs&&m.docs.length)||(m.beforeAfter&&m.beforeAfter.before));
+  const hasWork   = !!(pg.objective||p.description||pg.problem||pg.solution);
+  const hasHow    = !!(pg.howItWorks&&pg.howItWorks.length);
+  const hasDetail = !!((pg.timeline&&pg.timeline.length)||(pg.challenges&&pg.challenges.length)||
+                       (pg.lessons&&pg.lessons.length)||(pg.roadmap&&pg.roadmap.length));
+  const relList   = (p.related||[]).map(rid=>PROJECTS.find(x=>x.id===rid)).filter(Boolean);
+
+  const sections=['overview'];
+  if(d)         sections.push('efficiency');
+  if(hasMedia)  sections.push('media');
+  if(hasWork)   sections.push('work');
+  if(hasHow)    sections.push('how');
+  if(hasDetail) sections.push('detail');
+  if(relList.length) sections.push('related');
+
+  const SEC_LABEL={overview:'Overview',efficiency:'Impact',work:'What it does',how:'How it works',
+                   media:'Demos & media',detail:'Development notes',related:'Related tools'};
+  const SEC_ICON ={overview:'target',efficiency:'gauge',work:'route',how:'layers',
+                   media:'film',detail:'book',related:'grid'};
+
+  /* A jump list only earns its place on a page long enough to need one. */
+  const jump = sections.length>=4
+    ? `<div class="nav-group-label">On this page</div>`+
+      sections.map(sec=>`<a class="nav-item" href="#${sec}"><span class="ic">${ICON(SEC_ICON[sec])}</span><span>${SEC_LABEL[sec]}</span></a>`).join('')
+    : '';
+
+  /* Without a jump list the rail is left almost empty, so short pages offer
+     siblings from the same category instead — somewhere to go next. */
+  let siblings='';
+  if(!jump){
+    const sibs=PROJECTS.filter(x=>x.id!==p.id && x.domain===p.domain).slice(0,5);
+    if(sibs.length){
+      siblings=`<div class="nav-group-label">More in ${domainMeta(p.domain).label}</div>`+
+        sibs.map(x=>`<a class="nav-item" href="tool.html?id=${x.id}"><span class="ic">${ICON(kindMeta(x.kind).icon)}</span><span>${x.name}</span></a>`).join('');
+    }
+  }
+
+  $('#nav').innerHTML = jump + siblings +
     `<div class="nav-group-label">More</div>`+
     `<a class="nav-item" href="index.html"><span class="ic">${ICON('grid')}</span><span>All Projects</span></a>`;
 
   /* ---- HERO ---- */
   const techRow=(p.tech||[]).map(t=>`<span class="badge" style="gap:7px"><span style="width:15px;height:15px;display:grid;place-items:center">${logoImg(t,15)}</span>${logoLabel(t)}</span>`).join('');
-  const fact=(ic,label,val,unit,accent)=>`<div class="tp-fact${accent?' accent':''}"><div class="fl">${ICON(ic)}${label}</div><div class="fv">${val}${unit?`<small>${unit}</small>`:''}</div></div>`;
-  const factsHTML = d
-    ? `<div class="tp-facts">${fact('gauge','Efficiency',d.pct,'%',true)}${fact('clock','Time saved',d.saved,'hrs/wk')}${fact('sparkle','Faster',d.speed?d.speed+'×':'—','')}${fact('route','Manual',d.manual,'hrs/wk')}</div>`
-    : `<div class="tp-facts">${fact('check','Status',st.label,'',true)}${fact('layers','Stage',p.workflowStage,'')}${fact('grid','Code',p.code,'')}${fact('code','Stack',(p.tech||[]).length,'tools')}</div>`;
-  const heroRight = m.hero
-    ? `<div class="heroart"><img src="${m.hero}" alt="${p.name}" onerror="this.parentElement.remove();var f=document.getElementById('tpFactsFallback');if(f)f.hidden=false"></div><div id="tpFactsFallback" hidden>${factsHTML}</div>`
-    : factsHTML;
+  /* Real screenshot if there is one, otherwise the generated placeholder.
+     No facts panel here — code, status and stage are already in the badge row
+     right next to it, and the impact strip below carries the numbers. */
+  const heroImg = m.hero
+    ? `<img src="${m.hero}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">${PLACEHOLDER(p,{label:true,hidden:true})}`
+    : PLACEHOLDER(p,{label:true});
+  const heroRight = `<div class="heroart">${heroImg}</div>`;
   const hero=`<section class="tp-hero reveal" id="overview">
     <div class="glow"></div>
     <div class="inner">
       <div>
         <div class="logo-lg">${logoImg(p.logo,36)}</div>
+        <h1 class="h-1" style="margin:0 0 10px">${p.name}</h1>
+        <p class="lead">${p.tagline}</p>
         <div class="metajoin">
           <span class="badge code">${p.code}</span>
           <span class="badge"><span class="dot ${st.cls}"></span>${st.label}</span>
-          <span class="badge">${p.workflowStage}</span>
+          <span class="badge kindbadge" title="${km.blurb}">${ICON(km.icon)}${km.label}</span>
+          <span class="badge">${ICON(dm.icon)}${dm.label}</span>
         </div>
-        <h1 class="h-1" style="margin:4px 0 10px">${p.name}</h1>
-        <p class="lead">${p.tagline}</p>
         <div class="tech-row" style="margin-top:18px;gap:8px">${techRow}</div>
       </div>
       <div class="hero-right">${heroRight}</div>
     </div>
   </section>`;
 
-  /* ---- EFFICIENCY ---- */
-  let efficiency='';
+  /* ---- IMPACT — a strip under the hero, not a section of its own ---- */
+  let impact='';
   if(d){
-    const bars=`<div class="compare">
-      <div class="row"><span class="name">Manual</span><span class="track"><span class="fill manual" data-w="100"></span></span><span class="val">${d.manual} hrs/wk</span></div>
-      <div class="row"><span class="name">With this tool</span><span class="track"><span class="fill tool" data-w="${d.manual>0?Math.max(4,(d.ai/d.manual*100)):0}"></span></span><span class="val">${d.ai} hrs/wk</span></div>
-    </div>`;
-    efficiency=`<section class="section" id="efficiency">
-      <div class="section-head"><div class="t"><div class="eyebrow">Measured impact ${d.draft?'· <span style="color:var(--amber-500)">DRAFT — confirm</span>':''}</div>
-        <h2 class="h-2">Efficiency</h2></div></div>
+    impact=`<div class="impact" id="efficiency">
       <div class="eff-block">
         <div class="eff-metric hero-metric"><div class="v">${d.pct}<span class="u">%</span></div><div class="l">Efficiency gain</div></div>
         <div class="eff-metric"><div class="v">${d.saved}<span class="u">hrs/wk</span></div><div class="l">Manual work removed</div></div>
         <div class="eff-metric"><div class="v">${d.speed?d.speed:'—'}<span class="u">×</span></div><div class="l">Faster than manual</div></div>
         <div class="eff-metric"><div class="v">${d.manual}<span class="u">hrs</span></div><div class="l">Manual, per week</div></div>
       </div>
-      ${bars}
-      <p class="small" style="margin-top:12px">${d.draft?'These are consistent draft estimates (manual vs. tool hours), derived by one formula. Replace with confirmed figures in <span class="mono">projects.js</span>.':'Confirmed figures.'}</p>
-    </section>`;
-  } else if(p.efficiency===null){
-    efficiency=`<section class="section" id="efficiency">
-      <div class="section-head"><div class="t"><div class="eyebrow">Measured impact</div><h2 class="h-2">Efficiency</h2></div></div>
-      <div class="panel" style="padding:22px;display:flex;gap:14px;align-items:center">
-        <span style="color:var(--violet-400)">${ICON('clock')}</span>
-        <div><b>Impact not yet quantified.</b><p class="small" style="margin-top:4px">This tool is ${st.label.toLowerCase()}. Time-saving will be measured and added here — set <span class="mono">manualHrsPerWeek</span> / <span class="mono">aiHrsPerWeek</span> in <span class="mono">projects.js</span>.</p></div>
-      </div></section>`;
+      <div class="compare">
+        <div class="row"><span class="name">Manual</span><span class="track"><span class="fill manual" style="--w:100%"></span></span><span class="val">${d.manual} hrs/wk</span></div>
+        <div class="row"><span class="name">With this tool</span><span class="track"><span class="fill tool" style="--w:${d.manual>0?Math.max(4,(d.ai/d.manual*100)):0}%"></span></span><span class="val">${d.ai} hrs/wk</span></div>
+      </div>
+      ${d.draft?`<p class="note">Draft estimate — observed manual vs. tool hours, not yet confirmed.</p>`:''}
+    </div>`;
+  }else{
+    impact=`<p class="note standalone">Time saved by this tool has not been measured yet.</p>`;
   }
 
-  /* ---- OVERVIEW / OBJECTIVE ---- */
-  const overview = pg.objective ? `<section class="section" id="objective-sec">
-    <div class="section-head"><div class="t"><div class="eyebrow">Overview</div><h2 class="h-2">Research objective</h2></div></div>
-    <div class="prose"><p>${pg.objective}</p><p style="color:var(--text-3)">${p.description}</p></div></section>` : '';
+  /* ---- WHAT IT DOES — one claim, then a before/after picture ----
+     The prose is still here, but folded away. What a reader meets first is a
+     single sentence and two contrasting cards, not four paragraphs. */
+  const claim = pg.objective || p.tagline || '';
+  const full  = (p.description && p.description!==pg.objective) ? p.description : '';
+  const fromto = (pg.problem||pg.solution) ? `<div class="fromto">
+      <div class="ft-card before"><div class="ft-h">${ICON('clock')}<span>Before</span></div>
+        <p class="clamp3">${pg.problem||'—'}</p></div>
+      <div class="ft-arrow">${ICON('arrow')}</div>
+      <div class="ft-card after"><div class="ft-h">${ICON('check')}<span>With this tool</span></div>
+        <p class="clamp3">${pg.solution||'—'}</p></div>
+    </div>`:'';
+  const work = hasWork ? `<section class="section" id="work">
+    <div class="section-head"><div class="t"><div class="eyebrow">Overview</div><h2 class="h-2">What it does</h2></div></div>
+    ${claim?`<p class="claim">${claim}</p>`:''}
+    ${fromto}
+    ${full?`<details class="more"><summary>Full description</summary><p>${full}</p></details>`:''}
+  </section>`:'';
 
-  /* ---- PROBLEM / SOLUTION ---- */
-  const problem = (pg.problem||pg.solution) ? `<section class="section" id="problem">
-    <div class="cols-2">
-      ${pg.problem?`<div class="panel" style="padding:24px"><div class="eyebrow" style="color:var(--rose-400)">The problem</div>
-        <p class="prose" style="margin-top:10px"><p>${pg.problem}</p></p></div>`:''}
-      ${pg.solution?`<div class="panel" style="padding:24px"><div class="eyebrow" style="color:var(--emerald-400)">The solution</div>
-        <div class="prose" style="margin-top:10px"><p>${pg.solution}</p></div></div>`:''}
-    </div></section>`:'';
+  /* ---- HOW IT WORKS — a left-to-right flow, not a stack of paragraphs ---- */
+  const how = hasHow ? `<section class="section" id="how">
+    <div class="section-head"><div class="t"><div class="eyebrow">${dm.label}</div><h2 class="h-2">How it works</h2></div></div>
+    <div class="flow">${pg.howItWorks.map((x,i)=>
+      (i?`<div class="fsep">${ICON('arrow')}</div>`:'')+
+      `<div class="fnode reveal"><div class="fnum">${String(i+1).padStart(2,'0')}</div>
+        <h4>${x.title}</h4><p class="clamp2">${x.detail}</p></div>`).join('')}</div>
+  </section>`:'';
 
-  /* ---- HOW IT WORKS ---- */
-  const how = (pg.howItWorks&&pg.howItWorks.length) ? `<section class="section" id="how">
-    <div class="section-head"><div class="t"><div class="eyebrow">Where it sits in the workflow · ${p.workflowStage}</div><h2 class="h-2">How it works</h2></div></div>
-    <div class="steps">${pg.howItWorks.map((s,i)=>`<div class="step reveal"><div class="num">${String(i+1).padStart(2,'0')}</div>
-      <div class="st"><h4>${s.title}</h4><p>${s.detail}</p></div></div>`).join('')}</div></section>`:'';
-
-  /* ---- TECH ---- */
-  const tech = (p.tech&&p.tech.length) ? `<section class="section" id="tech">
-    <div class="section-head"><div class="t"><div class="eyebrow">Built with</div><h2 class="h-2">Technology stack</h2></div></div>
-    <div class="chips">${p.tech.map(t=>`<span class="chip" style="cursor:default"><span style="width:16px;height:16px;display:grid;place-items:center">${logoImg(t,16)}</span>${logoLabel(t)}</span>`).join('')}</div></section>`:'';
-
-  /* ---- MEDIA (adaptive) ---- */
-  const media = renderMedia();
+  /* ---- MEDIA — rendered only when there is something to show ---- */
+  const media = hasMedia ? renderMedia() : '';
   function renderMedia(){
     const blocks=[];
-    // videos first
     if(m.videos&&m.videos.length){
-      blocks.push(`<div class="section-sub"><div class="eyebrow" style="margin-bottom:10px">${ICON('film')} Videos</div>
-        <div style="display:grid;gap:16px;grid-template-columns:${m.videos.length>1?'repeat(auto-fit,minmax(320px,1fr))':'1fr'}">
+      blocks.push(`<div class="section-sub"><div style="display:grid;gap:16px;grid-template-columns:${m.videos.length>1?'repeat(auto-fit,minmax(320px,1fr))':'1fr'}">
         ${m.videos.map((v,i)=>videoBlock(v,i)).join('')}</div></div>`);
     }
-    // interactive html -> open full page in the same tab (Back returns here)
     if(m.html&&m.html.length){
-      blocks.push(m.html.map(src=>`<div class="section-sub" style="margin-top:20px">
+      blocks.push(m.html.map(src=>`<div class="section-sub" style="margin-top:18px">
         <div class="preview-cta">
-          <div class="pc-left">
-            <span class="pc-ic">${ICON('code')}</span>
-            <div><b>Live interactive preview</b><p class="small">Opens the full dashboard in this tab — use your browser Back button to return here.</p></div>
-          </div>
+          <div class="pc-left"><span class="pc-ic">${ICON('code')}</span>
+            <div><b>Live interactive preview</b><p class="small">Opens in this tab — use Back to return.</p></div></div>
           <a class="open-preview" href="${src}">Open live preview ${ICON('arrow')}</a>
         </div></div>`).join(''));
     }
-    // before/after
     if(m.beforeAfter&&m.beforeAfter.before){
-      blocks.push(`<div class="section-sub" style="margin-top:20px"><div class="eyebrow" style="margin-bottom:10px">${ICON('image')} Before / After</div>
+      blocks.push(`<div class="section-sub" style="margin-top:18px"><div class="eyebrow" style="margin-bottom:10px">Before / after</div>
         <div class="cols-2">
           <div class="gallery"><div class="shot" data-full="${m.beforeAfter.before}"><img src="${m.beforeAfter.before}" alt="Before" loading="lazy"></div></div>
           <div class="gallery"><div class="shot" data-full="${m.beforeAfter.after}"><img src="${m.beforeAfter.after}" alt="After" loading="lazy"></div></div>
         </div></div>`);
     }
-    // gallery
     if(m.gallery&&m.gallery.length){
-      blocks.push(`<div class="section-sub" style="margin-top:20px"><div class="eyebrow" style="margin-bottom:10px">${ICON('image')} Screenshots</div>
+      blocks.push(`<div class="section-sub" style="margin-top:18px">
         <div class="gallery">${m.gallery.map(g=>`<div class="shot" data-full="${g}"><img src="${g}" alt="screenshot" loading="lazy"></div>`).join('')}</div></div>`);
     }
-    // docs
     if(m.docs&&m.docs.length){
-      blocks.push(`<div class="section-sub" style="margin-top:20px"><div class="eyebrow" style="margin-bottom:10px">${ICON('doc')} Documents</div>
+      blocks.push(`<div class="section-sub" style="margin-top:18px">
         <div class="chips">${m.docs.map(dc=>`<a class="btn ghost" href="${dc.src}" target="_blank">${ICON('down')} ${dc.title}</a>`).join('')}</div></div>`);
     }
-    const inner = blocks.length ? blocks.join('') : `<div class="placeholder-media">${ICON('film')}
-      <p><b>Media ready to attach.</b></p>
-      <p class="small" style="margin-top:6px">Drop videos, screenshots, an interactive HTML demo or PDFs into
-      <span class="mono">projects/${p.id}/</span> and list them in <span class="mono">projects.js</span> — this section fills in automatically.</p></div>`;
     return `<section class="section" id="media">
-      <div class="section-head"><div class="t"><div class="eyebrow">Showcase</div><h2 class="h-2">Media &amp; demos</h2></div></div>
-      ${inner}</section>`;
+      <div class="section-head"><div class="t"><div class="eyebrow">Showcase</div><h2 class="h-2">Demos &amp; media</h2></div></div>
+      ${blocks.join('')}</section>`;
   }
   function videoBlock(v,i){
     const poster = v.poster || (v.type==='youtube'?`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`:'');
@@ -184,47 +193,36 @@
       ${v.title?`<div class="cap">${v.title}</div>`:''}</div>`;
   }
 
-  /* ---- TIMELINE ---- */
-  const timeline = (pg.timeline&&pg.timeline.length) ? `<section class="section" id="timeline">
-    <div class="section-head"><div class="t"><div class="eyebrow">Development</div><h2 class="h-2">Timeline</h2></div></div>
-    <div class="timeline">${pg.timeline.map(t=>`<div class="tl-item reveal"><div class="d">${t.date}</div><div class="l">${t.label}</div></div>`).join('')}</div></section>`:'';
-
-  /* ---- NOTES : challenges + lessons ---- */
-  const notes = ((pg.challenges&&pg.challenges.length)||(pg.lessons&&pg.lessons.length)) ? `<section class="section" id="notes">
-    <div class="cols-2">
-      ${listPanel('Challenges',pg.challenges,'route','var(--amber-400)')}
-      ${listPanel('Lessons learned',pg.lessons,'book','var(--emerald-400)')}
+  /* ---- DEVELOPMENT NOTES — a milestone rail plus three short lists ---- */
+  function bit(title,items,icon,color){
+    return `<div><div class="eyebrow">${title}</div>
+      <ul class="list-clean" style="margin-top:14px">${items.map(i=>`<li><span class="mk" style="color:${color}">${ICON(icon)}</span><span>${i}</span></li>`).join('')}</ul></div>`;
+  }
+  const rail = (pg.timeline&&pg.timeline.length) ? `<div class="eyebrow">Timeline</div>
+    <div class="milestones">${pg.timeline.map(t=>`<div class="ms"><div class="d">${t.date}</div><div class="l">${t.label}</div></div>`).join('')}</div>`:'';
+  const lists=[];
+  if(pg.challenges&&pg.challenges.length) lists.push(bit('Challenges',pg.challenges,'route','var(--amber-400)'));
+  if(pg.lessons&&pg.lessons.length)       lists.push(bit('Lessons learned',pg.lessons,'book','var(--emerald-400)'));
+  if(pg.roadmap&&pg.roadmap.length)       lists.push(bit('What\u2019s next',pg.roadmap,'sparkle','var(--violet-400)'));
+  const detail = (rail||lists.length) ? `<section class="section" id="detail">
+    <div class="section-head"><div class="t"><div class="eyebrow">Behind the build</div><h2 class="h-2">Development notes</h2></div></div>
+    <div class="panel pad">${rail}
+      ${lists.length?`<div class="detail-grid"${rail?' style="margin-top:28px;padding-top:26px;border-top:1px solid var(--line)"':''}>${lists.join('')}</div>`:''}
     </div></section>`:'';
 
-  /* ---- ROADMAP ---- */
-  const roadmap = (pg.roadmap&&pg.roadmap.length) ? `<section class="section" id="roadmap">
-    <div class="section-head"><div class="t"><div class="eyebrow">What’s next</div><h2 class="h-2">Future roadmap</h2></div></div>
-    ${listPanel('',pg.roadmap,'sparkle','var(--violet-400)')}</section>`:'';
-
-  function listPanel(title,items,icon,color){
-    if(!items||!items.length) return '';
-    return `<div class="panel" style="padding:24px">${title?`<div class="eyebrow" style="margin-bottom:12px">${title}</div>`:''}
-      <ul class="list-clean">${items.map(i=>`<li><span class="mk" style="color:${color}">${ICON(icon)}</span><span>${i}</span></li>`).join('')}</ul></div>`;
-  }
-
   /* ---- RELATED ---- */
-  let related='';
-  if(p.related&&p.related.length){
-    const rels=p.related.map(rid=>PROJECTS.find(x=>x.id===rid)).filter(Boolean);
-    if(rels.length) related=`<section class="section" id="related">
+  const related = relList.length ? `<section class="section" id="related">
       <div class="section-head"><div class="t"><div class="eyebrow">Part of the ecosystem</div><h2 class="h-2">Related tools</h2></div></div>
-      <div class="related">${rels.map(r=>`<a class="rel-card" href="tool.html?id=${r.id}">
-        <div class="rc-code">${r.code} · ${STATUS[r.status].label}</div><h4>${r.name}</h4><p>${r.tagline}</p></a>`).join('')}</div></section>`;
-  }
+      <div class="related">${relList.map(r=>`<a class="rel-card" href="tool.html?id=${r.id}">
+        <div class="rc-code">${r.code} · ${STATUS[r.status].label}</div><h4>${r.name}</h4><p>${r.tagline}</p></a>`).join('')}</div></section>`:'';
 
   /* ---- assemble ---- */
-  mount.innerHTML = hero+efficiency+overview+problem+how+tech+media+timeline+notes+roadmap+related+
+  mount.innerHTML = hero+impact+media+work+how+detail+related+
     `<footer class="foot"><a href="index.html" style="color:var(--text-2)">${ICON('back')} All Projects</a>
       <span class="tag gradient-text">Increasing Efficiency. One Tool at a Time.</span></footer>`;
 
   /* ---- interactions ---- */
-  // animate comparison bars
-  requestAnimationFrame(()=>$$('.fill').forEach(f=>{ f.style.width='0%'; requestAnimationFrame(()=>f.style.width=f.dataset.w+'%'); }));
+  // comparison bars grow via CSS animation — no rAF, so they are never left empty
 
   // video play → swap in player
   mount.addEventListener('click',e=>{

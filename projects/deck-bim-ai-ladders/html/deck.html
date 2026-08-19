@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="obsidian">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two Ladders — BIM &amp; AI Maturity — Asure Design Studio</title>
+<style>
+:root[data-theme="obsidian"]{
+  --bg:#0B1120; --bg2:#0F1830; --panel:rgba(20,31,58,.62); --edge:rgba(255,255,255,.10);
+  --ink:#EEF2FB; --mut:#9AA7C7; --gold:#D8B24A; --cyan:#39C0D6; --green:#54C99A; --red:#E17767; --violet:#9B8CFF;
+  --page:#05070E; --glass:rgba(11,17,32,.55);
+}
+:root[data-theme="light"]{
+  --bg:#EDF1FA; --bg2:#FFFFFF; --panel:rgba(255,255,255,.72); --edge:rgba(12,22,44,.13);
+  --ink:#141B2C; --mut:#57647F; --gold:#8A5E10; --cyan:#0E7080; --green:#1E815A; --red:#B44A39; --violet:#5346C0;
+  --page:#E6ECF6; --glass:rgba(255,255,255,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--page); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  overflow:hidden;
+}
+h1,h2,h3,.serif{font-family:"Fraunces",Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.01em}
+
+/* --- background animation: kept subtle so it never competes with the text --- */
+#anim{position:fixed;inset:0;width:100%;height:100%;border:0;pointer-events:none;z-index:0;opacity:.30}
+#scrim{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb,var(--page) 62%,transparent),
+      color-mix(in srgb,var(--page) 42%,transparent) 45%,
+      color-mix(in srgb,var(--page) 80%,transparent) 100%),
+    radial-gradient(135% 85% at 50% -8%, transparent 42%, var(--page) 128%)}
+/* cover & closing slides: let the animation come forward */
+body.anim-bold #anim{opacity:.95}
+body.anim-bold #scrim{background:
+  linear-gradient(180deg,
+    color-mix(in srgb,var(--page) 16%,transparent),
+    color-mix(in srgb,var(--page) 6%,transparent) 45%,
+    color-mix(in srgb,var(--page) 40%,transparent) 100%),
+  radial-gradient(150% 100% at 50% -12%, transparent 58%, var(--page) 140%)}
+body.anim-bold .slide.active h1,
+body.anim-bold .slide.active .lead,
+body.anim-bold .slide.active .kick{text-shadow:0 2px 20px var(--page),0 1px 3px var(--page)}
+
+/* ---------- deck ---------- */
+#deck{position:fixed;inset:0;z-index:2}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  padding:clamp(24px,5vw,80px);opacity:0;visibility:hidden;
+  transition:opacity .5s ease,transform .5s ease;transform:translateY(18px)}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.wrap{width:min(1140px,100%);max-height:100%}
+.kick{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:18px}
+.slide h1{font-size:clamp(34px,6vw,72px);line-height:1.02}
+.slide h2{font-size:clamp(26px,4.2vw,48px);line-height:1.05}
+.lead{color:var(--mut);font-size:clamp(16px,1.7vw,21px);line-height:1.55;max-width:62ch;margin-top:18px}
+.accent{color:var(--gold)} .cy{color:var(--cyan)} .gr{color:var(--green)} .vi{color:var(--violet)}
+.panel{background:var(--panel);border:1px solid var(--edge);border-radius:18px;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+
+/* cover */
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:34px}
+.dot{width:11px;height:11px;border-radius:50%;background:var(--gold);box-shadow:0 0 22px var(--gold)}
+.brand b{font-size:15px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
+.brand span{color:var(--mut);font-size:13px;letter-spacing:.12em}
+.cover-sub{margin-top:26px;display:flex;gap:26px;flex-wrap:wrap;color:var(--mut);font-size:14px}
+.cover-sub b{color:var(--ink);font-weight:600}
+
+/* two-up why/what */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px}
+.card{padding:24px 26px}
+.card h3{font-size:20px;margin-bottom:10px}
+.card p{color:var(--mut);font-size:15px;line-height:1.55}
+
+ul.clean{list-style:none;margin-top:22px;display:grid;gap:14px}
+ul.clean li{position:relative;padding-left:30px;color:var(--mut);font-size:clamp(15px,1.6vw,18px);line-height:1.5}
+ul.clean li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;border-radius:50%;
+  background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+ul.clean li b{color:var(--ink);font-weight:600}
+
+/* linear timeline (10 stages) */
+.tl-phases{display:grid;grid-template-columns:3fr 3fr 2fr 2fr;gap:8px;margin-top:30px}
+.tl-phases span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:700;
+  text-align:center;padding:8px 6px;border-radius:9px;background:var(--glass);border:1px solid var(--edge)}
+.tl-phases span b{color:var(--ink)}
+.tl-line{display:grid;grid-template-columns:repeat(10,1fr);position:relative;padding-top:26px;margin-top:12px}
+.tl-line::before{content:"";position:absolute;top:33px;left:5%;right:5%;height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--cyan));border-radius:2px}
+.tl-step{text-align:center;position:relative;padding:0 4px}
+.tl-step .d{width:14px;height:14px;border-radius:50%;background:var(--page);border:2px solid var(--gold);
+  margin:0 auto;position:relative;z-index:2;box-shadow:0 0 0 4px var(--page)}
+.tl-step:nth-child(n+7) .d{border-color:var(--cyan)}
+.tl-step .s{font-family:"Fraunces",Georgia,serif;font-size:19px;color:var(--gold);margin-top:10px}
+.tl-step:nth-child(n+7) .s{color:var(--cyan)}
+.tl-step .t{font-size:11px;color:var(--ink);font-weight:600;margin-top:5px;line-height:1.2}
+.tl-step .z{font-size:9.5px;color:var(--mut);margin-top:3px;line-height:1.2}
+.tl-foot{margin-top:26px;color:var(--mut);font-size:clamp(14px,1.5vw,17px);line-height:1.5;max-width:70ch}
+.tl-foot b{color:var(--ink)}
+
+/* single stage */
+.stage-top{display:flex;align-items:baseline;gap:20px}
+.stage-num{font-family:"Fraunces",Georgia,serif;font-size:clamp(64px,12vw,150px);line-height:.8;color:var(--gold);
+  text-shadow:0 0 44px color-mix(in srgb,var(--gold) 40%,transparent)}
+.stage-meta .z{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan);font-weight:700}
+.stage-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;margin-top:26px}
+.stage-def{font-size:clamp(17px,1.9vw,22px);line-height:1.5;color:var(--ink)}
+.stage-def .mut{color:var(--mut)}
+.lens{padding:20px 22px}
+.lens .row{display:flex;gap:12px;padding:9px 0;border-bottom:1px dashed var(--edge);font-size:14.5px}
+.lens .row:last-child{border:0}
+.lens .row .k{color:var(--gold);font-weight:600;flex:0 0 108px}
+.lens .row .v{color:var(--mut)}
+.ads{margin-top:16px;font-size:13px;color:var(--mut)}
+.ads b{color:var(--cyan)}
+.progressbar{height:6px;border-radius:999px;background:var(--edge);margin-top:26px;overflow:hidden}
+.progressbar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--cyan));border-radius:999px;transition:width .5s}
+
+/* where are you */
+.selfgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:26px}
+.selfgrid .sq{padding:14px 10px;border:1px solid var(--edge);border-radius:10px;text-align:center;background:var(--glass);cursor:default}
+.selfgrid .sq .nn{font-family:"Fraunces",Georgia,serif;font-size:20px;color:var(--gold)}
+.selfgrid .sq .ll{font-size:11px;color:var(--mut);margin-top:4px;line-height:1.25}
+.ask{margin-top:30px;font-size:clamp(20px,3vw,34px);line-height:1.2}
+.ask .q{color:var(--gold)}
+
+/* loop 4 points */
+.loop{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.lp{padding:22px;position:relative}
+.lp .num{font-size:12px;letter-spacing:.2em;color:var(--cyan);font-weight:700}
+.lp h3{font-size:21px;margin:10px 0 8px}
+.lp p{font-size:14px;color:var(--mut);line-height:1.5}
+.lp .arrow{position:absolute;right:-11px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:20px;z-index:3}
+
+/* action */
+.ex{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.ex .c{padding:18px 20px}
+.ex .c .h{font-weight:600;color:var(--ink);margin-bottom:10px;font-size:15px}
+.ex .c ol{margin-left:18px;color:var(--mut);font-size:13px;line-height:1.7}
+.callout{margin-top:26px;padding:18px 22px;border-left:3px solid var(--gold);background:var(--glass);border-radius:0 12px 12px 0;font-size:15px;color:var(--ink)}
+
+/* chrome */
+#rail{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;align-items:center;gap:14px;
+  padding:14px clamp(18px,4vw,40px);background:linear-gradient(0deg,var(--page),transparent)}
+#dots{display:flex;gap:7px;flex:1;flex-wrap:wrap}
+#dots button{width:9px;height:9px;border-radius:50%;border:0;background:var(--edge);cursor:pointer;padding:0;transition:.2s}
+#dots button.on{background:var(--gold);width:22px;border-radius:6px}
+.nav{display:flex;gap:8px}
+.nav button,#themeBtn{background:var(--panel);border:1px solid var(--edge);color:var(--ink);
+  border-radius:10px;padding:8px 14px;font-size:13px;cursor:pointer;backdrop-filter:blur(8px)}
+.nav button:hover,#themeBtn:hover{border-color:var(--gold)}
+#counter{color:var(--mut);font-size:12px;font-variant-numeric:tabular-nums;min-width:52px;text-align:right}
+#themeBtn{position:fixed;top:22px;right:24px;z-index:6}
+.hint{position:fixed;bottom:64px;left:50%;transform:translateX(-50%);z-index:5;color:var(--mut);font-size:11.5px;letter-spacing:.08em;opacity:.7}
+kbd{border:1px solid var(--edge);border-radius:5px;padding:1px 6px;font-family:inherit;font-size:11px;color:var(--ink)}
+@media (max-width:820px){
+  .grid2,.stage-grid,.loop,.ex{grid-template-columns:1fr}
+  .selfgrid{grid-template-columns:1fr}
+  .tl-phases{grid-template-columns:1fr}
+  .tl-line{grid-template-columns:1fr;gap:10px}
+  .tl-line::before{display:none}
+  .tl-step{text-align:left;display:flex;gap:12px;align-items:baseline}
+  .lp .arrow{display:none}
+  .stage-top{flex-direction:column;gap:6px}
+}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:var(--page)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #anim,#rail,#themeBtn,.hint,#scrim{display:none!important}
+  #deck{position:static}
+  .slide{position:relative;inset:auto;width:1280px;height:720px;opacity:1!important;visibility:visible!important;transform:none!important;page-break-after:always;break-after:page;display:flex;overflow:hidden}
+  .slide:last-child{page-break-after:auto}
+  .wrap{max-height:none}
+  /* Chrome's narrow print viewport wrongly triggers the mobile query; force the 16:9 desktop layout */
+  .grid2{grid-template-columns:1fr 1fr!important}
+  .stage-grid{grid-template-columns:1.15fr 1fr!important}
+  .stage-top{flex-direction:row!important}
+  .loop{grid-template-columns:repeat(4,1fr)!important}
+  .ex{grid-template-columns:repeat(3,1fr)!important}
+  .selfgrid{grid-template-columns:repeat(5,1fr)!important}
+  .tl-phases{grid-template-columns:3fr 3fr 2fr 2fr!important}
+  .tl-line{grid-template-columns:repeat(10,1fr)!important}
+  .tl-line::before{display:block!important}
+  .tl-step{text-align:center!important;display:block!important}
+  .lp .arrow{display:none!important}
+}
+</style>
+</head>
+<body>
+<iframe id="anim" class="anim" title="background"></iframe>
+<div id="scrim"></div>
+<button id="themeBtn">Theme</button>
+
+<div id="deck">
+
+  <!-- 0 COVER -->
+  <section class="slide active"><div class="wrap">
+    <div class="brand"><span class="dot"></span><b>Asure Design Studio</b><span>&middot; BIM &times; AI Maturity &middot; 17 Aug 2026</span></div>
+    <div class="kick">A shared map for the whole studio</div>
+    <h1>Two Ladders &mdash;<br><span class="accent">BIM</span> &amp; <span class="cy">AI</span><br>&mdash; where are you?</h1>
+    <p class="lead">Not a timeline. Two ladders, side by side. <b style="color:var(--ink)">Ten levels of BIM</b> and <b style="color:var(--ink)">ten stages of AI</b> &mdash; what each rung is <b style="color:var(--ink)">used</b> for, and the <b style="color:var(--ink)">result</b> it delivers &mdash; so every person and team can find their rung and take the next step.</p>
+    <div class="cover-sub"><span>For <b>the heads</b> &amp; every team</span><span>Built on the <b>ADS AI Roadmap</b></span><span>Presented by <b>Surya Koushik</b></span></div>
+  </div></section>
+
+  <!-- 1 WHY -->
+  <section class="slide"><div class="wrap">
+    <div class="kick">Why</div>
+    <h2>Why BIM <span class="accent">and</span> AI &mdash; and why now</h2>
+    <p class="lead">Our models hold the studio’s knowledge; AI is how that knowledge <span class="accent">compounds</span> instead of walking out the door. Richer models make smarter AI &mdash; smarter AI makes richer models effortless.</p>
+    <div class="grid2">
+      <div class="card panel"><h3 class="accent">The cost of standing still</h3><p>Drawings redrawn, quantities re-counted, clashes found on site, the same coordination call every week. Skill lives in heads; information lives in flat files. When someone leaves, the loop resets.</p></div>
+      <div class="card panel"><h3 class="cy">The opportunity</h3><p>Put the knowledge <b style="color:var(--ink)">in the model</b>, and let AI run the loop &mdash; coordinated, checked, consistent. Time shifts from redoing to <b style="color:var(--ink)">designing and deciding</b>.</p></div>
+    </div>
+  </div></section>
+
+  <!-- 2 WHAT -->
+  <section class="slide"><div class="wrap">
+    <div class="kick">What we’re doing</div>
+    <h2>What this is &mdash; the outline</h2>
+    <p class="lead">No dates, no Gantt chart. Two ladders every person and team can locate themselves on &mdash; and one loop that makes the whole studio smarter with every project.</p>
+    <ul class="clean">
+      <li><b>Two ladders, not a deadline.</b> Ten levels of BIM maturity and ten stages of AI &mdash; from a 2D line and a chat window to a self-running studio.</li>
+      <li><b>Every rung shows Use + Results.</b> What you do at that level, and the payoff you get for reaching it.</li>
+      <li><b>Our tools, mapped on.</b> Where ADS already sits on each ladder &mdash; and it’s higher than most.</li>
+      <li><b>One honest self-check.</b> Where are you on each ladder, really? Then take one rung.</li>
+    </ul>
+  </div></section>
+
+  <!-- 3 BIM LADDER -->
+  <section class="slide"><div class="wrap">
+    <div class="kick">The first map</div>
+    <h2>The <span class="accent">BIM ladder</span> &mdash; ten levels on one line</h2>
+    <div class="tl-phases">
+      <span>Levels <b>1&ndash;3</b> &middot; Draw &amp; Model</span>
+      <span>Levels <b>4&ndash;6</b> &middot; Coordinate &amp; Cost</span>
+      <span>Levels <b>7&ndash;8</b> &middot; Analyse &amp; Govern</span>
+      <span>Levels <b>9&ndash;10</b> &middot; Twin &amp; Autonomous</span>
+    </div>
+    <div class="tl-line">
+      <div class="tl-step"><div class="d"></div><div class="s">1</div><div class="t">2D CAD</div><div class="z">Lines on layers</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">2</div><div class="t">3D model</div><div class="z">Geometry &amp; views</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">3</div><div class="t">Object BIM</div><div class="z">Parametric elements</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">4</div><div class="t">Data-rich</div><div class="z">LOD + info</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">5</div><div class="t">Federated</div><div class="z">Clash &amp; coordinate</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">6</div><div class="t">4D + 5D</div><div class="z">Time &amp; cost</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">7</div><div class="t">Simulation</div><div class="z">Performance</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">8</div><div class="t">CDE</div><div class="z">ISO 19650</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">9</div><div class="t">Digital twin</div><div class="z">Scan &amp; sync</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">10</div><div class="t">Autonomous</div><div class="z">Self-updating</div></div>
+    </div>
+    <p class="tl-foot">Left to right is <b>increasing intelligence in the model</b>, not a calendar. Most studios live at <b>1&ndash;3</b>; the leap that changes the economics is <b>Levels 5&ndash;6</b>, where coordination and cost come straight from the model.</p>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">01</div><div class="stage-meta"><div class="z">Draw &middot; Entry</div><h2>2D CAD drafting</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">Lines, arcs and text on named layers. The <b>drawing is the deliverable</b> and the computer can’t tell a wall from a wardrobe. <span class="mut">Coordination happens by eye, across separate files.</span></p>
+        <div class="ads">At ADS: <b>AutoCAD</b> DWG sets on the ADS ten-layer standard.</div>
+        <div class="progressbar"><i style="width:10%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Produce plans, sections &amp; details as flat 2D sheets</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Fast to start — but every change is manual and rework is high</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Coordinated-by-hand DWG / PDF drawing set</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">02</div><div class="stage-meta"><div class="z">Draw</div><h2>3D modelling — geometry only</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">You build the <b>shape in 3D</b> to see it and sell it — massing, form, renders — but the model is dumb geometry with no data, and drawings are still made separately.</p>
+        <div class="ads">At ADS: SketchUp / Rhino massing, <b>ArchViz AI</b> visuals.</div>
+        <div class="progressbar"><i style="width:20%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Visualise form; produce renders &amp; walkthroughs</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Far better client communication; documentation still manual</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">3D views, renders, concept imagery</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">03</div><div class="stage-meta"><div class="z">Model</div><h2>Object-based BIM</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">Elements become <b>objects that know what they are</b> — a wall is a wall, a door is a door. Plans, sections and schedules cut live from a single model.</p>
+        <div class="ads">At ADS: <b>Revit</b> on ADS templates, <b>cad2revit</b>.</div>
+        <div class="progressbar"><i style="width:32%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Model once; generate drawings &amp; schedules from it</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Consistent documents; a change updates everywhere at once</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Parametric model + auto drawings / schedules</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">04</div><div class="stage-meta"><div class="z">Coordinate</div><h2>Data-rich BIM — LOD + information</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">Objects carry <b>information</b> — materials, specs, fire ratings, asset IDs, LOD. The model becomes a <b>database you can query</b>, not just a picture.</p>
+        <div class="ads">At ADS: <b>ADS Phoenix</b> L1 data checks, parameter standards.</div>
+        <div class="progressbar"><i style="width:44%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Drive data schedules, specs &amp; COBie from element data</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">One source of truth; drawings and specs stop disagreeing</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Information-rich model + data schedules</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">05</div><div class="stage-meta"><div class="z">Coordinate</div><h2>Federated coordination</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">Architecture, structure and MEP live in <b>one federated model</b>. Clash detection finds conflicts on screen — weeks before they cost money on site.</p>
+        <div class="ads">At ADS: <b>Navisworks</b> federation, clash workflows, <b>NavisBridge</b>.</div>
+        <div class="progressbar"><i style="width:56%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Combine disciplines; run clash tests before GFC</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Clashes caught pre-site; RFIs and site rework fall sharply</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Federated model + clash / coordination report</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">06</div><div class="stage-meta"><div class="z">Coordinate &middot; The turning point</div><h2>4D + 5D — time &amp; cost</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">The model links to <b>programme (4D)</b> and <b>cost (5D)</b>. The build is sequenced on screen and the BOQ comes <b>straight from the model</b>, not a re-count.</p>
+        <div class="ads">At ADS: <b>BOQ-from-model</b>, H10 quantities, takeoff pipeline.</div>
+        <div class="progressbar"><i style="width:68%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Simulate the sequence; generate quantities &amp; cost from the model</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Predictable schedule &amp; budget; BOQ in hours, not weeks</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">4D sequence + 5D cost model + live BOQ</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">07</div><div class="stage-meta"><div class="z">Analyse</div><h2>Simulation &amp; analysis</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">The model is <b>tested before it’s built</b> — daylight, energy, thermal, structural, code. Design decisions are backed by performance, not opinion.</p>
+        <div class="ads">At ADS: Environmental &amp; daylight simulation, optioneering.</div>
+        <div class="progressbar"><i style="width:80%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Analyse performance &amp; compliance on the model itself</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Optimised, code-checked designs; problems solved before GFC</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Performance &amp; compliance reports tied to the model</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">08</div><div class="stage-meta"><div class="z">Govern</div><h2>CDE &amp; ISO 19650 lifecycle</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">A <b>Common Data Environment</b> governs every model, revision and approval to <b>ISO 19650</b> — one auditable source, clear ownership, reusable standards.</p>
+        <div class="ads">At ADS: CDE / ACC, ISO 19650 delivery, the <b>QC plugin</b>.</div>
+        <div class="progressbar"><i style="width:88%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Manage the whole team’s information with governed workflows</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Compliant, auditable delivery; standards that compound</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Governed CDE + information-delivery plan</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">09</div><div class="stage-meta"><div class="z">Twin</div><h2>Reality capture &amp; digital twin</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">The building and the model <b>stay in sync</b> — laser scans and drones capture as-built reality; a <b>digital twin</b> mirrors the asset for operation and handover.</p>
+        <div class="ads">At ADS: Scan-to-BIM capture, digital twins, O&amp;M data.</div>
+        <div class="progressbar"><i style="width:95%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Compare site to model; feed facilities &amp; O&amp;M from the twin</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">A living as-built record; smoother handover and operation</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">As-built digital twin + O&amp;M dataset</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">10</div><div class="stage-meta"><div class="z">Autonomous &middot; The horizon</div><h2>Autonomous / generative BIM</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">AI <b>drives the model</b> — generating options, checking its own quality, and keeping the twin current on its own. The model <b>maintains and improves itself</b>.</p>
+        <div class="ads">At ADS: Generative + agentic BIM, self-QA, the <b>ADS Agent</b>.</div>
+        <div class="progressbar"><i style="width:100%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Generate &amp; self-check models; the twin updates itself</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Minimal manual maintenance; the model runs its own loop</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Self-updating, self-checking BIM twin</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- WHERE ARE YOU: BIM -->
+  <section class="slide"><div class="wrap">
+    <div class="kick">The introspection &middot; BIM</div>
+    <h2>On the BIM ladder &mdash; <span class="accent">where are you?</span></h2>
+    <p class="lead">Be honest, not aspirational. A project can sit at different rungs for different disciplines. The point isn’t the number — it’s <b style="color:var(--ink)">knowing it</b> and taking the next rung.</p>
+    <div class="selfgrid">
+      <div class="sq"><div class="nn">1</div><div class="ll">2D CAD</div></div>
+      <div class="sq"><div class="nn">2</div><div class="ll">3D model</div></div>
+      <div class="sq"><div class="nn">3</div><div class="ll">Object BIM</div></div>
+      <div class="sq"><div class="nn">4</div><div class="ll">Data-rich</div></div>
+      <div class="sq"><div class="nn">5</div><div class="ll">Federated</div></div>
+      <div class="sq"><div class="nn">6</div><div class="ll">4D + 5D</div></div>
+      <div class="sq"><div class="nn">7</div><div class="ll">Simulation</div></div>
+      <div class="sq"><div class="nn">8</div><div class="ll">CDE / 19650</div></div>
+      <div class="sq"><div class="nn">9</div><div class="ll">Digital twin</div></div>
+      <div class="sq"><div class="nn">10</div><div class="ll">Autonomous</div></div>
+    </div>
+    <div class="ask"><span class="q">Which level is your live project on today?</span> &nbsp;And what would it take to move it <span class="cy">one rung</span>?</div>
+  </div></section>
+
+  <!-- 15 AI LADDER -->
+  <section class="slide"><div class="wrap">
+    <div class="kick">The second map</div>
+    <h2>The <span class="cy">AI ladder</span> &mdash; ten stages on one line</h2>
+    <div class="tl-phases">
+      <span>Stages <b>1&ndash;3</b> &middot; Assist</span>
+      <span>Stages <b>4&ndash;6</b> &middot; Delegate</span>
+      <span>Stages <b>7&ndash;8</b> &middot; Generate</span>
+      <span>Stages <b>9&ndash;10</b> &middot; Autonomous</span>
+    </div>
+    <div class="tl-line">
+      <div class="tl-step"><div class="d"></div><div class="s">1</div><div class="t">Assisted drafting</div><div class="z">Chat, charts, images</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">2</div><div class="t">Copilot in apps</div><div class="z">Excel, PPT, Revit</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">3</div><div class="t">Custom tools</div><div class="z">ADS plugins</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">4</div><div class="t">Task agents</div><div class="z">Delegate a task</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">5</div><div class="t">Automation</div><div class="z">Chained, scheduled</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">6</div><div class="t">Knowledge</div><div class="z">Loop closes</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">7</div><div class="t">Generative</div><div class="z">AI proposes</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">8</div><div class="t">Immersive</div><div class="z">VR, gesture</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">9</div><div class="t">Robotics</div><div class="z">Site, twins</div></div>
+      <div class="tl-step"><div class="d"></div><div class="s">10</div><div class="t">Autonomous</div><div class="z">Runs itself</div></div>
+    </div>
+    <p class="tl-foot">Left to right is <b>increasing autonomy</b>, not a calendar &mdash; you climb it at your own pace. Most of the studio lives in <b>1&ndash;3</b> today; the leap that changes everything is <b>Stage 6</b>, where documented work compounds into a studio brain.</p>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">01</div><div class="stage-meta"><div class="z">Assist &middot; Entry</div><h2>Assisted drafting &amp; imagery</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">You <b>ask</b>, AI <b>drafts</b>. A chat window for writing, a charting helper, AI images and moodboards. <span class="mut">The lowest rung — and where most of a studio quietly already is.</span></p>
+        <div class="ads">At ADS: <b>ChatGPT / Claude</b> for text &amp; charts, <b>ArchViz AI</b> moodboards.</div>
+        <div class="progressbar"><i style="width:10%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Draft text, quick charts &amp; concept imagery on demand</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Faster starts; the blank page disappears</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Draft notes, charts, moodboards</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">02</div><div class="stage-meta"><div class="z">Assist</div><h2>Copilot inside your apps</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">AI moves <b>into the tools you already use</b> — Copilot in Excel, Word &amp; PowerPoint, assistants inside Revit and AutoCAD. <span class="mut">Same workflow, half the clicks.</span></p>
+        <div class="ads">At ADS: Copilot / <b>Core Pro</b> for sheets &amp; decks; AI assist in Revit &amp; CAD.</div>
+        <div class="progressbar"><i style="width:22%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Let AI assist inside your existing apps</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Same workflow, half the clicks</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">In-app drafted sheets, decks &amp; formatting</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">03</div><div class="stage-meta"><div class="z">Assist</div><h2>Custom tools &amp; plugins</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">AI stops being generic and gets <b>purpose-built for ADS</b> — plugins and dashboards that know our standards, our projects, our rules. <span class="mut">This is where the studio already leads.</span></p>
+        <div class="ads">At ADS: <b>ADS Phoenix</b>, <b>cad2revit</b>, BOQ Template, <b>H10 &amp; P25</b> dashboards.</div>
+        <div class="progressbar"><i style="width:38%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Run purpose-built ADS plugins &amp; dashboards</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">AI that knows our standards, projects and rules</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">ADS plugins + live dashboards</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">04</div><div class="stage-meta"><div class="z">Delegate</div><h2>Agentic — task agents</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">You stop clicking and start <b>delegating</b>. An agent takes a whole task end-to-end — “run the clash test and write the report”, “pull these quantities”. <span class="mut">You describe the outcome; it does the steps.</span></p>
+        <div class="ads">At ADS: <b>Revit &harr; Claude MCP</b> bridge, <b>NavisBridge</b>, <b>Ask-ADS</b> agents.</div>
+        <div class="progressbar"><i style="width:52%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Delegate a whole task, end-to-end</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">You describe the outcome; the agent does the steps</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Completed task + report from one instruction</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">05</div><div class="stage-meta"><div class="z">Delegate</div><h2>Automation &amp; orchestration</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">Agents get <b>chained and scheduled</b>. A drawing set lands, then it classifies, counts, schedules and produces a BOQ — no one presses start. <span class="mut">Teams of agents, running while you sleep.</span></p>
+        <div class="ads">At ADS: <b>Construction Takeoff AI</b> pipeline, scheduled QA, agent teams.</div>
+        <div class="progressbar"><i style="width:64%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Chain &amp; schedule agents to run unattended</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Work happens while you sleep; no one presses start</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Running pipelines (drawings → BOQ)</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">06</div><div class="stage-meta"><div class="z">Delegate &middot; The turning point</div><h2>Knowledge &amp; memory — the loop closes</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">Every documented task feeds one <b>studio brain</b>. Ask it anything — a detail, a supplier, “how did we do this last time” — and it answers. <span class="mut">AI stops helping individuals and starts making the studio smarter.</span></p>
+        <div class="ads">At ADS: <b>Ask-ADS</b> (full), confidential knowledge on local models, AI Team Hub.</div>
+        <div class="progressbar"><i style="width:74%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Feed every documented task into one studio brain</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">The studio gets smarter each project; memory that never leaves</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Ask-ADS knowledge base on local models</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">07</div><div class="stage-meta"><div class="z">Generate</div><h2>Generative design &amp; simulation</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">AI stops assisting and starts <b>proposing</b> — generating options, then testing them for daylight, energy, cost and code before you commit. <span class="mut">Hundreds explored, the best few surfaced.</span></p>
+        <div class="ads">At ADS: Generative massing, environmental &amp; daylight simulation, optioneering.</div>
+        <div class="progressbar"><i style="width:84%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Let AI propose options and test them</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Hundreds explored; the best few surfaced and pre-checked</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Simulation-scored design options</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">08</div><div class="stage-meta"><div class="z">Generate</div><h2>Immersive &amp; spatial</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">Design leaves the flat screen — <b>VR walkthroughs, real-time visualisation, gesture control</b>, spatial review with the client inside the model. <span class="mut">You don’t look at the building; you stand in it.</span></p>
+        <div class="ads">At ADS: Real-time viz, immersive client review, hand-controlled models.</div>
+        <div class="progressbar"><i style="width:90%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Review the design in VR / real time with the client</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">You stand in the design instead of looking at it</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Immersive review &amp; client sign-off</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">09</div><div class="stage-meta"><div class="z">Autonomous</div><h2>Robotics &amp; digital fabrication</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">AI reaches the <b>physical world</b> — reality capture, drones, robotic fabrication, and a live digital twin that mirrors the site day by day. <span class="mut">Model and building stay in sync, both directions.</span></p>
+        <div class="ads">At ADS: Scan-to-BIM capture, digital twins, fabrication-ready output.</div>
+        <div class="progressbar"><i style="width:95%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Capture reality &amp; fabricate from the model</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">Model and building stay in sync, both directions</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">Scan-to-BIM twin + fabrication-ready output</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="wrap">
+    <div class="stage-top"><div class="stage-num">10</div><div class="stage-meta"><div class="z">Autonomous &middot; The horizon</div><h2>The autonomous studio</h2></div></div>
+    <div class="stage-grid">
+      <div><p class="stage-def">Coordination, QA, reporting and delivery <b>run themselves</b>. AI holds the routine; people set direction, make the calls, and design. <span class="mut">The studio becomes a system that compounds.</span></p>
+        <div class="ads">At ADS: The closed loop, end to end — the <b>ADS Agent</b> that grows with every project.</div>
+        <div class="progressbar"><i style="width:100%"></i></div></div>
+      <div class="lens panel">
+        <div class="row"><div class="k">Use</div><div class="v">Let coordination, QA &amp; reporting run themselves</div></div>
+        <div class="row"><div class="k">Results</div><div class="v">People set direction; the studio scales without more headcount</div></div>
+        <div class="row"><div class="k">Deliverable</div><div class="v">The closed loop, end to end — the ADS Agent</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- WHERE ARE YOU: AI -->
+  <section class="slide"><div class="wrap">
+    <div class="kick">The introspection &middot; AI</div>
+    <h2>On the AI ladder &mdash; <span class="cy">where are you?</span></h2>
+    <p class="lead">Most of the studio is somewhere in Stages 1&ndash;3. That’s fine — the point isn’t the number, it’s <b style="color:var(--ink)">knowing it</b> and taking the next rung.</p>
+    <div class="selfgrid">
+      <div class="sq"><div class="nn">1</div><div class="ll">Chat &amp; images</div></div>
+      <div class="sq"><div class="nn">2</div><div class="ll">Copilot in apps</div></div>
+      <div class="sq"><div class="nn">3</div><div class="ll">Custom tools</div></div>
+      <div class="sq"><div class="nn">4</div><div class="ll">Task agents</div></div>
+      <div class="sq"><div class="nn">5</div><div class="ll">Automation</div></div>
+      <div class="sq"><div class="nn">6</div><div class="ll">Studio memory</div></div>
+      <div class="sq"><div class="nn">7</div><div class="ll">Generative</div></div>
+      <div class="sq"><div class="nn">8</div><div class="ll">Immersive</div></div>
+      <div class="sq"><div class="nn">9</div><div class="ll">Robotics</div></div>
+      <div class="sq"><div class="nn">10</div><div class="ll">Autonomous</div></div>
+    </div>
+    <div class="ask"><span class="q">Which rung are you on today?</span> &nbsp;And inside it &mdash; <span class="cy">what percent</span> of your week actually runs that way?</div>
+  </div></section>
+
+  <!-- HOW THEY CONNECT -->
+  <section class="slide"><div class="wrap">
+    <div class="kick">Why the two ladders are really one</div>
+    <h2>BIM and AI <span class="accent">climb together</span></h2>
+    <p class="lead">These aren’t two projects competing for time. Each ladder pulls the other up &mdash; that’s why we run them side by side.</p>
+    <div class="grid2">
+      <div class="card panel"><h3 class="accent">BIM makes AI possible</h3><p>Data-rich models (Level&nbsp;4 and up) are the <b style="color:var(--ink)">fuel</b>: structured information AI can query, check and generate against. No good model, no good AI &mdash; garbage in, garbage out.</p></div>
+      <div class="card panel"><h3 class="cy">AI makes BIM effortless</h3><p>Agents and generative tools <b style="color:var(--ink)">carry you up the BIM ladder</b> &mdash; clash reports, quantities, options, self-updating twins &mdash; work that used to take weeks now runs in the background.</p></div>
+    </div>
+    <p class="tl-foot">Every rung of <b>BIM</b> you gain, <b>AI</b> can automate; every stage of <b>AI</b> you reach, your <b>BIM</b> gets richer. Two ladders, one studio, one loop.</p>
+  </div></section>
+
+  <!-- THE LOOP -->
+  <section class="slide"><div class="wrap">
+    <div class="kick">How every rung is actually built</div>
+    <h2>Close the loop &mdash; the four points</h2>
+    <p class="lead">This is how the best AI companies compound: not one big leap, but a loop that turns everyday work into a system that keeps improving. Same loop, for a design studio &mdash; on both ladders.</p>
+    <div class="loop">
+      <div class="lp panel"><div class="num">01</div><h3 class="accent">Capture</h3><p>Do the task &mdash; and record what you actually did, step by step, while you do it. Real work, not theory.</p><span class="arrow">&rarr;</span></div>
+      <div class="lp panel"><div class="num">02</div><h3 class="cy">Codify</h3><p>Turn it into a written procedure or a modelled standard: the steps, the inputs, the tools, the data.</p><span class="arrow">&rarr;</span></div>
+      <div class="lp panel"><div class="num">03</div><h3 class="gr">Delegate</h3><p>Hand it to AI &mdash; a prompt, an agent, a tool. Now the studio can run it, not just you.</p><span class="arrow">&rarr;</span></div>
+      <div class="lp panel"><div class="num">04</div><h3 class="vi">Compound</h3><p>Every run feeds the studio brain and frees your time. It gets faster, better &mdash; then back to Capture.</p></div>
+    </div>
+  </div></section>
+
+  <!-- ACTION -->
+  <section class="slide"><div class="wrap">
+    <div class="kick">Your action item</div>
+    <h2>Take <span class="accent">one rung</span> on each ladder &mdash; this week</h2>
+    <p class="lead">You don’t need to build a twin or an agent. You need one concrete step on each ladder, small enough to finish this week and real enough to compound.</p>
+    <div class="ex">
+      <div class="c panel"><div class="h">Level up one BIM object</div><ol><li>Pick a family or a standard detail</li><li>Add the data: materials, spec, IDs</li><li>Make it schedule-ready</li><li>Save it to the ADS library</li></ol></div>
+      <div class="c panel"><div class="h">Federate one project</div><ol><li>Combine arch + struct + MEP</li><li>Run one clash test</li><li>Log the top conflicts</li><li>Share the coordination report</li></ol></div>
+      <div class="c panel"><div class="h">Document one task for AI</div><ol><li>Write how you do one real thing</li><li>List steps, inputs, tools, suppliers</li><li>Hand it to a prompt or agent</li><li>Let it run it next time</li></ol></div>
+    </div>
+    <div class="callout">One rung on <b>each</b> ladder, this week. Richer model, one documented task &mdash; that’s how the studio climbs, <b>together</b>.</div>
+  </div></section>
+
+  <!-- CLOSE -->
+  <section class="slide"><div class="wrap">
+    <div class="brand"><span class="dot"></span><b>Asure Design Studio</b></div>
+    <div class="kick">Where we are &mdash; and where we’re going</div>
+    <h1>We’ve built the tools.<br>Now we <span class="accent">climb both ladders</span> &mdash; together.</h1>
+    <p class="lead">Two ladders, twenty rungs, one honest self-check, one loop to close. Find your level on each, take one step, and the studio gets smarter every time you do.</p>
+    <div class="cover-sub"><span>Next: <b>find your two rungs</b></span><span>Then: <b>take one step on each</b></span><span>Then: <b>hand it to AI</b></span></div>
+  </div></section>
+
+</div>
+
+<div class="hint">Use &larr; &rarr; or Space to move &middot; F for fullscreen</div>
+<div id="rail"><div id="dots"></div><div class="nav"><button id="prev">&larr; Prev</button><button id="next">Next &rarr;</button></div><div id="counter"></div></div>
+
+<script>
+/* --- background animation lifted verbatim from ADS_AI_Roadmap_V4_STANDALONE --- */
+var PREVIEW="<!doctype html>\n<html lang=\"en\" data-theme=\"light\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n  <meta name=\"color-scheme\" content=\"light dark\" />\n  <title>Premium Interactive Parametric Data Background<\/title>\n\n  <style>\n    :root {\n      --background: #f6f7fb;\n      --violet: 124, 92, 255;\n      --cyan: 0, 212, 255;\n    }\n\n    html[data-theme=\"dark\"] {\n      --background: #0b0b12;\n    }\n\n    /* Dark variation 01: deep blue-black, polished and cinematic. */\n    html[data-theme=\"midnight\"] {\n      --background: #070a14;\n    }\n\n    /* Dark variation 02: near-black obsidian with a restrained violet undertone. */\n    html[data-theme=\"obsidian\"] {\n      --background: #050509;\n    }\n\n    html[data-theme=\"midnight\"] .ambient-haze {\n      background:\n        radial-gradient(circle at 50% 50%, rgba(124, 92, 255, .075), transparent 21%),\n        radial-gradient(circle at 77% 48%, rgba(0, 212, 255, .060), transparent 39%);\n    }\n\n    html[data-theme=\"obsidian\"] .ambient-haze {\n      background:\n        radial-gradient(circle at 50% 50%, rgba(124, 92, 255, .065), transparent 20%),\n        radial-gradient(circle at 78% 48%, rgba(0, 212, 255, .040), transparent 36%);\n    }\n\n    * { box-sizing: border-box; }\n\n    html,\n    body {\n      width: 100%;\n      min-height: 100%;\n      margin: 0;\n      overflow: hidden;\n      background: var(--background);\n    }\n\n    body {\n      position: relative;\n      isolation: isolate;\n      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n    }\n\n    #parametric-data-bg {\n      position: fixed;\n      inset: 0;\n      z-index: -3;\n      width: 100%;\n      height: 100%;\n      display: block;\n      pointer-events: none;\n    }\n\n    .ambient-haze {\n      position: fixed;\n      inset: 0;\n      z-index: -2;\n      pointer-events: none;\n      background:\n        radial-gradient(circle at 50% 50%, rgba(var(--violet), .055), transparent 20%),\n        radial-gradient(circle at 77% 48%, rgba(var(--cyan), .055), transparent 38%);\n      mix-blend-mode: screen;\n    }\n\n    .premium-light,\n    .premium-grain {\n      position: fixed;\n      inset: 0;\n      pointer-events: none;\n    }\n\n    .premium-light {\n      z-index: -1;\n      opacity: .58;\n      background:\n        radial-gradient(\n          56% 48% at var(--light-x, 65%) var(--light-y, 42%),\n          rgba(255,255,255,.16),\n          rgba(255,255,255,.022) 31%,\n          transparent 66%\n        ),\n        linear-gradient(\n          116deg,\n          transparent 25%,\n          rgba(255,255,255,.05) 45%,\n          transparent 64%\n        );\n      mix-blend-mode: soft-light;\n    }\n\n    html[data-theme=\"dark\"] .premium-light,\n    html[data-theme=\"midnight\"] .premium-light,\n    html[data-theme=\"obsidian\"] .premium-light {\n      opacity: .40;\n      background:\n        radial-gradient(\n          54% 46% at var(--light-x, 65%) var(--light-y, 42%),\n          rgba(110,195,255,.10),\n          rgba(124,92,255,.025) 34%,\n          transparent 69%\n        ),\n        linear-gradient(\n          116deg,\n          transparent 25%,\n          rgba(115,180,255,.035) 45%,\n          transparent 64%\n        );\n      mix-blend-mode: screen;\n    }\n\n    .premium-grain {\n      z-index: 0;\n      opacity: .025;\n      background-image:\n        repeating-radial-gradient(\n          circle at 17% 23%,\n          rgba(20,20,30,.65) 0 .35px,\n          transparent .45px 2.2px\n        ),\n        repeating-linear-gradient(\n          97deg,\n          rgba(255,255,255,.25) 0 .3px,\n          transparent .4px 3px\n        );\n      background-size: 7px 7px, 11px 11px;\n      mix-blend-mode: multiply;\n      animation: premium-grain-shift .9s steps(2) infinite;\n    }\n\n    html[data-theme=\"dark\"] .premium-grain,\n    html[data-theme=\"midnight\"] .premium-grain,\n    html[data-theme=\"obsidian\"] .premium-grain {\n      opacity: .017;\n      mix-blend-mode: screen;\n    }\n\n    @keyframes premium-grain-shift {\n      0%   { transform: translate3d(0,0,0); }\n      25%  { transform: translate3d(-.6%, .4%, 0); }\n      50%  { transform: translate3d(.5%, -.5%, 0); }\n      75%  { transform: translate3d(.3%, .6%, 0); }\n      100% { transform: translate3d(0,0,0); }\n    }\n\n    .page-content {\n      position: relative;\n      z-index: 2;\n      min-height: 100vh;\n    }\n\n    @media (prefers-reduced-motion: reduce) {\n      #parametric-data-bg { opacity: .86; }\n    }\n  <\/style>\n<\/head>\n\n<body>\n  <canvas id=\"parametric-data-bg\" aria-hidden=\"true\"><\/canvas>\n  <div class=\"ambient-haze\" aria-hidden=\"true\"><\/div>\n  <div class=\"premium-light\" aria-hidden=\"true\"><\/div>\n  <div class=\"premium-grain\" aria-hidden=\"true\"><\/div>\n  <main class=\"page-content\"><\/main>\n\n  <script>\n  (() => {\n    \"use strict\";\n\n    /*\n      3D PARAMETRIC ORGANIC DATA BACKGROUND\n      ------------------------------------------------------------\n      Left: unstructured 3D fragments drift toward the centre.\n      Centre: invisible transformation field.\n      Right: data becomes a flowing parametric 3D lattice/ribbon.\n      The entire animation is mathematically periodic and loops seamlessly.\n\n      Themes:\n        ?theme=light\n        ?theme=dark\n        ?theme=midnight\n        ?theme=obsidian\n\n      Interaction:\n        Hover: bends and lifts the flow around the pointer.\n        Click/tap: releases an organic restructuring wave.\n    */\n\n    const LOOP_MS = 26000;\n    const MOTION_SPEED = 1.0;\n    const FRAGMENT_DENSITY = 1.05;\n    const STRUCTURE_DENSITY = 1.0;\n    const DEPTH_STRENGTH = 1.0;\n\n    const query = new URLSearchParams('?theme=__THEME__');\n    const requestedTheme = query.get(\"theme\");\n    if ([\"light\", \"dark\", \"midnight\", \"obsidian\"].includes(requestedTheme)) {\n      document.documentElement.dataset.theme = requestedTheme;\n    }\n\n    const canvas = document.getElementById(\"parametric-data-bg\");\n    const ctx = canvas.getContext(\"2d\", { alpha: true });\n    const reducedMotion = matchMedia(\"(prefers-reduced-motion: reduce)\").matches;\n\n    const TAU = Math.PI * 2;\n    const VIOLET = [124, 92, 255];\n    const CYAN = [0, 212, 255];\n\n    let W = 0;\n    let H = 0;\n    let DPR = 1;\n    let fragments = [];\n    let pulses = [];\n    let ripples = [];\n    let bokeh = [];\n    let frameTime = 0;\n    let lastFrameTime = 0;\n    let clickEnergy = 0;\n    let rand = seededRandom(981273);\n\n    const camera = {\n      x: 0,\n      y: 0,\n      targetX: 0,\n      targetY: 0,\n      roll: 0,\n      targetRoll: 0\n    };\n\n    const pointer = {\n      x: -9999,\n      y: -9999,\n      targetX: -9999,\n      targetY: -9999,\n      active: false,\n      pressed: false,\n      energy: 0,\n      velocityX: 0,\n      velocityY: 0,\n      speed: 0\n    };\n\n    const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));\n    const lerp = (a, b, t) => a + (b - a) * t;\n    const fract = v => v - Math.floor(v);\n    const smooth = t => t * t * (3 - 2 * t);\n    const smoother = t => t * t * t * (t * (t * 6 - 15) + 10);\n\n    function seededRandom(seed) {\n      let s = seed >>> 0;\n      return () => {\n        s += 0x6D2B79F5;\n        let t = s;\n        t = Math.imul(t ^ (t >>> 15), t | 1);\n        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);\n        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;\n      };\n    }\n\n    function rgba(rgb, a) {\n      return `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${a})`;\n    }\n\n    function colourAt(t, a = 1) {\n      t = clamp(t);\n      return rgba([\n        Math.round(lerp(VIOLET[0], CYAN[0], t)),\n        Math.round(lerp(VIOLET[1], CYAN[1], t)),\n        Math.round(lerp(VIOLET[2], CYAN[2], t))\n      ], a);\n    }\n\n    function isDarkTheme() {\n      return document.documentElement.dataset.theme !== \"light\";\n    }\n\n    function canvasBackground() {\n      const theme = document.documentElement.dataset.theme;\n      if (theme === \"midnight\") return \"#070a14\";\n      if (theme === \"obsidian\") return \"#050509\";\n      if (theme === \"dark\") return \"#0b0b12\";\n      return \"#f6f7fb\";\n    }\n\n    function updatePointer() {\n      const dt = Math.max(\n        8,\n        Math.min(34, frameTime - lastFrameTime || 16)\n      );\n      const ease = pointer.active ? .13 : .055;\n      const oldX = pointer.x;\n      const oldY = pointer.y;\n\n      pointer.x = lerp(pointer.x, pointer.targetX, ease);\n      pointer.y = lerp(pointer.y, pointer.targetY, ease);\n      pointer.energy = lerp(\n        pointer.energy,\n        pointer.active ? 1 : 0,\n        pointer.active ? .10 : .045\n      );\n\n      pointer.velocityX = lerp(\n        pointer.velocityX,\n        (pointer.x - oldX) / dt,\n        .16\n      );\n      pointer.velocityY = lerp(\n        pointer.velocityY,\n        (pointer.y - oldY) / dt,\n        .16\n      );\n      pointer.speed = lerp(\n        pointer.speed,\n        Math.hypot(pointer.velocityX, pointer.velocityY),\n        .12\n      );\n\n      const nx = pointer.active\n        ? pointer.x / Math.max(W, 1) - .5\n        : 0;\n      const ny = pointer.active\n        ? pointer.y / Math.max(H, 1) - .5\n        : 0;\n\n      camera.targetX = nx * 18 * pointer.energy;\n      camera.targetY = ny * 12 * pointer.energy;\n      camera.targetRoll = nx * -.008 * pointer.energy;\n\n      camera.x = lerp(camera.x, camera.targetX, .045);\n      camera.y = lerp(camera.y, camera.targetY, .045);\n      camera.roll = lerp(camera.roll, camera.targetRoll, .035);\n\n      clickEnergy = lerp(clickEnergy, 0, .035);\n\n      document.documentElement.style.setProperty(\n        \"--light-x\",\n        `${clamp(pointer.x / Math.max(W, 1), 0, 1) * 100}%`\n      );\n      document.documentElement.style.setProperty(\n        \"--light-y\",\n        `${clamp(pointer.y / Math.max(H, 1), 0, 1) * 100}%`\n      );\n\n      ripples = ripples.filter(\n        ripple => frameTime - ripple.born < ripple.duration\n      );\n    }\n\n    function interactionAt(x, y, z = 0, strength = 1) {\n      let dx = 0;\n      let dy = 0;\n      let dz = 0;\n      let glow = 0;\n\n      if (pointer.energy > .001) {\n        const vx = pointer.x - x;\n        const vy = pointer.y - y;\n        const distance = Math.hypot(vx, vy);\n        const radius = Math.min(W, H) * .245;\n        const proximity =\n          smooth(clamp(1 - distance / radius)) *\n          pointer.energy *\n          strength;\n\n        if (proximity > 0) {\n          const safeDistance = Math.max(distance, 1);\n          const nx = vx / safeDistance;\n          const ny = vy / safeDistance;\n          const orbit =\n            Math.sin(frameTime * .0015 + distance * .018 + z * 2.2);\n\n          const wake = clamp(pointer.speed * 1.55, 0, 1.20);\n\n          // Magnetic pull, organic curl and a restrained fluid wake.\n          dx +=\n            nx * proximity * 18 +\n            (-ny) * proximity * orbit * 13 +\n            pointer.velocityX * proximity * 11;\n          dy +=\n            ny * proximity * 18 +\n            nx * proximity * orbit * 13 +\n            pointer.velocityY * proximity * 11;\n          dz -= proximity * (\n            .48 +\n            .18 * Math.sin(frameTime * .0018 + distance * .012) +\n            wake * .14\n          );\n          glow += proximity * (1 + wake * .20);\n        }\n      }\n\n      for (const ripple of ripples) {\n        const age = clamp(\n          (frameTime - ripple.born) / ripple.duration\n        );\n        const vx = x - ripple.x;\n        const vy = y - ripple.y;\n        const distance = Math.hypot(vx, vy);\n        const radius = age * Math.min(W, H) * .62;\n        const bandWidth = lerp(18, 54, age);\n        const band = Math.exp(\n          -Math.pow((distance - radius) / bandWidth, 2)\n        );\n        const fade = (1 - age) * ripple.power * strength;\n\n        if (band > .001) {\n          const safeDistance = Math.max(distance, 1);\n          const nx = vx / safeDistance;\n          const ny = vy / safeDistance;\n          const displacement = band * fade * 42;\n\n          dx += nx * displacement;\n          dy += ny * displacement;\n          dz -= band * fade * .82;\n          glow += band * fade * 1.7;\n        }\n      }\n\n      return {\n        dx,\n        dy,\n        dz,\n        glow: clamp(glow, 0, 2.2)\n      };\n    }\n\n    function applyInteraction(point, strength = 1) {\n      const influence = interactionAt(\n        point.x,\n        point.y,\n        point.z || 0,\n        strength\n      );\n\n      return {\n        x: point.x + influence.dx,\n        y: point.y + influence.dy,\n        z: (point.z || 0) + influence.dz,\n        glow: influence.glow\n      };\n    }\n\n    function triggerRipple(x, y, power = 1) {\n      clickEnergy = Math.min(1.35, clickEnergy + .92 * power);\n\n      ripples.push({\n        x,\n        y,\n        born: performance.now(),\n        duration: 2100,\n        power\n      });\n\n      if (ripples.length > 5) ripples.shift();\n    }\n\n    function resize() {\n      DPR = Math.min(devicePixelRatio || 1, 2);\n      W = innerWidth;\n      H = innerHeight;\n      canvas.width = Math.round(W * DPR);\n      canvas.height = Math.round(H * DPR);\n      canvas.style.width = W + \"px\";\n      canvas.style.height = H + \"px\";\n      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);\n      buildScene();\n    }\n\n    function buildScene() {\n      rand = seededRandom(Math.round(W * 19 + H * 43));\n      fragments = [];\n      pulses = [];\n      bokeh = [];\n\n      const minDim = Math.min(W, H);\n      const conversionX = W * .50;\n      const conversionY = H * .50;\n\n      const fragmentCount = Math.max(\n        90,\n        Math.round((W * H / 7600) * FRAGMENT_DENSITY)\n      );\n\n      for (let i = 0; i < fragmentCount; i++) {\n        const mode = rand();\n        let sx, sy;\n\n        if (mode < .62) {\n          sx = lerp(-W * .12, W * .17, Math.pow(rand(), 1.4));\n          sy = lerp(-H * .10, H * 1.10, rand());\n        } else if (mode < .82) {\n          sx = lerp(W * .02, W * .40, rand());\n          sy = lerp(-H * .14, H * .08, rand());\n        } else {\n          sx = lerp(W * .02, W * .40, rand());\n          sy = lerp(H * .92, H * 1.14, rand());\n        }\n\n        const angle = rand() * TAU;\n        const spread = minDim * lerp(.012, .070, Math.pow(rand(), 1.7));\n\n        fragments.push({\n          sx,\n          sy,\n          sz: lerp(-1, 1, rand()),\n          tx: conversionX + Math.cos(angle) * spread * .34,\n          ty: conversionY + Math.sin(angle) * spread,\n          tz: lerp(-.12, .12, rand()),\n          c1x: lerp(sx, conversionX, .30) + lerp(-90, 90, rand()),\n          c1y: sy + lerp(-H * .18, H * .18, rand()),\n          c1z: lerp(-1.0, 1.0, rand()),\n          c2x: lerp(sx, conversionX, .74) + lerp(-55, 55, rand()),\n          c2y: lerp(sy, conversionY, .80) + lerp(-H * .10, H * .10, rand()),\n          c2z: lerp(-.40, .40, rand()),\n          phase: rand(),\n          size: lerp(2.0, 9.2, Math.pow(rand(), 1.7)),\n          spin: lerp(-1.5, 1.5, rand()),\n          type: Math.floor(rand() * 5),\n          alpha: lerp(.24, .80, rand()),\n          depth: rand()\n        });\n      }\n\n      const pulseCount = Math.max(16, Math.round(30 * STRUCTURE_DENSITY));\n      for (let i = 0; i < pulseCount; i++) {\n        pulses.push({\n          phase: rand(),\n          rail: Math.floor(rand() * 8),\n          size: lerp(.8, 2.4, rand()),\n          speed: [1, 1, 1, 2][Math.floor(rand() * 4)]\n        });\n      }\n\n      const bokehCount = Math.max(\n        24,\n        Math.round(W * H / 34000)\n      );\n\n      for (let i = 0; i < bokehCount; i++) {\n        bokeh.push({\n          x: rand() * W,\n          y: rand() * H,\n          z: lerp(-1.2, 1.4, rand()),\n          radius: lerp(1.2, 8.5, Math.pow(rand(), 1.8)),\n          alpha: lerp(.018, .085, rand()),\n          phase: rand() * TAU,\n          speed: lerp(.25, .75, rand()),\n          front: rand() > .70\n        });\n      }\n    }\n\n    function project3D(x, y, z) {\n      const perspective = 1 / (1 + z * .18 * DEPTH_STRENGTH);\n      const localX = (x - W * .50) * perspective;\n      const localY = (y - H * .50) * perspective;\n      const cosR = Math.cos(camera.roll);\n      const sinR = Math.sin(camera.roll);\n\n      return {\n        x:\n          W * .50 +\n          localX * cosR -\n          localY * sinR -\n          camera.x * (1 - z * .08),\n        y:\n          H * .50 +\n          localX * sinR +\n          localY * cosR -\n          camera.y * (1 - z * .08),\n        scale: perspective,\n        alpha: clamp(1 - Math.abs(z) * .30)\n      };\n    }\n\n    function cubic3D(item, t) {\n      const u = 1 - t;\n      const tt = t * t;\n      const uu = u * u;\n      const uuu = uu * u;\n      const ttt = tt * t;\n\n      return {\n        x: uuu * item.sx + 3 * uu * t * item.c1x + 3 * u * tt * item.c2x + ttt * item.tx,\n        y: uuu * item.sy + 3 * uu * t * item.c1y + 3 * u * tt * item.c2y + ttt * item.ty,\n        z: uuu * item.sz + 3 * uu * t * item.c1z + 3 * u * tt * item.c2z + ttt * item.tz\n      };\n    }\n\n    function drawBackground() {\n      const dark = isDarkTheme();\n      ctx.fillStyle = canvasBackground();\n      ctx.fillRect(0, 0, W, H);\n\n      const g1 = ctx.createRadialGradient(\n        W * .51, H * .50, 0,\n        W * .51, H * .50, Math.min(W, H) * .24\n      );\n      g1.addColorStop(0, dark ? \"rgba(124,92,255,.095)\" : \"rgba(124,92,255,.050)\");\n      g1.addColorStop(.46, dark ? \"rgba(0,212,255,.036)\" : \"rgba(0,212,255,.020)\");\n      g1.addColorStop(1, \"rgba(0,0,0,0)\");\n      ctx.fillStyle = g1;\n      ctx.fillRect(0, 0, W, H);\n\n      const g2 = ctx.createRadialGradient(\n        W * .78, H * .48, 0,\n        W * .78, H * .48, Math.max(W, H) * .54\n      );\n      g2.addColorStop(0, dark ? \"rgba(0,212,255,.046)\" : \"rgba(0,212,255,.022)\");\n      g2.addColorStop(1, \"rgba(0,0,0,0)\");\n      ctx.fillStyle = g2;\n      ctx.fillRect(0, 0, W, H);\n    }\n\n    function drawBokeh(loop, foreground = false) {\n      const dark = isDarkTheme();\n      ctx.save();\n\n      for (const particle of bokeh) {\n        if (particle.front !== foreground) continue;\n\n        const driftX =\n          Math.sin(loop * TAU * particle.speed + particle.phase) *\n          (foreground ? 18 : 10);\n        const driftY =\n          Math.cos(\n            loop * TAU * particle.speed * .73 + particle.phase\n          ) * (foreground ? 13 : 7);\n\n        const projected = project3D(\n          particle.x + driftX,\n          particle.y + driftY,\n          particle.z\n        );\n\n        const alpha =\n          particle.alpha *\n          projected.alpha *\n          (foreground ? .72 : 1) *\n          (dark ? 1.15 : .85);\n\n        ctx.filter = `blur(${foreground ? 2.4 : 1.3}px)`;\n        ctx.fillStyle = colourAt(\n          clamp(.35 + particle.x / Math.max(W, 1) * .55),\n          alpha\n        );\n        ctx.beginPath();\n        ctx.arc(\n          projected.x,\n          projected.y,\n          particle.radius *\n            projected.scale *\n            (foreground ? 1.4 : 1),\n          0,\n          TAU\n        );\n        ctx.fill();\n      }\n\n      ctx.filter = \"none\";\n      ctx.restore();\n    }\n\n    function drawConversionField(loop) {\n      const dark = isDarkTheme();\n      const x = W * .50;\n      const y = H * .50;\n      const minDim = Math.min(W, H);\n\n      ctx.save();\n      ctx.translate(x, y);\n      ctx.rotate(Math.sin(loop * TAU) * .035);\n\n      for (let i = 0; i < 5; i++) {\n        const pulse = .5 + .5 * Math.sin(loop * TAU * 2 + i * 1.3);\n        const rx = minDim * (.018 + i * .010 + pulse * .0025);\n        const ry = minDim * (.062 + i * .017 + pulse * .006);\n\n        ctx.strokeStyle = colourAt(\n          .42 + i * .04,\n          (dark ? .050 : .032) * (1 - i * .11)\n        );\n        ctx.lineWidth = .55;\n        ctx.beginPath();\n        ctx.ellipse(0, 0, rx, ry, Math.sin(loop * TAU + i) * .08, -.95, .98);\n        ctx.stroke();\n      }\n\n      ctx.restore();\n    }\n\n    function drawFragments(loop) {\n      const dark = isDarkTheme();\n\n      ctx.save();\n      ctx.lineCap = \"round\";\n      ctx.lineJoin = \"round\";\n\n      const ordered = fragments.map(f => {\n        const raw = fract(f.phase + loop * MOTION_SPEED);\n        const p = smoother(raw);\n        const basePos = cubic3D(f, p);\n        return { f, raw, p, basePos };\n      }).sort((a, b) => b.basePos.z - a.basePos.z);\n\n      for (const item of ordered) {\n        const { f, raw, p, basePos } = item;\n        const basePrevPos = cubic3D(f, clamp(p - .024));\n        const baseOlderPos = cubic3D(f, clamp(p - .060));\n\n        // Loose data responds more freely before it reaches the conversion field.\n        const interactionStrength = lerp(\n          1.12,\n          .54,\n          smooth(clamp((p - .42) / .58))\n        );\n\n        const pos = applyInteraction(basePos, interactionStrength);\n        const prevPos = applyInteraction(\n          basePrevPos,\n          interactionStrength * .92\n        );\n        const olderPos = applyInteraction(\n          baseOlderPos,\n          interactionStrength * .82\n        );\n\n        const pp = project3D(pos.x, pos.y, pos.z);\n        const pPrev = project3D(prevPos.x, prevPos.y, prevPos.z);\n        const pOlder = project3D(olderPos.x, olderPos.y, olderPos.z);\n\n        const fadeIn = smooth(clamp(raw / .10));\n        const fadeOut = 1 - smooth(clamp((raw - .81) / .19));\n        const convergence = smooth(clamp((p - .56) / .44));\n        const alpha =\n          f.alpha *\n          fadeIn *\n          fadeOut *\n          pp.alpha *\n          (1 + (pos.glow || 0) * .20);\n        const colourProgress = lerp(.02, .48, p);\n\n        const trail = ctx.createLinearGradient(pOlder.x, pOlder.y, pp.x, pp.y);\n        trail.addColorStop(0, colourAt(colourProgress, 0));\n        trail.addColorStop(1, colourAt(colourProgress, alpha * lerp(.20, .72, convergence)));\n\n        ctx.strokeStyle = trail;\n        ctx.lineWidth = lerp(.4, 1.15, f.depth) * pp.scale;\n        ctx.beginPath();\n        ctx.moveTo(pOlder.x, pOlder.y);\n        ctx.quadraticCurveTo(pPrev.x, pPrev.y, pp.x, pp.y);\n        ctx.stroke();\n\n        const angle = Math.atan2(pp.y - pPrev.y, pp.x - pPrev.x);\n\n        ctx.save();\n        ctx.translate(pp.x, pp.y);\n        ctx.rotate(lerp(angle + f.spin * Math.sin(raw * TAU), angle, convergence));\n\n        const scale = pp.scale * lerp(1, .68, convergence);\n        ctx.scale(scale, scale);\n\n        ctx.strokeStyle = colourAt(colourProgress, alpha);\n        ctx.fillStyle = colourAt(colourProgress, alpha * (dark ? .17 : .09));\n        ctx.lineWidth = lerp(.65, 1.15, f.depth);\n\n        if (dark && alpha > .24) {\n          ctx.shadowBlur = lerp(4, 11, f.depth);\n          ctx.shadowColor = colourAt(colourProgress, alpha);\n        } else if (!dark && pos.z < -.25) {\n          ctx.shadowBlur = 5;\n          ctx.shadowColor = \"rgba(80,80,120,.10)\";\n        }\n\n        const s = f.size;\n\n        switch (f.type) {\n          case 0:\n            ctx.beginPath();\n            ctx.moveTo(s, 0);\n            ctx.lineTo(-s * .68, s * .30);\n            ctx.lineTo(-s * .18, -s * .44);\n            ctx.closePath();\n            ctx.fill();\n            ctx.stroke();\n            break;\n          case 1:\n            ctx.beginPath();\n            ctx.moveTo(s * .72, 0);\n            ctx.lineTo(-s * .54, s * .44);\n            ctx.lineTo(-s * .34, -s * .50);\n            ctx.closePath();\n            ctx.stroke();\n            break;\n          case 2:\n            ctx.strokeRect(-s * .42, -s * .42, s * .84, s * .84);\n            ctx.beginPath();\n            ctx.moveTo(-s * .42, -s * .42);\n            ctx.lineTo(0, -s * .70);\n            ctx.lineTo(s * .42, -s * .42);\n            ctx.moveTo(0, -s * .70);\n            ctx.lineTo(0, -s * .04);\n            ctx.stroke();\n            break;\n          case 3:\n            ctx.beginPath();\n            ctx.moveTo(-s, 0);\n            ctx.lineTo(s, 0);\n            ctx.moveTo(-s * .55, -s * .33);\n            ctx.lineTo(s * .62, -s * .33);\n            ctx.moveTo(-s * .28, s * .33);\n            ctx.lineTo(s * .76, s * .33);\n            ctx.stroke();\n            break;\n          default:\n            ctx.fillStyle = colourAt(colourProgress, alpha);\n            ctx.beginPath();\n            ctx.arc(0, 0, Math.max(1, s * .22), 0, TAU);\n            ctx.fill();\n        }\n\n        ctx.restore();\n      }\n\n      ctx.restore();\n    }\n\n    function parametricCenterline(u, loop) {\n      const startX = W * .515;\n      const endX = W * 1.065;\n      const x = lerp(startX, endX, u);\n\n      const primary = Math.sin(u * TAU * 1.05 + loop * TAU * 2) * H * .045;\n      const secondary = Math.sin(u * TAU * 2.15 - loop * TAU) * H * .014;\n\n      return {\n        x,\n        y: H * .50 + primary + secondary,\n        z: Math.sin(u * TAU * 1.30 + loop * TAU) * .45\n      };\n    }\n\n    function structurePoint(u, rail, loop) {\n      const center = parametricCenterline(u, loop);\n\n      const railCount = 8;\n      const theta = rail / railCount * TAU;\n\n      const maturity = smooth(clamp(u / .55));\n      const breathing = 1 + .10 * Math.sin(loop * TAU * 2 + u * TAU * 1.6);\n\n      const radiusY = lerp(H * .028, H * .092, maturity) * breathing;\n      const radiusZ = lerp(.10, .72, maturity);\n\n      /*\n        Parametric torsion:\n        the cross-section rotates continuously around the centerline,\n        making the structured stream feel three-dimensional and alive.\n      */\n      const twist =\n        u * TAU * 1.65 +\n        loop * TAU * 2 +\n        Math.sin(u * TAU * 2 - loop * TAU) * .25;\n\n      const a = theta + twist;\n      const y = center.y + Math.cos(a) * radiusY;\n      const z = center.z + Math.sin(a) * radiusZ;\n\n      const influenced = applyInteraction(\n        { x: center.x, y, z },\n        lerp(.58, .86, maturity)\n      );\n\n      return {\n        x: influenced.x,\n        y: influenced.y,\n        z: influenced.z,\n        interactionGlow: influenced.glow,\n        maturity,\n        colour: lerp(.48, 1, u)\n      };\n    }\n\n    function drawParametricStructure(loop) {\n      const dark = isDarkTheme();\n      const railCount = 8;\n      const segmentCount = Math.max(42, Math.round(64 * STRUCTURE_DENSITY));\n\n      const rings = [];\n\n      for (let i = 0; i <= segmentCount; i++) {\n        const u = i / segmentCount;\n        const points = [];\n\n        for (let rail = 0; rail < railCount; rail++) {\n          const p3 = structurePoint(u, rail, loop);\n          const p2 = project3D(p3.x, p3.y, p3.z);\n          points.push({ ...p3, ...p2 });\n        }\n\n        rings.push(points);\n      }\n\n      /*\n        Draw back-to-front to strengthen depth.\n      */\n      const longitudinal = [];\n      for (let rail = 0; rail < railCount; rail++) {\n        for (let i = 0; i < segmentCount; i++) {\n          const a = rings[i][rail];\n          const b = rings[i + 1][rail];\n          longitudinal.push({\n            a,\n            b,\n            depth: (a.z + b.z) * .5,\n            type: \"rail\"\n          });\n        }\n      }\n\n      const crossLinks = [];\n      for (let i = 1; i < segmentCount; i += 2) {\n        const u = i / segmentCount;\n        const maturity = smooth(clamp(u / .60));\n\n        for (let rail = 0; rail < railCount; rail++) {\n          const a = rings[i][rail];\n          const b = rings[i][(rail + 1) % railCount];\n          crossLinks.push({\n            a,\n            b,\n            depth: (a.z + b.z) * .5,\n            type: \"ring\",\n            maturity\n          });\n\n          if (maturity > .38 && (i + rail) % 3 === 0) {\n            const c = rings[Math.min(i + 2, segmentCount)][(rail + 2) % railCount];\n            crossLinks.push({\n              a,\n              b: c,\n              depth: (a.z + c.z) * .5,\n              type: \"diagonal\",\n              maturity\n            });\n          }\n        }\n      }\n\n      const allLinks = longitudinal.concat(crossLinks).sort((m, n) => n.depth - m.depth);\n\n      ctx.save();\n      ctx.lineCap = \"round\";\n      ctx.lineJoin = \"round\";\n\n      for (const link of allLinks) {\n        const a = link.a;\n        const b = link.b;\n        const depthAlpha = clamp(1 - Math.abs(link.depth) * .22);\n        const maturity = Math.min(a.maturity, b.maturity);\n\n        let alpha;\n        let width;\n\n        if (link.type === \"rail\") {\n          alpha = lerp(dark ? .16 : .19, dark ? .44 : .46, maturity);\n          width = lerp(.62, 1.28, maturity);\n        } else if (link.type === \"ring\") {\n          alpha = lerp(dark ? .10 : .13, dark ? .31 : .34, maturity);\n          width = lerp(.50, .92, maturity);\n        } else {\n          alpha = lerp(dark ? .07 : .09, dark ? .22 : .25, maturity);\n          width = lerp(.45, .72, maturity);\n        }\n\n        const interactionGlow = Math.max(\n          a.interactionGlow || 0,\n          b.interactionGlow || 0\n        );\n\n        const segmentU = clamp(\n          ((a.colour + b.colour) * .5 - .48) / .52\n        );\n        const sweep = fract(loop * 1.35);\n        const sweepDistance = Math.min(\n          Math.abs(segmentU - sweep),\n          1 - Math.abs(segmentU - sweep)\n        );\n        const specular = Math.exp(\n          -Math.pow(sweepDistance / .055, 2)\n        );\n\n        alpha *=\n          depthAlpha *\n          Math.min(a.alpha, b.alpha) *\n          (\n            1 +\n            interactionGlow * .25 +\n            specular * .82 +\n            clickEnergy * .12\n          );\n\n        width *= 1 + specular * .55;\n\n        const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);\n        grad.addColorStop(0, colourAt(a.colour, alpha));\n        grad.addColorStop(1, colourAt(b.colour, alpha));\n\n        ctx.strokeStyle = grad;\n        ctx.lineWidth = width * ((a.scale + b.scale) * .5);\n        ctx.beginPath();\n        ctx.moveTo(a.x, a.y);\n        ctx.lineTo(b.x, b.y);\n        ctx.stroke();\n      }\n\n      /*\n        Parametric membranes: occasional translucent facets create a more\n        sculptural, architectural 3D quality without becoming visually heavy.\n      */\n      for (let i = 7; i < segmentCount - 2; i += 7) {\n        const maturity = smooth(clamp((i / segmentCount) / .55));\n        if (maturity < .18) continue;\n\n        for (let rail = 0; rail < railCount; rail += 2) {\n          const a = rings[i][rail];\n          const b = rings[i][(rail + 1) % railCount];\n          const c = rings[Math.min(i + 3, segmentCount)][(rail + 2) % railCount];\n\n          const zAvg = (a.z + b.z + c.z) / 3;\n          const alpha = (dark ? .022 : .018) * maturity * clamp(1 - Math.abs(zAvg) * .25);\n\n          ctx.fillStyle = colourAt((a.colour + b.colour + c.colour) / 3, alpha);\n          ctx.beginPath();\n          ctx.moveTo(a.x, a.y);\n          ctx.lineTo(b.x, b.y);\n          ctx.lineTo(c.x, c.y);\n          ctx.closePath();\n          ctx.fill();\n        }\n      }\n\n      /*\n        Nodes are also depth sorted.\n      */\n      const nodeList = [];\n      for (let i = 0; i <= segmentCount; i += 2) {\n        for (let rail = 0; rail < railCount; rail++) {\n          nodeList.push(rings[i][rail]);\n        }\n      }\n      nodeList.sort((a, b) => b.z - a.z);\n\n      for (const node of nodeList) {\n        const depthAlpha = clamp(1 - Math.abs(node.z) * .22);\n        const nodeU = clamp((node.colour - .48) / .52);\n        const glintDistance = Math.min(\n          Math.abs(nodeU - fract(loop * 1.35)),\n          1 - Math.abs(nodeU - fract(loop * 1.35))\n        );\n        const glint = Math.exp(\n          -Math.pow(glintDistance / .050, 2)\n        );\n\n        const alpha =\n          lerp(dark ? .46 : .56, dark ? .82 : .86, node.maturity) *\n          depthAlpha *\n          node.alpha *\n          (\n            1 +\n            (node.interactionGlow || 0) * .30 +\n            glint * .50\n          );\n\n        if (dark && node.z < .15) {\n          ctx.shadowBlur = lerp(4, 12, node.maturity);\n          ctx.shadowColor = colourAt(node.colour, alpha);\n        }\n\n        ctx.fillStyle = colourAt(node.colour, alpha);\n        ctx.beginPath();\n        ctx.arc(\n          node.x,\n          node.y,\n          lerp(1.25, 3.15, node.maturity) * node.scale,\n          0,\n          TAU\n        );\n        ctx.fill();\n        ctx.shadowBlur = 0;\n      }\n\n      ctx.restore();\n    }\n\n    function drawPulses(loop) {\n      const dark = isDarkTheme();\n      const railCount = 8;\n\n      ctx.save();\n\n      for (const pulse of pulses) {\n        const u = fract(pulse.phase + loop * pulse.speed);\n        const p3 = structurePoint(u, pulse.rail % railCount, loop);\n        const p2 = project3D(p3.x, p3.y, p3.z);\n\n        const fadeIn = smooth(clamp(u / .06));\n        const fadeOut = 1 - smooth(clamp((u - .90) / .10));\n        const alpha = fadeIn * fadeOut * p2.alpha * (dark ? .96 : .78);\n\n        ctx.shadowBlur = dark ? 15 : 8;\n        ctx.shadowColor = colourAt(p3.colour, alpha);\n        ctx.fillStyle = colourAt(p3.colour, alpha);\n\n        ctx.beginPath();\n        ctx.arc(\n          p2.x,\n          p2.y,\n          pulse.size * p2.scale,\n          0,\n          TAU\n        );\n        ctx.fill();\n      }\n\n      ctx.restore();\n    }\n\n    function drawInteractionOverlay() {\n      if (pointer.energy <= .002 && ripples.length === 0) return;\n\n      const dark = isDarkTheme();\n      ctx.save();\n\n      if (pointer.energy > .002) {\n        const radius = Math.min(W, H) * .11;\n        const glow = ctx.createRadialGradient(\n          pointer.x,\n          pointer.y,\n          0,\n          pointer.x,\n          pointer.y,\n          radius\n        );\n\n        glow.addColorStop(\n          0,\n          colourAt(.68, (dark ? .075 : .038) * pointer.energy)\n        );\n        glow.addColorStop(\n          .34,\n          colourAt(.52, (dark ? .040 : .020) * pointer.energy)\n        );\n        glow.addColorStop(1, \"rgba(0,0,0,0)\");\n\n        ctx.fillStyle = glow;\n        ctx.fillRect(\n          pointer.x - radius,\n          pointer.y - radius,\n          radius * 2,\n          radius * 2\n        );\n      }\n\n      if (clickEnergy > .004 && pointer.x > -1000) {\n        const focusRadius =\n          Math.min(W, H) * (.07 + clickEnergy * .10);\n        const focus = ctx.createRadialGradient(\n          pointer.x,\n          pointer.y,\n          0,\n          pointer.x,\n          pointer.y,\n          focusRadius\n        );\n\n        focus.addColorStop(\n          0,\n          colourAt(.72, (dark ? .13 : .060) * clickEnergy)\n        );\n        focus.addColorStop(\n          .32,\n          colourAt(.52, (dark ? .055 : .026) * clickEnergy)\n        );\n        focus.addColorStop(1, \"rgba(0,0,0,0)\");\n\n        ctx.fillStyle = focus;\n        ctx.fillRect(\n          pointer.x - focusRadius,\n          pointer.y - focusRadius,\n          focusRadius * 2,\n          focusRadius * 2\n        );\n      }\n\n      for (const ripple of ripples) {\n        const age = clamp(\n          (frameTime - ripple.born) / ripple.duration\n        );\n        const radius = age * Math.min(W, H) * .62;\n        const alpha =\n          Math.sin(age * Math.PI) *\n          (dark ? .16 : .10) *\n          ripple.power;\n\n        ctx.strokeStyle = colourAt(\n          lerp(.48, .94, age),\n          alpha\n        );\n        ctx.lineWidth = lerp(1.2, .45, age);\n        ctx.beginPath();\n        ctx.arc(ripple.x, ripple.y, radius, 0, TAU);\n        ctx.stroke();\n      }\n\n      ctx.restore();\n    }\n\n    function drawVignette() {\n      const dark = isDarkTheme();\n\n      const vignette = ctx.createRadialGradient(\n        W * .56, H * .49, Math.min(W, H) * .10,\n        W * .56, H * .49, Math.max(W, H) * .76\n      );\n      vignette.addColorStop(0, \"rgba(0,0,0,0)\");\n      vignette.addColorStop(1, dark ? \"rgba(0,0,0,.24)\" : \"rgba(255,255,255,.28)\");\n      ctx.fillStyle = vignette;\n      ctx.fillRect(0, 0, W, H);\n    }\n\n    function render(time) {\n      frameTime = time;\n      updatePointer();\n\n      const loop = reducedMotion\n        ? .42\n        : fract((time * MOTION_SPEED) / LOOP_MS);\n\n      drawBackground();\n      drawBokeh(loop, false);\n      drawConversionField(loop);\n      drawFragments(loop);\n      drawParametricStructure(loop);\n      drawPulses(loop);\n      drawBokeh(loop, true);\n      drawInteractionOverlay();\n      drawVignette();\n\n      lastFrameTime = time;\n      requestAnimationFrame(render);\n    }\n\n    function setPointerFromEvent(event) {\n      pointer.targetX = event.clientX;\n      pointer.targetY = event.clientY;\n\n      if (!pointer.active) {\n        pointer.x = event.clientX;\n        pointer.y = event.clientY;\n      }\n\n      pointer.active = true;\n    }\n\n    addEventListener(\n      \"pointermove\",\n      setPointerFromEvent,\n      { passive: true }\n    );\n\n    addEventListener(\n      \"pointerenter\",\n      setPointerFromEvent,\n      { passive: true }\n    );\n\n    addEventListener(\n      \"pointerleave\",\n      () => {\n        pointer.active = false;\n        pointer.targetX = pointer.x;\n        pointer.targetY = pointer.y;\n      },\n      { passive: true }\n    );\n\n    addEventListener(\n      \"pointerdown\",\n      event => {\n        setPointerFromEvent(event);\n        pointer.pressed = true;\n        triggerRipple(\n          event.clientX,\n          event.clientY,\n          event.pointerType === \"touch\" ? 1.15 : 1\n        );\n      },\n      { passive: true }\n    );\n\n    addEventListener(\n      \"pointerup\",\n      () => {\n        pointer.pressed = false;\n      },\n      { passive: true }\n    );\n\n    addEventListener(\n      \"pointercancel\",\n      () => {\n        pointer.pressed = false;\n        pointer.active = false;\n      },\n      { passive: true }\n    );\n\n    // Press T while testing to cycle through all supplied themes.\n    addEventListener(\"keydown\", event => {\n      if (event.key.toLowerCase() !== \"t\") return;\n\n      const themes = [\n        \"light\",\n        \"dark\",\n        \"midnight\",\n        \"obsidian\"\n      ];\n\n      const current =\n        document.documentElement.dataset.theme || \"light\";\n      const currentIndex = themes.indexOf(current);\n      const next = themes[\n        (currentIndex + 1) % themes.length\n      ];\n\n      document.documentElement.dataset.theme = next;\n    });\n\n    addEventListener(\"resize\", resize, { passive: true });\n    resize();\n    requestAnimationFrame(render);\n  })();\n  <\/script>\n<\/body>\n<\/html>";
+function setAnim(f,th){ if(typeof PREVIEW==='undefined')return; f.srcdoc=PREVIEW.replace('__THEME__',th==='light'?'light':'obsidian'); }
+
+/* --- deck engine --- */
+var slides=[].slice.call(document.querySelectorAll('.slide'));
+var i=0, dots=document.getElementById('dots'), counter=document.getElementById('counter');
+slides.forEach(function(_,k){var b=document.createElement('button');b.onclick=function(){go(k)};dots.appendChild(b);});
+function render(){
+  slides.forEach(function(s,k){s.classList.toggle('active',k===i);});
+  document.body.classList.toggle('anim-bold', i===0 || i===slides.length-1);
+  [].slice.call(dots.children).forEach(function(d,k){d.classList.toggle('on',k===i);});
+  counter.textContent=String(i+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+}
+function go(n){i=Math.max(0,Math.min(slides.length-1,n));render();}
+function next(){go(i+1);} function prev(){go(i-1);}
+document.getElementById('next').onclick=next;
+document.getElementById('prev').onclick=prev;
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev();}
+  else if(e.key==='Home'){go(0);} else if(e.key==='End'){go(slides.length-1);}
+  else if(e.key.toLowerCase()==='f'){ if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen(); else document.exitFullscreen&&document.exitFullscreen(); }
+});
+var sx=0; document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>50){dx<0?next():prev();}});
+
+/* theme */
+function applyTheme(th){document.documentElement.setAttribute('data-theme',th);setAnim(document.getElementById('anim'),th);}
+document.getElementById('themeBtn').onclick=function(){
+  applyTheme(document.documentElement.getAttribute('data-theme')==='light'?'obsidian':'light');
+};
+applyTheme('obsidian');
+render();
+</script>
+</body>
+</html>

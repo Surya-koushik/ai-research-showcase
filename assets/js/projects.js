@@ -269,13 +269,117 @@ if(window.REGISTRY_PROJECTS){
   window.REGISTRY_PROJECTS.forEach(r=>{ if(!seen.has(r.id)){ PROJECTS.push(r); seen.add(r.id); } });
 }
 
+/* Work found on the drives on 19 Aug 2026 that the July registry never saw,
+   plus the finished decks. These carry their own kind and domain. */
+if(window.EXPANSION_PROJECTS){
+  const seen=new Set(PROJECTS.map(p=>p.id));
+  window.EXPANSION_PROJECTS.forEach(r=>{ if(!seen.has(r.id)){ PROJECTS.push(r); seen.add(r.id); } });
+}
+
 /* In-house / generic tools carry the Asure brand mark, not a bare language logo.
    (tech chips keep their accurate per-language logos.) */
 const GENERIC_LOGO = new Set(['python','csharp','dotnet','html','css','javascript','typescript','node','ollama','unknown','']);
 PROJECTS.forEach(p=>{ if(!p.logo || GENERIC_LOGO.has(p.logo)) p.logo='asure'; });
 
+/* ============================================================================
+   THE TWO AXES  —  KIND and DOMAIN
+   ----------------------------------------------------------------------------
+   The old category list mixed five different questions into one flat set: form
+   (plugin, dashboard), host app (revit), subject (bim), behaviour (automation,
+   ai-agents), technology (llm, mcp, vision) and maturity (research,
+   experiments). Because they all shared one field, 'automation' ended up on 17
+   of 24 tools and 'bim' on 14 — neither filtered anything — and every tool
+   carried 3.2 tags on average, so nothing was distinguishable from anything.
+
+   Two axes replace it. Each answers exactly one question, and each tool answers
+   it once:
+
+     KIND    what sort of thing is it   — how you actually use it
+     DOMAIN  what work does it serve    — where it sits in the studio
+
+   Maturity stays on `status`. Technology stays on `tech`. Nothing is tagged
+   twice on the same axis.
+
+   'Agent' is deliberately strict: choosing its own steps to reach a goal, not
+   merely calling a model. On that definition none of the tools listed here is
+   one — the agentic work (JARVIS, Asure AI Agent, AgentWatch) is not on the
+   site yet. An empty category is more useful than seven wrong labels.
+   ============================================================================ */
+
+const KINDS = [
+  { id:'all',       label:'All tools',  icon:'grid',
+    blurb:'Everything in the ecosystem.' },
+  { id:'plugin',    label:'Plugin',     icon:'plug',
+    blurb:'Runs inside software you already own — a button in Revit, Rhino or Navisworks.' },
+  { id:'dashboard', label:'Dashboard',  icon:'gauge',
+    blurb:'A screen that reports the state of a project. You read it; it does not act.' },
+  { id:'pipeline',  label:'Pipeline',   icon:'zap',
+    blurb:'Fixed input, fixed output, no judgement calls. Files in, results out.' },
+  { id:'connector', label:'Connector',  icon:'link',
+    blurb:'Moves data between two systems that could not talk to each other before.' },
+  { id:'platform',  label:'Platform',   icon:'layers',
+    blurb:'A multi-user system with accounts and stored data, not a single-run tool.' },
+  { id:'agent',     label:'Agent',      icon:'bot',
+    blurb:'Chooses its own steps and calls tools to reach a goal. Not simply “uses AI”.' },
+  { id:'study',     label:'Study',      icon:'flask',
+    blurb:'Research output — findings, a spec or a benchmark, not shipped software.' },
+  { id:'deck',      label:'Deck',       icon:'film',
+    blurb:'A finished presentation or report that was actually delivered.' },
+];
+
+const DOMAINS = [
+  { id:'design',    label:'Design & Modelling',      icon:'cube' },
+  { id:'docs',      label:'Documentation & Takeoff', icon:'doc' },
+  { id:'qa',        label:'QA & Compliance',         icon:'check' },
+  { id:'controls',  label:'Project Controls',        icon:'chart' },
+  { id:'knowledge', label:'Knowledge & Research',    icon:'book' },
+  { id:'studio',    label:'Studio Operations',       icon:'building' },
+  { id:'ai',        label:'AI Infrastructure',       icon:'brain' },
+];
+
+/* One line per tool: [kind, domain]. To reclassify something, edit its line —
+   nothing else in the site needs to change. Lines marked CHECK are my reading
+   of a thin registry description and are worth confirming. */
+const CLASSIFY = {
+  'phoenix-l1':               ['plugin',    'qa'],
+  'h10-dashboard':            ['dashboard', 'controls'],
+  'p25-predictability':       ['dashboard', 'controls'],
+  'cad3d-studio':             ['pipeline',  'design'],
+  'revit-mcp':                ['connector', 'ai'],
+  'archviz-suite':            ['study',     'design'],
+  'headroom':                 ['connector', 'ai'],
+  'docs-to-md':               ['pipeline',  'knowledge'],
+  'team-assess':              ['pipeline',  'studio'],
+  'revit-toolbox':            ['plugin',    'design'],
+  'construction-takeoff-ai':  ['pipeline',  'docs'],
+  'ai-team-hub':              ['platform',  'studio'],
+  'asure-document-platform':  ['platform',  'studio'],
+  'tep-dashboard':            ['dashboard', 'controls'],
+  'ads-bridge':               ['connector', 'ai'],
+  'navisbridge':              ['connector', 'qa'],
+  'ads-lifecycle':            ['plugin',    'design'],     // CHECK
+  'asurebimqc':               ['plugin',    'qa'],
+  'cadbridge':                ['connector', 'design'],
+  'ads-ai-bim-build-tracker': ['dashboard', 'controls'],
+  'architecture-ai':          ['pipeline',  'design'],     // CHECK
+  'architecture-boq-template':['pipeline',  'docs'],
+  'cad2revit':                ['pipeline',  'design'],
+  'feasibility-massing-tool': ['pipeline',  'design'],
+};
+
+PROJECTS.forEach(p=>{
+  const c = CLASSIFY[p.id];
+  if(c){ p.kind = c[0]; p.domain = c[1]; }
+  else { p.kind = p.kind || 'pipeline'; p.domain = p.domain || 'design'; }
+});
+
+const kindMeta   = id => KINDS.find(k=>k.id===id)   || KINDS[0];
+const domainMeta = id => DOMAINS.find(x=>x.id===id) || DOMAINS[0];
+
 /* expose */
-window.TAXONOMY = TAXONOMY;
+window.TAXONOMY = TAXONOMY;      /* legacy — superseded by KINDS */
+window.KINDS = KINDS; window.DOMAINS = DOMAINS;
+window.kindMeta = kindMeta; window.domainMeta = domainMeta;
 window.STATUS = STATUS;
 window.PROJECTS = PROJECTS;
 window.derive = derive;
