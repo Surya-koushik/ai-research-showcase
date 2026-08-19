@@ -6,10 +6,11 @@
 
   /* theme (light-primary) */
   const themeBtn=$('#themeBtn'), themeTop=$('#themeTop');
-  function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('ads_theme',t);
+  const THEME_KEY='ads_theme_v2';   /* shared with the landing page */
+  function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem(THEME_KEY,t);
     themeBtn.innerHTML=ICON(t==='dark'?'sun':'moon');
     if(themeTop)themeTop.innerHTML=ICON(t==='dark'?'sun':'moon')+`<span>${t==='dark'?'Light':'Dark'}</span>`;}
-  setTheme(localStorage.getItem('ads_theme')||'light');
+  setTheme(localStorage.getItem(THEME_KEY)||'dark');
   const toggleTheme=()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
   themeBtn.onclick=toggleTheme; if(themeTop)themeTop.onclick=toggleTheme;
   $('#railToggle').innerHTML=ICON('menu'); $('#railToggle').onclick=()=>$('#rail').classList.toggle('open');

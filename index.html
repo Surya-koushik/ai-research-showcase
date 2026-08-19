@@ -9,8 +9,12 @@
 <meta property="og:description" content="Increasing Efficiency. One Tool at a Time.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/logos/brand/favicon.png">
+<!-- The kit loads FIRST: its :root redefines --r-sm/md/lg/xl, and ours must win
+     globally. The bridge restores the kit's radii inside .uikit only. -->
+<link rel="stylesheet" href="assets/vendor/asure-ui-kit/asure-ui.css">
 <link rel="stylesheet" href="assets/css/theme.css">
 <link rel="stylesheet" href="assets/css/deck.css">
+<link rel="stylesheet" href="assets/css/uikit-bridge.css">
 <script src="assets/js/supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/auth.js"></script>
@@ -38,6 +42,7 @@
   <div class="glow" style="width:520px;height:520px;background:#00D4FF;right:-120px;bottom:-180px;opacity:.32"></div>
   <canvas id="heroCanvas" aria-hidden="true"
           style="position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.85"></canvas>
+  <div class="scrim-l" aria-hidden="true"></div>
 
   <div style="max-width:1100px">
     <div class="eyebrow-rule">Asure Design Studio</div>
@@ -52,10 +57,21 @@
 </section>
 
 <!-- ============================== NUMBERS ============================== -->
-<section class="band" id="numbers">
-  <div class="eyebrow-rule rv">By the numbers</div>
-  <h2 class="d2 rv" style="max-width:20ch">Counted, not claimed.</h2>
+<section class="band uikit" id="numbers">
+  <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
+    <div style="flex:1 1 380px">
+      <div class="eyebrow-rule rv">By the numbers</div>
+      <h2 class="d2 rv" style="max-width:20ch">Counted, not claimed.</h2>
+    </div>
+    <div class="illus-lane rv" data-a-illus="ledger" aria-hidden="true"></div>
+  </div>
   <div class="statrow" id="stats"><!-- injected --></div>
+  <div class="a-note rv" style="margin-top:42px;max-width:64ch">
+    <span class="lb">How to read these</span>
+    Hours saved are counted only where the before-and-after was actually observed.
+    Everything unmeasured is left out of the total rather than estimated into it,
+    so this number is a floor, not a claim.
+  </div>
 </section>
 
 <!-- ============================== THE SYSTEM ============================== -->
@@ -74,18 +90,28 @@
 </section>
 
 <!-- ============================== KINDS ============================== -->
-<section class="band" id="kinds">
-  <div class="eyebrow-rule rv">What we actually build</div>
-  <h2 class="d2 rv" style="max-width:22ch">Eight kinds of thing. Each one earns its name.</h2>
-  <p class="lede rv">“AI tool” describes nothing. These do. A plugin is not a pipeline, and almost
-    nothing is an agent — so almost nothing is called one.</p>
+<section class="band uikit" id="kinds">
+  <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
+    <div style="flex:1 1 420px">
+      <div class="eyebrow-rule rv">What we actually build</div>
+      <h2 class="d2 rv" style="max-width:22ch">Eight kinds of thing. Each one earns its name.</h2>
+      <p class="lede rv">“AI tool” describes nothing. These do. A plugin is not a pipeline, and almost
+        nothing is an agent — so almost nothing is called one.</p>
+    </div>
+    <div class="illus-lane rv" data-a-illus="systems" aria-hidden="true"></div>
+  </div>
   <div class="kinds" id="kindGrid"><!-- injected --></div>
 </section>
 
 <!-- ============================== ECOSYSTEM ============================== -->
-<section class="band" id="ecosystem">
-  <div class="eyebrow-rule rv">The ecosystem</div>
-  <h2 class="d2 rv">Everything, filterable.</h2>
+<section class="band uikit" id="ecosystem">
+  <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
+    <div style="flex:1 1 380px">
+      <div class="eyebrow-rule rv">The ecosystem</div>
+      <h2 class="d2 rv">Everything, filterable.</h2>
+    </div>
+    <div class="illus-lane rv" data-a-illus="skyline" aria-hidden="true"></div>
+  </div>
 
   <label class="searchline rv">
     <span id="searchIc"></span>
@@ -114,6 +140,8 @@
   <span>AI Research &amp; Innovation</span>
 </footer>
 
+<script src="assets/vendor/asure-ui-kit/asure-illustrations.js"></script>
+<script src="assets/vendor/asure-ui-kit/asure-ui.js"></script>
 <script src="assets/js/icons.js"></script>
 <script src="assets/js/placeholder.js"></script>
 <script src="assets/js/diagrams.js"></script>

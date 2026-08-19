@@ -1,0 +1,148 @@
+/* ============================================================================
+   uikit-bridge.css — run Shravan's ASURE UI KIT in this site's palette.
+   ----------------------------------------------------------------------------
+   The kit is light-first: a navy brand on slate neutrals, a page of #f1f5f9,
+   and a type scale that stops at 21px. This site is dark-first with display
+   type to 104px. Both are deliberate, and they do not merge — so this file
+   does the only thing that keeps both intact: it re-points the kit's TOKENS at
+   our values. Every kit component is token-driven, so they re-theme wholesale
+   without a single kit file being edited.
+
+   That matters, because the kit's own rule is:
+       "Never fork kit files into a consuming app — reference, or build-time
+        inline."
+   assets/vendor/asure-ui-kit/ is a byte-identical snapshot. Nothing in it is
+   touched. All divergence lives here.
+
+   SCOPING. The kit's :root also defines --r-sm/--r-md/--r-lg/--r-xl, which
+   collide with ours (its 12px "large" against our 20px). asure-ui.css is
+   therefore loaded BEFORE theme.css so ours win globally, and the kit's radii
+   are restored only inside .uikit — where kit components actually live. Kit
+   components outside a .uikit wrapper are not supported.
+
+   KNOWINGLY DIVERGENT from the kit spec, on the owner's instruction to keep
+   this site's visual style:
+     · the six-token type scale is not applied to headlines (.d1/.d2 stay)
+     · the pinned .a-app frame is not adopted; this site scrolls as one page
+     · bands are full-height here, not the spec's <=150px
+   Everything else — components, report grammar, illustrations — is the kit's.
+   ============================================================================ */
+
+.uikit{
+  /* ---- radii: the kit's own scale, restored locally ---- */
+  --r-sm:6px; --r-md:8px; --r-lg:12px; --r-xl:16px;
+
+  /* ---- surfaces ---- */
+  --page:var(--bg);
+  --card:var(--surface);
+  --ring:var(--line-2);
+  --shadow:var(--shadow-card);
+
+  /* ---- ink ---- */
+  --ink:var(--text);
+
+  /* Slate runs light-to-dark in the kit. Inverted here so "50" is still the
+     quietest surface and "800" is still the strongest ink. */
+  --slate-50:var(--surface-2);
+  --slate-100:var(--surface-3);
+  --slate-200:var(--line-2);
+  --slate-300:var(--muted);
+  --slate-400:var(--text-3);
+  --slate-500:var(--text-3);
+  --slate-600:var(--text-2);
+  --slate-700:var(--text-2);
+  --slate-800:var(--surface-3);   /* table headers: a raised bar, not black */
+
+  /* ---- brand: navy becomes our violet ---- */
+  --brand-50:color-mix(in srgb,var(--violet-500) 14%,transparent);
+  --brand-100:color-mix(in srgb,var(--violet-500) 26%,transparent);
+  --brand-200:var(--violet-300);
+  --brand-500:var(--violet-500);
+  --brand-600:var(--violet-600);
+  --brand-700:var(--violet-300);   /* used as ink on brand-50 — must stay light */
+  --brand-800:var(--surface);
+  --brand-900:var(--line-2);
+
+  /* ---- semantic tints: pale-bg + saturated-ink becomes tint + bright ink ---- */
+  --ok-bg:color-mix(in srgb,var(--emerald-500) 15%,transparent);
+  --ok-ring:color-mix(in srgb,var(--emerald-500) 30%,transparent);
+  --ok-ink:var(--emerald-400);   --ok:var(--emerald-500);
+  --warn-bg:color-mix(in srgb,var(--amber-500) 15%,transparent);
+  --warn-ring:color-mix(in srgb,var(--amber-500) 30%,transparent);
+  --warn-ink:var(--amber-400);   --warn:var(--amber-500);
+  --bad-bg:color-mix(in srgb,var(--rose-500) 15%,transparent);
+  --bad-ring:color-mix(in srgb,var(--rose-500) 30%,transparent);
+  --bad-ink:var(--rose-400);     --bad:var(--rose-500);
+  --info-bg:color-mix(in srgb,var(--violet-500) 15%,transparent);
+  --info-ring:color-mix(in srgb,var(--violet-500) 30%,transparent);
+  --info-ink:var(--violet-300);
+
+  /* ---- pastels: illustration accents only, per the kit's own rule ---- */
+  --pastel-amber:color-mix(in srgb,var(--amber-400) 42%,transparent);
+  --pastel-sage:color-mix(in srgb,var(--emerald-400) 38%,transparent);
+  --pastel-sky:color-mix(in srgb,var(--cyan-400) 38%,transparent);
+  --pastel-rose:color-mix(in srgb,var(--pink-500) 34%,transparent);
+
+  color:var(--text);
+}
+
+/* ---------------------------------------------------------------- illus ----- */
+/* The motifs draw in currentColor, so they simply inherit. Held back to a
+   supporting weight — they sit beside content, never compete with it. */
+.a-illus{color:var(--text-2);opacity:.85}
+.band .a-band-art{width:100%;max-height:none}
+.band .a-band-art svg{max-height:none}
+
+/* A quiet lane for a motif alongside a heading.
+   The kit sizes its motifs through .a-band-art; this lane is ours, so it must
+   state the width itself or the SVG collapses to its 16px intrinsic default. */
+.illus-lane{width:min(300px,44vw);flex:none;opacity:.9}
+.illus-lane svg,.illus-lane .a-illus{width:100%;height:auto;display:block}
+.illus-lane .a-illus{color:var(--text-3)}
+
+/* ---------------------------------------------------------------- notes ----- */
+/* The kit's honesty callout, which is exactly what our unmeasured and draft
+   figures need. Given a little more air than the dense-UI default. */
+.uikit .a-note{padding:12px 15px;font-size:13px;line-height:1.55;border-radius:var(--r-md)}
+.uikit .a-note .lb{font-family:var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
+
+/* ---------------------------------------------------------------- light ----- */
+/* In light mode the inversion above must go back the other way, or the kit
+   components render dark ink on dark surfaces. */
+:root[data-theme="light"] .uikit{
+  --slate-50:#f8fafc; --slate-100:#f1f5f9; --slate-200:#e2e8f0;
+  --slate-300:#cbd5e1; --slate-400:#94a3b8; --slate-500:#64748b;
+  --slate-600:#475569; --slate-700:#334155; --slate-800:#1e293b;
+  --brand-700:var(--violet-600);
+  --brand-800:var(--violet-600);
+}
+:root[data-theme="light"] .a-illus{color:var(--text-2)}
+
+/* ============================================================================
+   Global blast radius of the kit
+   ----------------------------------------------------------------------------
+   asure-ui.css styles bare elements, not just .a-* classes:
+
+       h1,h2,h3,h4 { color: var(--ink) }
+       a           { color: var(--brand-600) }
+
+   Outside a .uikit wrapper those tokens still hold the kit's light-mode values,
+   so every heading on this site rendered at #0f172a — near-black on a near-black
+   ground. Our own type is set through .d1/.d2 classes, which never overrode a
+   bare element selector, so nothing caught it.
+
+   Point the global tokens at our palette and restate the element defaults. The
+   kit's own link colour is kept, scoped to where kit components actually live.
+   ============================================================================ */
+:root{ --ink:var(--text); }
+h1,h2,h3,h4{ color:var(--text); }
+a{ color:inherit; }
+.uikit a{ color:var(--brand-600); }
+
+/* The hero canvas is bright enough to cut through display type. The deck solved
+   this with a scrim; same idea, angled so the copy side stays legible while the
+   mesh keeps its presence on the right. */
+.band .scrim-l{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,var(--bg) 6%,color-mix(in srgb,var(--bg) 72%,transparent) 38%,transparent 68%);
+}
