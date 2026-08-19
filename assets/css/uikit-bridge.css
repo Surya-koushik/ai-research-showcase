@@ -146,3 +146,71 @@ a{ color:inherit; }
   position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(90deg,var(--bg) 6%,color-mix(in srgb,var(--bg) 72%,transparent) 38%,transparent 68%);
 }
+
+/* ============================================================================
+   The app frame, in this site's clothes
+   ----------------------------------------------------------------------------
+   Spec section 3 adopted: sidebar and topbar pinned, only .a-view scrolls,
+   titleblock locked as the last child of .a-main. The one rule still knowingly
+   broken is "no hero" — the tall opening band is the look this site is built
+   around, so it stays, sized to the view rather than the window.
+   ============================================================================ */
+
+/* Bands are full-bleed inside the view, so the content wrapper adds no padding
+   of its own — each band already carries the 8vw rhythm. */
+.a-app .a-content{padding:0}
+.a-app .band.tall{min-height:calc(100svh - var(--topbar-h))}
+
+/* Sidebar: the kit paints it from --brand-800. Ours resolves to a surface, so
+   restate the ink explicitly rather than relying on the navy ramp's contrast. */
+.a-sidebar{background:var(--surface);border-right:1px solid var(--line)}
+.a-sidebar-brand{border-bottom-color:var(--line)}
+.a-sidebar-brand img{height:20px}
+/* The sidebar sits on a surface, not the kit's navy, so the wordmark has to
+   swap with the theme like every other mark on the site. */
+.a-sidebar-brand .wm.darkonly{display:none}
+:root[data-theme="dark"] .a-sidebar-brand .wm.lightonly{display:none}
+:root[data-theme="dark"] .a-sidebar-brand .wm.darkonly{display:block}
+.a-sidebar-brand .a-brand-cap{color:var(--text-3)}
+.a-sidebar-foot{border-top-color:var(--line);color:var(--muted)}
+
+.a-nav-item{color:var(--text-2);font-family:var(--f-sans)}
+.a-nav-item:hover{background:var(--glass);color:var(--text)}
+.a-nav-item.is-active{background:var(--surface-3);color:var(--text)}
+.a-nav-item .ic{display:grid;place-items:center;width:16px;height:16px;flex:none;opacity:.75}
+.a-nav-item .ic svg{width:15px;height:15px}
+.a-nav-item .n{margin-left:auto;font-family:var(--f-mono);font-size:10.5px;color:var(--muted)}
+.a-nav-item.is-active .n{color:var(--text-3)}
+.a-nav-sect .a-label{color:var(--text-3)}   /* --muted only reached 2.9:1 here */
+
+/* Topbar: the kit's near-white bar would punch a hole in a dark page. */
+.a-topbar{background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom-color:var(--line)}
+.a-topbar .a-hero{color:var(--text);font-size:15px;font-weight:700;letter-spacing:-.01em}
+.a-topbar .nl{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-3);text-decoration:none}
+.a-topbar .nl:hover{color:var(--text)}
+@media(max-width:1180px){.a-topbar .nl.opt{display:none}}
+
+/* Titleblock: the drawing-sheet signature. */
+.a-titleblock{background:var(--surface);outline-color:var(--line);border-radius:0;margin-top:0;
+  border-top:1px solid var(--line)}
+/* The kit's brand cell is a navy slab with --brand-100 ink. Ours resolves that
+   to a translucent violet, which is unreadable on the dark slab — restate it. */
+.a-tb-brand{background:var(--violet-600)}
+.a-tb-brand img{height:16px}
+.a-tb-brand span{color:rgba(255,255,255,.78)}
+.a-tb-cell{border-right-color:var(--line)}
+.a-tb-cell .a-label{color:var(--muted)}
+.a-tb-cell span:not(.a-label){font-size:12px;color:var(--text-2)}
+
+/* Active scope, stated once above the grid. */
+.scoperow{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin-top:26px}
+.scoperow .a-label{color:var(--muted)}
+
+/* The sidebar becomes a top strip under 900px; the tall band must not then
+   subtract a topbar height it no longer reserves. */
+@media(max-width:900px){
+  .a-app{height:auto}
+  .a-app .band.tall{min-height:auto;padding-top:clamp(56px,9vh,96px)}
+  .a-titleblock{position:sticky;bottom:0;z-index:var(--z-sticky)}
+}

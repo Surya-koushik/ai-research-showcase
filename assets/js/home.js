@@ -40,7 +40,6 @@
     setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   };
   $('#searchIc').innerHTML = ICON('search');
-  $('#yr').textContent = new Date().getFullYear();
 
   /* ---------------------------------------------------------------- stats --- */
   var measured = PROJECTS.map(function (p) { return derive(p.efficiency); }).filter(Boolean);
@@ -86,36 +85,66 @@
     var card = e.target.closest('[data-jump]');
     if (!card) return;
     state.kind = card.dataset.jump; state.domain = 'all';
-    renderFilters(); renderAndReveal();
+    renderNav(); renderAndReveal();
   });
 
-  /* ---------------------------------------------------------------- filters - */
+  /* ---------------------------------------------------------------- nav ----- */
+  /* The kit's hierarchy puts scope in the sidebar registry, not in a wrapping
+     row of chips above the grid (spec section 4). Two sections, one active. */
   var state = { kind: 'all', domain: 'all', q: '' };
 
-  function renderFilters() {
-    $('#kindFilter').innerHTML = KINDS.map(function (k) {
+  function domCount(id) {
+    return PROJECTS.filter(function (p) { return p.domain === id; }).length;
+  }
+
+  function navItem(axis, id, label, n, icon, active) {
+    return '<a class="a-nav-item' + (active ? ' is-active' : '') + '"' +
+      ' data-axis="' + axis + '" data-id="' + id + '" href="#ecosystem">' +
+      '<span class="ic">' + ICON(icon) + '</span>' +
+      '<span>' + label + '</span><span class="n">' + n + '</span></a>';
+  }
+
+  function renderNav() {
+    var kindsHTML = KINDS.map(function (k) {
       var n = k.id === 'all' ? PROJECTS.length : count(k.id);
-      return '<button class="fchip' + (state.kind === k.id && state.domain === 'all' ? ' on' : '') +
-        '" data-axis="kind" data-id="' + k.id + '" title="' + (k.blurb || '') + '">' +
-        k.label + '<span class="n">' + n + '</span></button>';
+      return navItem('kind', k.id, k.label, n, k.icon,
+                     state.kind === k.id && state.domain === 'all');
     }).join('');
-    $('#domainFilter').innerHTML =
-      '<span style="font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;' +
-      'text-transform:uppercase;color:var(--muted);margin-right:4px">By work</span>' +
-      DOMAINS.map(function (d) {
-        var n = PROJECTS.filter(function (p) { return p.domain === d.id; }).length;
-        return '<button class="fchip' + (state.domain === d.id ? ' on' : '') +
-          '" data-axis="domain" data-id="' + d.id + '">' +
-          d.label + '<span class="n">' + n + '</span></button>';
-      }).join('');
+    var domsHTML = DOMAINS.map(function (d) {
+      return navItem('domain', d.id, d.label, domCount(d.id), d.icon, state.domain === d.id);
+    }).join('');
+    $('#nav').innerHTML =
+      '<div class="a-nav-sect"><span class="a-label">What kind of thing</span></div>' + kindsHTML +
+      '<div class="a-nav-sect"><span class="a-label">What work it serves</span></div>' + domsHTML;
+  }
+
+  $('#nav').addEventListener('click', function (e) {
+    var item = e.target.closest('.a-nav-item');
+    if (!item) return;
+    e.preventDefault();
+    if (item.dataset.axis === 'kind') { state.kind = item.dataset.id; state.domain = 'all'; }
+    else { state.domain = state.domain === item.dataset.id ? 'all' : item.dataset.id; state.kind = 'all'; }
+    renderNav(); renderAndReveal();
+  });
+
+  /* The active scope, stated once above the grid with a way out of it. */
+  function renderScope(shown) {
+    var bits = [];
+    if (state.kind !== 'all')   bits.push(kindMeta(state.kind).label);
+    if (state.domain !== 'all') bits.push(domainMeta(state.domain).label);
+    if (state.q)                bits.push('“' + state.q + '”');
+    $('#scope').innerHTML = bits.length
+      ? '<span class="a-label">Showing</span>' +
+        bits.map(function (b) { return '<span class="a-chip">' + b + '</span>'; }).join('') +
+        '<span class="a-pill">' + shown + ' of ' + PROJECTS.length + '</span>' +
+        '<button class="a-btn is-sm is-secondary" id="clearScope">Clear</button>'
+      : '<span class="a-label">Showing</span><span class="a-pill">all ' + PROJECTS.length + '</span>';
   }
 
   document.addEventListener('click', function (e) {
-    var chip = e.target.closest('.fchip');
-    if (!chip) return;
-    if (chip.dataset.axis === 'kind') { state.kind = chip.dataset.id; state.domain = 'all'; }
-    else { state.domain = state.domain === chip.dataset.id ? 'all' : chip.dataset.id; state.kind = 'all'; }
-    renderFilters(); render();   /* chips sit beside the grid; no scroll needed */
+    if (!e.target.closest('#clearScope')) return;
+    state.kind = 'all'; state.domain = 'all'; state.q = ''; search.value = '';
+    renderNav(); render();
   });
 
   var search = $('#search');
@@ -158,6 +187,10 @@
     var list = PROJECTS.filter(match);
     $('#grid').innerHTML = list.map(card).join('');
     $('#empty').style.display = list.length ? 'none' : 'block';
+    renderScope(list.length);
+    $('#pillCount').textContent = list.length === PROJECTS.length
+      ? PROJECTS.length + ' in catalogue'
+      : list.length + ' of ' + PROJECTS.length;
     observe();
   }
   /* Only a deliberate filter action moves the page. Typing in the search box
@@ -176,7 +209,12 @@
   function observe() { $$('.rv:not(.in)').forEach(function (el) { io.observe(el); }); }
 
   /* ---------------------------------------------------------------- boot ---- */
-  renderFilters();
-  $('#grid').innerHTML = PROJECTS.map(card).join('');
-  observe();
+  renderNav();
+  render();
+
+  /* Titleblock: the sheet's own record of what it is showing. */
+  $('#tbCount').textContent = PROJECTS.length + ' entries';
+  $('#tbMeasured').textContent = measured.length + ' of ' + PROJECTS.length + ' measured';
+  $('#tbRev').textContent = new Date().toISOString().slice(0, 10);
+  $('#crumb').title = 'AI Research & Innovation, ' + new Date().getFullYear();
 })();

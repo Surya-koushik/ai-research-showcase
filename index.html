@@ -19,21 +19,34 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/auth.js"></script>
 </head>
-<body class="deck">
+<!-- The kit's app frame (spec §3): sidebar + topbar pinned, only .a-view scrolls,
+     titleblock locked as the last child of .a-main. -->
+<body class="a-app deck uikit">
 
-<!-- ============================== NAV ============================== -->
-<nav class="topnav">
-  <a href="index.html" style="display:flex;align-items:center;text-decoration:none">
-    <img class="wm lightonly" src="assets/logos/brand/asure_wordmark.png" alt="Asure">
-    <img class="wm darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="Asure" aria-hidden="true">
+<aside class="a-sidebar no-print">
+  <a class="a-sidebar-brand" href="index.html">
+    <img class="wm lightonly" src="assets/logos/brand/asure_wordmark.png" alt="asure">
+    <img class="wm darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="" aria-hidden="true">
+    <span class="a-brand-cap">Research</span>
   </a>
-  <span class="who">AI Research &amp; Innovation</span>
-  <span class="spacer"></span>
-  <a class="nl opt" href="#system">The&nbsp;system</a>
-  <a class="nl opt" href="#kinds">What&nbsp;we&nbsp;build</a>
-  <a class="nl" href="#ecosystem">All&nbsp;work</a>
-  <button class="btn icon ghost" id="themeBtn" title="Toggle theme" aria-label="Toggle theme"></button>
-</nav>
+  <nav class="a-nav" id="nav"><!-- injected: kind + domain registry --></nav>
+  <div class="a-sidebar-foot">EVOLVE · Empower with Knowledge</div>
+</aside>
+
+<div class="a-main">
+
+  <header class="a-topbar no-print">
+    <div class="a-hero" id="crumb">AI Research &amp; Innovation</div>
+    <div class="a-topbar-spacer"></div>
+    <span class="a-pill" id="pillCount" style="min-width:118px">52 in catalogue</span>
+    <a class="nl opt" href="#system">The&nbsp;system</a>
+    <a class="nl opt" href="#kinds">What&nbsp;we&nbsp;build</a>
+    <a class="nl" href="#ecosystem">All&nbsp;work</a>
+    <button class="btn icon ghost" id="themeBtn" title="Toggle theme" aria-label="Toggle theme"></button>
+  </header>
+
+  <main class="a-view">
+  <div class="a-content">
 
 <!-- ============================== HERO ============================== -->
 <section class="band tall" id="top">
@@ -118,12 +131,16 @@
     <input id="search" type="search" placeholder="Search tools, decks, technology…" autocomplete="off">
   </label>
 
-  <div class="filterbar rv" id="kindFilter"><!-- injected --></div>
-  <div class="filterbar rv" id="domainFilter" style="margin-top:12px"><!-- injected --></div>
+  <!-- Filtering moved to the sidebar registry, per the kit's navigation
+       hierarchy (spec §4). What stays here is the active scope and a way out. -->
+  <div class="scoperow rv" id="scope"><!-- injected --></div>
 
   <div class="toolgrid" id="grid"><!-- injected --></div>
-  <p id="empty" style="display:none;color:var(--text-3);margin-top:40px;font-size:14px">
-    Nothing matches that filter yet.</p>
+
+  <div class="a-empty" id="empty" style="display:none;margin-top:36px">
+    <div class="a-title">Nothing matches that scope</div>
+    <p style="margin-top:6px;font-size:var(--t-sm)">Clear the filter or widen the search.</p>
+  </div>
 </section>
 
 <!-- ============================== CLOSE ============================== -->
@@ -135,10 +152,36 @@
     on our own hardware.</p>
 </section>
 
-<footer class="deckfoot">
-  <span>© <span id="yr"></span> Asure Design Studio</span>
-  <span>AI Research &amp; Innovation</span>
-</footer>
+  </div><!-- /.a-content -->
+  </main><!-- /.a-view -->
+
+  <!-- The drawing-sheet footer — the studio signature. Pinned by being the last
+       child of .a-main, a sibling after .a-view (spec §5). -->
+  <div class="a-titleblock no-print">
+    <div class="a-tb-brand">
+      <img src="assets/logos/brand/asure_wordmark_white.png" alt="asure">
+      <span>Design Studio</span>
+    </div>
+    <div class="a-tb-cell">
+      <span class="a-label">Project</span>
+      <span>AI Research &amp; Innovation</span>
+    </div>
+    <div class="a-tb-cell">
+      <span class="a-label">Catalogue</span>
+      <span id="tbCount">52 entries</span>
+    </div>
+    <div class="a-tb-cell">
+      <span class="a-label">Measured</span>
+      <span id="tbMeasured">—</span>
+    </div>
+    <div class="a-tb-spacer"></div>
+    <div class="a-tb-cell">
+      <span class="a-label">Revision</span>
+      <span id="tbRev">—</span>
+    </div>
+  </div>
+
+</div><!-- /.a-main -->
 
 <script src="assets/vendor/asure-ui-kit/asure-illustrations.js"></script>
 <script src="assets/vendor/asure-ui-kit/asure-ui.js"></script>
