@@ -137,7 +137,11 @@
 :root{ --ink:var(--text); }
 h1,h2,h3,h4{ color:var(--text); }
 a{ color:inherit; }
-.uikit a{ color:var(--brand-600); }
+/* The kit's link rule is (0,1,1) once scoped, which outranks every component
+   rule written as a single class — .a-nav-item included. That painted the whole
+   sidebar brand-violet, a wall of links with no hierarchy. Components own their
+   own colour; only body copy takes the brand. */
+.uikit .a-prose a, .uikit .prose a, .uikit p a{ color:var(--brand-600); }
 
 /* The hero canvas is bright enough to cut through display type. The deck solved
    this with a scrim; same idea, angled so the copy side stays legible while the
@@ -214,3 +218,47 @@ a{ color:inherit; }
   .a-app .band.tall{min-height:auto;padding-top:clamp(56px,9vh,96px)}
   .a-titleblock{position:sticky;bottom:0;z-index:var(--z-sticky)}
 }
+
+/* ============================================================================
+   The Asure accent — one policy, both rails
+   ----------------------------------------------------------------------------
+   Brand colour earns its place by marking WHERE YOU ARE, not by tinting every
+   label. Rest is neutral, hover lifts, and only the active row carries violet:
+   a tinted ground, violet ink, and a 3px bar down its leading edge.
+
+   Applied to the kit's .a-nav-item (landing) and theme.css's .nav-item (tool
+   page) together, so moving between them is not a change of language.
+   ============================================================================ */
+.a-nav-item,
+.nav-item{
+  position:relative;
+  color:var(--text-2);
+  border-radius:var(--r-sm);
+}
+.a-nav-item:hover,
+.nav-item:hover{ background:var(--glass); color:var(--text); }
+
+.a-nav-item.is-active,
+.nav-item.active{
+  background:color-mix(in srgb,var(--violet-500) 13%,transparent);
+  color:var(--violet-300);
+  font-weight:600;
+}
+.a-nav-item.is-active::before,
+.nav-item.active::before{
+  content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;
+  border-radius:0 3px 3px 0;background:var(--violet-500);
+}
+.a-nav-item.is-active .ic,
+.nav-item.active .ic{ color:var(--violet-400); opacity:1; }
+
+.a-nav-item .n,
+.nav-item .count{ color:var(--text-3); }   /* --muted only reaches ~2.9:1 at 10.5px */
+.a-nav-item.is-active .n,
+.nav-item.active .count{ color:var(--violet-300); }
+
+/* Light mode needs the darker end of the ramp to hold contrast on white. */
+:root[data-theme="light"] .a-nav-item.is-active,
+:root[data-theme="light"] .nav-item.active{ color:var(--violet-600); }
+:root[data-theme="light"] .a-nav-item.is-active .n,
+:root[data-theme="light"] .nav-item.active .count{ color:var(--violet-600); }
