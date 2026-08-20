@@ -15,7 +15,7 @@
   themeBtn.onclick=toggleTheme; if(themeTop)themeTop.onclick=toggleTheme;
   $('#railToggle').innerHTML=ICON('menu'); $('#railToggle').onclick=()=>$('#rail').classList.toggle('open');
   $('#crumbSep').innerHTML=ICON('arrow','')||''; $('#crumbSep').style.cssText='display:inline-flex;width:14px';
-  $('#backBtn').innerHTML=ICON('back')+' Back';
+
 
   const id=new URLSearchParams(location.search).get('id');
   const p=(window.PROJECTS||[]).find(x=>x.id===id);
@@ -56,8 +56,8 @@
 
   /* A jump list only earns its place on a page long enough to need one. */
   const jump = sections.length>=4
-    ? `<div class="nav-group-label">On this page</div>`+
-      sections.map(sec=>`<a class="nav-item" href="#${sec}"><span class="ic">${ICON(SEC_ICON[sec])}</span><span>${SEC_LABEL[sec]}</span></a>`).join('')
+    ? `<div class="a-nav-sect"><span class="a-label">On this page</span></div>`+
+      sections.map(sec=>`<a class="a-nav-item" href="#${sec}"><span class="ic">${ICON(SEC_ICON[sec])}</span><span>${SEC_LABEL[sec]}</span></a>`).join('')
     : '';
 
   /* Without a jump list the rail is left almost empty, so short pages offer
@@ -66,14 +66,14 @@
   if(!jump){
     const sibs=PROJECTS.filter(x=>x.id!==p.id && x.domain===p.domain).slice(0,5);
     if(sibs.length){
-      siblings=`<div class="nav-group-label">More in ${domainMeta(p.domain).label}</div>`+
-        sibs.map(x=>`<a class="nav-item" href="tool.html?id=${x.id}"><span class="ic">${ICON(kindMeta(x.kind).icon)}</span><span>${x.name}</span></a>`).join('');
+      siblings=`<div class="a-nav-sect"><span class="a-label">More in ${domainMeta(p.domain).label}</span></div>`+
+        sibs.map(x=>`<a class="a-nav-item" href="tool.html?id=${x.id}"><span class="ic">${ICON(kindMeta(x.kind).icon)}</span><span>${x.name}</span></a>`).join('');
     }
   }
 
   $('#nav').innerHTML = jump + siblings +
-    `<div class="nav-group-label">More</div>`+
-    `<a class="nav-item" href="index.html"><span class="ic">${ICON('grid')}</span><span>All Projects</span></a>`;
+    `<div class="a-nav-sect"><span class="a-label">More</span></div>`+
+    `<a class="a-nav-item" href="index.html"><span class="ic">${ICON('grid')}</span><span>All work</span></a>`;
 
   /* ---- HERO ---- */
   const techRow=(p.tech||[]).map(t=>`<span class="badge" style="gap:7px"><span style="width:15px;height:15px;display:grid;place-items:center">${logoImg(t,15)}</span>${logoLabel(t)}</span>`).join('');
@@ -221,6 +221,39 @@
   mount.innerHTML = hero+impact+media+work+how+detail+related+
     `<footer class="foot"><a href="index.html" style="color:var(--text-2)">${ICON('back')} All Projects</a>
       <span class="tag gradient-text">Increasing Efficiency. One Tool at a Time.</span></footer>`;
+
+  /* ---- scroll-spy: the accent marks where you are, as it does on the
+         landing page. .a-view scrolls, not the window, so watch that. ---- */
+  (function(){
+    const view=$('.a-view'); if(!view) return;
+    const links=$$('#nav .a-nav-item[href^="#"]');
+    if(!links.length) return;
+    const targets=links.map(a=>({a,el:document.getElementById(a.getAttribute('href').slice(1))}))
+                       .filter(x=>x.el);
+    let raf=null;
+    function spy(){
+      raf=null;
+      /* offsetTop is relative to the offsetParent, not to .a-view, so it does
+         not compare with scrollTop. Rects are in one coordinate system. */
+      const line=view.getBoundingClientRect().top + view.clientHeight*0.28;
+      let cur=targets[0];
+      targets.forEach(t=>{ if(t.el.getBoundingClientRect().top<=line) cur=t; });
+      /* The last section can never cross the line — the view runs out of scroll
+         first — so at the bottom it is always the current one. */
+      if(view.scrollTop + view.clientHeight >= view.scrollHeight - 4) cur=targets[targets.length-1];
+      links.forEach(a=>a.classList.remove('is-active'));
+      if(cur) cur.a.classList.add('is-active');
+    }
+    view.addEventListener('scroll',()=>{ if(!raf) raf=requestAnimationFrame(spy); },{passive:true});
+    spy();
+  })();
+
+  /* ---- frame chrome: what this sheet is showing ---- */
+  $('#pillKind').textContent = km.label;
+  $('#tbCode').textContent   = p.code;
+  $('#tbKind').textContent   = km.label;
+  $('#tbDomain').textContent = dm.label;
+  $('#tbStatus').textContent = st.label + (d && d.draft ? ' · draft figures' : '');
 
   /* ---- interactions ---- */
   // comparison bars grow via CSS animation — no rAF, so they are never left empty

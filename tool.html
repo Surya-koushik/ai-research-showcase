@@ -1,53 +1,84 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tool — AI Research & Innovation</title>
+<title>Tool — AI Research &amp; Innovation</title>
 <meta name="description" content="AI Research & Innovation — tool detail.">
 <link rel="icon" href="assets/logos/brand/favicon.png">
+<!-- Same load order as the landing page: the kit first so our radii win
+     globally, then the bridge last to re-point the kit's tokens. -->
+<link rel="stylesheet" href="assets/vendor/asure-ui-kit/asure-ui.css">
 <link rel="stylesheet" href="assets/css/theme.css">
-<!-- Shares the Asure accent policy with the landing page so the rail reads
-     the same wherever you are in the interface. -->
+<link rel="stylesheet" href="assets/css/deck.css">
 <link rel="stylesheet" href="assets/css/uikit-bridge.css">
 <script src="assets/js/supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/auth.js"></script>
 </head>
-<body>
-<div class="app">
-  <aside class="rail" id="rail">
-    <a class="brand" href="index.html" style="text-decoration:none">
-      <img class="brandlogo lightonly" src="assets/logos/brand/asure_wordmark.png" alt="Asure">
-      <img class="brandlogo darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="Asure" aria-hidden="true">
-      <div class="who"><span>AI Research &amp; Innovation</span></div>
-    </a>
-    <nav id="nav"></nav>
-    <div class="rail-foot">
-      <button class="btn icon ghost" id="themeBtn" title="Toggle theme" aria-label="Toggle theme"></button>
-      <span class="small mono" style="margin-left:auto">v1 · template</span>
-    </div>
-  </aside>
+<body class="a-app deck uikit">
 
-  <main class="content">
-    <div class="wrap">
-      <div class="topbar">
-        <button class="btn icon ghost rail-toggle" id="railToggle" aria-label="Menu"></button>
-        <div class="crumb" style="flex:1">
-          <a href="index.html">All Projects</a> <span id="crumbSep"></span> <span id="crumbNow" style="color:var(--text-2)"></span>
-        </div>
-        <button class="theme-top" id="themeTop" title="Toggle light / dark"></button>
-        <a class="btn ghost" href="index.html" id="backBtn">Back</a>
-      </div>
+<aside class="a-sidebar no-print" id="rail">
+  <a class="a-sidebar-brand" href="index.html">
+    <img class="wm lightonly" src="assets/logos/brand/asure_wordmark.png" alt="asure">
+    <img class="wm darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="" aria-hidden="true">
+    <span class="a-brand-cap">Research</span>
+  </a>
+  <nav class="a-nav" id="nav"></nav>
+  <div class="a-sidebar-foot">EVOLVE · Empower with Knowledge</div>
+</aside>
+
+<div class="a-main">
+
+  <header class="a-topbar no-print">
+    <button class="btn icon ghost rail-toggle" id="railToggle" aria-label="Menu"></button>
+    <div class="crumb" style="min-width:0">
+      <a href="index.html">All work</a>
+      <span id="crumbSep"></span>
+      <span id="crumbNow" style="color:var(--text-2)"></span>
+    </div>
+    <div class="a-topbar-spacer"></div>
+    <span class="a-pill" id="pillKind" style="min-width:104px">—</span>
+    <a class="nl" href="index.html">Back</a>
+    <button class="btn icon ghost" id="themeBtn" title="Toggle theme" aria-label="Toggle theme"></button>
+  </header>
+
+  <main class="a-view">
+    <div class="a-content">
       <div id="tp"><!-- tool content injected --></div>
     </div>
   </main>
-</div>
+
+  <!-- The drawing-sheet footer, same as the landing page. -->
+  <div class="a-titleblock no-print">
+    <div class="a-tb-brand">
+      <img src="assets/logos/brand/asure_wordmark_white.png" alt="asure">
+      <span>Design Studio</span>
+    </div>
+    <div class="a-tb-cell">
+      <span class="a-label">Code</span><span id="tbCode">—</span>
+    </div>
+    <div class="a-tb-cell">
+      <span class="a-label">Kind</span><span id="tbKind">—</span>
+    </div>
+    <div class="a-tb-cell">
+      <span class="a-label">Serves</span><span id="tbDomain">—</span>
+    </div>
+    <div class="a-tb-spacer"></div>
+    <div class="a-tb-cell">
+      <span class="a-label">Status</span><span id="tbStatus">—</span>
+    </div>
+  </div>
+
+</div><!-- /.a-main -->
 
 <div class="lightbox" id="lightbox"><div class="x" id="lbClose"></div><img id="lbImg" alt=""></div>
 
+<script src="assets/vendor/asure-ui-kit/asure-illustrations.js"></script>
+<script src="assets/vendor/asure-ui-kit/asure-ui.js"></script>
 <script src="assets/js/icons.js"></script>
 <script src="assets/js/placeholder.js"></script>
+<script src="assets/js/diagrams.js"></script>
 <script src="assets/js/registry_projects.js"></script>
 <script src="assets/js/projects_expansion.js"></script>
 <script src="assets/js/projects.js"></script>
