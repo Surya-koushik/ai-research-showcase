@@ -53,15 +53,22 @@
   --slate-700:var(--text-2);
   --slate-800:var(--surface-3);   /* table headers: a raised bar, not black */
 
-  /* ---- brand: navy becomes our violet ---- */
-  --brand-50:color-mix(in srgb,var(--violet-500) 14%,transparent);
-  --brand-100:color-mix(in srgb,var(--violet-500) 26%,transparent);
-  --brand-200:var(--violet-300);
-  --brand-500:var(--violet-500);
-  --brand-600:var(--violet-600);
-  --brand-700:var(--violet-300);   /* used as ink on brand-50 — must stay light */
-  --brand-800:var(--surface);
-  --brand-900:var(--line-2);
+  /* ---- brand: the kit's own navy, kept ----
+     This is the kit's brand and the studio's chrome hue — "the ONLY saturated
+     hue in chrome" per the spec. It is NOT remapped to the site's violet.
+     The split is deliberate:
+         navy   = chrome the kit owns (frame, nav, buttons, titleblock)
+         violet = the research content (hero gradient, diagrams, kind accents)
+     Only the two pale steps move, because a #eef4fb fill on a dark ground is a
+     near-white slab; they become translucent navy so the tint still reads. */
+  --brand-50:color-mix(in srgb,#2f6db5 16%,transparent);
+  --brand-100:color-mix(in srgb,#2f6db5 30%,transparent);
+  --brand-200:#b9d2ec;
+  --brand-500:#2f6db5;
+  --brand-600:#23588f;
+  --brand-700:#b9d2ec;   /* ink on brand-50 — must stay light on a dark ground */
+  --brand-800:#163651;
+  --brand-900:#0c2940;
 
   /* ---- semantic tints: pale-bg + saturated-ink becomes tint + bright ink ---- */
   --ok-bg:color-mix(in srgb,var(--emerald-500) 15%,transparent);
@@ -113,8 +120,9 @@
   --slate-50:#f8fafc; --slate-100:#f1f5f9; --slate-200:#e2e8f0;
   --slate-300:#cbd5e1; --slate-400:#94a3b8; --slate-500:#64748b;
   --slate-600:#475569; --slate-700:#334155; --slate-800:#1e293b;
-  --brand-700:var(--violet-600);
-  --brand-800:var(--violet-600);
+  /* On white, the kit's own pale fills and dark inks are correct as authored. */
+  --brand-50:#eef4fb; --brand-100:#d9e6f5;
+  --brand-700:#1c466f;
 }
 :root[data-theme="light"] .a-illus{color:var(--text-2)}
 
@@ -198,9 +206,10 @@ a{ color:inherit; }
 /* Titleblock: the drawing-sheet signature. */
 .a-titleblock{background:var(--surface);outline-color:var(--line);border-radius:0;margin-top:0;
   border-top:1px solid var(--line)}
-/* The kit's brand cell is a navy slab with --brand-100 ink. Ours resolves that
-   to a translucent violet, which is unreadable on the dark slab — restate it. */
-.a-tb-brand{background:var(--violet-600)}
+/* The kit's brand cell is a navy slab. It stays navy — this is the studio
+   signature, and it is the one block that should look the same in every ASURE
+   app. Only the caption ink is restated, since --brand-100 is translucent here. */
+.a-tb-brand{background:var(--brand-800)}
 .a-tb-brand img{height:16px}
 .a-tb-brand span{color:rgba(255,255,255,.78)}
 .a-tb-cell{border-right-color:var(--line)}
@@ -240,25 +249,27 @@ a{ color:inherit; }
 
 .a-nav-item.is-active,
 .nav-item.active{
-  background:color-mix(in srgb,var(--violet-500) 13%,transparent);
-  color:var(--violet-300);
+  background:color-mix(in srgb,#2f6db5 16%,transparent);
+  color:#b9d2ec;
   font-weight:600;
 }
 .a-nav-item.is-active::before,
 .nav-item.active::before{
   content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;
-  border-radius:0 3px 3px 0;background:var(--violet-500);
+  border-radius:0 3px 3px 0;background:#2f6db5;
 }
 .a-nav-item.is-active .ic,
-.nav-item.active .ic{ color:var(--violet-400); opacity:1; }
+.nav-item.active .ic{ color:#85b7eb; opacity:1; }
 
 .a-nav-item .n,
 .nav-item .count{ color:var(--text-3); }   /* --muted only reaches ~2.9:1 at 10.5px */
 .a-nav-item.is-active .n,
-.nav-item.active .count{ color:var(--violet-300); }
+.nav-item.active .count{ color:#b9d2ec; }
 
 /* Light mode needs the darker end of the ramp to hold contrast on white. */
 :root[data-theme="light"] .a-nav-item.is-active,
-:root[data-theme="light"] .nav-item.active{ color:var(--violet-600); }
+:root[data-theme="light"] .nav-item.active{ color:#23588f; }
 :root[data-theme="light"] .a-nav-item.is-active .n,
-:root[data-theme="light"] .nav-item.active .count{ color:var(--violet-600); }
+:root[data-theme="light"] .nav-item.active .count{ color:#23588f; }
+:root[data-theme="light"] .a-nav-item.is-active .ic,
+:root[data-theme="light"] .nav-item.active .ic{ color:#2f6db5; }
