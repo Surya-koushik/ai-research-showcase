@@ -17,6 +17,10 @@ What it does:
     POST /api/upload          multipart file -> projects/<id>/<slot>/
     POST /api/delete-media    remove one uploaded file
     POST /api/publish         regenerate both manifests
+    GET  /api/sources/suggest?id=   ranked folder matches for a project
+    GET  /api/sources/scan?id=      what is inside the linked folder
+    POST /api/sources/link          confirm which folder a project lives in
+    POST /api/sources/import        copy one file from there into a slot
 
 Every write goes through build_content.py's validator before it lands, so the
 site cannot be left in a state that fails to generate.
@@ -28,6 +32,8 @@ Standard library only (no cgi - removed in 3.13), plus Pillow for resizing. With
 uploads still work, they just are not resized.
 """
 import io, json, os, re, shutil, subprocess, sys
+
+import sources
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -190,6 +196,21 @@ class Admin(BaseHTTPRequestHandler):
                                         'nextCode': next_code(),
                                         'pillow': Image is not None})
 
+            if self.path.startswith('/api/sources/suggest'):
+                pid = self.path.split('id=')[-1]
+                rec = next((r for r in load_all() if r['id'] == pid), None)
+                if not rec:
+                    return self._send(404, {'error': 'no such project'})
+                return self._send(200, {'linked': sources.links().get(pid),
+                                        'suggestions': sources.suggest(rec)})
+
+            if self.path.startswith('/api/sources/scan'):
+                pid = self.path.split('id=')[-1]
+                return self._send(200, sources.scan(pid))
+
+            if self.path == '/api/sources':
+                return self._send(200, {'links': sources.links(), 'roots': sources.roots()})
+
             if self.path == '/api/projects':
                 rows = []
                 for r in load_all():
@@ -239,6 +260,12 @@ class Admin(BaseHTTPRequestHandler):
                 return self.upload()
             if self.path == '/api/delete-media':
                 return self.delete_media()
+            if self.path == '/api/sources/link':
+                b = self._json_body()
+                pid = safe_id(b.get('id', ''))
+                return self._send(200, {'linked': sources.set_link(pid, b.get('path'))})
+            if self.path == '/api/sources/import':
+                return self.import_from_source()
             if self.path == '/api/publish':
                 return self._send(200, {'steps': regenerate()})
             self._send(404, {'error': 'not found'})
@@ -355,6 +382,67 @@ class Admin(BaseHTTPRequestHandler):
                                         'steps': [run('build_media_manifest.py')]})
 
         return self._send(200, {'uploaded': name, 'slot': slot, 'resized': resized,
+                                'steps': [run('build_media_manifest.py')]})
+
+
+    def import_from_source(self):
+        """Copy one file out of the linked source folder into a media slot.
+
+        The source path has to be inside that project's linked folder. The
+        admin sends paths it got from a scan, but this re-checks rather than
+        trusting them -- otherwise the endpoint reads anything on the drive.
+        """
+        b = self._json_body()
+        pid = safe_id(b.get('id', ''))
+        slot = b.get('slot', '')
+        src = b.get('path', '')
+        as_hero = bool(b.get('hero'))
+        if slot not in SLOTS:
+            raise ValueError('unknown slot: %s' % slot)
+
+        base = sources.links().get(pid)
+        if not base:
+            raise ValueError('no source folder linked for %s' % pid)
+        real_src, real_base = os.path.realpath(src), os.path.realpath(base)
+        if os.path.commonpath([real_src, real_base]) != real_base:
+            raise ValueError('that file is outside the linked source folder')
+        if not os.path.isfile(real_src):
+            raise ValueError('file not found: %s' % src)
+
+        name = re.sub(r'[^A-Za-z0-9._-]', '_', os.path.basename(real_src)).lower()
+        ext = os.path.splitext(name)[1]
+        if ext not in SLOTS[slot]:
+            raise ValueError('%s does not accept %s' % (slot, ext or 'that file'))
+        if as_hero and slot == 'screenshots':
+            name = 'hero' + ext
+
+        dest_dir = os.path.join(PROJECTS, pid, slot)
+        os.makedirs(dest_dir, exist_ok=True)
+        dest = os.path.join(dest_dir, name)
+
+        resized = False
+        if slot == 'screenshots' and Image is not None:
+            try:
+                im = Image.open(real_src)
+                if im.mode in ('RGBA', 'LA', 'P'):
+                    bg = Image.new('RGB', im.size, (10, 13, 24))
+                    im = im.convert('RGBA')
+                    bg.paste(im, mask=im.split()[-1])
+                    im = bg
+                else:
+                    im = im.convert('RGB')
+                if im.width > 1600:
+                    im = im.resize((1600, round(im.height * 1600 / im.width)), Image.LANCZOS)
+                dest = os.path.splitext(dest)[0] + '.jpg'
+                im.save(dest, 'JPEG', quality=86, optimize=True, progressive=True)
+                name = os.path.basename(dest)
+                resized = True
+            except Exception:
+                shutil.copyfile(real_src, dest)
+        else:
+            shutil.copyfile(real_src, dest)
+
+        return self._send(200, {'imported': name, 'slot': slot, 'resized': resized,
                                 'steps': [run('build_media_manifest.py')]})
 
     def delete_media(self):

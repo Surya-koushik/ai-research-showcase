@@ -85,6 +85,37 @@ textarea{resize:vertical;min-height:64px;line-height:1.6}
 .drop:hover,.drop.over{border-color:var(--navy);color:var(--navy-ink);
       background:color-mix(in srgb,var(--navy) 10%,transparent)}
 
+/* ---------- source panel ---------- */
+.srcbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.srcpath{flex:1;min-width:220px;font-family:var(--mono);font-size:11px;color:var(--text-2);
+  background:var(--surface-2);border:1px solid var(--line-2);border-radius:var(--r);padding:7px 9px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sug{display:flex;align-items:center;gap:9px;padding:7px 9px;border:1px solid var(--line-2);
+  border-radius:var(--r);margin-bottom:6px;cursor:pointer;font-size:12px}
+.sug:hover{border-color:var(--navy);background:color-mix(in srgb,var(--navy) 10%,transparent)}
+.sug .cf{flex:none;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px}
+.cf.high{background:color-mix(in srgb,var(--green) 20%,transparent);color:#8af0cd}
+.cf.medium{background:color-mix(in srgb,var(--amber) 20%,transparent);color:#ffd08a}
+.cf.low{background:var(--surface-2);color:var(--text-3)}
+.sug .pp{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-family:var(--mono);font-size:11px;color:var(--text-2)}
+.facts{display:flex;gap:18px;flex-wrap:wrap;margin:12px 0;font-size:12px;color:var(--text-3)}
+.facts b{color:var(--text);font-weight:600}
+.imp{border-top:1px solid var(--line);margin-top:12px;padding-top:11px}
+.imp h5{margin:0 0 7px;font-size:12px;font-weight:600;color:var(--text-2)}
+.impf{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px}
+.impf .fn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-family:var(--mono);font-size:11px;color:var(--text-3)}
+.impf .sz{flex:none;font-size:11px;color:var(--text-3);font-variant-numeric:tabular-nums}
+.impf button{flex:none;border:1px solid var(--line-2);background:transparent;color:var(--text-2);
+  border-radius:4px;font-size:11px;padding:3px 9px;cursor:pointer}
+.impf button:hover{border-color:var(--navy);color:var(--navy-ink)}
+details.rm{margin-top:12px;border:1px solid var(--line-2);border-radius:var(--r);padding:9px 12px}
+details.rm summary{cursor:pointer;font-size:12px;color:var(--text-2)}
+details.rm pre{margin:10px 0 0;max-height:280px;overflow:auto;font-size:11px;line-height:1.55;
+  color:var(--text-2);white-space:pre-wrap}
+.gitlog{margin-top:8px;font-size:11px;color:var(--text-3);line-height:1.7}
+
 /* ---------- misc ---------- */
 .rows-in{display:flex;flex-direction:column;gap:8px}
 .rowline{display:flex;gap:8px}
@@ -213,6 +244,10 @@ function renderForm(){
       <div class="hint">comma separated ids, e.g. h10-dashboard, revit-mcp</div></div>
   </div></fieldset>
 
+  <fieldset><legend>Source folder — where this project actually lives</legend>
+    <div id="srcbox"><div class="hint">Save the project first.</div></div>
+  </fieldset>
+
   <fieldset><legend>Media</legend>
     ${cur._exists ? META.slots.map(slotBlock).join('')
       : '<div class="hint">Save the project first, then you can upload files.</div>'}
@@ -228,7 +263,7 @@ function renderForm(){
     box.appendChild(d); wireRows(); d.querySelector('input').focus(); markDirty();
   });
   wireRows();
-  if(cur._exists) wireUploads();
+  if(cur._exists){ wireUploads(); renderSource(); }
 }
 
 function wireRows(){
@@ -284,6 +319,111 @@ function wireUploads(){
     d.ondragleave = () => d.classList.remove('over');
     d.ondrop = e => { e.preventDefault(); d.classList.remove('over');
       if(e.dataTransfer.files[0]) send(e.dataTransfer.files[0]); };
+  });
+}
+
+
+/* ---------------------------------------------------------------- source
+   Linking a project to its real folder on disk, then pulling media and facts
+   across from it. Suggestions are ranked but never applied automatically --
+   folder names lie, and a wrong link quietly attaches the wrong screenshots. */
+const KB = n => n>1048576 ? (n/1048576).toFixed(1)+' MB' : Math.round(n/1024)+' KB';
+const SLOT_FOR = ext => ({
+  '.png':'screenshots','.jpg':'screenshots','.jpeg':'screenshots','.webp':'screenshots','.gif':'screenshots',
+  '.mp4':'videos','.webm':'videos','.mov':'videos',
+  '.html':'html','.htm':'html',
+  '.pdf':'docs','.xlsx':'docs','.xls':'docs','.docx':'docs','.doc':'docs','.pptx':'docs','.csv':'docs','.zip':'docs'
+}[ext] || null);
+
+async function renderSource(){
+  const box = $('#srcbox');
+  if(!cur || !cur._exists){ box.innerHTML = '<div class="hint">Save the project first.</div>'; return; }
+  box.innerHTML = '<div class="hint">Looking for matching folders…</div>';
+  let info;
+  try{ info = await api('/api/sources/suggest?id=' + encodeURIComponent(cur.id)); }
+  catch(e){ box.innerHTML = '<div class="hint">'+esc(e.message)+'</div>'; return; }
+
+  if(!info.linked){
+    box.innerHTML = `<div class="hint" style="margin-bottom:10px">Not linked yet. Pick the folder this project lives in — everything else reads from it.</div>
+      ${(info.suggestions||[]).map(sg=>`<div class="sug" data-link="${esc(sg.path)}">
+        <span class="cf ${sg.confidence}">${sg.confidence}</span>
+        <span class="pp">${esc(sg.path)}</span></div>`).join('') || '<div class="hint">No candidates found.</div>'}
+      <div class="srcbar" style="margin-top:10px">
+        <input class="srcpath" id="manualPath" placeholder="…or paste a full folder path">
+        <button class="btn" id="linkManual">Link</button></div>`;
+    box.querySelectorAll('[data-link]').forEach(el=>el.onclick=()=>link(el.dataset.link));
+    box.querySelector('#linkManual').onclick = () => link(box.querySelector('#manualPath').value.trim());
+    return;
+  }
+
+  box.innerHTML = `<div class="srcbar">
+      <span class="srcpath" title="${esc(info.linked)}">${esc(info.linked)}</span>
+      <button class="btn" id="rescan">Rescan</button>
+      <button class="btn" id="unlink">Unlink</button></div>
+    <div id="scanout"><div class="hint">Scanning…</div></div>`;
+  box.querySelector('#unlink').onclick = () => link('');
+  box.querySelector('#rescan').onclick = renderSource;
+  renderScan();
+}
+
+async function link(path){
+  if(!path) { if(!confirm('Unlink this project from its folder?')) return; }
+  try{
+    await api('/api/sources/link',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:cur.id, path:path||null})});
+    toast(path ? 'Linked' : 'Unlinked','ok');
+    renderSource();
+  }catch(e){ toast(e.message,'err'); }
+}
+
+async function renderScan(){
+  const out = $('#scanout'); if(!out) return;
+  let s;
+  try{ s = await api('/api/sources/scan?id=' + encodeURIComponent(cur.id)); }
+  catch(e){ out.innerHTML = '<div class="hint">'+esc(e.message)+'</div>'; return; }
+  if(s.missing){ out.innerHTML = '<div class="hint">That folder no longer exists.</div>'; return; }
+
+  const g = s.git;
+  const facts = `<div class="facts">
+    <span><b>${s.files}</b> files</span><span><b>${KB(s.bytes)}</b></span>
+    <span>last touched <b>${esc(s.lastModified||'?')}</b></span>
+    ${g?`<span><b>${g.commits}</b> commits · ${esc(g.first)} → ${esc(g.last)}</span>`:'<span>not a git repo</span>'}
+  </div>`;
+
+  const importable = [['images','Screenshots & renders'],['videos','Video'],
+                      ['web','Live demos (html)'],['docs','Documents']];
+  const lists = importable.map(([k,label])=>{
+    const items = (s.buckets[k]||[]);
+    if(!items.length) return '';
+    return `<div class="imp"><h5>${label} — ${items.length} found</h5>
+      ${items.slice(0,12).map(f=>`<div class="impf">
+        <span class="fn" title="${esc(f.rel)}">${esc(f.rel)}</span>
+        <span class="sz">${KB(f.size)}</span>
+        <button data-imp="${esc(f.path)}">Import</button>
+        ${k==='images'?`<button data-imp="${esc(f.path)}" data-hero="1">as hero</button>`:''}
+      </div>`).join('')}
+      ${items.length>12?`<div class="hint">+${items.length-12} more, largest shown first</div>`:''}</div>`;
+  }).join('');
+
+  const rm = s.readme ? `<details class="rm"><summary>${esc(s.readme.name)} — write the copy from this, do not paste it</summary>
+      <pre>${esc(s.readme.text)}</pre></details>` : '';
+  const log = g && g.recent.length ? `<details class="rm"><summary>Recent commits — dates for the timeline</summary>
+      <div class="gitlog">${g.recent.map(c=>`${esc(c.date)} · ${esc(c.subject)}`).join('<br>')}</div></details>` : '';
+
+  out.innerHTML = facts + (lists || '<div class="hint">Nothing importable found in that folder.</div>') + rm + log;
+
+  out.querySelectorAll('[data-imp]').forEach(b=>b.onclick=async()=>{
+    const path = b.dataset.imp;
+    const ext = ('.'+path.split('.').pop()).toLowerCase();
+    const slot = SLOT_FOR(ext);
+    if(!slot){ toast('No slot accepts '+ext,'err'); return; }
+    const label = b.textContent; b.textContent = '…'; b.disabled = true;
+    try{
+      const r = await api('/api/sources/import',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({id:cur.id, slot, path, hero:b.dataset.hero==='1'})});
+      toast('Imported '+r.imported+(r.resized?' (resized)':''),'ok');
+      await reload(cur.id);
+    }catch(e){ toast(e.message,'err'); b.textContent=label; b.disabled=false; }
   });
 }
 
