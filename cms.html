@@ -67,12 +67,16 @@
 </head>
 <body class="a-app deck uikit">
 
-<!-- Evolve loader. In the markup, not injected, so it paints on the first
-     frame. assets/js/loader.js removes it once the page has rendered. -->
+<!-- Asure -> Evolve opening. In the markup, not injected, so it paints on the
+     first frame. assets/js/loader.js removes it once the page has rendered. -->
 <div class="evo-loader" id="evoLoader" role="status" aria-live="polite" aria-label="Loading">
   <div class="evo-inner">
-    <div class="evo-logo" aria-hidden="true">
-      <div class="evo-base"></div><div class="evo-colour"></div><div class="evo-shine"></div>
+    <div class="evo-stage">
+      <img class="evo-wm evo-asure" src="assets/loader/asure.png" alt="" aria-hidden="true">
+      <span class="evo-flare" aria-hidden="true"></span>
+      <img class="evo-wm evo-evolve" src="assets/loader/evolve.png" alt="Evolve">
+      <span class="evo-colour" aria-hidden="true"></span>
+      <span class="evo-shine" aria-hidden="true"></span>
     </div>
     <div class="evo-status">
       <div class="evo-copy"><span>Loading</span>
