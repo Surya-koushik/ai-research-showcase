@@ -47,25 +47,24 @@
   var shipped = PROJECTS.filter(function (p) { return p.status === 'production'; }).length;
   var kindsUsed = Object.keys(PROJECTS.reduce(function (a, p) { a[p.kind] = 1; return a; }, {})).length;
 
+  /* Plain statements. Each one says what was counted and nothing more --
+     an investor should not have to decode a claim to reach a number. */
   var STATS = [
-    { n: PROJECTS.length, l: 'tools, dashboards, connectors and decks built inside the studio',
-      src: 'counted from the catalogue' },
-    { n: shipped, l: 'in production — running against real project work, not demos',
-      src: 'status field, per tool' },
-    { n: savedTotal, u: 'hrs/wk', l: 'given back where the saving has actually been measured',
-      src: measured.length + ' of ' + PROJECTS.length + ' measured · rest unmeasured' },
-    { n: kindsUsed, l: 'distinct kinds of thing, each defined so the label means something',
-      src: 'one axis, answered once per tool' }
+    { n: PROJECTS.length, icon: 'grid',  l: 'Tools built so far',
+      src: 'everything in the catalogue' },
+    { n: shipped,         icon: 'check', l: 'In production',
+      src: 'running on real project work' },
+    { n: PROJECTS.length - shipped, icon: 'clock', l: 'In progress or research',
+      src: 'not yet in daily use' },
+    { n: savedTotal, u: 'hrs/wk', icon: 'gauge', l: 'Hours saved each week',
+      src: 'measured on ' + measured.length + ' of ' + PROJECTS.length + ' tools' }
   ];
   $('#stats').innerHTML = STATS.map(function (s) {
-    return '<div class="stat rv"><div class="n">' + s.n +
-      (s.u ? '<span class="u">' + s.u + '</span>' : '') + '</div>' +
+    return '<div class="stat rv"><div class="si">' + ICON(s.icon) + '</div>' +
+      '<div class="n">' + s.n + (s.u ? '<span class="u">' + s.u + '</span>' : '') + '</div>' +
       '<div class="l">' + s.l + '</div>' +
       '<div class="src">' + s.src + '</div></div>';
   }).join('');
-
-  /* ---------------------------------------------------------------- system -- */
-  $('#systemArt').innerHTML = '<div class="dgm-wide">' + DIAGRAM('system') + '</div>';
 
   /* ---------------------------------------------------------------- kinds --- */
   function count(kind) {
@@ -113,14 +112,30 @@
     var domsHTML = DOMAINS.map(function (d) {
       return navItem('domain', d.id, d.label, domCount(d.id), d.icon, state.domain === d.id);
     }).join('');
+    /* Jump links first. Without them the only way to reach the tool types was
+       to scroll past them to the grid and then filter, which is backwards. */
+    var JUMPS = [
+      ['#top',       'home',    'Home'],
+      ['#numbers',   'chart',   'The count'],
+      ['#kinds',     'layers',  'Kinds of tool'],
+      ['#ecosystem', 'grid',    'All tools']
+    ];
+    var jumpHTML = JUMPS.map(function (j) {
+      return '<a class="a-nav-item nav-jump" href="' + j[0] + '">' +
+             '<span class="ic">' + ICON(j[1] === 'home' ? 'building' : j[1]) + '</span>' +
+             '<span>' + j[2] + '</span></a>';
+    }).join('');
+
     $('#nav').innerHTML =
-      '<div class="a-nav-sect"><span class="a-label">What kind of thing</span></div>' + kindsHTML +
-      '<div class="a-nav-sect"><span class="a-label">What work it serves</span></div>' + domsHTML;
+      '<div class="a-nav-sect"><span class="a-label">Go to</span></div>' + jumpHTML +
+      '<div class="a-nav-sect"><span class="a-label">Kind of tool</span></div>' + kindsHTML +
+      '<div class="a-nav-sect"><span class="a-label">Work it serves</span></div>' + domsHTML;
   }
 
   $('#nav').addEventListener('click', function (e) {
     var item = e.target.closest('.a-nav-item');
     if (!item) return;
+    if (item.classList.contains('nav-jump')) return;   /* a real anchor, let it scroll */
     e.preventDefault();
     if (item.dataset.axis === 'kind') { state.kind = item.dataset.id; state.domain = 'all'; }
     else { state.domain = state.domain === item.dataset.id ? 'all' : item.dataset.id; state.kind = 'all'; }
@@ -172,14 +187,18 @@
         'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'">' +
         PLACEHOLDER(p, { code: true, mark: true, hidden: true })
       : ph;
+    /* A deck opens as a deck. Its own page leads with the slides, so the card
+       goes there rather than to a page of prose about a presentation. */
+    var km = kindMeta(p.kind);
     return '<a class="tcard rv" href="tool.html?id=' + p.id + '" style="--kc:' + ACCENT[p.kind] + '">' +
-      '<div class="shot">' + shot + '</div>' +
+      '<div class="shot">' + shot +
+        '<span class="ktag">' + ICON(km.icon) + km.label + '</span>' +
+      '</div>' +
       '<div class="meta">' +
         '<div class="row1"><span class="code">' + p.code + '</span>' +
-        '<span class="kind">' + kindMeta(p.kind).label + '</span></div>' +
+          '<span class="st st-' + p.status + '"><i></i>' + STATUS[p.status].label + '</span></div>' +
         '<h3>' + p.name + '</h3><p>' + p.tagline + '</p>' +
-        '<div class="foot"><span>' + STATUS[p.status].label + '</span>' +
-        '<span class="dom">' + domainMeta(p.domain).label + '</span></div>' +
+        '<div class="foot"><span class="dom">' + domainMeta(p.domain).label + '</span></div>' +
       '</div></a>';
   }
 

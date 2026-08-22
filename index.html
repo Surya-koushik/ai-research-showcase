@@ -36,7 +36,7 @@
       <span class="evo-shine" aria-hidden="true"></span>
     </div>
     <div class="evo-status">
-      <div class="evo-copy"><span>Loading</span>
+      <div class="evo-copy"><span class="lbl">Loading</span>
         <span class="evo-dots"><i></i><i></i><i></i></span></div>
       <div class="evo-track"></div>
     </div>
@@ -95,14 +95,14 @@
 <section class="band uikit" id="numbers">
   <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
     <div style="flex:1 1 380px">
-      <div class="eyebrow-rule rv">By the numbers</div>
-      <h2 class="d2 rv" style="max-width:20ch">Counted, not claimed.</h2>
+      <div class="eyebrow-rule rv">The count</div>
+      <h2 class="d2 rv" style="max-width:20ch">What we have built so far.</h2>
     </div>
     <div class="illus-lane rv" data-a-illus="ledger" aria-hidden="true"></div>
   </div>
   <div class="statrow" id="stats"><!-- injected --></div>
   <div class="a-note rv" style="margin-top:42px;max-width:64ch">
-    <span class="lb">How to read these</span>
+    <span class="lb">About the hours figure</span>
     Hours saved are counted only where the before-and-after was actually observed.
     Everything unmeasured is left out of the total rather than estimated into it,
     so this number is a floor, not a claim.
@@ -110,12 +110,25 @@
 </section>
 
 <!-- ============================== THE SYSTEM ============================== -->
+<section class="band uikit" id="kinds">
+  <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
+    <div style="flex:1 1 420px">
+      <div class="eyebrow-rule rv">Types</div>
+      <h2 class="d2 rv" style="max-width:22ch">The kinds of tool we build.</h2>
+      <p class="lede rv">Pick one to see just those. A plugin is not a pipeline, and almost
+        nothing is an agent — so almost nothing is called one.</p>
+    </div>
+    <div class="illus-lane rv" data-a-illus="systems" aria-hidden="true"></div>
+  </div>
+  <div class="kinds" id="kindGrid"><!-- injected --></div>
+</section>
+
 <section class="band" id="system">
   <div class="bg-grid" style="opacity:.3"></div>
   <div style="display:grid;grid-template-columns:minmax(280px,1fr) minmax(300px,1.15fr);gap:clamp(32px,5vw,80px);align-items:center">
     <div>
-      <div class="eyebrow-rule rv">The system</div>
-      <h2 class="d2 rv">From scattered<br>information to<br><span class="g-cool">hours back.</span></h2>
+      <div class="eyebrow-rule rv">How it fits together</div>
+      <h2 class="d2 rv">How the tools connect.</h2>
       <p class="lede rv">Nothing here is a standalone gadget. Every tool is one link in the same chain:
         raw information becomes structured knowledge, structured knowledge becomes a working tool,
         and the tool hands a week back to whoever was doing it by hand.</p>
@@ -125,32 +138,21 @@
 </section>
 
 <!-- ============================== KINDS ============================== -->
-<section class="band uikit" id="kinds">
-  <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
-    <div style="flex:1 1 420px">
-      <div class="eyebrow-rule rv">What we actually build</div>
-      <h2 class="d2 rv" style="max-width:22ch">Eight kinds of thing. Each one earns its name.</h2>
-      <p class="lede rv">“AI tool” describes nothing. These do. A plugin is not a pipeline, and almost
-        nothing is an agent — so almost nothing is called one.</p>
-    </div>
-    <div class="illus-lane rv" data-a-illus="systems" aria-hidden="true"></div>
-  </div>
-  <div class="kinds" id="kindGrid"><!-- injected --></div>
-</section>
+
 
 <!-- ============================== ECOSYSTEM ============================== -->
 <section class="band uikit" id="ecosystem">
   <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
     <div style="flex:1 1 380px">
-      <div class="eyebrow-rule rv">The ecosystem</div>
-      <h2 class="d2 rv">Everything, filterable.</h2>
+      <div class="eyebrow-rule rv">Catalogue</div>
+      <h2 class="d2 rv">All tools</h2>
     </div>
     <div class="illus-lane rv" data-a-illus="skyline" aria-hidden="true"></div>
   </div>
 
   <label class="searchline rv">
     <span id="searchIc"></span>
-    <input id="search" type="search" placeholder="Search tools, decks, technology…" autocomplete="off">
+    <input id="search" type="search" placeholder="Search by name, type or technology…" autocomplete="off">
   </label>
 
   <!-- Filtering moved to the sidebar registry, per the kit's navigation

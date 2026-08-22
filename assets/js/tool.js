@@ -83,7 +83,18 @@
   const heroImg = m.hero
     ? `<img src="${m.hero}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">${PLACEHOLDER(p,{label:true,hidden:true})}`
     : PLACEHOLDER(p,{label:true});
-  const heroRight = `<div class="heroart">${heroImg}</div>`;
+  /* A deck is a deck. Opening its page with a paragraph about a presentation
+     puts prose between the reader and the thing itself, so when there is a
+     file to show, the slides take the hero slot and everything written about
+     it moves below. */
+  const deckFile = (p.kind === 'deck' && m.html && m.html.length) ? m.html[0] : null;
+  const heroRight = deckFile
+    ? `<div class="heroart deckframe">
+         <iframe src="${deckFile}" title="${p.name}" loading="lazy"></iframe>
+         <a class="deckopen" href="${deckFile}" target="_blank" rel="noopener">
+           Open full screen ${ICON('arrow')}</a>
+       </div>`
+    : `<div class="heroart">${heroImg}</div>`;
   const hero=`<section class="tp-hero reveal" id="overview">
     <div class="glow"></div>
     <div class="inner">

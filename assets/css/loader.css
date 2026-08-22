@@ -41,17 +41,22 @@
    uses them as drawn. One asset, either ground -- which is the whole reason
    they are PNGs with alpha rather than baked-in white or black. */
 :root[data-theme="light"] .evo-wm{ filter:none }
-:root[data-theme="light"] .evo-copy{ color:#587087 }
+:root[data-theme="light"] .evo-copy .lbl{ display:none }          /* no room for it at icon size */
+.evo-copy{ justify-content:center; }
+.evo-copy{ color:#587087 }
 :root[data-theme="light"] .evo-dots i{ background:#2875C7 }
 :root[data-theme="light"] .evo-track{ background:#D9E4EC }
 .evo-loader.is-done{ opacity:0; visibility:hidden; pointer-events:none; }
 
-.evo-inner{ width:min(430px, 76vw); display:grid; justify-items:center; }
+/* Icon-sized. The opening reads as a mark appearing, not a billboard --
+   roughly a quarter of the original width. At this size the word LOADING
+   would be wider than the mark itself, so the dots and the track carry it. */
+.evo-inner{ width:min(108px, 32vw); display:grid; justify-items:center; }
 
 /* --- the stage both wordmarks share ------------------------------------- */
 /* An explicit min-height rather than aspect-ratio on an empty box: the images
    size themselves, and the stage must not collapse while they load. */
-.evo-stage{ position:relative; width:100%; min-height:calc(min(430px,76vw) / 4.18); }
+.evo-stage{ position:relative; width:100%; min-height:calc(min(108px,32vw) / 4.18); }
 
 .evo-wm{
   position:absolute; left:0; top:50%; width:100%; height:auto;
@@ -132,8 +137,10 @@
 }
 
 /* --- status row ---------------------------------------------------------- */
-.evo-status{ width:82%; margin-top:30px; opacity:1; animation:evo-fade .6s ease 1.95s both }
+.evo-status{ width:100%; margin-top:16px; opacity:1; animation:evo-fade .6s ease 1.95s both }
 @keyframes evo-fade{ from{ opacity:0 } to{ opacity:1 } }
+.evo-copy .lbl{ display:none }          /* no room for it at icon size */
+.evo-copy{ justify-content:center; }
 .evo-copy{
   display:flex; justify-content:space-between; margin-bottom:11px;
   color:#858394; font:600 9px/1 ui-sans-serif,Arial,sans-serif;

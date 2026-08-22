@@ -65,8 +65,11 @@ Both images must clearly belong to the same family.
 
 ### Typography
 
-- Primary: Manrope or Arial/Inter-compatible sans serif.
-- Utility labels: IBM Plex Mono or another legible monospaced face.
+- Primary: **Inter** — the face the website uses. Manrope and other
+  Inter-compatible grotesques are acceptable substitutes when a generator
+  cannot supply Inter.
+- Utility labels: **JetBrains Mono** — again matching the site. IBM Plex Mono
+  is an acceptable substitute.
 - Sentence case for descriptive copy.
 - Uppercase may be used only for compact category labels.
 - Node titles: direct actions such as “Collect model data,” not marketing statements.
