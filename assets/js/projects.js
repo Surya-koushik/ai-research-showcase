@@ -373,6 +373,17 @@ PROJECTS.forEach(p=>{
   else { p.kind = p.kind || 'pipeline'; p.domain = p.domain || 'design'; }
 });
 
+/* ---------------------------------------------------------------------------
+   MEDIA - generated from the folder tree, never hand-written.
+   _tools/build_media_manifest.py scans projects/<id>/ and writes
+   media_manifest.js. It REPLACES whatever media a project declares, because
+   the declarations had drifted: ten projects pointed at a hero.png that was
+   never captured, so each fell back to placeholder art while claiming an
+   image. What is actually on disk is the only truth.
+   --------------------------------------------------------------------------- */
+const MEDIA = window.MEDIA_MANIFEST || {};
+PROJECTS.forEach(p=>{ p.media = MEDIA[p.id] || {}; });
+
 const kindMeta   = id => KINDS.find(k=>k.id===id)   || KINDS[0];
 const domainMeta = id => DOMAINS.find(x=>x.id===id) || DOMAINS[0];
 

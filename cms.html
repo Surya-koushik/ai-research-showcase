@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Media desk — AI Research &amp; Innovation</title>
+<meta name="description" content="What every project on the showcase has, what it is missing, and exactly where each file goes.">
+<link rel="icon" href="assets/logos/brand/favicon.png">
+<link rel="stylesheet" href="assets/vendor/asure-ui-kit/asure-ui.css">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/deck.css">
+<link rel="stylesheet" href="assets/css/uikit-bridge.css">
+<style>
+  /* Page-local only. Everything visual comes from the kit tokens. */
+  .cov{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;
+       background:var(--line-2);border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden;margin-top:26px}
+  .cov > div{background:var(--surface);padding:16px 18px}
+  .cov b{display:block;font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+  .cov span{display:block;margin-top:4px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
+
+  .rows{margin-top:22px;border:1px solid var(--line-2);border-radius:var(--r-lg);overflow:hidden}
+  .rh,.row{display:grid;grid-template-columns:58px minmax(190px,1.5fr) repeat(5,64px) minmax(210px,1.1fr);
+           gap:12px;align-items:center;padding:11px 16px}
+  .rh{background:var(--surface-2);border-bottom:1px solid var(--line-2);
+      font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
+  .row{border-top:1px solid var(--line-2);font-size:13px}
+  .row:first-child{border-top:0}
+  .row:hover{background:var(--surface-2)}
+  .row .nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .row .nm a{color:var(--text);text-decoration:none}
+  .row .nm a:hover{text-decoration:underline}
+  .row .cd{font-family:var(--font-mono,ui-monospace,monospace);font-size:11px;color:var(--text-3)}
+  .row .kd{font-size:11px;color:var(--text-3)}
+
+  /* One cell per slot. Filled shows the count; empty is a quiet dash, never
+     a red error — an unfilled slot is a to-do, not a fault. */
+  .sl{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:24px;padding:0 8px;
+      border-radius:var(--r-sm);font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}
+  .sl.on{background:color-mix(in srgb,#2f6db5 26%,transparent);color:#b9d2ec}
+  .sl.off{color:var(--text-3);opacity:.5}
+  .sl.hero-on{background:color-mix(in srgb,#22E6A8 20%,transparent);color:#8af0cd}
+
+  .drop{display:flex;align-items:center;gap:8px;min-width:0}
+  .drop code{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+             font-size:11px;color:var(--text-3);background:var(--surface-2);
+             border:1px solid var(--line-2);border-radius:var(--r-sm);padding:4px 7px}
+  .cp{flex:none;border:1px solid var(--line-2);background:transparent;color:var(--text-3);
+      border-radius:var(--r-sm);font-size:11px;padding:4px 8px;cursor:pointer}
+  .cp:hover{color:var(--text);border-color:var(--text-3)}
+  .cp.done{color:#8af0cd;border-color:#22E6A8}
+
+  .ctl{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:26px}
+  .seg{display:inline-flex;border:1px solid var(--line-2);border-radius:var(--r-md);overflow:hidden}
+  .seg button{background:transparent;border:0;color:var(--text-3);font-size:12px;padding:7px 13px;cursor:pointer}
+  .seg button.on{background:color-mix(in srgb,#2f6db5 22%,transparent);color:#b9d2ec;font-weight:600}
+  .cms-find{flex:1;min-width:180px;background:var(--surface-2);border:1px solid var(--line-2);
+            border-radius:var(--r-md);color:var(--text);font-size:13px;padding:8px 12px}
+
+  @media (max-width:900px){
+    .rh{display:none}
+    .row{grid-template-columns:52px 1fr;grid-auto-rows:min-content;row-gap:8px}
+    .row .sl{grid-column:auto}
+    .drop{grid-column:1 / -1}
+  }
+</style>
+</head>
+<body class="a-app deck uikit">
+
+<aside class="a-sidebar no-print">
+  <a class="a-sidebar-brand" href="index.html">
+    <img class="wm lightonly" src="assets/logos/brand/asure_wordmark.png" alt="asure">
+    <img class="wm darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="" aria-hidden="true">
+    <span class="a-brand-cap">Research</span>
+  </a>
+  <nav class="a-nav" id="nav"></nav>
+  <div class="a-sidebar-foot">EVOLVE · Empower with Knowledge</div>
+</aside>
+
+<div class="a-main">
+
+  <header class="a-topbar no-print">
+    <div class="crumb" style="min-width:0">
+      <a href="index.html">All work</a>
+      <span style="color:var(--text-3)">/</span>
+      <span style="color:var(--text-2)">Media desk</span>
+    </div>
+    <div class="a-topbar-spacer"></div>
+    <span class="a-pill" id="pillCov" style="min-width:118px">—</span>
+    <a class="nl" href="index.html">Back</a>
+    <button class="btn icon ghost" id="themeBtn" title="Toggle theme" aria-label="Toggle theme"></button>
+  </header>
+
+  <main class="a-view">
+    <div class="a-content">
+
+      <section class="band" style="padding-bottom:0">
+        <div class="eyebrow-rule">Media desk</div>
+        <h1 class="d2" style="max-width:20ch">Every slot, and what is still empty.</h1>
+        <p class="lede" style="max-width:62ch">There is no database and no admin server. The folder tree
+          <em>is</em> the content model: drop a file in the right place, run one command, reload.
+          This page reads the same manifest the site does, so it can never claim something the site does not have.</p>
+
+        <div class="a-note" style="margin-top:26px;max-width:74ch">
+          <span class="lb">The whole workflow</span>
+          <b>1.</b> Copy your file into the folder shown on the project's row.
+          <b>2.</b> Run <code>python _tools/build_media_manifest.py</code> from the site root.
+          <b>3.</b> Reload. Filenames set the order — <code>hero</code> is the tile image, everything
+          else in <code>screenshots/</code> becomes the gallery in name order.
+        </div>
+
+        <div class="cov" id="cov"></div>
+
+        <div class="ctl">
+          <input class="cms-find" id="find" type="search" placeholder="Find a project…" autocomplete="off">
+          <div class="seg" id="seg">
+            <button data-f="all" class="on">All</button>
+            <button data-f="empty">No media</button>
+            <button data-f="nohero">No hero</button>
+            <button data-f="has">Has media</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" style="padding-top:22px">
+        <div class="rows">
+          <div class="rh">
+            <div>Code</div><div>Project</div>
+            <div title="Tile and page headline image">Hero</div>
+            <div title="Gallery strip, in filename order">Shots</div>
+            <div title="Inline video players">Video</div>
+            <div title="Live preview buttons">HTML</div>
+            <div title="Download buttons">Docs</div>
+            <div>Drop files here</div>
+          </div>
+          <div id="rows"></div>
+        </div>
+        <div class="a-empty" id="none" style="display:none;margin-top:26px">
+          <div class="a-title">Nothing matches</div>
+          <p style="margin-top:6px;font-size:var(--t-sm)">Clear the search or pick another filter.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div class="a-titleblock no-print">
+    <div class="a-tb-brand">
+      <img src="assets/logos/brand/asure_wordmark_white.png" alt="asure">
+      <span>Design Studio</span>
+    </div>
+    <div class="a-tb-cell"><span class="a-label">Sheet</span><span>Media desk</span></div>
+    <div class="a-tb-cell"><span class="a-label">Catalogue</span><span id="tbCount">—</span></div>
+    <div class="a-tb-spacer"></div>
+    <div class="a-tb-cell"><span class="a-label">Coverage</span><span id="tbCov">—</span></div>
+  </div>
+
+</div>
+
+<script src="assets/vendor/asure-ui-kit/asure-illustrations.js"></script>
+<script src="assets/vendor/asure-ui-kit/asure-ui.js"></script>
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/placeholder.js"></script>
+<script src="assets/js/diagrams.js"></script>
+<script src="assets/js/registry_projects.js"></script>
+<script src="assets/js/projects_expansion.js"></script>
+<script src="assets/js/media_manifest.js"></script>
+<script src="assets/js/projects.js"></script>
+<script src="assets/js/cms.js"></script>
+</body>
+</html>
