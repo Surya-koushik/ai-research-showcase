@@ -93,10 +93,17 @@ with open(os.path.join(SRC, 'assets', 'loader', 'evolve.png'), 'rb') as _f:
 css = css.replace("url('../loader/evolve.png')", "url('%s')" % _evolve)
 
 # ---------------------------------------------------------------- scripts
-def unwrap(js, name, head_marker):
-    """Turn a top-level IIFE into a named window function we can re-run per route."""
-    i = js.index(head_marker)
-    js = js[:i] + ('window.%s=function(){' % name) + js[i + len(head_marker):]
+def unwrap(js, name, head_marker=None):
+    """Turn a top-level IIFE into a named window function we can re-run per route.
+
+    Matched by pattern rather than by an exact string: this used to hold the
+    literal '(function(){' and a source file reformatted to '(function () {'
+    broke the build with nothing but "substring not found".
+    """
+    m = re.search(r'\(\s*(?:function\s*\([^)]*\)|\([^)]*\)\s*=>)\s*\{', js)
+    if not m:
+        raise SystemExit('no top-level IIFE found while unwrapping %s' % name)
+    js = js[:m.start()] + ('window.%s=function(){' % name) + js[m.end():]
     tail = '})();'
     j = js.rindex(tail)
     return js[:j] + '};' + js[j + len(tail):]
@@ -158,10 +165,14 @@ app = app.replace('tool.html?id=${', '#/tool/${').replace('href="index.html"', '
 tool = tool.replace('tool.html?id=${', '#/tool/${').replace('href="index.html"', 'href="#/"')
 cms = cms.replace("tool.html?id=' + encodeURIComponent(p.id) + '", "#/tool/' + encodeURIComponent(p.id) + '")
 
-# the tool page reads its id from the router, not the query string
-tool = tool.replace(
-    "  const id=new URLSearchParams(location.search).get('id');",
-    "  const id=window.__toolId;")
+# The tool page reads its id from the router, not the query string. Matched by
+# pattern: the previous literal match silently stopped applying when the
+# declaration changed from const to var, and the route rendered "Not found"
+# with no error anywhere.
+_id_re = re.compile(r"(?:const|let|var)\s+id\s*=\s*new URLSearchParams\(location\.search\)\.get\('id'\);")
+if not _id_re.search(tool):
+    raise SystemExit('tool.js: could not find the id lookup to rewrite for the router')
+tool = _id_re.sub("var id = window.__toolId;", tool)
 
 # embedded local demos cannot travel with a single file — say so rather than 404
 tool = tool.replace(
