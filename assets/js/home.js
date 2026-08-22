@@ -217,4 +217,8 @@
   $('#tbMeasured').textContent = measured.length + ' of ' + PROJECTS.length + ' measured';
   $('#tbRev').textContent = new Date().toISOString().slice(0, 10);
   $('#crumb').title = 'AI Research & Innovation, ' + new Date().getFullYear();
+
+  /* content is on screen; take the loader away */
+  if(window.LOADER_DONE) window.LOADER_DONE();
+
 })();

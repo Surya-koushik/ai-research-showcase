@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="assets/css/theme.css">
 <link rel="stylesheet" href="assets/css/deck.css">
 <link rel="stylesheet" href="assets/css/uikit-bridge.css">
+<link rel="stylesheet" href="assets/css/loader.css">
 <script src="assets/js/supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/auth.js"></script>
@@ -22,6 +23,23 @@
 <!-- The kit's app frame (spec §3): sidebar + topbar pinned, only .a-view scrolls,
      titleblock locked as the last child of .a-main. -->
 <body class="a-app deck uikit">
+
+<!-- Evolve loader. In the markup, not injected, so it paints on the first
+     frame. assets/js/loader.js removes it once the page has rendered. -->
+<div class="evo-loader" id="evoLoader" role="status" aria-live="polite" aria-label="Loading">
+  <div class="evo-inner">
+    <div class="evo-logo" aria-hidden="true">
+      <div class="evo-base"></div><div class="evo-colour"></div><div class="evo-shine"></div>
+    </div>
+    <div class="evo-status">
+      <div class="evo-copy"><span>Loading</span>
+        <span class="evo-dots"><i></i><i></i><i></i></span></div>
+      <div class="evo-track"></div>
+    </div>
+  </div>
+</div>
+<!-- /evo -->
+
 
 <aside class="a-sidebar no-print">
   <a class="a-sidebar-brand" href="index.html">
@@ -183,6 +201,7 @@
 
 </div><!-- /.a-main -->
 
+<script src="assets/js/loader.js"></script>
 <script src="assets/vendor/asure-ui-kit/asure-illustrations.js"></script>
 <script src="assets/vendor/asure-ui-kit/asure-ui.js"></script>
 <script src="assets/js/icons.js"></script>

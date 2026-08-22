@@ -1,0 +1,106 @@
+/* ============================================================================
+   loader.css — the Evolve page loader.
+   ----------------------------------------------------------------------------
+   From the Asure Evolve loader (Codex 2026-08-22 / i-x20). The wordmark is used
+   as a mask and the colour moves underneath it, so the letterforms stay crisp
+   at any size and the whole thing is one 19 KB PNG.
+
+   Three stacked layers inside the same mask:
+     .evo-base    the metal wordmark, always visible
+     .evo-colour  violet -> white -> warm travelling through the letters
+     .evo-shine   a faster specular pass over the top
+
+   Markup lives in the page rather than being injected by script, so it paints
+   on the first frame instead of waiting for JavaScript. loader.js only removes
+   it. If the script never runs, the safety rule at the bottom hides it anyway
+   rather than leaving a visitor stuck behind a full-screen overlay.
+   ============================================================================ */
+
+.evo-loader{
+  position:fixed; inset:0; z-index:9999;
+  display:grid; place-items:center;
+  background:radial-gradient(circle at 50% 48%, #0a0818 0, #030307 42%, #010103 76%);
+  opacity:1; transition:opacity .5s ease, visibility .5s;
+}
+/* Light mode still gets the dark stage: the wordmark is built for it, and the
+   loader is a moment rather than a surface the reader sits with. */
+:root[data-theme="light"] .evo-loader{
+  background:radial-gradient(circle at 50% 48%, #12101f 0, #08070d 42%, #030304 76%);
+}
+
+.evo-loader.is-done{ opacity:0; visibility:hidden; pointer-events:none; }
+
+.evo-inner{ width:min(390px, 72vw); display:grid; justify-items:center; gap:28px; }
+
+/* 1355x324 is the source PNG; holding the ratio keeps the mask aligned. */
+.evo-logo{ position:relative; width:100%; aspect-ratio:1355 / 324; }
+.evo-base, .evo-colour, .evo-shine{
+  position:absolute; inset:0;
+  -webkit-mask:url('../loader/evolve.png') center/contain no-repeat;
+          mask:url('../loader/evolve.png') center/contain no-repeat;
+}
+.evo-base{ background:linear-gradient(110deg,#c4c2dd,#fff 42%,#7e789d 73%,#ecebfa); }
+.evo-colour{
+  background:linear-gradient(110deg,transparent 5%,#2416ff 18%,#7b5cff 29%,#fff 39%,
+             #ff6538 46%,#ffb046 51%,transparent 60%,#1c58ff 72%,#76e5ff 80%,transparent 92%);
+  background-size:280% 180%;
+  filter:blur(4px) saturate(1.5);
+  mix-blend-mode:screen;
+  animation:evo-flow 3.4s cubic-bezier(.45,0,.2,1) infinite;
+}
+.evo-shine{
+  background:linear-gradient(105deg,transparent 30%,#fff 45%,#71d8ff 49%,transparent 62%);
+  background-size:260% 100%;
+  animation:evo-shine 3.4s cubic-bezier(.45,0,.2,1) infinite;
+}
+
+.evo-status{ width:82%; }
+.evo-copy{
+  display:flex; justify-content:space-between; margin-bottom:11px;
+  color:#858394; font:600 9px/1 ui-sans-serif,Arial,sans-serif;
+  letter-spacing:.28em; text-transform:uppercase;
+}
+.evo-dots{ display:flex; gap:5px; align-items:center; }
+.evo-dots i{ width:3px; height:3px; border-radius:50%; background:#7772ff;
+             animation:evo-dot 1.2s ease-in-out infinite; }
+.evo-dots i:nth-child(2){ animation-delay:.16s }
+.evo-dots i:nth-child(3){ animation-delay:.32s }
+
+.evo-track{ position:relative; height:2px; overflow:hidden; background:#1b1a26; }
+.evo-track::after{
+  content:""; position:absolute; inset:0; width:42%;
+  background:linear-gradient(90deg,transparent,#3222ff,#fff,#ff693c,transparent);
+  filter:drop-shadow(0 0 5px #4b3cff);
+  animation:evo-progress 2.2s cubic-bezier(.55,0,.25,1) infinite;
+}
+
+@keyframes evo-flow{
+  0%{ background-position:120% 35%; opacity:.18 }
+  38%{ opacity:1 }
+  52%{ background-position:50% 65%; opacity:.95 }
+  100%{ background-position:-28% 42%; opacity:.18 }
+}
+@keyframes evo-shine{
+  0%{ background-position:130% 0; opacity:.08 }
+  45%{ opacity:.9 }
+  100%{ background-position:-130% 0; opacity:.08 }
+}
+@keyframes evo-progress{ from{ transform:translateX(-120%) } to{ transform:translateX(340%) } }
+@keyframes evo-dot{ 0%,100%{ opacity:.22; transform:scale(.7) } 50%{ opacity:1; transform:scale(1.3) } }
+
+/* Reduced motion: keep the wordmark and the fade, drop everything that moves.
+   The travelling gradient is the whole effect, so it is held mid-sweep rather
+   than left at an end position where the letters read as unlit. */
+@media (prefers-reduced-motion: reduce){
+  .evo-colour{ animation:none; background-position:50% 50%; opacity:.85; filter:blur(3px) saturate(1.4) }
+  .evo-shine{ animation:none; opacity:.12 }
+  .evo-track::after{ animation:none; width:100%; opacity:.5 }
+  .evo-dots i{ animation:none; opacity:.6 }
+  .evo-loader{ transition:opacity .2s ease, visibility .2s }
+}
+
+/* Safety net. If loader.js fails to load or throws before it can remove the
+   overlay, this hides it a few seconds in rather than trapping the reader
+   behind a full-screen animation. */
+@keyframes evo-bail{ to{ opacity:0; visibility:hidden } }
+.evo-loader{ animation:evo-bail .6s ease 8s forwards; }

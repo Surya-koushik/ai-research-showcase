@@ -194,4 +194,5 @@
   renderNav();
   coverage();
   render();
+  if(window.LOADER_DONE) window.LOADER_DONE();
 })();
