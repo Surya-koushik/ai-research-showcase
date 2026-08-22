@@ -31,9 +31,19 @@
   background:radial-gradient(circle at 50% 46%, #0b0920 0, #040409 44%, #010103 78%);
   opacity:1; transition:opacity .55s ease, visibility .55s;
 }
+/* Light is a genuinely light stage, not a dimmed dark one. The palette is the
+   one the tool diagrams use (TOOL_TEMPLATE_IMAGE_GENERATION_PROCEDURE.md), so
+   the opening and the artwork it introduces belong to the same system. */
 :root[data-theme="light"] .evo-loader{
-  background:radial-gradient(circle at 50% 46%, #12101f 0, #08070d 44%, #030304 78%);
+  background:radial-gradient(circle at 50% 46%, #FFFFFF 0, #F5F8FA 46%, #E4EDF4 82%);
 }
+/* The wordmarks are black on transparency. Dark inverts them to white; light
+   uses them as drawn. One asset, either ground -- which is the whole reason
+   they are PNGs with alpha rather than baked-in white or black. */
+:root[data-theme="light"] .evo-wm{ filter:none }
+:root[data-theme="light"] .evo-copy{ color:#587087 }
+:root[data-theme="light"] .evo-dots i{ background:#2875C7 }
+:root[data-theme="light"] .evo-track{ background:#D9E4EC }
 .evo-loader.is-done{ opacity:0; visibility:hidden; pointer-events:none; }
 
 .evo-inner{ width:min(430px, 76vw); display:grid; justify-items:center; }
@@ -165,6 +175,47 @@
   .evo-track::after{ animation:none; width:100%; opacity:.5 }
   .evo-dots i{ animation:none; opacity:.6 }
   .evo-loader{ transition:opacity .2s ease, visibility .2s }
+}
+
+/* --- light theme: the colour layers ------------------------------------- */
+/* 'screen' lightens, so on a white ground it disappears. Light mode darkens
+   instead, and swaps the neon ramp for the technical palette. */
+:root[data-theme="light"] .evo-colour{
+  mix-blend-mode:multiply; filter:blur(3px) saturate(1.15);
+  background:linear-gradient(110deg,transparent 5%,#102F4C 18%,#2875C7 29%,#7FB2E8 39%,
+             #D6A742 46%,#E8C27A 51%,transparent 60%,#2875C7 72%,#3BA66E 80%,transparent 92%);
+  background-size:280% 180%;
+}
+:root[data-theme="light"] .evo-shine{
+  mix-blend-mode:multiply;
+  background:linear-gradient(105deg,transparent 30%,#2875C7 45%,#3BA66E 49%,transparent 62%);
+}
+:root[data-theme="light"] .evo-flare{
+  mix-blend-mode:multiply; filter:blur(15px);
+  background:radial-gradient(ellipse at center,
+     #FFFFFF 0%, #7FB2E8 18%, #2875C7 34%, #D6A742 58%, transparent 74%);
+}
+:root[data-theme="light"] .evo-track::after{
+  background:linear-gradient(90deg,transparent,#2875C7,#102F4C,#D6A742,transparent);
+  filter:drop-shadow(0 0 4px rgba(40,117,199,.45));
+}
+
+/* Keep the black artwork legible while it is mid-transform on a light ground:
+   the blur in the keyframes carries invert(1) from the dark defaults. */
+:root[data-theme="light"] .evo-asure{ animation-name:evo-asure-in-lt, evo-asure-out-lt }
+:root[data-theme="light"] .evo-evolve{ animation-name:evo-evolve-in-lt }
+@keyframes evo-asure-in-lt{
+  from{ opacity:0; transform:translateY(-50%) scale(1.06); filter:blur(7px) }
+  to  { opacity:1; transform:translateY(-50%) scale(1);    filter:blur(0) }
+}
+@keyframes evo-asure-out-lt{
+  from{ opacity:1; transform:translateY(-50%) scaleX(1)   scaleY(1);   filter:blur(0) }
+  to  { opacity:0; transform:translateY(-50%) scaleX(.34) scaleY(1.5); filter:blur(9px) }
+}
+@keyframes evo-evolve-in-lt{
+  from{ opacity:0; transform:translateY(-50%) scaleX(.36) scaleY(1.42); filter:blur(8px) }
+  60% { opacity:1 }
+  to  { opacity:1; transform:translateY(-50%) scaleX(1)   scaleY(1);    filter:blur(0) }
 }
 
 /* Safety net: if loader.js never runs, this clears the overlay rather than
