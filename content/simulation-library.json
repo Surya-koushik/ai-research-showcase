@@ -1,0 +1,25 @@
+{
+  "id": "simulation-library",
+  "code": "P35",
+  "name": "Interior Simulation Library",
+  "status": "in-progress",
+  "kind": "platform",
+  "domain": "design",
+  "logo": "asure",
+  "tagline": "Room-by-room simulations built from the drawing set, answerable without opening them.",
+  "tech": [
+    "html",
+    "javascript",
+    "python",
+    "mcp"
+  ],
+  "page": {
+    "objective": "Digitise an interiors drawing set room by room so any question can be answered from an index rather than from the heavy source files.",
+    "problem": "Answering a question meant opening large drawing applications and reading them again.",
+    "solution": "Drawings become structured scene data, get simulated, and are archived in a retrievable format behind one hub."
+  },
+  "related": [
+    "cad3d-studio",
+    "construction-takeoff-ai"
+  ]
+}

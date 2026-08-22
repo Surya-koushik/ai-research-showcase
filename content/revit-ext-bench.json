@@ -1,0 +1,24 @@
+{
+  "id": "revit-ext-bench",
+  "code": "P36",
+  "name": "Revit Extensions Test Bench",
+  "status": "research",
+  "kind": "study",
+  "domain": "design",
+  "logo": "asure",
+  "tagline": "Which open-source Revit add-ins actually build and run for us.",
+  "tech": [
+    "csharp",
+    "dotnet",
+    "revit"
+  ],
+  "page": {
+    "objective": "Find out which publicly available Revit and Dynamo extensions are worth adopting, by building and deploying them rather than reading about them.",
+    "problem": "Extension quality is impossible to judge from a repository page.",
+    "solution": "Candidates are cloned, built against Revit 2025 and deployed; what survives is documented with its result."
+  },
+  "related": [
+    "revit-toolbox",
+    "phoenix-l1"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "deck-roadmap-v2",
+  "code": "P49",
+  "name": "AI Roadmap v2 Deliverables",
+  "status": "production",
+  "kind": "deck",
+  "domain": "studio",
+  "logo": "asure",
+  "tagline": "The roadmap as a deck, a report and a tracking workbook.",
+  "tech": [
+    "html",
+    "python"
+  ],
+  "page": {
+    "objective": "Turn the roadmap into something the studio can actually run against, not just read once.",
+    "problem": "A roadmap that exists only as a presentation stops being true within a month.",
+    "solution": "Three linked deliverables generated from one source: a deck, a landscape report and a workbook that tracks progress."
+  },
+  "related": [
+    "ads-ai-roadmap",
+    "deck-leadership"
+  ]
+}

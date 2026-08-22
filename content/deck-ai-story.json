@@ -1,0 +1,21 @@
+{
+  "id": "deck-ai-story",
+  "code": "P45",
+  "name": "Asure AI Story Deck",
+  "status": "production",
+  "kind": "deck",
+  "domain": "studio",
+  "logo": "asure",
+  "tagline": "The studio’s AI story, split into procedure and closing.",
+  "tech": [
+    "html"
+  ],
+  "page": {
+    "objective": "Tell the studio’s AI story as a procedure someone can follow, not a list of capabilities.",
+    "problem": "One long deck mixed the how-it-works narrative with the ask, and neither landed.",
+    "solution": "Two standalone decks: a seventeen-slide procedure story and a three-slide action and closing."
+  },
+  "related": [
+    "deck-summit-pitch"
+  ]
+}

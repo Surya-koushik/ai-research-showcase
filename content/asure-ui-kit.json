@@ -1,0 +1,24 @@
+{
+  "id": "asure-ui-kit",
+  "code": "P31",
+  "name": "Asure UI Kit",
+  "status": "in-progress",
+  "kind": "platform",
+  "domain": "studio",
+  "logo": "asure",
+  "tagline": "The shared chrome and report grammar every other tool builds on.",
+  "tech": [
+    "html",
+    "css",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Define one design system so every dashboard, report and deck the studio ships looks like it came from the same place.",
+    "problem": "Each tool reinvented its own layout, palette and report format.",
+    "solution": "A template and component library the other projects consume rather than copy."
+  },
+  "related": [
+    "h10-dashboard",
+    "p25-predictability"
+  ]
+}

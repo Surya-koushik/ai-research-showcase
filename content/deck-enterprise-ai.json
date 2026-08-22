@@ -1,0 +1,22 @@
+{
+  "id": "deck-enterprise-ai",
+  "code": "P50",
+  "name": "Enterprise AI Possibilities",
+  "status": "production",
+  "kind": "deck",
+  "domain": "studio",
+  "logo": "asure",
+  "tagline": "A story-first pitch for an enterprise client outside architecture.",
+  "tech": [
+    "html",
+    "python"
+  ],
+  "page": {
+    "objective": "Sell what AI makes possible to an enterprise client, by telling a story rather than listing features.",
+    "problem": "A capability list means nothing to a board that has not seen the tools work.",
+    "solution": "A single narrative spine with a gallery of real use cases and working demo clips hung off it."
+  },
+  "related": [
+    "deck-summit-pitch"
+  ]
+}

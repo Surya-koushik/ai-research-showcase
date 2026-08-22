@@ -1,0 +1,31 @@
+{
+  "id": "h10-dashboard",
+  "code": "P02",
+  "name": "H10 BIM Progress Dashboard",
+  "status": "production",
+  "kind": "dashboard",
+  "domain": "controls",
+  "workflowStage": "Reporting & Client Comms",
+  "logo": "asure",
+  "tagline": "Client-facing project + BIM progress, from pre-design to final GFC.",
+  "description": "A live dashboard that communicates project and BIM progress to clients — stage timeline, discipline status, and a clear explanation of how the delivery works, in the studio design language.",
+  "tech": [
+    "html",
+    "javascript",
+    "css"
+  ],
+  "efficiency": {
+    "manualHrsPerWeek": 3,
+    "aiHrsPerWeek": 0.5,
+    "draft": true
+  },
+  "page": {
+    "objective": "Give clients a single, always-current view of project and BIM progress.",
+    "problem": "Progress updates were manual, inconsistent, and time-consuming to assemble each week.",
+    "solution": "A structured dashboard that presents stage timeline, discipline status and process clarity in one place."
+  },
+  "related": [
+    "phoenix-l1",
+    "p25-predictability"
+  ]
+}

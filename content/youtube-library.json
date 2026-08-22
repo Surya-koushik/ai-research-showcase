@@ -1,0 +1,24 @@
+{
+  "id": "youtube-library",
+  "code": "P32",
+  "name": "YouTube Library",
+  "status": "production",
+  "kind": "platform",
+  "domain": "knowledge",
+  "logo": "asure",
+  "tagline": "Watch a video once; keep its value without re-watching.",
+  "tech": [
+    "html",
+    "javascript",
+    "python"
+  ],
+  "page": {
+    "objective": "Turn useful videos into filed, searchable notes so nobody has to watch anything twice.",
+    "problem": "Good material was found, watched, and then lost in a chat thread.",
+    "solution": "Each video gets a notes file filed by project stage, with takeaways and timestamps, all surfaced through one dashboard."
+  },
+  "related": [
+    "docs-to-md",
+    "local-video-pipeline"
+  ]
+}

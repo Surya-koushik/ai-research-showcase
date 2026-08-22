@@ -1,0 +1,22 @@
+{
+  "id": "mark-l-voice",
+  "code": "P26",
+  "name": "Mark-L Voice Agent",
+  "status": "experimental",
+  "kind": "agent",
+  "domain": "studio",
+  "logo": "asure",
+  "tagline": "Live voice control of the desktop — hears, sees the screen, and acts.",
+  "tech": [
+    "python"
+  ],
+  "page": {
+    "objective": "Operate the machine by speaking to it, with no perceptible delay between asking and acting.",
+    "problem": "Typing is the bottleneck for anything that spans several applications.",
+    "solution": "A streaming voice loop drives the desktop directly, running seamlessly rather than in request-response turns."
+  },
+  "related": [
+    "jarvis-ai-os",
+    "flowlocal"
+  ]
+}

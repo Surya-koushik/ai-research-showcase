@@ -1,0 +1,26 @@
+{
+  "id": "parametric-studio-bridge",
+  "code": "P34",
+  "name": "Parametric Studio Bridge",
+  "status": "production",
+  "kind": "connector",
+  "domain": "design",
+  "logo": "rhino",
+  "tagline": "Drag a slider in the browser; the Rhino model updates in about 200 ms.",
+  "tech": [
+    "javascript",
+    "python",
+    "rhino",
+    "grasshopper",
+    "mcp"
+  ],
+  "page": {
+    "objective": "Give a browser-based parametric studio live two-way control of Grasshopper inside Rhino.",
+    "problem": "Parametric exploration was locked inside Grasshopper, where only one person could drive it.",
+    "solution": "A bridge syncs browser sliders to Grasshopper and regenerates the brep in the viewport in real time, with an MCP connector so an assistant can drive Rhino too."
+  },
+  "related": [
+    "revit-mcp",
+    "cad3d-studio"
+  ]
+}

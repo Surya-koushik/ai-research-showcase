@@ -1,0 +1,23 @@
+{
+  "id": "figma-cli",
+  "code": "P28",
+  "name": "figma-cli",
+  "status": "production",
+  "kind": "connector",
+  "domain": "studio",
+  "logo": "figma",
+  "tagline": "Describe what you want; it gets built live in Figma Desktop.",
+  "tech": [
+    "node",
+    "javascript",
+    "figma"
+  ],
+  "page": {
+    "objective": "Let an assistant build directly in Figma Desktop while you talk to it in ordinary language.",
+    "problem": "Figma automation normally needs an API key, a paid plan and a plugin to babysit.",
+    "solution": "A local daemon talks to a companion plugin, so no subscription or API key is involved."
+  },
+  "related": [
+    "ai-team-pm"
+  ]
+}

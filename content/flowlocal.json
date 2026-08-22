@@ -1,0 +1,22 @@
+{
+  "id": "flowlocal",
+  "code": "P33",
+  "name": "FlowLocal Dictation",
+  "status": "production",
+  "kind": "pipeline",
+  "domain": "studio",
+  "logo": "asure",
+  "tagline": "Hold a key, speak, release — the words land in whatever you were typing in.",
+  "tech": [
+    "python"
+  ],
+  "page": {
+    "objective": "Dictate into any application on Windows without sending audio anywhere.",
+    "problem": "The commercial equivalent is a subscription and uploads every word you say.",
+    "solution": "Whisper runs on the local GPU behind a tray app and a global hotkey. Nothing is uploaded."
+  },
+  "related": [
+    "mark-l-voice",
+    "local-video-pipeline"
+  ]
+}

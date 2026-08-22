@@ -1,0 +1,29 @@
+{
+  "id": "docs-to-md",
+  "code": "P08",
+  "name": "Docs → Markdown Corpus",
+  "status": "production",
+  "kind": "pipeline",
+  "domain": "knowledge",
+  "workflowStage": "Knowledge & Research",
+  "logo": "asure",
+  "tagline": "Batch any document set into an AI-queryable Markdown knowledge base.",
+  "description": "Converts folders of Excel, Word, PowerPoint, PDF and drawing sets into structured Markdown, building a searchable corpus an assistant can reason over — including a drawings-catalog technique that made an 80-hour job take just over an hour.",
+  "tech": [
+    "python"
+  ],
+  "efficiency": {
+    "manualHrsPerWeek": 2,
+    "aiHrsPerWeek": 0.2,
+    "draft": true
+  },
+  "page": {
+    "objective": "Turn scattered project documents into a single AI-queryable knowledge base.",
+    "problem": "Knowledge is trapped across dozens of incompatible document formats.",
+    "solution": "A batch converter to structured Markdown, plus a fast path for large drawing sets."
+  },
+  "related": [
+    "team-assess",
+    "headroom"
+  ]
+}

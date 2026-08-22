@@ -1,0 +1,23 @@
+{
+  "id": "local-video-pipeline",
+  "code": "P41",
+  "name": "Local Video Research Pipeline",
+  "status": "production",
+  "kind": "pipeline",
+  "domain": "knowledge",
+  "logo": "asure",
+  "tagline": "Video in, structured research notes out — entirely on our own GPU.",
+  "tech": [
+    "python",
+    "ollama"
+  ],
+  "page": {
+    "objective": "Turn long videos into usable written research without paying per token or uploading anything.",
+    "problem": "Reviewing hours of video by hand is slow, and cloud transcription costs add up fast.",
+    "solution": "Download, GPU transcription and local summarisation run as one chain, selecting GPU or CPU automatically."
+  },
+  "related": [
+    "youtube-library",
+    "docs-to-md"
+  ]
+}

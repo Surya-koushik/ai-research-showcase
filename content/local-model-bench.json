@@ -1,0 +1,24 @@
+{
+  "id": "local-model-bench",
+  "code": "P37",
+  "name": "Local AI Model Bench",
+  "status": "research",
+  "kind": "study",
+  "domain": "ai",
+  "logo": "asure",
+  "tagline": "What local models can and cannot do on studio hardware.",
+  "tech": [
+    "python",
+    "ollama",
+    "brain"
+  ],
+  "page": {
+    "objective": "Establish which locally-hosted models are good enough for real studio work, and on what hardware.",
+    "problem": "Cloud models are capable but rule out confidential project data.",
+    "solution": "Models are run against real tasks on the actual machines, with the memory and context limits that break them written down."
+  },
+  "related": [
+    "git-links-test",
+    "headroom"
+  ]
+}

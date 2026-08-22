@@ -1,0 +1,19 @@
+{
+  "id": "architecture-boq-template",
+  "code": "P21",
+  "name": "Architecture BOQ Template",
+  "status": "production",
+  "kind": "pipeline",
+  "domain": "docs",
+  "workflowStage": "post-BIM modeling",
+  "logo": "revit",
+  "tagline": "A BIM-driven template for generating quantity-based Building Operations and Maintenance (BOM) documents.",
+  "description": "This tool automates the creation of detailed building operation and maintenance (BOM) documents from a BIM model. It leverages native Revit parameters to extract quantities, classifies them using Uniclass codes, and formats them into structured BOQ lines for fabric, finishes, openings, and joinery.",
+  "tech": [
+    "revit"
+  ],
+  "page": {
+    "objective": "A BIM-driven template for generating quantity-based Building Operations and Maintenance (BOM) documents.",
+    "solution": "This tool automates the creation of detailed building operation and maintenance (BOM) documents from a BIM model. It leverages native Revit parameters to extract quantities, classifies them using Uniclass codes, and formats them into structured BOQ lines for fabric, finishes, openings, and joinery."
+  }
+}

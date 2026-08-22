@@ -1,0 +1,23 @@
+{
+  "id": "deck-summit-pitch",
+  "code": "P43",
+  "name": "International Summit Pitch",
+  "status": "production",
+  "kind": "deck",
+  "domain": "studio",
+  "logo": "asure",
+  "tagline": "Twenty slides pitching the studio as infrastructure, not a service.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Present the studio’s AI position to an international summit audience in a single portable file.",
+    "problem": "A funder audience needs the whole picture in twenty minutes, from an unfamiliar laptop.",
+    "solution": "A self-contained deck that opens big and goes deep, built around a live map of the tool ecosystem."
+  },
+  "related": [
+    "ads-ai-roadmap",
+    "deck-ai-story"
+  ]
+}

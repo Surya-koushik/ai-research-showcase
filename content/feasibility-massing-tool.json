@@ -1,0 +1,19 @@
+{
+  "id": "feasibility-massing-tool",
+  "code": "P23",
+  "name": "Feasibility & Massing Tool",
+  "status": "production",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "tool",
+  "logo": "asure",
+  "tagline": "End-to-end browser-based feasibility and massing tool for site development projects.",
+  "description": "A web application that allows users to draw a site, apply NBC + Telangana GO rules, generate massing, export geometry to Rhino/Grasshopper, and download a PPTX deck. It supports project types like highrise, mid-rise, villa township, mixed-use, and more.",
+  "tech": [
+    "python"
+  ],
+  "page": {
+    "objective": "End-to-end browser-based feasibility and massing tool for site development projects.",
+    "solution": "A web application that allows users to draw a site, apply NBC + Telangana GO rules, generate massing, export geometry to Rhino/Grasshopper, and download a PPTX deck. It supports project types like highrise, mid-rise, villa township, mixed-use, and more."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "ads-ai-roadmap",
+  "code": "P40",
+  "name": "ADS AI Roadmap",
+  "status": "production",
+  "kind": "study",
+  "domain": "studio",
+  "logo": "asure",
+  "tagline": "The studio-wide plan for adopting AI, with the hardware to run it.",
+  "tech": [
+    "html",
+    "python"
+  ],
+  "page": {
+    "objective": "Give the studio one plan for what to adopt, in what order, and on what hardware.",
+    "problem": "AI adoption was happening tool by tool, with no shared view of cost, sequence or risk.",
+    "solution": "A clarity deck, a written report and a tracking workbook, with hardware tiers costed and validated."
+  },
+  "related": [
+    "deck-leadership",
+    "deck-roadmap-v2"
+  ]
+}

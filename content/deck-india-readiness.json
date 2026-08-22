@@ -1,0 +1,21 @@
+{
+  "id": "deck-india-readiness",
+  "code": "P44",
+  "name": "India BIM-AI Readiness Report",
+  "status": "production",
+  "kind": "deck",
+  "domain": "knowledge",
+  "logo": "asure",
+  "tagline": "How ready Indian construction actually is for AI.",
+  "tech": [
+    "html"
+  ],
+  "page": {
+    "objective": "Establish the real state of AI and BIM readiness in Indian construction, as a basis for what the studio offers.",
+    "problem": "Strategy was being set against global figures that do not describe this market.",
+    "solution": "A researched report on the Indian market specifically, published alongside a catalogue of available solutions."
+  },
+  "related": [
+    "ads-ai-roadmap"
+  ]
+}

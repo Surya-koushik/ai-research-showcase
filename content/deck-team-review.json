@@ -1,0 +1,22 @@
+{
+  "id": "deck-team-review",
+  "code": "P47",
+  "name": "Studio Team Review",
+  "status": "production",
+  "kind": "deck",
+  "domain": "studio",
+  "logo": "asure",
+  "tagline": "The structured data behind the team organisation review.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Build the team organisation review on structured, updatable data instead of a hand-made slide.",
+    "problem": "Team information was re-collected from scratch every time it was needed.",
+    "solution": "A source-of-truth data pack, with a project library and member inputs, driving a live site."
+  },
+  "related": [
+    "asure-team-org"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "archviz-suite",
+  "code": "P06",
+  "name": "ArchViz AI Suite",
+  "status": "research",
+  "kind": "study",
+  "domain": "design",
+  "workflowStage": "Concept & Visualization",
+  "logo": "comfyui",
+  "tagline": "Local idea → elevations → 3D → render pipeline on ComfyUI.",
+  "description": "An open-source, fully-local visualization pipeline: an upscaler in the spirit of premium tools, plus an idea-to-elevations-to-3D flow — all running on the studio GPU with no cloud dependency.",
+  "tech": [
+    "python",
+    "comfyui",
+    "ollama"
+  ],
+  "page": {
+    "objective": "Bring premium-grade AI visualization in-house, running locally.",
+    "problem": "Best-in-class AI upscaling and concept tools are cloud, paid, and off-limits for sensitive work.",
+    "solution": "A local ComfyUI pipeline covering upscale, concept elevations and 3D, at zero per-image cost."
+  },
+  "related": [
+    "cad3d-studio"
+  ]
+}

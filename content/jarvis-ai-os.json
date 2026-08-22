@@ -1,0 +1,24 @@
+{
+  "id": "jarvis-ai-os",
+  "code": "P25",
+  "name": "JARVIS AI-OS",
+  "status": "in-progress",
+  "kind": "agent",
+  "domain": "ai",
+  "logo": "asure",
+  "tagline": "One agent you talk to; it delegates the rest to specialists in the background.",
+  "tech": [
+    "python",
+    "anthropic",
+    "mcp"
+  ],
+  "page": {
+    "objective": "Talk to one agent by voice, text or messaging, and have it route the work to specialist agents without you managing any of them.",
+    "problem": "Every tool needs its own prompt, its own window and its own context. Nothing shares what it learned.",
+    "solution": "A gateway routes one conversation to background specialists over a shared SQLite event bus, so state and memory persist across them."
+  },
+  "related": [
+    "asure-ai-agent",
+    "mark-l-voice"
+  ]
+}

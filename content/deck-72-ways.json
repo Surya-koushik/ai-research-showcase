@@ -1,0 +1,23 @@
+{
+  "id": "deck-72-ways",
+  "code": "P52",
+  "name": "72 Ways Architects Use Claude",
+  "status": "production",
+  "kind": "deck",
+  "domain": "knowledge",
+  "logo": "anthropic",
+  "tagline": "Seventy-two concrete uses, mapped to the design stage each belongs to.",
+  "tech": [
+    "html",
+    "anthropic"
+  ],
+  "page": {
+    "objective": "Give architects a concrete catalogue of what to actually use AI for, filed by the stage they are working in.",
+    "problem": "General AI advice never survives contact with an architect’s actual week.",
+    "solution": "Seventy-two specific uses, each tied to a design phase and a delegation map."
+  },
+  "related": [
+    "ads-ai-roadmap",
+    "youtube-library"
+  ]
+}

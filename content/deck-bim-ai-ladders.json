@@ -1,0 +1,21 @@
+{
+  "id": "deck-bim-ai-ladders",
+  "code": "P42",
+  "name": "BIM × AI Integration Deck",
+  "status": "production",
+  "kind": "deck",
+  "domain": "knowledge",
+  "logo": "asure",
+  "tagline": "Two ladders: how BIM maturity and AI capability climb together.",
+  "tech": [
+    "html"
+  ],
+  "page": {
+    "objective": "Show where the studio sits on both the BIM and the AI ladder, and what the next rung costs.",
+    "problem": "BIM maturity and AI capability were being discussed as separate conversations.",
+    "solution": "One deck that puts the two ladders side by side, so each AI step is tied to the BIM step it depends on."
+  },
+  "related": [
+    "ads-ai-roadmap"
+  ]
+}

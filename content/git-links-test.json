@@ -1,0 +1,22 @@
+{
+  "id": "git-links-test",
+  "code": "P39",
+  "name": "Open-Source Model Test",
+  "status": "research",
+  "kind": "study",
+  "domain": "ai",
+  "logo": "github",
+  "tagline": "Thirty-two open-source AI repos, tested against local models.",
+  "tech": [
+    "python",
+    "ollama"
+  ],
+  "page": {
+    "objective": "Work out which open-source AI projects run usefully on our own hardware.",
+    "problem": "A long list of promising repositories, and no evidence any of them work here.",
+    "solution": "Every repository was cloned and run against local models; five passed and the rest were ruled out with a reason."
+  },
+  "related": [
+    "local-model-bench"
+  ]
+}

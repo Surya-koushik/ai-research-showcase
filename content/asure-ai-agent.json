@@ -1,0 +1,24 @@
+{
+  "id": "asure-ai-agent",
+  "code": "P27",
+  "name": "Asure AI Agent",
+  "status": "production",
+  "kind": "agent",
+  "domain": "ai",
+  "logo": "asure",
+  "tagline": "Open-source, local-first agent — a CLI and a desktop app, branded as ours.",
+  "tech": [
+    "python",
+    "typescript",
+    "node"
+  ],
+  "page": {
+    "objective": "Give the studio a self-improving, tool-calling agent that runs on our own machines, so data and conversations never leave them.",
+    "problem": "Every capable agent is a hosted service, which rules it out for confidential project work.",
+    "solution": "A branded fork kept to a thin branding layer, so upstream changes still merge cleanly."
+  },
+  "related": [
+    "jarvis-ai-os",
+    "headroom"
+  ]
+}

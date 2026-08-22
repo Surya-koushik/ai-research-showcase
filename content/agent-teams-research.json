@@ -1,0 +1,23 @@
+{
+  "id": "agent-teams-research",
+  "code": "P38",
+  "name": "Agent Teams Evaluation",
+  "status": "research",
+  "kind": "study",
+  "domain": "ai",
+  "logo": "anthropic",
+  "tagline": "Whether multi-agent teams beat one good agent.",
+  "tech": [
+    "anthropic",
+    "mcp"
+  ],
+  "page": {
+    "objective": "Decide whether coordinated agent teams are worth the coordination cost for studio work.",
+    "problem": "Multi-agent setups are easy to spin up and hard to judge.",
+    "solution": "Team prompts, file-ownership rules and spawn patterns were evaluated against single-agent baselines."
+  },
+  "related": [
+    "jarvis-ai-os",
+    "local-model-bench"
+  ]
+}

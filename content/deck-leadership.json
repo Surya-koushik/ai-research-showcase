@@ -1,0 +1,22 @@
+{
+  "id": "deck-leadership",
+  "code": "P46",
+  "name": "AI Adaptation Leadership Deck",
+  "status": "production",
+  "kind": "deck",
+  "domain": "studio",
+  "logo": "asure",
+  "tagline": "The heads’ view: what to adopt, what to host, what to defer.",
+  "tech": [
+    "html"
+  ],
+  "page": {
+    "objective": "Give studio leadership a decision-ready view of AI adoption rather than a technology tour.",
+    "problem": "Leadership needed to make hosting and spend decisions without a technical briefing.",
+    "solution": "A deck framed around decisions, with the open-source-on-our-own-hardware position argued explicitly."
+  },
+  "related": [
+    "ads-ai-roadmap",
+    "deck-roadmap-v2"
+  ]
+}

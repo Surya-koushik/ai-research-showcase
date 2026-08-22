@@ -1,0 +1,21 @@
+{
+  "id": "deck-phoenix-client",
+  "code": "P48",
+  "name": "Phoenix Client Presentation",
+  "status": "production",
+  "kind": "deck",
+  "domain": "qa",
+  "logo": "asure",
+  "tagline": "The self-certification plugin, presented to the client that asked for it.",
+  "tech": [
+    "html"
+  ],
+  "page": {
+    "objective": "Show a client how weekly Level-1 self-certification works, end to end, in one meeting.",
+    "problem": "The value of an automated compliance check is hard to convey without seeing it run.",
+    "solution": "A single-file deck backed by a standalone bundle — plugin, screenshots, standards and strategy in one folder with no external paths."
+  },
+  "related": [
+    "phoenix-l1"
+  ]
+}

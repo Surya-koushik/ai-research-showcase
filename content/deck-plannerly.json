@@ -1,0 +1,22 @@
+{
+  "id": "deck-plannerly",
+  "code": "P51",
+  "name": "Plannerly Evaluation",
+  "status": "production",
+  "kind": "deck",
+  "domain": "qa",
+  "logo": "asure",
+  "tagline": "Whether a commercial BIM-management platform earns its place.",
+  "tech": [
+    "html"
+  ],
+  "page": {
+    "objective": "Decide whether to adopt a commercial BIM management platform or keep building in-house.",
+    "problem": "Buy-versus-build was being argued from marketing material.",
+    "solution": "An evaluation presented against what the studio already has working."
+  },
+  "related": [
+    "asurebimqc",
+    "phoenix-l1"
+  ]
+}

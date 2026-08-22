@@ -1,0 +1,20 @@
+{
+  "id": "asurebimqc",
+  "code": "P17",
+  "name": "AsureBimQc",
+  "status": "in-progress",
+  "kind": "plugin",
+  "domain": "qa",
+  "workflowStage": "foundation",
+  "logo": "asure",
+  "tagline": "Login and Autodesk ACC access control for BIM QC plugin",
+  "description": "This tool provides the login plumbing for an Asure BIM Quality Control (QC) plugin, enabling users to authenticate with Autodesk's Account Center (ACC). It includes features such as 3-legged OAuth with PKCE, silent refresh of tokens encrypted at rest using DPAPI, and discovery of hubs and projects. The tool is decoupled from Revit for end-to-end testing.",
+  "tech": [
+    "csharp",
+    "dotnet"
+  ],
+  "page": {
+    "objective": "Login and Autodesk ACC access control for BIM QC plugin",
+    "solution": "This tool provides the login plumbing for an Asure BIM Quality Control (QC) plugin, enabling users to authenticate with Autodesk's Account Center (ACC). It includes features such as 3-legged OAuth with PKCE, silent refresh of tokens encrypted at rest using DPAPI, and discovery of hubs and projects. The tool is decoupled from Revit for end-to-end testing."
+  }
+}

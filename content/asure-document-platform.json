@@ -1,0 +1,20 @@
+{
+  "id": "asure-document-platform",
+  "code": "P12",
+  "name": "Asure Document Platform",
+  "status": "in-progress",
+  "kind": "platform",
+  "domain": "studio",
+  "workflowStage": "foundation -> auth -> mou editor -> pdf export -> audit/dashboard -> deploy",
+  "logo": "asure",
+  "tagline": "Self-hosted document generation platform for branded MOU/contract PDFs.",
+  "description": "A self-hosted web application designed to generate branded MOUs and contracts as PDFs from a guided form. It runs on Surya's Windows 11 PC using FastAPI, PostgreSQL, WeasyPrint, Caddy, and Redis.",
+  "tech": [
+    "python",
+    "postgres"
+  ],
+  "page": {
+    "objective": "Self-hosted document generation platform for branded MOU/contract PDFs.",
+    "solution": "A self-hosted web application designed to generate branded MOUs and contracts as PDFs from a guided form. It runs on Surya's Windows 11 PC using FastAPI, PostgreSQL, WeasyPrint, Caddy, and Redis."
+  }
+}

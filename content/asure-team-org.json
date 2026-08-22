@@ -1,0 +1,23 @@
+{
+  "id": "asure-team-org",
+  "code": "P30",
+  "name": "Team Organisation Navigator",
+  "status": "production",
+  "kind": "dashboard",
+  "domain": "studio",
+  "logo": "asure",
+  "tagline": "Interactive five-step view of how the studio is organised.",
+  "tech": [
+    "html",
+    "css",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Make the studio’s structure navigable rather than a static chart nobody opens.",
+    "problem": "Org charts go stale the day they are exported and tell you nothing about who does what.",
+    "solution": "A five-step navigator with portraits and linked profiles, deployed as a single page."
+  },
+  "related": [
+    "ai-team-pm"
+  ]
+}

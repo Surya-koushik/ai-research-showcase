@@ -1,0 +1,24 @@
+{
+  "id": "ai-team-pm",
+  "code": "P29",
+  "name": "AI Team PM",
+  "status": "production",
+  "kind": "platform",
+  "domain": "studio",
+  "logo": "asure",
+  "tagline": "A project manager for the AI team, running on a shared board.",
+  "tech": [
+    "node",
+    "javascript",
+    "figma"
+  ],
+  "page": {
+    "objective": "Keep the AI team’s work visible on one board, with standups and task assignment handled automatically.",
+    "problem": "Task state lived in chat threads, so nobody could see the whole picture.",
+    "solution": "A task ledger drives a live board section and scheduled standups, with one active task per person enforced."
+  },
+  "related": [
+    "figma-cli",
+    "asure-team-org"
+  ]
+}
