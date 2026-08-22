@@ -1,300 +1,319 @@
 /* ============================================================================
-   tool.js — renders ANY tool page from ?id=<project-id>
-   ============================================================================ */
-(function(){
-  const $ = s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+   tool.js — render one tool page in the signed-off template.
+   ----------------------------------------------------------------------------
+   The markup mirrors tool_template.html: a section rail on the left, the page
+   in the middle, a facts rail on the right. All 52 tools now render in that
+   frame rather than the older single-column layout.
 
-  /* theme (light-primary) */
-  const themeBtn=$('#themeBtn'), themeTop=$('#themeTop');
-  const THEME_KEY='ads_theme_v2';   /* shared with the landing page */
-  function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem(THEME_KEY,t);
-    themeBtn.innerHTML=ICON(t==='dark'?'sun':'moon');
-    if(themeTop)themeTop.innerHTML=ICON(t==='dark'?'sun':'moon')+`<span>${t==='dark'?'Light':'Dark'}</span>`;}
-  setTheme(localStorage.getItem(THEME_KEY)||'dark');
-  const toggleTheme=()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
-  themeBtn.onclick=toggleTheme; if(themeTop)themeTop.onclick=toggleTheme;
-  $('#railToggle').innerHTML=ICON('menu'); $('#railToggle').onclick=()=>$('#rail').classList.toggle('open');
-  $('#crumbSep').innerHTML=ICON('arrow','')||''; $('#crumbSep').style.cssText='display:inline-flex;width:14px';
+   THE THING THIS HAS TO SURVIVE
+   Only P01 carries the full set of fields. Most projects have a name, a
+   tagline, an objective and a solution -- roughly forty words and no image.
+   So every section is conditional, the rail lists only the sections that
+   exist, and the efficiency panel has a written fallback for the 47 tools
+   with no measured hours. The page has to look finished at the forty-word
+   minimum, because that is the common case rather than the edge one.
+   ========================================================================== */
+(function () {
+  'use strict';
 
+  var id = new URLSearchParams(location.search).get('id');
+  var p = (window.PROJECTS || []).find(function (x) { return x.id === id; });
+  var host = document.getElementById('tp');
 
-  const id=new URLSearchParams(location.search).get('id');
-  const p=(window.PROJECTS||[]).find(x=>x.id===id);
-  const mount=$('#tp');
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
 
-  if(!p){
-    mount.innerHTML=`<div class="empty"><div>${ICON('search')}</div><p>Tool not found.</p>
-      <a class="btn primary" href="index.html" style="margin-top:14px">${ICON('back')} All Projects</a></div>`;
+  if (!p) {
+    host.innerHTML = '<main><div class="shell" style="padding:90px 0">' +
+      '<h1>Not found</h1><p class="lede">No project with that id.</p>' +
+      '<p style="margin-top:22px"><a class="side-link" href="index.html">&larr; All projects</a></p>' +
+      '</div></main>';
+    if (window.LOADER_DONE) window.LOADER_DONE();
     return;
   }
-  document.title=`${p.name} — AI Research & Innovation`;
-  $('#crumbNow').textContent=p.name;
 
-  const d=derive(p.efficiency), st=STATUS[p.status], pg=p.page||{}, m=p.media||{};
-  const km=kindMeta(p.kind), dm=domainMeta(p.domain);
+  var m = p.media || {};
+  var pg = p.page || {};
+  var km = kindMeta(p.kind);
+  var dm = domainMeta(p.domain);
 
-  /* ---- what this page actually has ---- */
-  const hasMedia  = !!((m.videos&&m.videos.length)||(m.html&&m.html.length)||(m.gallery&&m.gallery.length)||
-                       (m.docs&&m.docs.length)||(m.beforeAfter&&m.beforeAfter.before));
-  const hasWork   = !!(pg.objective||p.description||pg.problem||pg.solution);
-  const hasHow    = !!(pg.howItWorks&&pg.howItWorks.length);
-  const hasDetail = !!((pg.timeline&&pg.timeline.length)||(pg.challenges&&pg.challenges.length)||
-                       (pg.lessons&&pg.lessons.length)||(pg.roadmap&&pg.roadmap.length));
-  const relList   = (p.related||[]).map(rid=>PROJECTS.find(x=>x.id===rid)).filter(Boolean);
+  /* ---- what this project actually has ---------------------------------- */
+  var gallery  = m.gallery || [];
+  var demos    = m.html || [];
+  var docs     = m.docs || [];
+  var videos   = m.videos || [];
+  var isDeck   = p.kind === 'deck' && demos.length > 0;
+  var hasGal   = !isDeck && (gallery.length || videos.length || docs.length || demos.length);
+  var hasWork  = !!(pg.objective || pg.problem || pg.solution || p.description);
+  var steps    = pg.howItWorks || [];
+  var timeline = pg.timeline || [];
+  var devLists = [
+    ['Challenges', pg.challenges || []],
+    ['Lessons learned', pg.lessons || []],
+    ['What next', pg.roadmap || []]
+  ].filter(function (x) { return x[1].length; });
+  var hasDev = timeline.length || devLists.length;
 
-  const sections=['overview'];
-  if(d)         sections.push('efficiency');
-  if(hasMedia)  sections.push('media');
-  if(hasWork)   sections.push('work');
-  if(hasHow)    sections.push('how');
-  if(hasDetail) sections.push('detail');
-  if(relList.length) sections.push('related');
+  /* ---- left rail -------------------------------------------------------- */
+  var SECTIONS = [['#top', 'Overview']];
+  if (hasGal)  SECTIONS.push(['#gallery', 'Inside the tool']);
+  if (hasWork) SECTIONS.push(['#overview', 'How it works']);
+  if (hasDev)  SECTIONS.push(['#development', 'Development']);
 
-  const SEC_LABEL={overview:'Overview',efficiency:'Impact',work:'What it does',how:'How it works',
-                   media:'Demos & media',detail:'Development notes',related:'Related tools'};
-  const SEC_ICON ={overview:'target',efficiency:'gauge',work:'route',how:'layers',
-                   media:'film',detail:'book',related:'grid'};
+  var sidebar =
+    '<aside class="app-sidebar" aria-label="Project navigation">' +
+      '<div class="side-brand"><img src="assets/logos/brand/asure_wordmark_white.png" alt="Asure">' +
+        '<span>AI Research</span></div>' +
+      '<div class="side-label">Tool page</div><nav>' +
+        SECTIONS.map(function (s, i) {
+          return '<a class="side-link' + (i ? '' : ' active') + '" href="' + s[0] + '">' + s[1] + '</a>';
+        }).join('') +
+      '</nav>' +
+      '<div class="side-label">Catalogue</div><nav>' +
+        '<a class="side-link" href="index.html">&larr; All projects</a>' +
+        '<a class="side-link" href="cms.html">Media desk</a>' +
+      '</nav>' +
+      '<div class="side-bottom">Content type<strong>' +
+        esc(km.label).toUpperCase() + ' &middot; ' + esc(dm.label).toUpperCase() + '</strong></div>' +
+    '</aside>';
 
-  /* A jump list only earns its place on a page long enough to need one. */
-  const jump = sections.length>=4
-    ? `<div class="a-nav-sect"><span class="a-label">On this page</span></div>`+
-      sections.map(sec=>`<a class="a-nav-item" href="#${sec}"><span class="ic">${ICON(SEC_ICON[sec])}</span><span>${SEC_LABEL[sec]}</span></a>`).join('')
+  /* ---- right rail ------------------------------------------------------- */
+  var eff = p.efficiency, effPanel;
+  if (eff && eff.manualHrsPerWeek != null && eff.aiHrsPerWeek != null) {
+    var saved = Math.round((eff.manualHrsPerWeek - eff.aiHrsPerWeek) * 10) / 10;
+    effPanel =
+      '<div class="rail-kpi"><b>' + saved + ' h</b><span>saved per week</span></div>' +
+      '<div class="time-shift">' +
+        '<div class="time-box"><b>' + eff.manualHrsPerWeek + ' h</b><span>Before</span></div>' +
+        '<div class="time-arrow">&rarr;</div>' +
+        '<div class="time-box"><b>' + eff.aiHrsPerWeek + ' h</b><span>After</span></div>' +
+      '</div>' +
+      '<p class="rail-note">' + (eff.draft ? 'Recorded comparison, still being confirmed.'
+                                           : 'Recorded before-and-after comparison.') + '</p>';
+  } else {
+    /* "Not measured" is the truth for 47 of 52. Inventing a number would not
+       be, and the studio total is built on only the measured ones. */
+    effPanel =
+      '<div class="rail-kpi"><b>Not measured</b><span>no before-and-after recorded</span></div>' +
+      '<p class="rail-note">This tool is in use, but the time it saves has not been measured, ' +
+      'so it is left out of the studio total rather than estimated into it.</p>';
+  }
+
+  var counts = [];
+  if (steps.length)    counts.push(['#overview', 'Steps in the flow', steps.length]);
+  if (gallery.length)  counts.push(['#gallery', 'Screenshots', gallery.length]);
+  if (demos.length)    counts.push(['#gallery', 'Live demos', demos.length]);
+  if (docs.length)     counts.push(['#gallery', 'Documents', docs.length]);
+  if (timeline.length) counts.push(['#development', 'Milestones', timeline.length]);
+
+  var techLine = (p.tech || []).map(function (t) { return esc(logoLabel(t)); }).join(' &middot; ');
+
+  var rail =
+    '<aside class="insight-rail" aria-label="Project facts">' +
+      '<div class="rail-logo">' + logoImg(p.logo, 26) +
+        '<div><strong>' + esc(km.label) + '</strong><span>' +
+        esc(p.workflowStage || dm.label) + '</span></div></div>' +
+      '<div class="rail-section"><h3>Efficiency</h3>' + effPanel + '</div>' +
+      (counts.length
+        ? '<div class="rail-section"><h3>What is here</h3><div class="rail-nav">' +
+            counts.map(function (c) {
+              return '<a href="' + c[0] + '"><span>' + c[1] + '</span><b>' + c[2] + '</b></a>';
+            }).join('') + '</div></div>'
+        : '') +
+      '<div class="rail-section"><h3>Status</h3>' +
+        '<div class="rail-status"><i></i> ' + esc(STATUS[p.status].label) + '</div>' +
+        '<p class="rail-note" style="margin-top:10px">' + esc(dm.label) +
+          (techLine ? '<br>' + techLine : '') + '</p>' +
+      '</div>' +
+    '</aside>';
+
+  /* ---- topbar ----------------------------------------------------------- */
+  var topbar =
+    '<header class="topbar"><div class="shell topbar-inner">' +
+      '<a class="topbar-title" href="#top">' + esc(p.code) + ' &middot; ' + esc(p.name) + '</a>' +
+      '<nav class="topnav" aria-label="Primary">' +
+        SECTIONS.slice(1).map(function (s) {
+          return '<a href="' + s[0] + '">' + s[1] + '</a>';
+        }).join('') +
+        '<a class="back" href="index.html"><span>&larr;</span> All tools</a>' +
+      '</nav></div></header>';
+
+  /* ---- hero ------------------------------------------------------------- */
+  /* A deck leads with the deck. Prose about a presentation, placed in front of
+     the presentation, helps nobody. */
+  var panel;
+  if (isDeck) {
+    panel = '<div class="media-panel active deckpanel">' +
+      '<iframe src="' + esc(demos[0]) + '" title="' + esc(p.name) + '" loading="lazy"></iframe>' +
+      '<a class="deckopen" href="' + esc(demos[0]) + '" target="_blank" rel="noopener">Open full screen &rarr;</a>' +
+      '</div>';
+  } else if (m.hero) {
+    panel = '<div class="media-panel active"><img src="' + esc(m.hero) + '" alt="' + esc(p.name) + '"' +
+      ' onerror="this.style.display=\'none\';this.parentNode.classList.add(\'no-img\')"></div>';
+  } else {
+    panel = '<div class="media-panel active">' + PLACEHOLDER(p, { label: true }) + '</div>';
+  }
+
+  var parts = p.name.split(/\s+[—-]\s+/);
+  var h1 = parts.length > 1
+    ? esc(parts[0]) + ' <span>' + esc(parts.slice(1).join(' — ')) + '</span>'
+    : esc(p.name);
+
+  var hero =
+    '<section class="media-hero" id="top" aria-label="Project introduction">' + panel +
+      '<div class="shell hero-content"><div class="hero-copy">' +
+        '<h1>' + h1 + '</h1>' +
+        '<div class="hero-kicker">' +
+          '<span class="status-dot"></span>' +
+          '<span class="pill">' + esc(STATUS[p.status].label) + '</span>' +
+          '<span class="pill">' + esc(km.label) + '</span>' +
+          '<span class="pill">' + esc(p.code) + '</span>' +
+          ((p.tech || []).length ? '<span class="revit-id">' + logoImg(p.tech[0], 18) + '</span>' : '') +
+        '</div>' +
+        '<p class="lede">' + esc(p.tagline) + '</p>' +
+      '</div></div>' +
+    '</section>';
+
+  /* ---- gallery ---------------------------------------------------------- */
+  var n = 0;
+  function eyebrow() { n += 1; return (n < 10 ? '0' : '') + n; }
+
+  var galleryHTML = '';
+  if (hasGal) {
+    var shots = gallery.map(function (g) {
+      return '<figure class="shot" data-full="' + esc(g) + '"><img src="' + esc(g) + '" alt="" loading="lazy"></figure>';
+    }).join('');
+    var links = []
+      .concat(demos.map(function (d) {
+        return '<a class="pill linkpill" href="' + esc(d) + '" target="_blank" rel="noopener">Open live demo &rarr;</a>'; }))
+      .concat(docs.map(function (d) {
+        return '<a class="pill linkpill" href="' + esc(d.src) + '" target="_blank" rel="noopener">' + esc(d.title) + '</a>'; }))
+      .join('');
+    galleryHTML =
+      '<section class="gallery" id="gallery"><div class="shell">' +
+        '<div class="gallery-top reveal"><div>' +
+          '<p class="eyebrow">' + eyebrow() + ' / Inside the tool</p>' +
+          '<h2 class="section-title">What it looks like in use.</h2></div>' +
+          (gallery.length ? '<div class="gallery-count">' + gallery.length + ' image' +
+                            (gallery.length === 1 ? '' : 's') + '</div>' : '') +
+        '</div>' +
+        (shots ? '<div class="gallery-stage reveal" id="gallery-stage">' + shots + '</div>' : '') +
+        (links ? '<div class="meta-row" style="margin-top:20px">' + links + '</div>' : '') +
+      '</div></section>';
+  }
+
+  /* ---- how it works ----------------------------------------------------- */
+  var workHTML = '';
+  if (hasWork) {
+    var blocks = [];
+    if (pg.problem)    blocks.push(['The problem', pg.problem]);
+    if (pg.solution)   blocks.push(['How it solves it', pg.solution]);
+    if (p.description) blocks.push(['In more detail', p.description]);
+    workHTML =
+      '<section class="intro" id="overview"><div class="shell">' +
+        '<div class="section-head reveal">' +
+          '<p class="eyebrow">' + eyebrow() + ' / How it works</p>' +
+          '<h2 class="section-title">' + esc(pg.objective || p.tagline) + '</h2>' +
+        '</div>' +
+        (blocks.length
+          ? '<div class="prose-grid reveal">' + blocks.map(function (b) {
+              return '<div class="prose-block"><h4>' + b[0] + '</h4><p>' + esc(b[1]) + '</p></div>';
+            }).join('') + '</div>'
+          : '') +
+        (steps.length
+          ? '<ol class="steps reveal">' + steps.map(function (s, i) {
+              return '<li><span class="sn">' + (i + 1) + '</span><div><b>' + esc(s.title) + '</b>' +
+                     (s.detail ? '<p>' + esc(s.detail) + '</p>' : '') + '</div></li>';
+            }).join('') + '</ol>'
+          : '') +
+      '</div></section>';
+  }
+
+  /* ---- development ------------------------------------------------------ */
+  var devHTML = '';
+  if (hasDev) {
+    devHTML =
+      '<section class="development" id="development"><div class="shell">' +
+        '<div class="section-head reveal">' +
+          '<p class="eyebrow">' + eyebrow() + ' / Development</p>' +
+          '<h2 class="section-title">How it was built.</h2></div>' +
+        (timeline.length
+          ? '<div class="timeline reveal">' + timeline.map(function (t) {
+              return '<div class="milestone"><b>' + esc(t.date) + '</b><span>' + esc(t.label) + '</span></div>';
+            }).join('') + '</div>'
+          : '') +
+        (devLists.length
+          ? '<div class="prose-grid reveal" style="margin-top:30px">' + devLists.map(function (l) {
+              return '<div class="prose-block"><h4>' + l[0] + '</h4><ul>' +
+                     l[1].map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
+            }).join('') + '</div>'
+          : '') +
+      '</div></section>';
+  }
+
+  /* ---- related ---------------------------------------------------------- */
+  var rel = (p.related || []).map(function (rid) {
+    return (window.PROJECTS || []).find(function (x) { return x.id === rid; });
+  }).filter(Boolean);
+  var relHTML = rel.length
+    ? '<section class="related" id="related"><div class="shell">' +
+        '<div class="section-head reveal"><p class="eyebrow">' + eyebrow() + ' / Related</p>' +
+        '<h2 class="section-title">Built alongside this.</h2></div>' +
+        '<div class="rel-grid reveal">' + rel.map(function (r) {
+          return '<a class="rel-card" href="tool.html?id=' + encodeURIComponent(r.id) + '">' +
+            '<span class="pill">' + esc(kindMeta(r.kind).label) + '</span>' +
+            '<b>' + esc(r.name) + '</b><p>' + esc(r.tagline) + '</p></a>';
+        }).join('') + '</div></div></section>'
     : '';
 
-  /* Without a jump list the rail is left almost empty, so short pages offer
-     siblings from the same category instead — somewhere to go next. */
-  let siblings='';
-  if(!jump){
-    const sibs=PROJECTS.filter(x=>x.id!==p.id && x.domain===p.domain).slice(0,5);
-    if(sibs.length){
-      siblings=`<div class="a-nav-sect"><span class="a-label">More in ${domainMeta(p.domain).label}</span></div>`+
-        sibs.map(x=>`<a class="a-nav-item" href="tool.html?id=${x.id}"><span class="ic">${ICON(kindMeta(x.kind).icon)}</span><span>${x.name}</span></a>`).join('');
-    }
+  host.innerHTML = sidebar + rail + topbar +
+    '<main>' + hero + galleryHTML + workHTML + devHTML + relHTML + '</main>';
+
+  document.title = p.name + ' — AI Research & Innovation';
+
+  /* ---- scroll spy -------------------------------------------------------- */
+  var targets = [].slice.call(document.querySelectorAll('.side-link[href^="#"]'))
+    .map(function (a) { return { a: a, el: document.querySelector(a.getAttribute('href')) }; })
+    .filter(function (t) { return t.el; });
+
+  function spy() {
+    if (!targets.length) return;
+    var line = window.innerHeight * 0.3, cur = targets[0];
+    targets.forEach(function (t) { if (t.el.getBoundingClientRect().top <= line) cur = t; });
+    if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 4)
+      cur = targets[targets.length - 1];
+    targets.forEach(function (t) { t.a.classList.toggle('active', t === cur); });
+  }
+  window.addEventListener('scroll', spy, { passive: true });
+  spy();
+
+  /* ---- reveal ------------------------------------------------------------ */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    [].forEach.call(document.querySelectorAll('.reveal'), function (el) { io.observe(el); });
+  } else {
+    [].forEach.call(document.querySelectorAll('.reveal'), function (el) { el.classList.add('is-in'); });
   }
 
-  $('#nav').innerHTML = jump + siblings +
-    `<div class="a-nav-sect"><span class="a-label">More</span></div>`+
-    `<a class="a-nav-item" href="index.html"><span class="ic">${ICON('grid')}</span><span>All work</span></a>`;
-
-  /* ---- HERO ---- */
-  const techRow=(p.tech||[]).map(t=>`<span class="badge" style="gap:7px"><span style="width:15px;height:15px;display:grid;place-items:center">${logoImg(t,15)}</span>${logoLabel(t)}</span>`).join('');
-  /* Real screenshot if there is one, otherwise the generated placeholder.
-     No facts panel here — code, status and stage are already in the badge row
-     right next to it, and the impact strip below carries the numbers. */
-  const heroImg = m.hero
-    ? `<img src="${m.hero}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">${PLACEHOLDER(p,{label:true,hidden:true})}`
-    : PLACEHOLDER(p,{label:true});
-  /* A deck is a deck. Opening its page with a paragraph about a presentation
-     puts prose between the reader and the thing itself, so when there is a
-     file to show, the slides take the hero slot and everything written about
-     it moves below. */
-  const deckFile = (p.kind === 'deck' && m.html && m.html.length) ? m.html[0] : null;
-  const heroRight = deckFile
-    ? `<div class="heroart deckframe">
-         <iframe src="${deckFile}" title="${p.name}" loading="lazy"></iframe>
-         <a class="deckopen" href="${deckFile}" target="_blank" rel="noopener">
-           Open full screen ${ICON('arrow')}</a>
-       </div>`
-    : `<div class="heroart">${heroImg}</div>`;
-  const hero=`<section class="tp-hero reveal" id="overview">
-    <div class="glow"></div>
-    <div class="inner">
-      <div>
-        <div class="logo-lg">${logoImg(p.logo,36)}</div>
-        <h1 class="h-1" style="margin:0 0 10px">${p.name}</h1>
-        <p class="lead">${p.tagline}</p>
-        <div class="metajoin">
-          <span class="badge code">${p.code}</span>
-          <span class="badge"><span class="dot ${st.cls}"></span>${st.label}</span>
-          <span class="badge kindbadge" title="${km.blurb}">${ICON(km.icon)}${km.label}</span>
-          <span class="badge">${ICON(dm.icon)}${dm.label}</span>
-        </div>
-        <div class="tech-row" style="margin-top:18px;gap:8px">${techRow}</div>
-      </div>
-      <div class="hero-right">${heroRight}</div>
-    </div>
-  </section>`;
-
-  /* ---- IMPACT — a strip under the hero, not a section of its own ---- */
-  let impact='';
-  if(d){
-    impact=`<div class="impact" id="efficiency">
-      <div class="eff-block">
-        <div class="eff-metric hero-metric"><div class="v">${d.pct}<span class="u">%</span></div><div class="l">Efficiency gain</div></div>
-        <div class="eff-metric"><div class="v">${d.saved}<span class="u">hrs/wk</span></div><div class="l">Manual work removed</div></div>
-        <div class="eff-metric"><div class="v">${d.speed?d.speed:'—'}<span class="u">×</span></div><div class="l">Faster than manual</div></div>
-        <div class="eff-metric"><div class="v">${d.manual}<span class="u">hrs</span></div><div class="l">Manual, per week</div></div>
-      </div>
-      <div class="compare">
-        <div class="row"><span class="name">Manual</span><span class="track"><span class="fill manual" style="--w:100%"></span></span><span class="val">${d.manual} hrs/wk</span></div>
-        <div class="row"><span class="name">With this tool</span><span class="track"><span class="fill tool" style="--w:${d.manual>0?Math.max(4,(d.ai/d.manual*100)):0}%"></span></span><span class="val">${d.ai} hrs/wk</span></div>
-      </div>
-      ${d.draft?`<p class="note">Draft estimate — observed manual vs. tool hours, not yet confirmed.</p>`:''}
-    </div>`;
-  }else{
-    impact=`<p class="note standalone">Time saved by this tool has not been measured yet.</p>`;
+  /* ---- lightbox ---------------------------------------------------------- */
+  var lb = document.getElementById('lightbox');
+  if (lb) {
+    document.addEventListener('click', function (e) {
+      var shot = e.target.closest('.shot');
+      if (shot) { document.getElementById('lbImg').src = shot.dataset.full; lb.classList.add('on'); return; }
+      if (e.target.closest('#lbClose') || e.target === lb) lb.classList.remove('on');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') lb.classList.remove('on');
+    });
   }
 
-  /* ---- WHAT IT DOES — one claim, then a before/after picture ----
-     The prose is still here, but folded away. What a reader meets first is a
-     single sentence and two contrasting cards, not four paragraphs. */
-  const claim = pg.objective || p.tagline || '';
-  const full  = (p.description && p.description!==pg.objective) ? p.description : '';
-  const fromto = (pg.problem||pg.solution) ? `<div class="fromto">
-      <div class="ft-card before"><div class="ft-h">${ICON('clock')}<span>Before</span></div>
-        <p class="clamp3">${pg.problem||'—'}</p></div>
-      <div class="ft-arrow">${ICON('arrow')}</div>
-      <div class="ft-card after"><div class="ft-h">${ICON('check')}<span>With this tool</span></div>
-        <p class="clamp3">${pg.solution||'—'}</p></div>
-    </div>`:'';
-  const work = hasWork ? `<section class="section" id="work">
-    <div class="section-head"><div class="t"><div class="eyebrow">Overview</div><h2 class="h-2">What it does</h2></div></div>
-    ${claim?`<p class="claim">${claim}</p>`:''}
-    ${fromto}
-    ${full?`<details class="more"><summary>Full description</summary><p>${full}</p></details>`:''}
-  </section>`:'';
-
-  /* ---- HOW IT WORKS — a left-to-right flow, not a stack of paragraphs ---- */
-  const how = hasHow ? `<section class="section" id="how">
-    <div class="section-head"><div class="t"><div class="eyebrow">${dm.label}</div><h2 class="h-2">How it works</h2></div></div>
-    <div class="flow">${pg.howItWorks.map((x,i)=>
-      (i?`<div class="fsep">${ICON('arrow')}</div>`:'')+
-      `<div class="fnode reveal"><div class="fnum">${String(i+1).padStart(2,'0')}</div>
-        <h4>${x.title}</h4><p class="clamp2">${x.detail}</p></div>`).join('')}</div>
-  </section>`:'';
-
-  /* ---- MEDIA — rendered only when there is something to show ---- */
-  const media = hasMedia ? renderMedia() : '';
-  function renderMedia(){
-    const blocks=[];
-    if(m.videos&&m.videos.length){
-      blocks.push(`<div class="section-sub"><div style="display:grid;gap:16px;grid-template-columns:${m.videos.length>1?'repeat(auto-fit,minmax(320px,1fr))':'1fr'}">
-        ${m.videos.map((v,i)=>videoBlock(v,i)).join('')}</div></div>`);
-    }
-    if(m.html&&m.html.length){
-      blocks.push(m.html.map(src=>`<div class="section-sub" style="margin-top:18px">
-        <div class="preview-cta">
-          <div class="pc-left"><span class="pc-ic">${ICON('code')}</span>
-            <div><b>Live interactive preview</b><p class="small">Opens in this tab — use Back to return.</p></div></div>
-          <a class="open-preview" href="${src}">Open live preview ${ICON('arrow')}</a>
-        </div></div>`).join(''));
-    }
-    if(m.beforeAfter&&m.beforeAfter.before){
-      blocks.push(`<div class="section-sub" style="margin-top:18px"><div class="eyebrow" style="margin-bottom:10px">Before / after</div>
-        <div class="cols-2">
-          <div class="gallery"><div class="shot" data-full="${m.beforeAfter.before}"><img src="${m.beforeAfter.before}" alt="Before" loading="lazy"></div></div>
-          <div class="gallery"><div class="shot" data-full="${m.beforeAfter.after}"><img src="${m.beforeAfter.after}" alt="After" loading="lazy"></div></div>
-        </div></div>`);
-    }
-    if(m.gallery&&m.gallery.length){
-      blocks.push(`<div class="section-sub" style="margin-top:18px">
-        <div class="gallery">${m.gallery.map(g=>`<div class="shot" data-full="${g}"><img src="${g}" alt="screenshot" loading="lazy"></div>`).join('')}</div></div>`);
-    }
-    if(m.docs&&m.docs.length){
-      blocks.push(`<div class="section-sub" style="margin-top:18px">
-        <div class="chips">${m.docs.map(dc=>`<a class="btn ghost" href="${dc.src}" target="_blank">${ICON('down')} ${dc.title}</a>`).join('')}</div></div>`);
-    }
-    return `<section class="section" id="media">
-      <div class="section-head"><div class="t"><div class="eyebrow">Showcase</div><h2 class="h-2">Demos &amp; media</h2></div></div>
-      ${blocks.join('')}</section>`;
-  }
-  function videoBlock(v,i){
-    const poster = v.poster || (v.type==='youtube'?`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`:'');
-    const posImg = poster?`<img src="${poster}" alt="${v.title||''}">`:'';
-    return `<div class="media-video" data-type="${v.type}" data-id="${v.id||''}" data-src="${v.src||''}">
-      ${posImg}<div class="play"><div class="pbtn">${ICON('play')}</div></div>
-      ${v.title?`<div class="cap">${v.title}</div>`:''}</div>`;
-  }
-
-  /* ---- DEVELOPMENT NOTES — a milestone rail plus three short lists ---- */
-  function bit(title,items,icon,color){
-    return `<div><div class="eyebrow">${title}</div>
-      <ul class="list-clean" style="margin-top:14px">${items.map(i=>`<li><span class="mk" style="color:${color}">${ICON(icon)}</span><span>${i}</span></li>`).join('')}</ul></div>`;
-  }
-  const rail = (pg.timeline&&pg.timeline.length) ? `<div class="eyebrow">Timeline</div>
-    <div class="milestones">${pg.timeline.map(t=>`<div class="ms"><div class="d">${t.date}</div><div class="l">${t.label}</div></div>`).join('')}</div>`:'';
-  const lists=[];
-  if(pg.challenges&&pg.challenges.length) lists.push(bit('Challenges',pg.challenges,'route','var(--amber-400)'));
-  if(pg.lessons&&pg.lessons.length)       lists.push(bit('Lessons learned',pg.lessons,'book','var(--emerald-400)'));
-  if(pg.roadmap&&pg.roadmap.length)       lists.push(bit('What\u2019s next',pg.roadmap,'sparkle','var(--violet-400)'));
-  const detail = (rail||lists.length) ? `<section class="section" id="detail">
-    <div class="section-head"><div class="t"><div class="eyebrow">Behind the build</div><h2 class="h-2">Development notes</h2></div></div>
-    <div class="panel pad">${rail}
-      ${lists.length?`<div class="detail-grid"${rail?' style="margin-top:28px;padding-top:26px;border-top:1px solid var(--line)"':''}>${lists.join('')}</div>`:''}
-    </div></section>`:'';
-
-  /* ---- RELATED ---- */
-  const related = relList.length ? `<section class="section" id="related">
-      <div class="section-head"><div class="t"><div class="eyebrow">Part of the ecosystem</div><h2 class="h-2">Related tools</h2></div></div>
-      <div class="related">${relList.map(r=>`<a class="rel-card" href="tool.html?id=${r.id}">
-        <div class="rc-code">${r.code} · ${STATUS[r.status].label}</div><h4>${r.name}</h4><p>${r.tagline}</p></a>`).join('')}</div></section>`:'';
-
-  /* ---- assemble ---- */
-  mount.innerHTML = hero+impact+media+work+how+detail+related+
-    `<footer class="foot"><a href="index.html" style="color:var(--text-2)">${ICON('back')} All Projects</a>
-      <span class="tag gradient-text">Increasing Efficiency. One Tool at a Time.</span></footer>`;
-
-  /* ---- scroll-spy: the accent marks where you are, as it does on the
-         landing page. .a-view scrolls, not the window, so watch that. ---- */
-  (function(){
-    const view=$('.a-view'); if(!view) return;
-    const links=$$('#nav .a-nav-item[href^="#"]');
-    if(!links.length) return;
-    const targets=links.map(a=>({a,el:document.getElementById(a.getAttribute('href').slice(1))}))
-                       .filter(x=>x.el);
-    let raf=null;
-    function spy(){
-      raf=null;
-      /* offsetTop is relative to the offsetParent, not to .a-view, so it does
-         not compare with scrollTop. Rects are in one coordinate system. */
-      const line=view.getBoundingClientRect().top + view.clientHeight*0.28;
-      let cur=targets[0];
-      targets.forEach(t=>{ if(t.el.getBoundingClientRect().top<=line) cur=t; });
-      /* The last section can never cross the line — the view runs out of scroll
-         first — so at the bottom it is always the current one. */
-      if(view.scrollTop + view.clientHeight >= view.scrollHeight - 4) cur=targets[targets.length-1];
-      links.forEach(a=>a.classList.remove('is-active'));
-      if(cur) cur.a.classList.add('is-active');
-    }
-    view.addEventListener('scroll',()=>{ if(!raf) raf=requestAnimationFrame(spy); },{passive:true});
-    spy();
-  })();
-
-  /* ---- frame chrome: what this sheet is showing ---- */
-  $('#pillKind').textContent = km.label;
-  $('#tbCode').textContent   = p.code;
-  $('#tbKind').textContent   = km.label;
-  $('#tbDomain').textContent = dm.label;
-  $('#tbStatus').textContent = st.label + (d && d.draft ? ' · draft figures' : '');
-
-  /* ---- interactions ---- */
-  // comparison bars grow via CSS animation — no rAF, so they are never left empty
-
-  // video play → swap in player
-  mount.addEventListener('click',e=>{
-    const vb=e.target.closest('.media-video'); if(vb){ playVideo(vb); return; }
-    const shot=e.target.closest('.shot'); if(shot){ openLightbox(shot.dataset.full); }
-  });
-  function playVideo(el){
-    const type=el.dataset.type;
-    if(type==='youtube'){
-      el.innerHTML=`<iframe src="https://www.youtube.com/embed/${el.dataset.id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="video"></iframe>`;
-    }else{
-      el.innerHTML=`<video src="${el.dataset.src}" controls autoplay playsinline preload="metadata"></video>`;
-    }
-    el.style.cursor='default';
-  }
-
-  // lightbox
-  const lb=$('#lightbox'), lbImg=$('#lbImg');
-  $('#lbClose').innerHTML=ICON('x');
-  function openLightbox(src){ lbImg.src=src; lb.classList.add('open'); }
-  lb.addEventListener('click',e=>{ if(e.target===lb||e.target.closest('.x')) lb.classList.remove('open'); });
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape') lb.classList.remove('open'); });
-
-  // reveal
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{rootMargin:'0px 0px -6% 0px'});
-  $$('.reveal').forEach(el=>io.observe(el));
-
-  if(window.LOADER_DONE) window.LOADER_DONE();
-
+  if (window.LOADER_DONE) window.LOADER_DONE();
 })();

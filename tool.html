@@ -12,12 +12,13 @@
 <link rel="stylesheet" href="assets/css/theme.css">
 <link rel="stylesheet" href="assets/css/deck.css">
 <link rel="stylesheet" href="assets/css/uikit-bridge.css">
+<link rel="stylesheet" href="assets/css/tool-page.css">
 <link rel="stylesheet" href="assets/css/loader.css">
 <script src="assets/js/supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/auth.js"></script>
 </head>
-<body class="a-app deck uikit">
+<body class="toolpage">
 
 <!-- Asure -> Evolve opening. In the markup, not injected, so it paints on the
      first frame. assets/js/loader.js removes it once the page has rendered. -->
@@ -39,60 +40,7 @@
 </div>
 <!-- /evo -->
 
-
-<aside class="a-sidebar no-print" id="rail">
-  <a class="a-sidebar-brand" href="index.html">
-    <img class="wm lightonly" src="assets/logos/brand/asure_wordmark.png" alt="asure">
-    <img class="wm darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="" aria-hidden="true">
-    <span class="a-brand-cap">Research</span>
-  </a>
-  <nav class="a-nav" id="nav"></nav>
-  <div class="a-sidebar-foot">EVOLVE · Empower with Knowledge</div>
-</aside>
-
-<div class="a-main">
-
-  <header class="a-topbar no-print">
-    <button class="btn icon ghost rail-toggle" id="railToggle" aria-label="Menu"></button>
-    <div class="crumb" style="min-width:0">
-      <a href="index.html">All work</a>
-      <span id="crumbSep"></span>
-      <span id="crumbNow" style="color:var(--text-2)"></span>
-    </div>
-    <div class="a-topbar-spacer"></div>
-    <span class="a-pill" id="pillKind" style="min-width:104px">—</span>
-    <a class="nl" href="index.html">Back</a>
-    <button class="btn icon ghost" id="themeBtn" title="Toggle theme" aria-label="Toggle theme"></button>
-  </header>
-
-  <main class="a-view">
-    <div class="a-content">
-      <div id="tp"><!-- tool content injected --></div>
-    </div>
-  </main>
-
-  <!-- The drawing-sheet footer, same as the landing page. -->
-  <div class="a-titleblock no-print">
-    <div class="a-tb-brand">
-      <img src="assets/logos/brand/asure_wordmark_white.png" alt="asure">
-      <span>Design Studio</span>
-    </div>
-    <div class="a-tb-cell">
-      <span class="a-label">Code</span><span id="tbCode">—</span>
-    </div>
-    <div class="a-tb-cell">
-      <span class="a-label">Kind</span><span id="tbKind">—</span>
-    </div>
-    <div class="a-tb-cell">
-      <span class="a-label">Serves</span><span id="tbDomain">—</span>
-    </div>
-    <div class="a-tb-spacer"></div>
-    <div class="a-tb-cell">
-      <span class="a-label">Status</span><span id="tbStatus">—</span>
-    </div>
-  </div>
-
-</div><!-- /.a-main -->
+<div id="tp"><!-- tool page injected by assets/js/tool.js --></div>
 
 <div class="lightbox" id="lightbox"><div class="x" id="lbClose"></div><img id="lbImg" alt=""></div>
 
