@@ -1,0 +1,42 @@
+{
+  "id": "your-tool-id",
+  "code": "P00",
+  "name": "Your Tool Name",
+  "status": "in-progress",
+  "kind": "plugin",
+  "domain": "design",
+  "workflowStage": "",
+  "logo": "asure",
+  "tagline": "One line, about twelve words, describing what this tool does.",
+  "description": "",
+  "tech": [
+    "python"
+  ],
+  "page": {
+    "objective": "One sentence: what this is for.",
+    "problem": "One sentence: what was wrong before.",
+    "solution": "One sentence: how it solves that.",
+    "howItWorks": [
+      {
+        "title": "First real step",
+        "detail": "What actually happens here."
+      }
+    ],
+    "timeline": [
+      {
+        "date": "Apr 2026",
+        "label": "what happened"
+      }
+    ],
+    "challenges": [
+      ""
+    ],
+    "lessons": [
+      ""
+    ],
+    "roadmap": [
+      ""
+    ]
+  },
+  "related": []
+}

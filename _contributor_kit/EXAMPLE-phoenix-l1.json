@@ -1,0 +1,88 @@
+{
+  "id": "phoenix-l1",
+  "code": "P01",
+  "name": "ADS Phoenix — L1 Self-Certification",
+  "status": "production",
+  "kind": "plugin",
+  "domain": "qa",
+  "workflowStage": "QA & Compliance",
+  "logo": "revit",
+  "tagline": "Weekly Level-1 model self-certification, run inside Revit in one click.",
+  "description": "A native Revit add-in that runs the weekly Level-1 self-certification — 22 model-health checks across 5 quality gates — and produces a pass/fail audit report automatically, replacing a slow manual walkthrough.",
+  "tech": [
+    "revit",
+    "csharp",
+    "dotnet",
+    "supabase",
+    "pyrevit"
+  ],
+  "efficiency": {
+    "manualHrsPerWeek": 4,
+    "aiHrsPerWeek": 0.5,
+    "draft": true
+  },
+  "page": {
+    "objective": "Make the weekly Level-1 self-certification effortless and consistent, so every model is checked the same way every week without a person manually stepping through a checklist.",
+    "problem": "The Level-1 self-cert is 22 discrete model-health checks across 5 gates. Done by hand it is slow, easy to skip under deadline pressure, and inconsistent between people — which means quality drifts and issues surface late.",
+    "solution": "A single Revit button runs all 22 checks against the open model, evaluates the 5 gates, and writes a structured pass/fail report with the exact failing elements. An online lock records that the self-cert was run for the week.",
+    "howItWorks": [
+      {
+        "title": "Open the model & click Run",
+        "detail": "The add-in lives on the Revit ribbon. One click starts the certification against the currently open model — no setup, no external tool."
+      },
+      {
+        "title": "22 checks across 5 gates",
+        "detail": "Naming, levels & grids, worksets, warnings, links, view templates and more are evaluated in sequence. Each check returns pass / fail plus the specific elements responsible."
+      },
+      {
+        "title": "Gates decide the verdict",
+        "detail": "Checks roll up into 5 quality gates. All gates must pass for the model to be certified Level-1 for the week."
+      },
+      {
+        "title": "Audit report generated",
+        "detail": "A clean report is produced showing every check, its result, and the offending elements — ready to share or attach to the weekly record."
+      },
+      {
+        "title": "Weekly lock recorded online",
+        "detail": "A Supabase-backed record marks the self-cert as completed for the week, so compliance is visible without chasing people."
+      }
+    ],
+    "timeline": [
+      {
+        "date": "Apr 2026",
+        "label": "pyRevit prototype — checklist logic proven"
+      },
+      {
+        "date": "May 2026",
+        "label": "Rewritten as native C# Revit 2025 add-in (22 checks, 5 gates)"
+      },
+      {
+        "date": "Jun 2026",
+        "label": "Online licensing lock + weekly dashboard"
+      },
+      {
+        "date": "Jul 2026",
+        "label": "Production rollout & reference pack"
+      }
+    ],
+    "challenges": [
+      "Mapping a human checklist into deterministic, false-positive-free API checks.",
+      "Keeping the run fast on large models while inspecting thousands of elements.",
+      "Designing gates that are strict enough to matter but not so strict they block on noise."
+    ],
+    "lessons": [
+      "A one-click ribbon button beats any richer UI for weekly adoption — friction is the enemy of compliance.",
+      "Reporting the exact failing elements is what makes teams trust and act on the result."
+    ],
+    "roadmap": [
+      "Auto-fix suggestions for the most common failures.",
+      "Level-2 and Level-3 certification tiers.",
+      "Trend view: model health per project, week over week."
+    ]
+  },
+  "related": [
+    "h10-dashboard",
+    "revit-toolbox",
+    "p25-predictability"
+  ]
+}
