@@ -31,7 +31,7 @@
     connector: '#7C5CFF',
     platform:  '#FFB020',
     agent:     '#FF6FB1',
-    study:     '#7C849F',
+    evaluation:'#7C849F',
     deck:      '#FF6B85'
   };
 

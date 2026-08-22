@@ -20,7 +20,7 @@
     connector: 'var(--violet-500)',
     platform:  'var(--amber-400)',
     agent:     'var(--pink-500)',
-    study:     'var(--text-3)',
+    evaluation:'var(--text-3)',
     deck:      'var(--rose-400)'
   };
 

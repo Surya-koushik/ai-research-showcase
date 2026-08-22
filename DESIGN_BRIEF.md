@@ -73,7 +73,7 @@ Real values from P01 so you can typeset against true lengths.
 | `code` | `P` + 2 digits | `P01` |
 | `name` | ≤ 46 chars | ADS Phoenix — L1 Self-Certification |
 | `status` | 1 of 3 | `production` · `in-progress` · `research` |
-| `kind` | 1 of 8 | plugin · dashboard · pipeline · connector · platform · agent · study · deck |
+| `kind` | 1 of 8 | plugin · dashboard · pipeline · connector · platform · agent · evaluation · deck |
 | `domain` | 1 of 7 | design · docs · qa · controls · knowledge · studio · ai |
 | `tech[]` | 1–5 logos | Revit · C# · .NET · Supabase · pyRevit |
 | `workflowStage` | short phrase, 46% | QA & Compliance |

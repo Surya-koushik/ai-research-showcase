@@ -3,7 +3,7 @@
   "code": "P37",
   "name": "Local AI Model Bench",
   "status": "research",
-  "kind": "study",
+  "kind": "evaluation",
   "domain": "ai",
   "logo": "asure",
   "tagline": "What local models can and cannot do on studio hardware.",

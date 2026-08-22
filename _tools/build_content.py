@@ -17,7 +17,7 @@ CONTENT = os.path.join(ROOT, 'content')
 OUT = os.path.join(ROOT, 'assets', 'js', 'projects_data.js')
 
 REQUIRED = ('id', 'code', 'name', 'status', 'kind', 'domain', 'tagline')
-KINDS = {'plugin', 'dashboard', 'pipeline', 'connector', 'platform', 'agent', 'study', 'deck'}
+KINDS = {'plugin', 'dashboard', 'pipeline', 'connector', 'platform', 'agent', 'evaluation', 'deck'}
 DOMAINS = {'design', 'docs', 'qa', 'controls', 'knowledge', 'studio', 'ai'}
 STATUSES = {'production', 'in-progress', 'experimental', 'research'}
 

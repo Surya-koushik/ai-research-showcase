@@ -163,7 +163,7 @@
   };
 
   /* STUDY — candidates in, a verdict out ----------------------------------- */
-  D.study = function () {
+  D.evaluation = function () {
     var rows = '', verdict = ['pass', 'fail', 'fail', 'pass'], i;
     for (i = 0; i < 4; i++) {
       var y = 44 + i * 30, ok = verdict[i] === 'pass';

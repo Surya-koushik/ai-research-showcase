@@ -3,7 +3,7 @@
   "code": "P39",
   "name": "Open-Source Model Test",
   "status": "research",
-  "kind": "study",
+  "kind": "evaluation",
   "domain": "ai",
   "logo": "github",
   "tagline": "Thirty-two open-source AI repos, tested against local models.",

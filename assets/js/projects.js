@@ -109,8 +109,8 @@ const KINDS = [
     blurb:'A multi-user system with accounts and stored data, not a single-run tool.' },
   { id:'agent',     label:'Agent',      icon:'bot',
     blurb:'Chooses its own steps and calls tools to reach a goal. Not simply “uses AI”.' },
-  { id:'study',     label:'Study',      icon:'flask',
-    blurb:'Research output — findings, a spec or a benchmark, not shipped software.' },
+  { id:'evaluation', label:'Evaluation', icon:'flask',
+    blurb:'We tested the options and wrote down what actually works. Findings, not shipped software.' },
   { id:'deck',      label:'Deck',       icon:'film',
     blurb:'A finished presentation or report that was actually delivered.' },
 ];

@@ -3,7 +3,7 @@
   "code": "P38",
   "name": "Agent Teams Evaluation",
   "status": "research",
-  "kind": "study",
+  "kind": "evaluation",
   "domain": "ai",
   "logo": "anthropic",
   "tagline": "Whether multi-agent teams beat one good agent.",

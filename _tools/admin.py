@@ -42,7 +42,7 @@ PROJECTS = os.path.join(ROOT, 'projects')
 TOOLS = os.path.join(ROOT, '_tools')
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8787
 
-KINDS = ['plugin', 'dashboard', 'pipeline', 'connector', 'platform', 'agent', 'study', 'deck']
+KINDS = ['plugin', 'dashboard', 'pipeline', 'connector', 'platform', 'agent', 'evaluation', 'deck']
 DOMAINS = ['design', 'docs', 'qa', 'controls', 'knowledge', 'studio', 'ai']
 STATUSES = ['production', 'in-progress', 'experimental', 'research']
 SLOTS = {'screenshots': ('.jpg', '.jpeg', '.png', '.webp', '.gif'),

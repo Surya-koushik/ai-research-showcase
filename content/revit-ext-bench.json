@@ -3,7 +3,7 @@
   "code": "P36",
   "name": "Revit Extensions Test Bench",
   "status": "research",
-  "kind": "study",
+  "kind": "evaluation",
   "domain": "design",
   "logo": "asure",
   "tagline": "Which open-source Revit add-ins actually build and run for us.",
