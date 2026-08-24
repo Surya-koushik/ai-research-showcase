@@ -31,7 +31,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECTS = os.path.join(ROOT, 'projects')
 OUT = os.path.join(ROOT, 'assets', 'js', 'media_manifest.js')
 
-IMG = ('.jpg', '.jpeg', '.png', '.webp', '.gif')
+IMG = ('.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg')
 VID = ('.mp4', '.webm', '.mov')
 DOC = ('.pdf', '.xlsx', '.xls', '.docx', '.doc', '.pptx', '.csv', '.md', '.zip')
 

@@ -160,15 +160,18 @@ Avoid: 3D, isometric rendering, photographs, people, marketing claims, invented 
 
 ## 7. Website placement
 
-### Hero slot
+### Hero slot — `screenshots/hero.jpg` (Image A)
 
 - Place the project name, descriptive title, type and platform identity before the image in reading order.
 - Render the image with `object-fit: contain`.
 - Do not use `object-fit: cover` for diagrams.
 - Never place critical text or controls over the meaningful diagram area.
 
-### Technical slot
+### Technical slot — `screenshots/workflow.svg` (Image B)
 
+- This slot is separate from the numbered gallery. Save Image B as
+  `workflow.svg` (or `workflow.png`); it renders beside the "how it works"
+  copy, not in the screenshot carousel.
 - Display the diagram at the full content-column width.
 - Do not compress the technical diagram into a half-width column.
 - On narrow screens, preserve label legibility with an internal horizontal scroll area rather than shrinking the diagram below readable size.

@@ -57,7 +57,9 @@ and list as an open question.
 > - Type: Inter. Utility labels: JetBrains Mono.
 > - Node titles are direct actions — "Collect model data" — never marketing.
 >
-> Output SVG so it stays editable.
+> Output SVG so it stays editable, and name it `workflow.svg` — that is the
+> slot the website reads Image B from. This was verified end to end: a coding
+> model produces this diagram well; do not use an image model for it.
 
 ---
 

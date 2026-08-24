@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">AsureBimQc technical workflow</title>
+  <desc id="desc">C# and .NET implementation decoupled from Revit for end-to-end testing, followed by Autodesk ACC three-legged OAuth with PKCE, silent token refresh, encrypted Windows DPAPI token storage, and ACC hub and project discovery.</desc>
+  <defs>
+    <pattern id="dot-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="1.25" cy="1.25" r="1.25" fill="#C8D4DF" opacity="0.45"/>
+    </pattern>
+    <filter id="shadow" x="-15%" y="-20%" width="130%" height="145%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#102F4C" flood-opacity="0.07"/>
+    </filter>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#52708C"/>
+    </marker>
+    <style>
+      .panel { fill:#FFFFFF; stroke:#B7C7D5; stroke-width:1.5; }
+      .node { fill:#FFFFFF; stroke:#B7C7D5; stroke-width:1.5; filter:url(#shadow); }
+      .blue { fill:#EDF6FF; stroke:#2875C7; }
+      .amber { fill:#FFF8E8; stroke:#D6A742; }
+      .green { fill:#EFFAF5; stroke:#3BA66E; }
+      .phase { font:700 12px 'JetBrains Mono', monospace; letter-spacing:1.5px; fill:#587087; }
+      .node-label { font:700 11px 'JetBrains Mono', monospace; letter-spacing:1px; fill:#2875C7; }
+      .node-label.amber-text { fill:#A4780C; }
+      .node-label.green-text { fill:#287E53; }
+      .node-title { font:700 18px Inter, Arial, sans-serif; fill:#102F4C; }
+      .node-sub { font:400 13px Inter, Arial, sans-serif; fill:#587087; }
+      .connector { fill:none; stroke:#52708C; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; marker-end:url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="520" fill="#F5F8FA"/>
+  <rect width="1200" height="520" fill="url(#dot-grid)"/>
+
+  <rect class="panel" x="28" y="28" width="318" height="464" rx="18"/>
+  <rect class="panel" x="370" y="28" width="460" height="464" rx="18"/>
+  <rect class="panel" x="854" y="28" width="318" height="464" rx="18"/>
+
+  <text class="phase" x="52" y="60">01 / IMPLEMENTATION</text>
+  <text class="phase" x="394" y="60">02 / ACC AUTHENTICATION</text>
+  <text class="phase" x="878" y="60">03 / DISCOVERY</text>
+
+  <g transform="translate(52 84)">
+    <rect class="node blue" width="270" height="94" rx="14"/>
+    <text class="node-label" x="20" y="25">IMPLEMENT</text>
+    <text class="node-title" x="20" y="51">Build the tool</text>
+    <text class="node-sub" x="20" y="75">C# / .NET</text>
+  </g>
+  <g transform="translate(52 211)">
+    <rect class="node blue" width="270" height="94" rx="14"/>
+    <text class="node-label" x="20" y="25">BOUNDARY</text>
+    <text class="node-title" x="20" y="51">Decouple from Revit</text>
+    <text class="node-sub" x="20" y="75">Independent runtime boundary</text>
+  </g>
+  <g transform="translate(52 338)">
+    <rect class="node green" width="270" height="94" rx="14"/>
+    <text class="node-label green-text" x="20" y="25">VERIFY</text>
+    <text class="node-title" x="20" y="51">Test end to end</text>
+    <text class="node-sub" x="20" y="75">Runs without Revit</text>
+  </g>
+
+  <path class="connector" d="M187 178 V206"/>
+  <path class="connector" d="M187 305 V333"/>
+  <path class="connector" d="M322 385 H350 V131 H390"/>
+
+  <g transform="translate(394 84)">
+    <rect class="node blue" width="412" height="94" rx="14"/>
+    <text class="node-label" x="20" y="25">AUTHENTICATE</text>
+    <text class="node-title" x="20" y="51">Sign in via Autodesk ACC</text>
+    <text class="node-sub" x="20" y="75">3-legged OAuth with PKCE</text>
+  </g>
+  <g transform="translate(394 211)">
+    <rect class="node blue" width="412" height="94" rx="14"/>
+    <text class="node-label" x="20" y="25">PROCESS</text>
+    <text class="node-title" x="20" y="51">Refresh tokens silently</text>
+    <text class="node-sub" x="20" y="75">Maintain the authenticated session</text>
+  </g>
+  <g transform="translate(394 338)">
+    <rect class="node amber" width="412" height="94" rx="14"/>
+    <text class="node-label amber-text" x="20" y="25">CONTROLLED WRITE</text>
+    <text class="node-title" x="20" y="51">Store tokens encrypted</text>
+    <text class="node-sub" x="20" y="75">Windows DPAPI · encrypted at rest</text>
+  </g>
+
+  <path class="connector" d="M600 178 V206"/>
+  <path class="connector" d="M600 305 V333"/>
+  <path class="connector" d="M806 385 H838 V154 H874"/>
+
+  <g transform="translate(878 107)">
+    <rect class="node blue" width="270" height="94" rx="14"/>
+    <text class="node-label" x="20" y="25">DISCOVER</text>
+    <text class="node-title" x="20" y="51">Discover ACC hubs</text>
+    <text class="node-sub" x="20" y="75">User's available hubs</text>
+  </g>
+  <g transform="translate(878 281)">
+    <rect class="node green" width="270" height="110" rx="14"/>
+    <text class="node-label green-text" x="20" y="27">FINAL OUTPUT</text>
+    <text class="node-title" x="20" y="56">Discover ACC projects</text>
+    <text class="node-sub" x="20" y="82">User's available projects</text>
+  </g>
+
+  <path class="connector" d="M1013 201 V276"/>
+</svg>

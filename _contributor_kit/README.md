@@ -11,7 +11,8 @@ anyone editing the website.
 <tool-id>/
 ├── <tool-id>.json            the record — required
 ├── screenshots/
-│   ├── hero.jpg              the card and page image
+│   ├── hero.jpg              the card and page image (Image A)
+│   ├── workflow.svg         the technical diagram beside "how it works" (Image B)
 │   ├── 01.jpg  02.jpg  …     gallery, shown in filename order
 ├── videos/     *.mp4         optional
 ├── html/       *.html        a live demo, if the tool has one
@@ -107,8 +108,13 @@ house standard, not a suggestion. Short version:
 
 - **Image A — hero workflow.** Goes in `screenshots/hero.jpg`. This is what
   people see on the card and at the top of the page.
-- **Image B — technical workflow.** A flat 2D diagram. Never a 3D render, no
-  people, no photorealism, no isometric scenes, no dramatic glow.
+- **Image B — technical workflow.** Goes in `screenshots/workflow.svg` (or
+  `.png`). Shown beside the "how it works" copy, not in the gallery — if you
+  number it into the gallery it will read as one screenshot among many. A flat
+  2D diagram. Never a 3D render, no people, no photorealism, no isometric
+  scenes, no dramatic glow. **SVG is preferred** — it stays crisp at any size
+  and a coding model (Claude, ChatGPT/codex) can write it directly to the
+  palette. Image A, the richer hero, needs an image model instead.
 
 Fixed palette: canvas `#F5F8FA`, panel `#FFFFFF`, navy `#102F4C`, secondary
 text `#587087`, technical blue `#2875C7`, verified green `#3BA66E`,
@@ -146,7 +152,9 @@ files.
 - [ ] Every id in `related` is a tool that already exists.
 - [ ] `efficiency` is present **only** if a real before-and-after was recorded.
 - [ ] `hero.jpg` exists and is under 1600px wide.
-- [ ] Gallery images are numbered in use order.
+- [ ] `workflow.svg` (or `.png`) is present as Image B, in `screenshots/`.
+- [ ] Gallery images are numbered in use order (hero and workflow are NOT part
+      of the numbered gallery).
 - [ ] No client name, staff name or contract value anywhere — including inside
       the images.
 - [ ] Every sentence describes the tool as it is now.
