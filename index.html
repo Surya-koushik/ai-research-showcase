@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +8,11 @@
 <meta property="og:title" content="AI Research &amp; Innovation — Asure">
 <meta property="og:description" content="Increasing Efficiency. One Tool at a Time.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="assets/logos/brand/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Research &amp; Innovation — Asure">
+<meta name="twitter:description" content="52 tools built inside a working architecture practice.">
+<meta name="twitter:image" content="assets/logos/brand/og-cover.png">
 <link rel="icon" href="assets/logos/brand/favicon.png">
 <!-- The kit loads FIRST: its :root redefines --r-sm/md/lg/xl, and ours must win
      globally. The bridge restores the kit's radii inside .uikit only. -->
@@ -16,6 +21,8 @@
 <link rel="stylesheet" href="assets/css/deck.css">
 <link rel="stylesheet" href="assets/css/uikit-bridge.css">
 <link rel="stylesheet" href="assets/css/loader.css">
+<link rel="stylesheet" href="assets/css/dala.css">
+<link rel="stylesheet" href="assets/css/site-chrome.css">
 <script src="assets/js/supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/auth.js"></script>
@@ -23,6 +30,7 @@
 <!-- The kit's app frame (spec §3): sidebar + topbar pinned, only .a-view scrolls,
      titleblock locked as the last child of .a-main. -->
 <body class="a-app deck uikit">
+<a class="skip-link" href="#ecosystem">Skip to tools</a>
 
 <!-- Asure -> Evolve opening. In the markup, not injected, so it paints on the
      first frame. assets/js/loader.js removes it once the page has rendered. -->
@@ -44,8 +52,8 @@
 </div>
 <!-- /evo -->
 
-
 <aside class="a-sidebar no-print">
+  <div class="nav-close"><button type="button" id="navClose" aria-label="Close menu">✕</button></div>
   <a class="a-sidebar-brand" href="index.html">
     <img class="wm lightonly" src="assets/logos/brand/asure_wordmark.png" alt="asure">
     <img class="wm darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="" aria-hidden="true">
@@ -55,9 +63,12 @@
   <div class="a-sidebar-foot">EVOLVE · Empower with Knowledge</div>
 </aside>
 
+<div class="nav-scrim" id="navScrim"></div>
+
 <div class="a-main">
 
   <header class="a-topbar no-print">
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"></button>
     <div class="a-hero" id="crumb">AI Research &amp; Innovation</div>
     <div class="a-topbar-spacer"></div>
     <span class="a-pill" id="pillCount" style="min-width:118px">52 in catalogue</span>
@@ -135,7 +146,6 @@
 
 <!-- ============================== KINDS ============================== -->
 
-
 <!-- ============================== ECOSYSTEM ============================== -->
 <section class="band uikit" id="ecosystem">
   <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
@@ -171,6 +181,37 @@
     on our own hardware.</p>
 </section>
 
+<footer class="site-footer no-print">
+  <div class="wrap">
+    <div class="brandcol">
+      <img class="lightonly" src="assets/logos/brand/asure_wordmark.png" alt="Asure">
+      <img class="darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="Asure" aria-hidden="true">
+      <p>AI research and innovation at Asure Design Studio. Tools built inside a
+         working architecture practice, against real projects, on our own hardware.</p>
+    </div>
+    <div>
+      <h4>The site</h4>
+      <ul>
+        <li><a href="#ecosystem">All tools</a></li>
+        <li><a href="#kinds">Kinds of tool</a></li>
+        <li><a href="#numbers">The count</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Studio</h4>
+      <ul>
+        <li>Asure Design Studio</li>
+        <li>Hyderabad</li>
+        <li><a href="mailto:studio@asure.in">studio@asure.in</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-base">
+    <span>Increasing efficiency, one tool at a time.</span>
+    <span>Internal research &amp; development showcase</span>
+  </div>
+</footer>
+
   </div><!-- /.a-content -->
   </main><!-- /.a-view -->
 
@@ -200,7 +241,9 @@
     </div>
   </div>
 
-</div><!-- /.a-main -->
+</div>
+
+<!-- /.a-main -->
 
 <script src="assets/js/loader.js"></script>
 <script src="assets/vendor/asure-ui-kit/asure-illustrations.js"></script>

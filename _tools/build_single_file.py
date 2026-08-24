@@ -82,7 +82,8 @@ css = (read('assets/vendor/asure-ui-kit/asure-ui.css') + chr(10) +
        read('assets/css/theme.css') + chr(10) +
        read('assets/css/deck.css') + chr(10) +
        read('assets/css/uikit-bridge.css') + chr(10) +
-       read('assets/css/loader.css') + chr(10) + CMS_STYLE)
+       read('assets/css/loader.css') + chr(10) +
+       read('assets/css/dala.css') + chr(10) + CMS_STYLE)
 
 
 

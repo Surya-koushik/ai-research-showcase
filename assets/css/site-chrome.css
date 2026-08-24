@@ -1,0 +1,98 @@
+/* ============================================================================
+   site-chrome.css — the things a finished site has that were missing here:
+   a skip link, a working mobile nav, and a real landing footer.
+   ============================================================================ */
+
+/* --- skip to content ---------------------------------------------------- */
+/* First focusable element on the page. Off-screen until focused, then it
+   lands top-left so a keyboard user can jump the nav. */
+.skip-link{
+  position:fixed; top:10px; left:10px; z-index:10000;
+  transform:translateY(-160%); transition:transform .16s ease;
+  background:#102F4C; color:#fff; padding:10px 16px; border-radius:8px;
+  font:600 13px/1 'Inter','Segoe UI',system-ui,sans-serif; text-decoration:none;
+}
+.skip-link:focus{ transform:none; outline:2px solid #6748E8; outline-offset:2px }
+
+/* --- visible keyboard focus everywhere ---------------------------------- */
+/* The kit set no focus-visible style, so keyboard users had no idea where they
+   were. Mouse users never see it (:focus-visible only fires for keyboard). */
+:where(a,button,input,select,textarea,.a-nav-item,.tcard,.side-link):focus-visible{
+  outline:2px solid #6748E8; outline-offset:2px; border-radius:4px;
+}
+
+/* --- mobile navigation drawer ------------------------------------------- */
+/* The app sidebar carries the filters. Below 900px the kit stacks it full
+   width above the content, so a phone visitor scrolled the whole nav before
+   reaching the hero. It becomes an off-canvas drawer instead, opened by the
+   hamburger in the top bar. */
+.nav-toggle{ display:none }
+.nav-scrim{ display:none }
+
+@media (max-width:900px){
+  .nav-toggle{
+    display:inline-grid; place-items:center; width:40px; height:40px; flex:none;
+    border:1px solid var(--line-2); border-radius:10px; background:var(--surface);
+    color:var(--text); cursor:pointer; margin-right:4px;
+  }
+  .nav-toggle svg{ width:18px; height:18px }
+
+  .a-app > .a-sidebar{
+    position:fixed; top:0; left:0; bottom:0; width:min(300px,84vw); z-index:80;
+    transform:translateX(-100%); transition:transform .28s cubic-bezier(.4,0,.2,1);
+    overflow-y:auto; box-shadow:0 0 40px rgba(0,0,0,.28);
+  }
+  .a-app.nav-open > .a-sidebar{ transform:translateX(0) !important; }
+
+  .nav-scrim{
+    display:block; position:fixed; inset:0; z-index:70;
+    background:rgba(8,12,22,.5); opacity:0; visibility:hidden;
+    transition:opacity .28s ease, visibility .28s;
+  }
+  .a-app.nav-open .nav-scrim{ opacity:1; visibility:visible }
+
+  /* the drawer needs a close affordance and a little breathing room */
+  .a-sidebar .nav-close{
+    display:flex; align-items:center; justify-content:flex-end;
+    padding:4px 6px 0; margin-bottom:2px;
+  }
+  .a-sidebar .nav-close button{
+    border:0; background:transparent; color:var(--text-3); cursor:pointer;
+    width:34px; height:34px; border-radius:8px; display:grid; place-items:center;
+  }
+  .a-sidebar .nav-close button:hover{ color:var(--text); background:var(--surface-2) }
+}
+.a-sidebar .nav-close{ display:none }   /* desktop: the drawer chrome is hidden */
+
+/* --- landing footer ----------------------------------------------------- */
+/* The tool page had a footer; the landing -- the main page -- ended on the
+   close band with no ground under it. This gives the page a bottom edge and
+   somewhere for the plain facts (what this is, who built it) to sit. */
+.site-footer{
+  border-top:1px solid var(--line-2); background:var(--surface);
+  padding:clamp(40px,6vw,72px) 0 44px;
+}
+.site-footer .wrap{
+  max-width:1180px; margin-inline:auto; padding-inline:clamp(22px,5vw,72px);
+  display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:clamp(28px,4vw,64px);
+}
+.site-footer .brandcol img{ height:26px; width:auto; display:block; margin-bottom:14px }
+.site-footer .brandcol p{
+  margin:0; max-width:38ch; font-size:13.5px; line-height:1.6; color:var(--text-3);
+}
+.site-footer h4{
+  margin:0 0 12px; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--text-3); font-weight:600;
+}
+.site-footer ul{ list-style:none; margin:0; padding:0; display:grid; gap:9px }
+.site-footer a, .site-footer li{ font-size:13.5px; color:var(--text-2); text-decoration:none }
+.site-footer a:hover{ color:var(--text) }
+.site-footer .foot-base{
+  max-width:1180px; margin:clamp(30px,4vw,52px) auto 0; padding-inline:clamp(22px,5vw,72px);
+  padding-top:22px; border-top:1px solid var(--line);
+  display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  font-size:12px; color:var(--text-3);
+}
+@media (max-width:720px){
+  .site-footer .wrap{ grid-template-columns:1fr; gap:26px }
+}

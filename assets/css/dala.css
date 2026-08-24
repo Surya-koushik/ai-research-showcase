@@ -1,0 +1,250 @@
+/* ============================================================================
+   dala.css — the dark-void skin, from DESIGN.md (Dala style reference).
+   ----------------------------------------------------------------------------
+   Loaded LAST, so it wins by re-pointing the design tokens rather than forking
+   every rule. The move it commits to:
+
+     - pure #000 void as the only surface; no panels, borders or shadows
+     - one saturated violet (#8052FF) for action and brand, amber (#FFB829)
+       for emphasis labels, nothing else saturated
+     - headlines at weight 400 -- hierarchy from scale and tracking, not weight
+     - body at weight 300-ish, airy, receding
+     - float everything on black; whitespace is the separation
+
+   What this skin does NOT copy from the reference: "one or two elements per
+   viewport, never information-dense." Dala is a five-screen pitch; this is a
+   52-item catalogue and a data-dense tool page. The palette, type and
+   chrome-removal transfer; the extreme spatial sparseness would break the
+   catalogue's job. Density stays; the surface goes to void.
+   ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap');
+
+/* --- tokens: repoint for every theme, because the void is theme-independent - */
+:root,
+:root[data-theme="light"],
+:root[data-theme="dark"]{
+  --bg:#000000;
+  --bg-2:#000000;
+  --surface:#000000;
+  --surface-2:#0b0b0f;
+
+  --text:#ffffff;
+  --text-2:#bdbdbd;
+  --text-3:#9a9a9a;
+  --muted:#9a9a9a;
+
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.12);
+
+  /* the single accent, mapped over both violet and the kit's brand ramp so
+     nav, buttons and links all resolve to it */
+  --violet-400:#9a72ff; --violet-500:#8052ff; --violet-600:#8052ff; --violet-300:#b9a3ff;
+  --brand-50:rgba(128,82,255,.14); --brand-100:rgba(128,82,255,.22);
+  --brand-200:#b9a3ff; --brand-500:#8052ff; --brand-600:#8052ff; --brand-700:#b9a3ff;
+  --brand-800:#000000; --brand-900:#000000;
+
+  --amber:#ffb829;
+  --cyan-500:#8052ff;   /* fold the second accent into the one */
+
+  --f-sans:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+
+  --page:#000000; --card:#000000; --ring:rgba(255,255,255,.1); --ink:#ffffff;
+}
+
+/* --- the ground ----------------------------------------------------------- */
+html, body{ background:#000000 !important; color:#ffffff; }
+body{ font-weight:300; }
+
+/* the app frame: void, no borders. sidebar and titleblock float rather than
+   sit in panels. */
+.a-app, .a-main, .a-view, .a-content{ background:#000000; }
+.a-sidebar{ background:#000000; border-right:1px solid rgba(255,255,255,.06); }
+.a-topbar{ background:rgba(0,0,0,.72); backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.06); }
+.a-titleblock{ background:#000000; border-top:1px solid rgba(255,255,255,.06); }
+.a-tb-brand{ background:transparent !important; }
+
+/* kill the decorative drafting grid; the void is the design */
+.bg-grid{ opacity:.14 !important; }
+.band .glow{ opacity:.5; filter:blur(70px); }
+
+/* --- typography: scale and tracking carry hierarchy, not weight ----------- */
+.d1, .d2, h1, h2, .section-title, .hero-copy h1, .h-1, .h-2{
+  font-weight:400 !important;
+  letter-spacing:-.035em !important;
+  text-wrap:balance;
+}
+.d1, .hero-copy h1{ letter-spacing:-.04em !important; }
+/* the display heading loses its lingering weight */
+.d1{ font-weight:400 !important; }
+
+/* body copy airy and receding, per the reference's ultra-light signature */
+.lede, .a-note, .intro-copy, .prose-block p{
+  font-weight:300; color:#d7d7de;
+}
+.lede{ font-size:clamp(16px,1.25vw,19px); line-height:1.5; }
+
+/* small labels: amber uppercase, the one warm note */
+.eyebrow-rule{ color:#ffb829 !important; }
+.eyebrow-rule::before{ background:rgba(255,184,41,.5) !important; }
+.eyebrow{ color:#8052ff !important; }
+
+/* --- float everything on black: strip card chrome ------------------------- */
+.kindcard, .a-note, .tcard, .rel-card,
+.rail-kpi, .time-box, .statrow .stat{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+/* the stat rule kept a top hairline for rhythm; a faint one survives */
+.statrow .stat{ border-top:1px solid rgba(255,255,255,.12) !important; }
+
+/* tool cards: no border box, but the image keeps a soft radius and the meta
+   floats beneath it -- the tile reads from the picture and the kind tag */
+.tcard{ border-radius:0 !important; }
+.tcard .shot{ border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.08); }
+.tcard:hover .shot{ border-color:rgba(128,82,255,.5); }
+.tcard h3{ font-weight:500; }
+
+/* kind cards become text blocks floating in space */
+.kindcard{ padding:22px 0 !important; border-radius:0 !important; }
+.kindcard:hover{ transform:none !important; }
+
+/* the "how it fits" / systems art and placeholder tiles keep a subtle frame */
+.media-panel, .overview-media img, .gallery-stage, .heroart{
+  border-color:rgba(255,255,255,.08) !important;
+}
+
+/* --- the one violet pill: primary action --------------------------------- */
+.btn.primary, .btn.pri, .a-btn-primary{
+  background:#8052ff !important; border-color:#8052ff !important;
+  color:#ffffff !important; border-radius:9999px !important;
+}
+.btn.primary:hover, .btn.pri:hover{ background:#8f66ff !important; }
+/* secondary actions are ghost text, no container */
+.btn.lg:not(.primary){ background:transparent !important; border:1px solid rgba(255,255,255,.2) !important;
+  color:#ffffff !important; border-radius:9999px !important; }
+.btn.lg:not(.primary):hover{ border-color:#ffffff !important; }
+
+/* nav: ghost links, violet active. no filled chips */
+.a-nav-item{ color:#9a9a9a; }
+.a-nav-item:hover{ color:#ffffff; }
+.a-nav-item.is-active{ background:rgba(128,82,255,.14) !important; color:#b9a3ff !important; }
+.a-nav-item.is-active::before{ background:#8052ff !important; }
+.a-nav-item .n{ color:#6f6f7a; }
+
+/* pills / tags: outlined, not filled grey */
+.pill, .badge, .a-pill{ background:transparent !important; border:1px solid rgba(255,255,255,.16) !important; color:#bdbdbd !important; }
+.a-pill{ font-weight:400; }
+.tcard .ktag{ background:#8052ff !important; box-shadow:none !important; }
+
+/* search field on void */
+.searchline, .cms-find, #search{
+  background:rgba(255,255,255,.04) !important;
+  border:1px solid rgba(255,255,255,.14) !important; color:#fff; }
+
+/* --- links: amber or white, never blue (per the reference) ---------------- */
+.uikit .a-prose a, .prose a, p a, .nl{ color:#ffb829; }
+.nl:hover{ color:#ffffff; }
+
+/* --- reduced motion + light-mode toggle note ------------------------------ */
+/* The void does not have a light variant. If someone toggles the theme the
+   tokens above already hold black, so the toggle is effectively inert here --
+   deliberately, since this skin IS the dark stage. */
+
+/* ============================================================================
+   Tool page on the void.
+   tool-page.css was lifted from the template as a self-contained LIGHT design
+   with ~95 hardcoded colours, so the token repoint above cannot reach it. This
+   block flips its surfaces to black and its navy text to light. Scoped to
+   body.toolpage so none of it touches the landing.
+   ============================================================================ */
+body.toolpage{ background:#000 !important; color:#fff; }
+
+/* the two rails */
+body.toolpage .app-sidebar{ background:#000 !important; border-right:1px solid rgba(255,255,255,.07); }
+body.toolpage .insight-rail{ background:#000 !important; border-left:1px solid rgba(255,255,255,.07); }
+body.toolpage .side-brand span,
+body.toolpage .side-label{ color:#6f6f7a; }
+body.toolpage .side-link{ color:#9a9a9a; }
+body.toolpage .side-link:hover{ color:#fff; }
+body.toolpage .side-link.active{ color:#b9a3ff; }
+body.toolpage .side-bottom{ color:#6f6f7a; border-top-color:rgba(255,255,255,.08); }
+body.toolpage .side-bottom strong{ color:#bdbdbd; }
+
+/* the top bar */
+body.toolpage .topbar{ background:rgba(0,0,0,.72); backdrop-filter:blur(10px); }
+body.toolpage .topbar-title,
+body.toolpage .topnav a{ color:#9a9a9a; }
+body.toolpage .topnav a:hover,
+body.toolpage .topbar-title{ color:#fff; }
+body.toolpage .topnav .back{ color:#bdbdbd; }
+
+/* hero */
+body.toolpage .media-hero{ background:radial-gradient(circle at 30% 30%, #0d0a1f 0, #050509 55%, #000 100%) !important; }
+body.toolpage .media-panel{ background:#0a0a0f !important; }
+body.toolpage .hero-copy h1{ color:#fff !important; }
+body.toolpage .hero-copy h1 span{ color:#9a72ff; }
+body.toolpage .lede{ color:#d0d0d8 !important; }
+body.toolpage .status-dot{ background:#8052ff; }
+body.toolpage .revit-id{ background:#0a0a0f !important; border:1px solid rgba(255,255,255,.1); }
+
+/* gallery */
+body.toolpage .gallery{ background:#000 !important; }
+body.toolpage .gallery-stage{ background:#0a0a0f !important; border:1px solid rgba(255,255,255,.08); }
+body.toolpage .gallery-arrow{ background:rgba(0,0,0,.5) !important; color:#fff !important; border:1px solid rgba(255,255,255,.15); }
+body.toolpage .gallery-caption span{ color:#9a9a9a; }
+body.toolpage .gallery-count{ color:#6f6f7a; }
+body.toolpage .thumb{ background:#0a0a0f !important; border:1px solid rgba(255,255,255,.08) !important; }
+body.toolpage .thumb.active{ border-color:#8052ff !important; }
+
+/* how it works */
+body.toolpage .intro{ background:#000 !important; }
+body.toolpage .section-title{ color:#fff !important; }
+body.toolpage .intro-copy{ color:#d0d0d8 !important; }
+body.toolpage .overview-media{ background:#0a0a0f !important; }
+body.toolpage .overview-media img{ border:1px solid rgba(255,255,255,.08); border-radius:12px; }
+body.toolpage .meta-row{ border-top-color:rgba(255,255,255,.08) !important; }
+body.toolpage .meta-row dt{ color:#6f6f7a !important; }
+body.toolpage .meta-row dd{ color:#d0d0d8 !important; }
+body.toolpage .prose-block h4{ color:#8052ff !important; }
+body.toolpage .prose-block p, body.toolpage .prose-block li{ color:#c9c9d2 !important; }
+
+/* steps */
+body.toolpage .steps{ background:rgba(255,255,255,.07) !important; border:1px solid rgba(255,255,255,.08) !important; }
+body.toolpage .steps li{ background:#050509 !important; }
+body.toolpage .steps .sn{ background:rgba(128,82,255,.16) !important; border:1px solid rgba(128,82,255,.4) !important; color:#b9a3ff !important; }
+body.toolpage .steps li b{ color:#fff !important; }
+body.toolpage .steps li p{ color:#a8a8b4 !important; }
+
+/* development */
+body.toolpage .development{ background:#000 !important; }
+body.toolpage .timeline .milestone{ border-color:rgba(255,255,255,.1) !important; }
+body.toolpage .milestone b{ color:#fff !important; }
+body.toolpage .milestone span{ color:#9a9a9a !important; }
+
+/* rail cards */
+body.toolpage .rail-logo{ border-bottom-color:rgba(255,255,255,.08) !important; }
+body.toolpage .rail-logo strong{ color:#fff !important; }
+body.toolpage .rail-logo span, body.toolpage .rail-section h3{ color:#6f6f7a !important; }
+body.toolpage .rail-kpi{ background:rgba(128,82,255,.12) !important; border:1px solid rgba(128,82,255,.28) !important; }
+body.toolpage .rail-kpi b{ color:#b9a3ff !important; }
+body.toolpage .rail-kpi span{ color:#9a9a9a !important; }
+body.toolpage .time-box{ background:#0a0a0f !important; border:1px solid rgba(255,255,255,.1) !important; }
+body.toolpage .time-box b{ color:#fff !important; }
+body.toolpage .time-box span{ color:#8a8a96 !important; }
+body.toolpage .rail-nav a{ color:#bdbdbd !important; border-top:1px solid rgba(255,255,255,.06); }
+body.toolpage .rail-nav a b{ color:#fff !important; }
+body.toolpage .rail-note{ color:#9a9a9a !important; }
+body.toolpage .rail-section{ border-bottom-color:rgba(255,255,255,.08) !important; }
+
+/* related + footer */
+body.toolpage .related{ border-top-color:rgba(255,255,255,.08) !important; }
+body.toolpage .rel-card{ border:1px solid rgba(255,255,255,.1) !important; background:transparent !important; }
+body.toolpage .rel-card:hover{ border-color:#8052ff !important; }
+body.toolpage .rel-card b{ color:#fff !important; }
+body.toolpage .rel-card p{ color:#9a9a9a !important; }
+body.toolpage footer{ background:#000 !important; border-top:1px solid rgba(255,255,255,.08); }
+body.toolpage footer small{ color:#6f6f7a !important; }
+body.toolpage .top-link{ color:#bdbdbd !important; }
