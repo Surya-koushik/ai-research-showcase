@@ -114,7 +114,8 @@
       ['#top',       'home',    'Home'],
       ['#numbers',   'chart',   'The count'],
       ['#kinds',     'layers',  'Kinds of tool'],
-      ['#ecosystem', 'grid',    'All tools']
+      ['#ecosystem', 'grid',    'All tools'],
+      ['#roadmap',   'route',   'Roadmap']
     ];
     var jumpHTML = JUMPS.map(function (j) {
       return '<a class="a-nav-item nav-jump" href="' + j[0] + '">' +

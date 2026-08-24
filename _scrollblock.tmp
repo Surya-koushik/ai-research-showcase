@@ -1,0 +1,81 @@
+/* ============================================================================
+   SCROLLABLE VISUALS
+   ----------------------------------------------------------------------------
+   The thumbnail strip was laying 7 thumbs across 716px inside a 238px column
+   with overflow:visible -- they spilled out of the container and everything
+   past the third was unreachable. Anything that can outgrow its column now
+   scrolls on its own axis instead of overflowing or squashing.
+
+   Wide media (1600px screenshots, workflow diagrams) also gets a horizontal
+   scroll rather than shrinking to illegibility in a narrow column: the page
+   body must never scroll sideways, but a figure inside it may.
+   ============================================================================ */
+
+/* thumbnail strip — horizontal, snapping, slim scrollbar */
+/* The template sets grid-template-columns:repeat(7,minmax(92px,1fr)) -- 740px
+   of track inside a 238px column -- and a media query reflows it to 4 columns.
+   It was built to WRAP, not to scroll. Converting to a scroll strip means
+   overriding the grid template too, or the columns keep their own sizing and
+   the thumbs stack into a 900px tower. */
+.thumbs{
+  display:flex !important;
+  grid-template-columns:none !important;
+  flex-wrap:nowrap !important;
+  align-items:flex-start;
+  gap:var(--spacing-6);
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.22) transparent;
+  padding-bottom:var(--spacing-6);
+}
+.thumbs .thumb{
+  flex:0 0 auto !important;
+  width:92px;
+  aspect-ratio:16/9;
+  scroll-snap-align:start;
+}
+.thumbs::-webkit-scrollbar{ height:6px; }
+.thumbs::-webkit-scrollbar-track{ background:transparent; }
+.thumbs::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.2); border-radius:var(--radius-full); }
+.thumbs::-webkit-scrollbar-thumb:hover{ background:rgba(128,82,255,.6); }
+
+/* any wide figure scrolls inside itself rather than forcing the page sideways */
+.overview-media, .gallery-stage, .dgm-wrap, .heroart{
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.22) transparent;
+}
+.overview-media::-webkit-scrollbar, .gallery-stage::-webkit-scrollbar,
+.dgm-wrap::-webkit-scrollbar, .heroart::-webkit-scrollbar{ height:6px; }
+.overview-media::-webkit-scrollbar-thumb, .gallery-stage::-webkit-scrollbar-thumb,
+.dgm-wrap::-webkit-scrollbar-thumb, .heroart::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.2); border-radius:var(--radius-full); }
+
+/* the technical diagram is drawn wide; below a comfortable width let it keep
+   its real size and scroll, rather than shrink until the labels vanish */
+.overview-media img{ min-width:min(560px,100%); height:auto; }
+
+/* the milestone rail can outgrow its column once a project has real history */
+.timeline{
+  display:flex; gap:var(--spacing-18);
+  overflow-x:auto; overflow-y:hidden;
+  scroll-snap-type:x proximity;
+  scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.22) transparent;
+  padding-bottom:var(--spacing-6);
+}
+.timeline .milestone{ flex:0 0 auto; min-width:180px; scroll-snap-align:start; }
+.timeline::-webkit-scrollbar{ height:6px; }
+.timeline::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.2); border-radius:var(--radius-full); }
+
+/* the page itself must never scroll sideways, whatever a figure does */
+html, body{ overflow-x:hidden; }
+
+/* a scrolling region needs a visible focus ring for keyboard users */
+.thumbs:focus-visible, .overview-media:focus-visible, .timeline:focus-visible{
+  outline:2px solid var(--color-electric-iris); outline-offset:2px; }
+

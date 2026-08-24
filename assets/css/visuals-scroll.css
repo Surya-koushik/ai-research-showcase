@@ -1,0 +1,93 @@
+/* ============================================================================
+   visuals-scroll.css — anything that can outgrow its column scrolls.
+   ----------------------------------------------------------------------------
+   Skin-independent, so light and dark both get it. Split out of dala.css
+   because this is a layout fix, not a look: the faults it corrects exist
+   whatever colour the page is.
+
+   THE FAULT IT FIXES
+   The thumbnail strip is laid out by the template as
+   grid-template-columns:repeat(7,minmax(92px,1fr)) -- 740px of track inside a
+   238px column -- with overflow visible. Four of the seven thumbnails sat
+   outside the container and could not be reached at all.
+
+   Converting it needs the grid template overridden as well as display:flex.
+   Setting flex alone leaves the grid columns sizing the children and the
+   thumbnails stack into a 900px tower, which is worse than the overflow.
+
+   The rule for wide media generally: a figure may scroll inside itself, the
+   page body may never scroll sideways.
+   ============================================================================ */
+
+/* --- thumbnail strip: one scrolling row ---------------------------------- */
+.thumbs{
+  display:flex !important;
+  grid-template-columns:none !important;   /* the template's 7-col grid */
+  flex-wrap:nowrap !important;
+  align-items:flex-start;
+  gap:8px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  padding-bottom:6px;
+}
+.thumbs .thumb{
+  flex:0 0 auto !important;
+  width:92px;
+  aspect-ratio:16/9;
+  scroll-snap-align:start;
+}
+
+/* --- wide figures scroll inside themselves ------------------------------- */
+.overview-media, .gallery-stage, .dgm-wrap, .heroart{
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin;
+}
+/* The technical diagram is drawn wide. Below a comfortable width let it keep
+   its real size and scroll, rather than shrink until the labels are unreadable. */
+.overview-media img{ min-width:min(560px,100%); height:auto; }
+
+/* --- the milestone rail can outgrow its column --------------------------- */
+.timeline{
+  display:flex;
+  gap:18px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x proximity;
+  scrollbar-width:thin;
+  padding-bottom:6px;
+}
+.timeline .milestone{ flex:0 0 auto; min-width:180px; scroll-snap-align:start; }
+
+/* --- slim scrollbars, tinted by the skin via --scroll-thumb -------------- */
+.thumbs::-webkit-scrollbar,
+.overview-media::-webkit-scrollbar,
+.gallery-stage::-webkit-scrollbar,
+.timeline::-webkit-scrollbar,
+.heroart::-webkit-scrollbar{ height:6px; }
+.thumbs::-webkit-scrollbar-track,
+.timeline::-webkit-scrollbar-track{ background:transparent; }
+.thumbs::-webkit-scrollbar-thumb,
+.overview-media::-webkit-scrollbar-thumb,
+.gallery-stage::-webkit-scrollbar-thumb,
+.timeline::-webkit-scrollbar-thumb,
+.heroart::-webkit-scrollbar-thumb{
+  background:var(--scroll-thumb,rgba(0,0,0,.22));
+  border-radius:9999px;
+}
+
+/* the page itself must never scroll sideways, whatever a figure does */
+html, body{ overflow-x:hidden; }
+
+/* a scrolling region needs a visible focus ring for keyboard users */
+.thumbs:focus-visible, .overview-media:focus-visible, .timeline:focus-visible{
+  outline:2px solid var(--focus-ring,#6A3FE0); outline-offset:2px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .thumbs, .timeline, .overview-media{ scroll-behavior:auto; }
+}
