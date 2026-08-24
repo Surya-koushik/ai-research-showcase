@@ -53,20 +53,16 @@
   /* Plain statements. Each one says what was counted and nothing more --
      an investor should not have to decode a claim to reach a number. */
   var STATS = [
-    { n: PROJECTS.length, icon: 'grid',  l: 'Tools built so far',
-      src: 'everything in the catalogue' },
-    { n: shipped,         icon: 'check', l: 'In production',
-      src: 'running on real project work' },
-    { n: PROJECTS.length - shipped, icon: 'clock', l: 'In progress or research',
-      src: 'not yet in daily use' },
-    { n: savedTotal, u: 'hrs/wk', icon: 'gauge', l: 'Hours saved each week',
-      src: 'measured on ' + measured.length + ' of ' + PROJECTS.length + ' tools' }
+    { n: PROJECTS.length, icon: 'grid',  l: 'Tools built so far' },
+    { n: shipped,         icon: 'check', l: 'In production' },
+    { n: PROJECTS.length - shipped, icon: 'clock', l: 'In progress or research' },
+    { n: savedTotal, u: 'hrs/wk', icon: 'gauge', l: 'Hours saved each week' }
   ];
   $('#stats').innerHTML = STATS.map(function (s) {
     return '<div class="stat rv"><div class="si">' + ICON(s.icon) + '</div>' +
       '<div class="n">' + s.n + (s.u ? '<span class="u">' + s.u + '</span>' : '') + '</div>' +
       '<div class="l">' + s.l + '</div>' +
-      '<div class="src">' + s.src + '</div></div>';
+      (s.src ? '<div class="src">' + s.src + '</div>' : '') + '</div>';
   }).join('');
 
   /* ---------------------------------------------------------------- kinds --- */
@@ -112,9 +108,6 @@
       return navItem('kind', k.id, k.label, n, k.icon,
                      state.kind === k.id && state.domain === 'all');
     }).join('');
-    var domsHTML = DOMAINS.map(function (d) {
-      return navItem('domain', d.id, d.label, domCount(d.id), d.icon, state.domain === d.id);
-    }).join('');
     /* Jump links first. Without them the only way to reach the tool types was
        to scroll past them to the grid and then filter, which is backwards. */
     var JUMPS = [
@@ -131,8 +124,7 @@
 
     $('#nav').innerHTML =
       '<div class="a-nav-sect"><span class="a-label">Go to</span></div>' + jumpHTML +
-      '<div class="a-nav-sect"><span class="a-label">Kind of tool</span></div>' + kindsHTML +
-      '<div class="a-nav-sect"><span class="a-label">Work it serves</span></div>' + domsHTML;
+      '<div class="a-nav-sect"><span class="a-label">Browse by kind</span></div>' + kindsHTML;
   }
 
   $('#nav').addEventListener('click', function (e) {
