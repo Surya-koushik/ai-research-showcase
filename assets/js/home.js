@@ -38,7 +38,7 @@
   /* Light is the default. The image system is drawn on a light canvas, so a
      first-time visitor should land on the ground the artwork was made for.
      A saved choice still wins. */
-  setTheme(localStorage.getItem(STORE_KEY) || 'dark');
+  setTheme(localStorage.getItem(STORE_KEY) || 'light');
   themeBtn.onclick = function () {
     setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   };

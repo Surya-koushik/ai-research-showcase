@@ -1,0 +1,217 @@
+/* ============================================================================
+   light.css — the light system.
+   ----------------------------------------------------------------------------
+   Keeps the DISCIPLINE of the Dala reference (DESIGN.md) and drops its colour:
+
+     - one saturated accent, used only for action and emphasis
+     - headlines at weight 400; hierarchy from scale and tracking, never weight
+     - no filled cards, no shadows, no gradient decoration
+     - hairlines and whitespace do the separating
+
+   WHY THIS IS NOT AN INVERTED DALA
+   The Dala palette does not survive on white, and the numbers say so:
+
+       Saffron Spark  #ffb829  on white = 1.73   unusable as text
+       Ash Gray       #9a9a9a  on white = 2.81   fails
+       Silver Mist    #bdbdbd  on white = 1.88   fails
+       Electric Iris  #8052ff  on white = 4.60   passes, but with no headroom
+
+   So the accents are re-cut for a light ground rather than reused. Violet
+   deepens to #6A3FE0 (6.18) for text and fills; amber deepens to #9A6B00
+   (4.69) whenever it carries words, and the bright Saffron only survives as a
+   non-text mark. Greys are replaced outright.
+
+   Ground is a true cool white, not cream. The warm near-white band
+   (parchment / sand / bone) is the saturated default of AI-generated design;
+   warmth here comes from the amber accent, not from tinting the paper.
+   ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root,
+:root[data-theme="light"],
+:root[data-theme="dark"]{
+  /* --- ground: cool white, one quiet step for alternating sections ------- */
+  --paper:#ffffff;
+  --paper-2:#F7F8FB;
+
+  --bg:var(--paper);
+  --bg-2:var(--paper-2);
+  --surface:var(--paper);
+  --surface-2:var(--paper-2);
+
+  /* --- ink ---------------------------------------------------------------- */
+  --ink:#0E1116;          /* 18.91 on white */
+  --ink-2:#5A6472;        /* 6.00  — secondary prose */
+  --ink-3:#6B7280;        /* 4.83  — captions, still clears the floor */
+
+  --text:var(--ink);
+  --text-2:var(--ink-2);
+  --text-3:var(--ink-3);
+  --muted:var(--ink-3);
+
+  /* --- lines: hairlines, never boxes ------------------------------------- */
+  --line:#E8EBF1;
+  --line-2:#DDE2EB;
+
+  /* --- the single accent, re-cut for a light ground ---------------------- */
+  --accent:#6A3FE0;       /* 6.18 on white — text, fills, active state */
+  --accent-deep:#5B2FD6;  /* 7.44 — hover */
+  --accent-soft:#F1ECFE;  /* tint for active nav, never for text */
+
+  /* the warm note. Bright saffron is a MARK only; when it carries words it
+     deepens to amber ink, which clears 4.5. */
+  --amber-mark:#FFB829;   /* rules, dots, non-text */
+  --amber-ink:#9A6B00;    /* 4.69 — labels and links */
+
+  --verdant:#0F6B57;      /* 6.44 — the third role, verification/status */
+
+  /* map onto the site's existing token names */
+  --violet-300:#B9A3FF; --violet-400:#8052ff;
+  --violet-500:var(--accent); --violet-600:var(--accent-deep);
+  --brand-50:var(--accent-soft); --brand-100:#E4DAFC; --brand-200:#C9B6F8;
+  --brand-500:var(--accent); --brand-600:var(--accent-deep);
+  --brand-700:var(--accent-deep); --brand-800:var(--ink); --brand-900:var(--ink);
+  --cyan-500:var(--accent);
+  --page:var(--paper); --card:var(--paper); --ring:var(--line-2);
+
+  --f-sans:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+
+  --scroll-thumb:rgba(14,17,22,.22);
+  --focus-ring:var(--accent);
+}
+
+/* --- the ground ----------------------------------------------------------- */
+html, body{ background:var(--paper) !important; color:var(--ink); }
+body{ font-weight:400; }
+
+.a-app, .a-main, .a-view, .a-content{ background:var(--paper); }
+.a-sidebar{ background:var(--paper); border-right:1px solid var(--line); }
+.a-topbar{ background:rgba(255,255,255,.86); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line); }
+.a-titleblock{ background:var(--paper); border-top:1px solid var(--line); }
+.a-tb-brand{ background:transparent !important; }
+.a-tb-brand img{ filter:invert(1) brightness(.15); }   /* white wordmark -> ink */
+
+/* atmosphere, dialled right down: on white a glow reads as a smudge */
+.bg-grid{ opacity:.5 !important; }
+.band .glow{ opacity:.12 !important; filter:blur(90px); }
+
+/* --- typography ----------------------------------------------------------- */
+.d1, .d2, h1, h2, .section-title, .hero-copy h1, .h-1, .h-2{
+  color:var(--ink) !important;
+  font-weight:400 !important;
+  letter-spacing:-.03em !important;
+  text-wrap:balance;
+}
+.d1, .hero-copy h1{ letter-spacing:-.035em !important; }
+
+.lede, .a-note, .intro-copy, .prose-block p{
+  font-weight:400;
+  color:var(--ink-2);
+}
+.lede{ line-height:1.55; }
+
+/* emphasis words: solid accent, never a gradient */
+.g-primary{ color:var(--accent) !important; }
+.g-cool{ color:var(--verdant) !important; }
+
+/* section labels: the warm note, at a weight that reads on paper */
+.eyebrow-rule{ color:var(--amber-ink) !important; }
+.eyebrow-rule::before{ background:var(--amber-mark) !important; }
+.eyebrow{ color:var(--accent) !important; }
+
+/* --- no filled cards: hairlines and space ---------------------------------- */
+.kindcard, .a-note, .tcard, .rel-card, .rail-kpi, .time-box{
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.kindcard, .a-note{ border:none !important; border-top:1px solid var(--line) !important;
+  border-radius:0 !important; padding:22px 0 !important; }
+.kindcard:hover{ transform:none !important; }
+
+.statrow .stat{ background:transparent !important; box-shadow:none !important;
+  border:none !important; border-top:2px solid var(--ink) !important; }
+
+.tcard{ background:transparent !important; border:none !important; border-radius:0 !important; }
+.tcard .shot{ border-radius:14px; overflow:hidden; border:1px solid var(--line-2); }
+.tcard:hover .shot{ border-color:var(--accent); }
+.tcard h3{ color:var(--ink); font-weight:500; }
+.tcard p{ color:var(--ink-2); }
+.tcard .ktag{ background:var(--accent) !important; color:#fff !important; box-shadow:none !important; }
+
+/* --- the one filled button -------------------------------------------------- */
+.btn.primary, .btn.pri, .a-btn-primary{
+  background:var(--accent) !important; border-color:var(--accent) !important;
+  color:#ffffff !important; border-radius:9999px !important; box-shadow:none !important;
+}
+.btn.primary:hover, .btn.pri:hover{ background:var(--accent-deep) !important; }
+.btn.lg:not(.primary){ background:transparent !important;
+  border:1px solid var(--line-2) !important; color:var(--ink) !important;
+  border-radius:9999px !important; }
+.btn.lg:not(.primary):hover{ border-color:var(--ink) !important; }
+.btn.icon.ghost{ color:var(--ink-2) !important; }
+
+/* nav: ghost links, tinted active state */
+.a-nav-item{ color:var(--ink-2); }
+.a-nav-item:hover{ color:var(--ink); }
+.a-nav-item.is-active{ background:var(--accent-soft) !important; color:var(--accent-deep) !important; }
+.a-nav-item.is-active::before{ background:var(--accent) !important; }
+.a-nav-item .n{ color:var(--ink-3); }
+.a-sidebar-foot{ color:var(--ink-3); }
+
+.pill, .badge, .a-pill{ background:transparent !important;
+  border:1px solid var(--line-2) !important; color:var(--ink-2) !important; }
+
+.searchline, .cms-find, #search{
+  background:var(--paper) !important; border:1px solid var(--line-2) !important;
+  color:var(--ink) !important; }
+.searchline input::placeholder{ color:var(--ink-3); }
+
+/* links: the accent, or amber ink. Never default blue. */
+.uikit .a-prose a, .prose a, p a, .nl{ color:var(--accent); }
+.nl:hover{ color:var(--accent-deep); }
+
+/* the placeholder tiles are built for a dark ground; calm them on paper */
+.phold{ filter:saturate(.75) brightness(1.04); }
+
+/* ============================================================================
+   Tool page.
+   tool-page.css is already a light design, so this is a much lighter touch
+   than the dark skin needed -- only the places where it hardcodes a navy
+   surface or a colour that clashes with this accent.
+   ============================================================================ */
+body.toolpage{ background:var(--paper) !important; color:var(--ink); }
+
+/* the left rail is hardcoded navy #163651 in the template */
+body.toolpage .app-sidebar{ background:var(--ink) !important; border-right:none; }
+body.toolpage .side-link{ color:rgba(255,255,255,.72); }
+body.toolpage .side-link:hover{ color:#fff; }
+body.toolpage .side-link.active{ color:#fff; }
+body.toolpage .side-label{ color:rgba(255,255,255,.45); }
+body.toolpage .side-bottom{ color:rgba(255,255,255,.45); border-top-color:rgba(255,255,255,.14); }
+body.toolpage .side-bottom strong{ color:rgba(255,255,255,.8); }
+
+body.toolpage .insight-rail{ background:var(--paper-2) !important; border-left:1px solid var(--line); }
+body.toolpage .rail-kpi{ background:var(--accent-soft) !important;
+  border:1px solid #DCD0FB !important; }
+body.toolpage .rail-kpi b{ color:var(--accent-deep) !important; }
+body.toolpage .rail-kpi span{ color:var(--ink-2) !important; }
+body.toolpage .time-box{ background:var(--paper) !important; border:1px solid var(--line-2) !important; }
+body.toolpage .rail-note{ color:var(--ink-2) !important; }
+body.toolpage .rail-nav a{ color:var(--ink-2) !important; }
+body.toolpage .rail-nav a:hover{ color:var(--accent) !important; }
+
+body.toolpage .eyebrow{ color:var(--accent) !important; }
+body.toolpage .section-title{ color:var(--ink) !important; }
+body.toolpage .intro-copy, body.toolpage .lede{ color:var(--ink-2) !important; }
+body.toolpage .prose-block h4{ color:var(--amber-ink) !important; }
+body.toolpage .steps .sn{ background:var(--accent-soft) !important;
+  border:1px solid #DCD0FB !important; color:var(--accent-deep) !important; }
+body.toolpage .thumb.active{ border-color:var(--accent) !important;
+  outline-color:var(--accent) !important; }
+body.toolpage .rel-card{ border:1px solid var(--line-2) !important; }
+body.toolpage .rel-card:hover{ border-color:var(--accent) !important; }
+body.toolpage footer{ background:var(--ink) !important; }
+body.toolpage footer small{ color:rgba(255,255,255,.5) !important; }
+body.toolpage .top-link{ color:rgba(255,255,255,.8) !important; }

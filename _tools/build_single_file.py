@@ -83,12 +83,10 @@ css = (read('assets/vendor/asure-ui-kit/asure-ui.css') + chr(10) +
        read('assets/css/deck.css') + chr(10) +
        read('assets/css/uikit-bridge.css') + chr(10) +
        read('assets/css/loader.css') + chr(10) +
-       # dala.css @imports its token file; @import is only legal at the top of
-       # a stylesheet, and this concatenates, so inline the tokens and drop
-       # the rule rather than ship an import the browser silently ignores.
-       read('assets/css/dala-tokens/variables.css') + chr(10) +
-       read('assets/css/dala.css').replace(
-           "@import url('dala-tokens/variables.css');", '') + chr(10) + CMS_STYLE)
+       read('assets/css/visuals-scroll.css') + chr(10) +
+       # light.css only @imports a webfont, which is legal to drop here since
+       # the bundle already loads Inter; the tokens are declared inline.
+       read('assets/css/light.css') + chr(10) + CMS_STYLE)
 
 
 
