@@ -80,6 +80,50 @@ Almost nothing is an `agent`. If it follows steps you defined, it is a
 
 `design` · `docs` · `qa` · `controls` · `knowledge` · `studio` · `ai`
 
+Domains, in one line each:
+
+| Domain | The work it serves |
+|---|---|
+| `design` | Architectural/design production — modelling, drawing, geometry. |
+| `docs` | Documentation, drawings, specs, schedules, takeoff. |
+| `qa` | Quality control, checking, compliance, certification. |
+| `controls` | Project controls — programme, tracking, cost, progress. |
+| `knowledge` | Research, retrieval, a library, notes people search. |
+| `studio` | Running the studio — team, admin, internal operations. |
+| `ai` | AI infrastructure and tooling itself — models, agents, pipelines-for-AI. |
+
+### How to classify — follow this in order
+
+Most mistakes come from guessing the kind. Decide it like this, top to bottom,
+and stop at the first that fits:
+
+1. Is it a **delivered presentation or report**? → `deck`.
+2. Is it **research output** — a benchmark, a comparison, a written finding,
+   not shipped software? → `evaluation`.
+3. Does it **decide its own next step** and call tools to reach a goal, rather
+   than following steps someone defined? → `agent`. (Rare. If unsure, it is not.)
+4. Does it run **inside host software** (Revit, Rhino, AutoCAD) as an add-in on
+   a ribbon or menu? → `plugin`.
+5. Is it a **multi-user system you log into**, with accounts and permissions?
+   → `platform`.
+6. Is it a **read-only screen that reports** on something? → `dashboard`.
+7. Does it **move or sync data between two systems** without transforming it
+   much? → `connector`.
+8. Does it take a **fixed input and produce a fixed output** through stages
+   (e.g. drawings → quantities)? → `pipeline`.
+
+The pairs people confuse:
+
+| If you're torn between… | Decide by |
+|---|---|
+| plugin vs connector | Does it live *inside* an app's UI (plugin) or move data *between* systems, often headless (connector)? |
+| connector vs pipeline | Does it just move data A→B (connector) or transform it through steps (pipeline)? |
+| platform vs dashboard | Do people *log in and do work* (platform) or just *read a screen* (dashboard)? |
+| agent vs pipeline | Does it *choose* what to do next (agent) or follow a fixed sequence (pipeline)? |
+
+When two still fit, pick the one earlier in the list above, and note the
+alternative in your hand-off so a human can settle it.
+
 ### Strongly wanted
 
 - `objective` — one sentence: what it is for.

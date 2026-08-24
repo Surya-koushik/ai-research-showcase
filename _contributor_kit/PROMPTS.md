@@ -1,11 +1,62 @@
 # Prompts
 
-Paste these into Claude or ChatGPT. Attach the whole kit folder first, so the
-model has the README, the image procedure and the example record.
+One rule runs through all of these: **the model must not invent facts about a
+tool.** Anything it cannot get from you or from the source, it leaves out and
+lists as an open question.
 
-Everything here assumes one rule: **the model must not invent facts about the
-tool.** Anything it cannot get from you or from the source it should leave out
-and list as an open question.
+## First, which tool are you using?
+
+- **Claude Code, or Claude desktop with a project folder** — it can read files
+  and *create the folders and files itself*. Use the all-in-one prompt below and
+  you get finished, drop-in folders. This is the recommended path.
+- **Plain ChatGPT or Claude in a browser** — it *cannot create folders*. It can
+  only hand back content for you to save by hand: paste the JSON into a file,
+  save the images it describes. Use the one-tool prompts further down.
+
+Either way, attach the whole kit folder first so the model has the README, the
+classification guide, the image procedure and the example record.
+
+---
+
+## 0. All-in-one — a whole list of tools, into finished folders
+
+Use this with Claude Code or any agent that can write files. Give it your list;
+it classifies each tool, writes the record, generates both images, and lays out
+one drop-in folder per tool.
+
+> You have the Asure contributor kit in this folder. Read `README.md` in full,
+> especially "How to classify", and `TOOL_TEMPLATE_IMAGE_GENERATION_PROCEDURE.md`.
+>
+> Here is my list of tools. For each one: **[paste the list — one block per
+> tool: name, what it does, who uses it, what it replaced, what it is built
+> with, whether time saved was ever measured, and its stage. Point at a repo or
+> README where there is one.]**
+>
+> For every tool, produce a folder `output/<tool-id>/` containing:
+> - `<tool-id>.json` — the record, following `TEMPLATE.json` and validated
+>   against the required fields and the exact kind/domain/status spellings.
+> - `screenshots/workflow.svg` — Image B, the technical workflow, drawn to the
+>   procedure (flat 2D, the house palette, direct-action node titles).
+> - `screenshots/hero.jpg` **only if** you have been given a real image or can
+>   fetch one; otherwise skip it and note it — do not fabricate a hero.
+>
+> Rules, without exception:
+> - Classify `kind` and `domain` using the decision procedure in README's "How
+>   to classify". When two kinds both fit, pick the earlier one in that list and
+>   record the alternative in the report.
+> - Use only what I gave you. Invent no features, dates, numbers or names.
+> - Include `efficiency` only where I gave you a measured before-and-after.
+> - No client names, staff names or contract values — not in text, not in
+>   filenames, not inside an image.
+> - Codes: leave `code` as `P00` and tell me in the report — I assign the real
+>   numbers so they stay unique across the catalogue.
+>
+> When you finish, write `output/REPORT.md`: a table of every tool with the
+> kind and domain you chose and why, every field you left blank and what you'd
+> need to fill it, and any classification you were unsure about.
+
+Then send me the whole `output/` folder. I drop each `<tool-id>/` into the site
+and it publishes; the build re-checks everything and rejects anything malformed.
 
 ---
 
