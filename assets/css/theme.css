@@ -49,7 +49,7 @@
   --bg:#F4F6FC; --bg-2:#ECEFF8;
   --surface:#FFFFFF; --surface-2:#F7F8FE; --surface-3:#EFF2FB;
   --line:rgba(10,14,31,.06); --line-2:rgba(10,14,31,.10);
-  --text:#0A0E1F; --text-2:#3E465F; --text-3:#6B7390; --muted:#8A92AB;
+  --text:#0A0E1F; --text-2:#3E465F; --text-3:#5f6885; --muted:#8A92AB;
   --glass:rgba(10,14,31,.02); --glow:rgba(124,92,255,.20);
   --shadow-card:0 1px 0 rgba(10,14,31,.02) inset,0 6px 18px -10px rgba(10,14,31,.12);
   --shadow-hover:0 1px 0 rgba(10,14,31,.03) inset,0 16px 40px -16px rgba(10,14,31,.20),0 0 0 1px rgba(124,92,255,.20);

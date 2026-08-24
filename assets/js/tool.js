@@ -189,7 +189,9 @@
 
   /* ---- gallery ---------------------------------------------------------- */
   var n = 0;
-  function eyebrow() { n += 1; return (n < 10 ? '0' : '') + n; }
+  /* Section labels, no running number: these sections are not an ordered
+     sequence, so 01/02/03 was decoration pretending to be structure. */
+  function eyebrow() { return ''; }
 
   var galleryHTML = '';
   if (hasGal) {
@@ -226,7 +228,7 @@
     galleryHTML =
       '<section class="gallery" id="gallery"><div class="shell">' +
         '<div class="gallery-top reveal"><div>' +
-          '<p class="eyebrow">' + eyebrow() + ' / Inside the tool</p>' +
+          '<p class="eyebrow">Inside the tool</p>' +
           '<h2 class="section-title">What it looks like in use.</h2></div>' +
           (gallery.length > 1
             ? '<span class="gallery-count"><span id="current-count">01</span> / ' +
@@ -271,7 +273,7 @@
     workHTML =
       '<section class="intro" id="overview"><div class="shell">' +
         '<div class="section-head reveal">' +
-          '<p class="eyebrow">' + eyebrow() + ' / How it works</p>' +
+          '<p class="eyebrow">How it works</p>' +
           '<h2 class="section-title">What it does.</h2>' +
           (pg.objective ? '<p class="lede section-lede">' + esc(pg.objective) + '</p>' : '') +
         '</div>' +
@@ -296,7 +298,7 @@
     devHTML =
       '<section class="development" id="development"><div class="shell">' +
         '<div class="section-head reveal">' +
-          '<p class="eyebrow">' + eyebrow() + ' / Development</p>' +
+          '<p class="eyebrow">Development</p>' +
           '<h2 class="section-title">How it was built.</h2></div>' +
         (timeline.length
           ? '<div class="timeline reveal">' + timeline.map(function (t) {
@@ -318,7 +320,7 @@
   }).filter(Boolean);
   var relHTML = rel.length
     ? '<section class="related" id="related"><div class="shell">' +
-        '<div class="section-head reveal"><p class="eyebrow">' + eyebrow() + ' / Related</p>' +
+        '<div class="section-head reveal"><p class="eyebrow">Related</p>' +
         '<h2 class="section-title">Built alongside this.</h2></div>' +
         '<div class="rel-grid reveal">' + rel.map(function (r) {
           return '<a class="rel-card" href="tool.html?id=' + encodeURIComponent(r.id) + '">' +

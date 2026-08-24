@@ -59,8 +59,16 @@ body.deck .app{display:block}          /* the rail-and-content grid is retired h
 .d2{font-size:clamp(28px,4.2vw,62px);line-height:1.02;font-weight:800;letter-spacing:-.022em;text-wrap:balance}
 .d3{font-size:clamp(20px,2.2vw,32px);line-height:1.15;font-weight:700;letter-spacing:-.015em}
 .lede{font-size:clamp(15px,1.5vw,21px);line-height:1.55;color:var(--text-2);max-width:46ch;margin-top:24px}
-.g-primary{background:var(--grad-primary);-webkit-background-clip:text;background-clip:text;color:transparent}
-.g-cool{background:var(--grad-cool);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* Emphasis words in the display headings. These were gradient-clipped text --
+   a decorative move that reads as generated and never survives a design
+   review. Solid colour instead: the meaning is "this word matters", and weight
+   plus a single committed hue says that more honestly than a gradient. Violet
+   carries the brand line, blue the systems line. Both clear the display
+   contrast floor on the light ground and stay vivid on dark. */
+.g-primary{color:#6748E8}
+.g-cool{color:#2168B8}
+:root:not([data-theme="light"]) .g-primary{color:#9d88ff}
+:root:not([data-theme="light"]) .g-cool{color:#4ea0f0}
 
 /* ---------------------------------------------------------------- nav ------- */
 .topnav{
