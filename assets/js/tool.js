@@ -208,6 +208,10 @@
   /* ---- how it works ----------------------------------------------------- */
   var workHTML = '';
   if (hasWork) {
+    /* The heading is a short fixed line, not the objective. section-title is a
+       display size, and objectives run to a full sentence -- Phoenix's turned
+       the section head into an 1131px wall of type. The objective reads as a
+       lead paragraph instead, which is what it is. */
     var blocks = [];
     if (pg.problem)    blocks.push(['The problem', pg.problem]);
     if (pg.solution)   blocks.push(['How it solves it', pg.solution]);
@@ -216,7 +220,8 @@
       '<section class="intro" id="overview"><div class="shell">' +
         '<div class="section-head reveal">' +
           '<p class="eyebrow">' + eyebrow() + ' / How it works</p>' +
-          '<h2 class="section-title">' + esc(pg.objective || p.tagline) + '</h2>' +
+          '<h2 class="section-title">What it does.</h2>' +
+          (pg.objective ? '<p class="lede section-lede">' + esc(pg.objective) + '</p>' : '') +
         '</div>' +
         (blocks.length
           ? '<div class="prose-grid reveal">' + blocks.map(function (b) {

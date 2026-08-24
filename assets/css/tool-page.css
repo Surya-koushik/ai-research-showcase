@@ -40,3 +40,68 @@
     @media(max-width:820px){body{padding-left:0}.app-sidebar{display:none}.topbar{left:0}.topnav a:not(.back){display:none}.brand img{width:88px}.media-hero,.hero-content{min-height:760px}.hero-copy{top:575px}.simple-flow{grid-template-columns:1fr 1fr;gap:10px;top:49%}.flow-step{padding:13px}.flow-step:not(:last-child)::after{display:none}.section-head,.intro-grid,.intro-details,.impact-layout,.next{grid-template-columns:1fr}.section-head{gap:18px;margin-bottom:45px}.overview-media{padding:5px;overflow-x:auto}.overview-media img{width:980px;max-width:none;aspect-ratio:9/5}.step{grid-template-columns:48px 1fr}.step p{grid-column:2}.timeline{grid-template-columns:1fr}.milestone,.milestone+.milestone{border-right:0;border-bottom:1px solid var(--line);padding:25px 0;min-height:auto}.thumbs{grid-template-columns:repeat(4,1fr)}.scroll-cue{display:none}.impact-number{margin-top:40px}.gallery-stage{aspect-ratio:4/3}.footer-inner{align-items:flex-start;gap:25px}.next{padding:30px}}
     @media(max-width:820px){html,body,main{width:100%;max-width:100%;overflow-x:hidden}.media-hero,.hero-content{width:100vw;min-width:0;min-height:820px;height:820px}.media-panel{left:0;right:auto;top:335px;bottom:135px;width:100vw;display:grid;place-items:center}.media-panel img{width:100%;max-width:100%;height:100%;padding:0 22px;box-sizing:border-box;object-fit:contain;object-position:center;transform:scale(.84);transform-origin:center}.hero-copy{left:16px;right:16px;top:100px;max-width:none;padding:0}.hero-copy::before{display:none}h1{font-size:36px;max-width:100%;letter-spacing:-.045em}h1 span{font-size:31px}.lede{font-size:15px;max-width:350px}.gallery-caption{font-size:15px;flex-direction:column;gap:4px}.gallery-arrow{width:38px;height:38px}.thumbs{display:flex;overflow-x:auto;padding:3px}.thumb{min-width:112px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}}
+
+
+/* ---------------------------------------------------------------------------
+   SECTION ORDER — read this before adding a section.
+   <main> is a flex column and this stylesheet orders its sections explicitly:
+   media-hero 1, gallery 2, intro 3, process 4, development 5. A section with
+   no order declared defaults to 0, which puts it at the TOP of the page --
+   which is what happened to .related, a 963px block of sibling links sitting
+   above the hero. Anything tool.js can emit must be ordered here.
+   --------------------------------------------------------------------------- */
+.related{order:6;padding:clamp(48px,7vw,86px) 0;border-top:1px solid var(--line)}
+.related .rel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;margin-top:26px}
+.related .rel-card{display:block;padding:18px;border:1px solid var(--line);border-radius:12px;
+  background:var(--paper);text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+.related .rel-card:hover{border-color:#2f6db5;transform:translateY(-2px)}
+.related .rel-card b{display:block;margin:10px 0 6px;font-size:15px}
+.related .rel-card p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.5}
+
+
+/* ---------------------------------------------------------------------------
+   Blocks tool.js emits that the hand-built template did not contain.
+   Without these they rendered as unstyled stacked divs and the overview
+   section ran to 2295px on Phoenix.
+   --------------------------------------------------------------------------- */
+
+/* Prose, two up. These carry problem / solution / detail, and on most tools
+   they are the entire body of the page. */
+.prose-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(18px,2.4vw,32px);margin-top:clamp(24px,3vw,40px)}
+.prose-block h4{margin:0 0 9px;font:600 11px 'Inter','Segoe UI',system-ui,sans-serif;
+  text-transform:uppercase;letter-spacing:.09em;color:#94a3b8}
+.prose-block p{margin:0;font-size:15px;line-height:1.62;color:#36556e;max-width:56ch}
+.prose-block ul{margin:0;padding-left:17px}
+.prose-block li{font-size:14px;line-height:1.6;color:#36556e;margin-bottom:7px}
+
+/* Numbered flow. One tool has these today; the layout has to hold when a
+   second one arrives. */
+.steps{list-style:none;margin:clamp(26px,3.4vw,44px) 0 0;padding:0;
+  display:grid;gap:2px;background:var(--line);border:1px solid var(--line);
+  border-radius:12px;overflow:hidden}
+.steps li{display:flex;gap:15px;align-items:flex-start;padding:18px 20px;background:var(--paper)}
+.steps .sn{flex:none;width:25px;height:25px;border-radius:50%;
+  display:grid;place-items:center;background:#eef4fb;border:1px solid #d9e6f5;
+  font:700 12px 'JetBrains Mono',ui-monospace,monospace;color:#1c466f}
+.steps li b{display:block;font-size:14.5px;color:var(--ink);margin-bottom:4px}
+.steps li p{margin:0;font-size:13.5px;line-height:1.58;color:#5b6b7c;max-width:62ch}
+
+/* A link that looks like a pill: live demos and downloadable documents. */
+.linkpill{text-decoration:none;transition:border-color .15s,color .15s}
+.linkpill:hover{border-color:#2f6db5;color:#1c466f}
+
+/* A deck in the hero slot, 16:9 so slides are not letterboxed. */
+.media-panel.deckpanel{background:#05070d}
+.media-panel.deckpanel iframe{width:100%;height:100%;border:0;display:block}
+.media-panel.deckpanel .deckopen{
+  position:absolute;right:14px;bottom:14px;z-index:4;
+  display:inline-flex;align-items:center;gap:7px;padding:8px 15px;border-radius:999px;
+  text-decoration:none;font:650 12px 'Inter','Segoe UI',system-ui,sans-serif;color:#fff;
+  background:rgba(12,41,64,.86);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px)}
+.media-panel.deckpanel .deckopen:hover{background:rgba(12,41,64,.97)}
+
+/* The objective, sitting under a short heading rather than being one. */
+.section-lede{margin-top:14px;max-width:60ch;font-size:clamp(15px,1.3vw,18px);
+  line-height:1.55;color:#36556e}
