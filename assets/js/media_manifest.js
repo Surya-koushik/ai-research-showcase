@@ -78,7 +78,8 @@ window.MEDIA_MANIFEST = {
       "projects/phoenix-l1/screenshots/06.jpg",
       "projects/phoenix-l1/screenshots/07.jpg"
     ],
-    "hero": "projects/phoenix-l1/screenshots/hero.jpg"
+    "hero": "projects/phoenix-l1/screenshots/hero.jpg",
+    "workflow": "projects/phoenix-l1/screenshots/workflow.png"
   },
   "revit-mcp": {
     "gallery": [

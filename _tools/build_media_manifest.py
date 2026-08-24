@@ -11,7 +11,10 @@ Slots, and what each one does on the page:
 
     screenshots/hero.jpg     the grid tile and the image at the top of the
                              tool page. Without it the tile falls back to
-                             generated placeholder art.
+                             generated placeholder art. (Image A.)
+    screenshots/workflow.jpg the technical workflow diagram, shown beside the
+                             "how it works" copy rather than in the gallery.
+                             (Image B. 'technical' also accepted.)
     screenshots/01.jpg ...   the gallery strip, shown in filename order.
                              Any name works; numbering just controls order.
     videos/*.mp4             inline players, in filename order.
@@ -50,7 +53,7 @@ def title_from(filename):
     return stem.replace('_', ' ').replace('-', ' ').strip().title()
 
 
-manifest, stats = {}, {'hero': 0, 'gallery': 0, 'videos': 0, 'html': 0, 'docs': 0}
+manifest, stats = {}, {'hero': 0, 'workflow': 0, 'gallery': 0, 'videos': 0, 'html': 0, 'docs': 0}
 if not os.path.isdir(PROJECTS):
     raise SystemExit('no projects/ directory at %s' % PROJECTS)
 
@@ -66,7 +69,16 @@ for pid in sorted(os.listdir(PROJECTS)):
     if hero:
         entry['hero'] = rel('screenshots', hero)
         stats['hero'] += 1
-    gallery = [rel('screenshots', f) for f in shots if f != hero]
+    # The image procedure calls for two drawings per tool: Image A is the hero,
+    # Image B is the technical workflow. Image B has its own slot because it is
+    # used in the "how it works" section, not in the gallery strip -- left in
+    # the gallery it would read as one screenshot among many.
+    workflow = next((f for f in shots
+                     if os.path.splitext(f)[0].lower() in ('workflow', 'technical')), None)
+    if workflow:
+        entry['workflow'] = rel('screenshots', workflow)
+        stats['workflow'] = stats.get('workflow', 0) + 1
+    gallery = [rel('screenshots', f) for f in shots if f not in (hero, workflow)]
     if gallery:
         entry['gallery'] = gallery
         stats['gallery'] += len(gallery)

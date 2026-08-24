@@ -40,6 +40,16 @@
   var km = kindMeta(p.kind);
   var dm = domainMeta(p.domain);
 
+  /* Captions are not in the catalogue, so they come from the filename. A file
+     called 03-batch-report.jpg reads better than "screenshot 3"; a bare 03.jpg
+     falls back to the position. */
+  function shotLabel(path, i) {
+    var stem = path.split('/').pop().replace(/\.[a-z0-9]+$/i, '');
+    var words = stem.replace(/^[0-9]+[-_]?/, '').replace(/[-_]+/g, ' ').trim();
+    if (!words) return 'Step ' + (i + 1) + ' of ' + (m.gallery || []).length;
+    return words.charAt(0).toUpperCase() + words.slice(1);
+  }
+
   /* ---- what this project actually has ---------------------------------- */
   var gallery  = m.gallery || [];
   var demos    = m.html || [];
@@ -183,39 +193,81 @@
 
   var galleryHTML = '';
   if (hasGal) {
-    var shots = gallery.map(function (g) {
-      return '<figure class="shot" data-full="' + esc(g) + '"><img src="' + esc(g) + '" alt="" loading="lazy"></figure>';
-    }).join('');
+    /* The template's gallery is a carousel: one large frame, arrows, a caption
+       and a thumbnail strip -- not a grid of equal tiles. Ported as-is,
+       because a plain grid gives every screenshot the same weight when the
+       point is to walk someone through the tool in order. */
     var links = []
       .concat(demos.map(function (d) {
         return '<a class="pill linkpill" href="' + esc(d) + '" target="_blank" rel="noopener">Open live demo &rarr;</a>'; }))
       .concat(docs.map(function (d) {
         return '<a class="pill linkpill" href="' + esc(d.src) + '" target="_blank" rel="noopener">' + esc(d.title) + '</a>'; }))
       .join('');
+
+    var stage = '', caption = '', thumbs = '';
+    if (gallery.length) {
+      stage =
+        '<div class="gallery-stage reveal" id="gallery-stage">' +
+          (gallery.length > 1 ? '<button class="gallery-arrow prev" type="button" aria-label="Previous">&lsaquo;</button>' : '') +
+          '<img id="gallery-main" src="' + esc(gallery[0]) + '" alt="">' +
+          (gallery.length > 1 ? '<button class="gallery-arrow next" type="button" aria-label="Next">&rsaquo;</button>' : '') +
+        '</div>';
+      caption =
+        '<div class="gallery-caption"><span id="gallery-label">' +
+          esc(shotLabel(gallery[0], 0)) + '</span><span>' +
+          esc((p.tech && p.tech.length ? logoLabel(p.tech[0]) : km.label)) + '</span></div>';
+      thumbs =
+        '<div class="thumbs" aria-label="Gallery">' + gallery.map(function (g, i) {
+          return '<button class="thumb' + (i ? '' : ' active') + '" type="button" data-i="' + i + '">' +
+                 '<img src="' + esc(g) + '" alt="" loading="lazy"></button>';
+        }).join('') + '</div>';
+    }
+
     galleryHTML =
       '<section class="gallery" id="gallery"><div class="shell">' +
         '<div class="gallery-top reveal"><div>' +
           '<p class="eyebrow">' + eyebrow() + ' / Inside the tool</p>' +
           '<h2 class="section-title">What it looks like in use.</h2></div>' +
-          (gallery.length ? '<div class="gallery-count">' + gallery.length + ' image' +
-                            (gallery.length === 1 ? '' : 's') + '</div>' : '') +
-        '</div>' +
-        (shots ? '<div class="gallery-stage reveal" id="gallery-stage">' + shots + '</div>' : '') +
-        (links ? '<div class="meta-row" style="margin-top:20px">' + links + '</div>' : '') +
+          (gallery.length > 1
+            ? '<span class="gallery-count"><span id="current-count">01</span> / ' +
+              (gallery.length < 10 ? '0' : '') + gallery.length + '</span>' : '') +
+        '</div>' + stage + caption + thumbs +
+        (links ? '<div class="meta-row linkrow" style="margin-top:20px">' + links + '</div>' : '') +
       '</div></section>';
   }
 
   /* ---- how it works ----------------------------------------------------- */
   var workHTML = '';
   if (hasWork) {
-    /* The heading is a short fixed line, not the objective. section-title is a
-       display size, and objectives run to a full sentence -- Phoenix's turned
-       the section head into an 1131px wall of type. The objective reads as a
-       lead paragraph instead, which is what it is. */
-    var blocks = [];
-    if (pg.problem)    blocks.push(['The problem', pg.problem]);
-    if (pg.solution)   blocks.push(['How it solves it', pg.solution]);
-    if (p.description) blocks.push(['In more detail', p.description]);
+    /* The template's overview is two columns: the technical workflow drawing
+       beside the copy and a definition list of facts. The drawing is Image B
+       from the image procedure, in its own media slot. Without one the copy
+       runs full width rather than leaving a hole. */
+    var facts = [];
+    if (p.tech && p.tech.length)
+      facts.push(['Built with', p.tech.map(function (t) { return esc(logoLabel(t)); }).join(', ')]);
+    facts.push(['Serves', esc(dm.label)]);
+    if (p.workflowStage) facts.push(['Stage', esc(p.workflowStage)]);
+    facts.push(['Status', esc(STATUS[p.status].label)]);
+
+    var copy = pg.solution || p.description || pg.objective || p.tagline;
+    var details =
+      '<div class="intro-details">' +
+        '<p class="intro-copy">' + esc(copy) + '</p>' +
+        '<dl class="meta">' + facts.map(function (f) {
+          return '<div class="meta-row"><dt>' + f[0] + '</dt><dd>' + f[1] + '</dd></div>';
+        }).join('') + '</dl>' +
+      '</div>';
+
+    var media = m.workflow
+      ? '<div class="overview-media"><img src="' + esc(m.workflow) +
+        '" alt="How ' + esc(p.name) + ' works"></div>'
+      : '';
+
+    var extra = [];
+    if (pg.problem)  extra.push(['The problem', pg.problem]);
+    if (p.description && p.description !== copy) extra.push(['In more detail', p.description]);
+
     workHTML =
       '<section class="intro" id="overview"><div class="shell">' +
         '<div class="section-head reveal">' +
@@ -223,15 +275,16 @@
           '<h2 class="section-title">What it does.</h2>' +
           (pg.objective ? '<p class="lede section-lede">' + esc(pg.objective) + '</p>' : '') +
         '</div>' +
-        (blocks.length
-          ? '<div class="prose-grid reveal">' + blocks.map(function (b) {
-              return '<div class="prose-block"><h4>' + b[0] + '</h4><p>' + esc(b[1]) + '</p></div>';
+        '<div class="intro-grid reveal' + (media ? '' : ' no-media') + '">' + media + details + '</div>' +
+        (extra.length
+          ? '<div class="prose-grid reveal">' + extra.map(function (x) {
+              return '<div class="prose-block"><h4>' + x[0] + '</h4><p>' + esc(x[1]) + '</p></div>';
             }).join('') + '</div>'
           : '') +
         (steps.length
-          ? '<ol class="steps reveal">' + steps.map(function (s, i) {
-              return '<li><span class="sn">' + (i + 1) + '</span><div><b>' + esc(s.title) + '</b>' +
-                     (s.detail ? '<p>' + esc(s.detail) + '</p>' : '') + '</div></li>';
+          ? '<ol class="steps reveal">' + steps.map(function (st, i) {
+              return '<li><span class="sn">' + (i + 1) + '</span><div><b>' + esc(st.title) + '</b>' +
+                     (st.detail ? '<p>' + esc(st.detail) + '</p>' : '') + '</div></li>';
             }).join('') + '</ol>'
           : '') +
       '</div></section>';
@@ -274,8 +327,16 @@
         }).join('') + '</div></div></section>'
     : '';
 
+  var footer =
+    '<footer><div class="shell footer-inner">' +
+      '<div class="brand"><img src="assets/logos/brand/asure_wordmark_white.png" alt="Asure">' +
+        '<span>AI Research</span></div>' +
+      '<small>Internal research &amp; development showcase</small>' +
+      '<a class="top-link" href="#top">Back to top &uarr;</a>' +
+    '</div></footer>';
+
   host.innerHTML = sidebar + rail + topbar +
-    '<main>' + hero + galleryHTML + workHTML + devHTML + relHTML + '</main>';
+    '<main>' + hero + galleryHTML + workHTML + devHTML + relHTML + '</main>' + footer;
 
   document.title = p.name + ' — AI Research & Innovation';
 
@@ -307,12 +368,48 @@
     [].forEach.call(document.querySelectorAll('.reveal'), function (el) { el.classList.add('is-in'); });
   }
 
+  /* ---- gallery carousel -------------------------------------------------- */
+  (function () {
+    var shots = m.gallery || [];
+    if (shots.length < 2) return;
+    var main = document.getElementById('gallery-main');
+    var label = document.getElementById('gallery-label');
+    var count = document.getElementById('current-count');
+    var thumbs = [].slice.call(document.querySelectorAll('.thumb'));
+    var i = 0;
+
+    function show(next) {
+      i = (next + shots.length) % shots.length;
+      main.src = shots[i];
+      if (label) label.textContent = shotLabel(shots[i], i);
+      if (count) count.textContent = (i < 9 ? '0' : '') + (i + 1);
+      thumbs.forEach(function (t, k) { t.classList.toggle('active', k === i); });
+    }
+    var prev = document.querySelector('.gallery-arrow.prev');
+    var next = document.querySelector('.gallery-arrow.next');
+    if (prev) prev.addEventListener('click', function () { show(i - 1); });
+    if (next) next.addEventListener('click', function () { show(i + 1); });
+    thumbs.forEach(function (t) {
+      t.addEventListener('click', function () { show(+t.dataset.i); });
+    });
+    /* Arrow keys only once the gallery is on screen, so they do not fight
+       the page scroll while someone is reading the hero. */
+    document.addEventListener('keydown', function (e) {
+      var g = document.getElementById('gallery');
+      if (!g) return;
+      var r = g.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      if (e.key === 'ArrowLeft') show(i - 1);
+      if (e.key === 'ArrowRight') show(i + 1);
+    });
+  })();
+
   /* ---- lightbox ---------------------------------------------------------- */
   var lb = document.getElementById('lightbox');
   if (lb) {
     document.addEventListener('click', function (e) {
-      var shot = e.target.closest('.shot');
-      if (shot) { document.getElementById('lbImg').src = shot.dataset.full; lb.classList.add('on'); return; }
+      var big = e.target.closest('#gallery-main');
+      if (big) { document.getElementById('lbImg').src = big.src; lb.classList.add('on'); return; }
       if (e.target.closest('#lbClose') || e.target === lb) lb.classList.remove('on');
     });
     document.addEventListener('keydown', function (e) {
