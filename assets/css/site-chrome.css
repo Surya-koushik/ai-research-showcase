@@ -21,48 +21,17 @@
   outline:2px solid #6748E8; outline-offset:2px; border-radius:4px;
 }
 
-/* --- mobile navigation drawer ------------------------------------------- */
-/* The app sidebar carries the filters. Below 900px the kit stacks it full
-   width above the content, so a phone visitor scrolled the whole nav before
-   reaching the hero. It becomes an off-canvas drawer instead, opened by the
-   hamburger in the top bar. */
-.nav-toggle{ display:none }
-.nav-scrim{ display:none }
-
+/* --- mobile: content leads, sidebar steps aside ------------------------- */
+/* Below 900px the kit stacks the sidebar full-width above everything, so a
+   phone visitor scrolled the entire nav before reaching the hero. The sidebar
+   is hidden there instead. Nothing is lost: the "Kinds of tool" section filters
+   on tap, and the search box covers the rest. (A slide-in drawer was tried and
+   abandoned -- the kit's positioning could not be overridden reliably.) */
 @media (max-width:900px){
-  .nav-toggle{
-    display:inline-grid; place-items:center; width:40px; height:40px; flex:none;
-    border:1px solid var(--line-2); border-radius:10px; background:var(--surface);
-    color:var(--text); cursor:pointer; margin-right:4px;
-  }
-  .nav-toggle svg{ width:18px; height:18px }
-
-  .a-app > .a-sidebar{
-    position:fixed; top:0; left:0; bottom:0; width:min(300px,84vw); z-index:80;
-    transform:translateX(-100%); transition:transform .28s cubic-bezier(.4,0,.2,1);
-    overflow-y:auto; box-shadow:0 0 40px rgba(0,0,0,.28);
-  }
-  .a-app.nav-open > .a-sidebar{ transform:translateX(0) !important; }
-
-  .nav-scrim{
-    display:block; position:fixed; inset:0; z-index:70;
-    background:rgba(8,12,22,.5); opacity:0; visibility:hidden;
-    transition:opacity .28s ease, visibility .28s;
-  }
-  .a-app.nav-open .nav-scrim{ opacity:1; visibility:visible }
-
-  /* the drawer needs a close affordance and a little breathing room */
-  .a-sidebar .nav-close{
-    display:flex; align-items:center; justify-content:flex-end;
-    padding:4px 6px 0; margin-bottom:2px;
-  }
-  .a-sidebar .nav-close button{
-    border:0; background:transparent; color:var(--text-3); cursor:pointer;
-    width:34px; height:34px; border-radius:8px; display:grid; place-items:center;
-  }
-  .a-sidebar .nav-close button:hover{ color:var(--text); background:var(--surface-2) }
+  .a-app > .a-sidebar{ display:none }
+  .nav-toggle, .nav-scrim, .a-sidebar .nav-close{ display:none }
 }
-.a-sidebar .nav-close{ display:none }   /* desktop: the drawer chrome is hidden */
+.nav-toggle, .nav-scrim, .a-sidebar .nav-close{ display:none }
 
 /* --- landing footer ----------------------------------------------------- */
 /* The tool page had a footer; the landing -- the main page -- ended on the

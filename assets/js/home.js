@@ -233,26 +233,6 @@
   $('#crumb').title = 'AI Research & Innovation, ' + new Date().getFullYear();
 
   /* content is on screen; take the loader away */
-  /* ---- mobile navigation drawer ------------------------------------------
-     Below 900px the sidebar is off-canvas; the hamburger slides it in. Closing
-     on a nav tap matters -- a filter that leaves the drawer covering the grid
-     would hide the very result the tap produced. */
-  (function () {
-    var app = document.querySelector('.a-app');
-    var toggle = document.getElementById('navToggle');
-    var scrim = document.getElementById('navScrim');
-    var close = document.getElementById('navClose');
-    if (toggle && window.ICON) toggle.innerHTML = ICON('menu');
-    function open(){ app.classList.add('nav-open'); toggle && toggle.setAttribute('aria-expanded','true'); }
-    function shut(){ app.classList.remove('nav-open'); toggle && toggle.setAttribute('aria-expanded','false'); }
-    toggle && toggle.addEventListener('click', function(){ app.classList.contains('nav-open') ? shut() : open(); });
-    scrim && scrim.addEventListener('click', shut);
-    close && close.addEventListener('click', shut);
-    var nav = document.getElementById('nav');
-    nav && nav.addEventListener('click', function(e){ if (e.target.closest('.a-nav-item')) shut(); });
-    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') shut(); });
-  })();
-
   if(window.LOADER_DONE) window.LOADER_DONE();
 
 })();
