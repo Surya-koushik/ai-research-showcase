@@ -380,3 +380,12 @@ body.toolpage.nav-open .nav-toggle span:nth-child(3){ transform:translateY(-7px)
 body.toolpage .topbar-title{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0 }
 body.toolpage .topnav{ margin-left:auto; flex:none }
 body.toolpage .topnav a{ white-space:nowrap }
+
+/* --- H10 bespoke page: embed slot placeholder --------------------------- */
+.embed-slot{
+  border:1px dashed var(--line-2,#c9d0dd); border-radius:14px;
+  padding:clamp(24px,3vw,38px); background:var(--surface-2,#f7f9fc);
+}
+.embed-slot p{ margin:12px 0 0; font-size:14px; line-height:1.62; color:var(--text-2,var(--ink-2)); max-width:66ch }
+.embed-slot code{ font-family:var(--f-mono,ui-monospace,monospace); font-size:12.5px;
+  background:var(--surface-3,#eef0f5); padding:2px 6px; border-radius:4px }

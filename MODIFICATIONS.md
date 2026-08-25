@@ -34,6 +34,10 @@ mega-menu, 8 SketchUp integration icon row.
 - **G (tool pages) — done.** No pages were hand-built: `tool.html?id=<id>` is the
   CMS route and now wears the same chrome as the landing page — hamburger
   drawer, EVOLVE wordmark, no theme toggle.
+- **H10 bespoke page — built.** `h10.html`, the only tool with its own page,
+  wearing the same chrome. The live dashboard is NOT wired in: there is a
+  clearly-tagged embed slot and the figures show as em-dashes, not invented
+  numbers.
 - **H (contact) — placeholder only.** Section and nav link exist; phone and
   address are marked TODO pending asure.in.
 

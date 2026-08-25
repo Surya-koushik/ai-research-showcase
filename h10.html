@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H10 BIM Progress Dashboard — Asure Intelligence</title>
+<meta name="description" content="H10 BIM Progress Dashboard — client-facing project and BIM progress, from pre-design to final GFC.">
+<link rel="icon" href="assets/logos/brand/favicon.png">
+<link rel="stylesheet" href="assets/vendor/asure-ui-kit/asure-ui.css">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/deck.css">
+<link rel="stylesheet" href="assets/css/uikit-bridge.css">
+<link rel="stylesheet" href="assets/css/tool-page.css">
+<link rel="stylesheet" href="assets/css/loader.css">
+<link rel="stylesheet" href="assets/css/visuals-scroll.css">
+<link rel="stylesheet" href="assets/css/light.css">
+<link rel="stylesheet" href="assets/css/site-chrome.css">
+</head>
+<body class="a-app deck uikit">
+<a class="skip-link" href="#top">Skip to content</a>
+
+<aside class="a-sidebar no-print" id="sidebar" aria-hidden="true" aria-label="Site navigation">
+  <div class="a-sidebar-brand">
+    <a href="index.html" aria-label="Evolve — home"><img class="wm" src="assets/loader/evolve.png" alt="Evolve"></a>
+    <button class="nav-close" id="navClose" type="button" aria-label="Close menu">&times;</button>
+  </div>
+  <nav class="a-nav" id="nav">
+    <a class="a-nav-item" href="index.html"><span class="n"></span>Home</a>
+    <a class="a-nav-item" href="index.html#kinds"><span class="n"></span>What we build</a>
+    <a class="a-nav-item" href="index.html#roadmap"><span class="n"></span>Roadmap</a>
+    <a class="a-nav-item is-active" href="index.html#ecosystem"><span class="n"></span>All work</a>
+    <a class="a-nav-item" href="index.html#contact"><span class="n"></span>Contact</a>
+  </nav>
+  <div class="a-sidebar-foot">
+    <img src="assets/logos/brand/asure_wordmark.png" alt="Asure">
+    <span>Asure Design Studio</span>
+  </div>
+</aside>
+<div class="nav-scrim" id="navScrim" hidden></div>
+
+<div class="a-main">
+  <header class="a-topbar no-print">
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu"
+            aria-expanded="false" aria-controls="sidebar"><span></span><span></span><span></span></button>
+    <a class="topbar-brand" href="index.html" aria-label="Evolve — home"><img src="assets/loader/evolve.png" alt="Evolve"></a>
+    <div class="a-topbar-spacer"></div>
+    <a class="nl opt" href="index.html#kinds">What&nbsp;we&nbsp;build</a>
+    <a class="nl opt" href="index.html#roadmap">Roadmap</a>
+    <a class="nl" href="index.html#ecosystem">&larr;&nbsp;All&nbsp;work</a>
+  </header>
+
+  <main class="a-view">
+  <div class="a-content">
+
+  <section class="band tall" id="top">
+    <div class="bg-grid"></div>
+    <div style="max-width:1100px;position:relative;z-index:2">
+      <div class="eyebrow-rule">P02 &middot; Dashboard &middot; Reporting &amp; Client Comms</div>
+      <h1 class="d1" style="font-size:clamp(38px,5.4vw,74px);line-height:.98;letter-spacing:-.035em">
+        H10 BIM Progress<br><span class="g-primary">Dashboard</span></h1>
+      <p class="lede" style="max-width:56ch">A live dashboard that shows a client where their project
+        and their model actually stand &mdash; stage timeline, discipline status, and a plain
+        explanation of how the delivery works.</p>
+      <div class="hero-actions">
+        <a class="btn primary hero-cta" href="#live">Open the dashboard</a>
+        <a class="btn hero-cta" href="index.html#ecosystem">All work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LIVE DASHBOARD (PLACEHOLDER) ===================== -->
+  <section class="band uikit" id="live">
+    <div class="rmap-head rv" style="margin-top:0">
+      <p class="eyebrow">The dashboard</p>
+      <h3 class="rmap-title">The live view.</h3>
+    </div>
+
+    <!-- PLACEHOLDER: the built dashboard is not in this repo. Drop the file in
+         at assets/embeds/h10-dashboard.html and swap this block for an iframe,
+         or point the button above at wherever it is hosted. -->
+    <div class="embed-slot rv">
+      <span class="draft-tag">Placeholder &middot; dashboard not yet wired in</span>
+      <p>The working dashboard lives outside this repo. To wire it up, either drop the
+        file at <code>assets/embeds/h10-dashboard.html</code> and replace this block with an
+        <code>&lt;iframe&gt;</code>, or point it at the hosted URL. Nothing below is live data.</p>
+    </div>
+
+    <div class="statrow" style="margin-top:34px">
+      <div class="stat rv" style="--d:0ms">
+        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
+        <div class="n">&mdash;</div><div class="l">Overall progress &middot; placeholder</div>
+      </div>
+      <div class="stat rv" style="--d:90ms">
+        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div>
+        <div class="n">&mdash;</div><div class="l">Current stage &middot; placeholder</div>
+      </div>
+      <div class="stat rv" style="--d:180ms">
+        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 5v10l-9 5-9-5V7z"/></svg></div>
+        <div class="n">&mdash;</div><div class="l">Disciplines tracked &middot; placeholder</div>
+      </div>
+      <div class="stat rv" style="--d:270ms">
+        <div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div class="n">&mdash;</div><div class="l">Last refreshed &middot; placeholder</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DELIVERY STAGES ===================== -->
+  <section class="band uikit" id="stages">
+    <div class="rmap-head rv" style="margin-top:0">
+      <p class="eyebrow">How the delivery reads</p>
+      <h3 class="rmap-title">Pre-design through to final GFC.</h3>
+      <p class="lede" style="max-width:58ch">The stage names are the real delivery sequence.
+        Percentages and dates are placeholders until the dashboard is wired in.</p>
+    </div>
+    <ol class="spine">
+      <li class="spine-step rv" style="--d:0ms">
+        <div class="ss-mark"><span class="ss-q">01</span><span class="ss-win">Pre-design</span></div>
+        <div class="ss-body"><h4>Brief and baseline</h4>
+          <p>Requirements captured, model standards agreed, the container structure set up.</p>
+          <p class="ss-gate"><span class="lb">Status</span> Placeholder &mdash; not live data.</p></div>
+      </li>
+      <li class="spine-step rv" style="--d:90ms">
+        <div class="ss-mark"><span class="ss-q">02</span><span class="ss-win">Concept</span></div>
+        <div class="ss-body"><h4>Concept design</h4>
+          <p>Massing and early coordination, with the first model-health checks running.</p>
+          <p class="ss-gate"><span class="lb">Status</span> Placeholder &mdash; not live data.</p></div>
+      </li>
+      <li class="spine-step rv" style="--d:180ms">
+        <div class="ss-mark"><span class="ss-q">03</span><span class="ss-win">Developed</span></div>
+        <div class="ss-body"><h4>Developed design</h4>
+          <p>Disciplines converge, clashes resolved, quantities become meaningful.</p>
+          <p class="ss-gate"><span class="lb">Status</span> Placeholder &mdash; not live data.</p></div>
+      </li>
+      <li class="spine-step rv" style="--d:270ms">
+        <div class="ss-mark"><span class="ss-q">04</span><span class="ss-win">GFC</span></div>
+        <div class="ss-body"><h4>Good for construction</h4>
+          <p>Sheets issued against the certified model, with the audit record attached.</p>
+          <p class="ss-gate"><span class="lb">Status</span> Placeholder &mdash; not live data.</p></div>
+      </li>
+    </ol>
+
+    <div class="a-note rv" style="margin-top:36px;max-width:68ch">
+      <span class="lb">Why this page is different</span>
+      Every other tool in the catalogue is served through the CMS. H10 has its own page
+      because a client reads it directly, so it carries the project rather than the tool.
+    </div>
+  </section>
+
+  </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  var toggle = document.getElementById('navToggle'),
+      scrim  = document.getElementById('navScrim'),
+      close  = document.getElementById('navClose'),
+      side   = document.getElementById('sidebar');
+  scrim.hidden = false;
+  function setNav(open) {
+    document.body.classList.toggle('nav-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    side.setAttribute('aria-hidden', open ? 'false' : 'true');
+  }
+  toggle.addEventListener('click', function () { setNav(!document.body.classList.contains('nav-open')); });
+  scrim.addEventListener('click', function () { setNav(false); });
+  if (close) close.addEventListener('click', function () { setNav(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setNav(false); });
+  side.addEventListener('click', function (e) { if (e.target.closest('a')) setNav(false); });
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .12, root: document.querySelector('.a-view') });
+  document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>

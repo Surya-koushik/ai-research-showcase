@@ -191,6 +191,11 @@
     return true;
   }
 
+  /* Surya's rule: dashboards do not get their own pages -- except H10, which a
+     client reads directly. Everything else resolves through the CMS. */
+  var BESPOKE = { 'h10-dashboard': 'h10.html' };
+  function href(p) { return BESPOKE[p.id] || ('tool.html?id=' + p.id); }
+
   function row(p, i) {
     var km = kindMeta(p.kind);
     var logos = (p.tech || []).slice(0, 4).map(function (t) { return logoImg(t, 16); }).join('');
@@ -206,7 +211,7 @@
       '</summary>' +
       '<div class="tr-body">' +
         '<p>' + (p.description || p.tagline) + '</p>' +
-        '<a class="tr-go" href="tool.html?id=' + p.id + '">Open ' + p.name + ' &rarr;</a>' +
+        '<a class="tr-go" href="' + href(p) + '">Open ' + p.name + ' &rarr;</a>' +
       '</div></details>';
   }
 
