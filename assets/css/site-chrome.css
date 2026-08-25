@@ -205,3 +205,88 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
   box-shadow:0 1px 2px rgba(16,45,70,.04), 0 12px 28px -22px rgba(16,45,70,.26) }
 .kindcard:hover{ transform:translateY(-3px);
   box-shadow:0 2px 4px rgba(16,45,70,.05), 0 20px 38px -24px rgba(16,45,70,.32) }
+
+/* ======================= ROADMAP (items D1-D3) ========================= */
+
+/* Heads' note, reference 3. The draft tag is deliberately loud: the copy in
+   here is a stand-in and must not be mistaken for an approved statement. */
+.heads-note{
+  margin:clamp(40px,5vw,64px) 0 0; padding:clamp(26px,3.2vw,40px);
+  border:1px solid var(--line); border-left:3px solid var(--accent,#7C5CFF);
+  border-radius:14px; background:var(--surface,#fff);
+  box-shadow:0 1px 2px rgba(16,45,70,.04), 0 16px 34px -26px rgba(16,45,70,.3);
+}
+.draft-tag{
+  display:inline-block; margin-bottom:16px; padding:5px 10px; border-radius:6px;
+  background:rgba(224,122,10,.12); color:#9a5b04;
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:10px;
+  letter-spacing:.09em; text-transform:uppercase;
+}
+.heads-note blockquote{ margin:0 }
+.heads-note blockquote p{
+  margin:0; font-size:clamp(19px,2.1vw,27px); line-height:1.42;
+  letter-spacing:-.02em; color:var(--text,var(--ink));
+}
+.heads-note figcaption{ margin-top:20px; display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline }
+.hn-name{ font-weight:700; font-size:14px }
+.hn-role{ font-size:12.5px; color:var(--muted,var(--ink-3)) }
+
+/* Programme spine */
+.rmap-head{ margin:clamp(48px,6vw,80px) 0 clamp(24px,3vw,38px) }
+.rmap-title{ font-size:clamp(24px,3vw,38px); line-height:1.12; letter-spacing:-.03em; margin:8px 0 0 }
+.spine{ list-style:none; margin:0; padding:0; display:grid; gap:0 }
+.spine-step{
+  display:grid; grid-template-columns:104px 1fr; gap:clamp(18px,3vw,44px);
+  padding:26px 0; border-top:1px solid var(--line); position:relative;
+}
+.spine-step:last-child{ border-bottom:1px solid var(--line) }
+.ss-mark{ display:flex; flex-direction:column; gap:3px; position:relative }
+.ss-mark::before{
+  content:""; position:absolute; left:-1px; top:-27px; width:2px; height:26px;
+  background:var(--accent,#7C5CFF); opacity:.28;
+}
+.spine-step:first-child .ss-mark::before{ display:none }
+.ss-q{
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:22px; font-weight:800;
+  letter-spacing:-.02em; color:var(--accent,#7C5CFF); line-height:1;
+}
+.ss-win{ font-family:var(--f-mono,ui-monospace,monospace); font-size:11px; color:var(--muted,var(--ink-3)) }
+.ss-body h4{ margin:0 0 8px; font-size:19px; font-weight:800; letter-spacing:-.015em }
+.ss-body p{ margin:0; font-size:14.5px; line-height:1.62; color:var(--text-2,var(--ink-2)); max-width:62ch }
+.ss-gate{ margin-top:12px !important; font-size:13px !important }
+.ss-gate .lb{
+  display:inline-block; margin-right:8px; padding:3px 7px; border-radius:5px;
+  background:var(--accent-soft,rgba(124,92,255,.10)); color:var(--accent-deep,#4b2fd6);
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:9.5px;
+  letter-spacing:.08em; text-transform:uppercase;
+}
+/* Year two is not committed work, so it does not read like the four that are. */
+.spine-step.is-later .ss-q,
+.spine-step.is-later .ss-mark::before{ color:var(--muted,var(--ink-3)); background:var(--line-2) }
+.spine-step.is-later .ss-gate .lb{ background:var(--surface-3,#eef0f5); color:var(--muted,var(--ink-3)) }
+
+/* Convergence diagram */
+.hub{ margin-top:clamp(20px,3vw,36px); overflow-x:auto }
+.hub svg{ display:block; width:100%; min-width:720px; height:auto }
+.hub-src rect, .hub-out rect{ fill:var(--surface,#fff); stroke:var(--line); stroke-width:1 }
+.hub-src text, .hub-out text{
+  font-family:var(--f-sans,system-ui,sans-serif); font-size:14px; font-weight:600;
+  fill:var(--text,var(--ink)); dominant-baseline:middle;
+}
+.hub-ring{ fill:none; stroke:var(--accent,#7C5CFF); stroke-width:1; opacity:.35 }
+.hub-core{ fill:var(--accent,#7C5CFF) }
+.hub-core-t{
+  font-family:var(--f-sans,system-ui,sans-serif); font-size:15px; font-weight:800;
+  fill:#fff; text-anchor:middle; letter-spacing:-.01em;
+}
+.hub-flow path{ stroke-dasharray:5 7; animation:hubdrift 2.6s linear infinite }
+@keyframes hubdrift{ to{ stroke-dashoffset:-24 } }
+
+@media (max-width:760px){
+  .spine-step{ grid-template-columns:1fr; gap:10px }
+  .ss-mark{ flex-direction:row; align-items:baseline; gap:10px }
+  .ss-mark::before{ display:none }
+}
+@media (prefers-reduced-motion:reduce){
+  .hub-flow path{ animation:none }
+}
