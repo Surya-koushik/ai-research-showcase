@@ -1,246 +1,195 @@
 # Handoff — AI Research Showcase
 
-**Written 24 Aug 2026** · branch `final/tool-template` · last commit `b1c483e`
-Nothing has been pushed to GitHub. `origin` is `AsureEvolve/ai-research-showcase`.
+**Written 24 Aug 2026** · branch `design/light` · last commit `433382e`
+Working tree clean. Nothing pushed to GitHub (`AsureEvolve/ai-research-showcase`).
 
-For whoever picks this up next. Read §1 and §6 before touching anything.
-
----
-
-## 1. What this is, in one paragraph
-
-A static site cataloguing 52 internal tools built at Asure Design Studio —
-Revit plugins, dashboards, pipelines, connectors, platforms, agents,
-evaluations and delivered decks. Audience is investors, clients and staff.
-No framework, no build step for the site itself; two Python generators turn
-`content/*.json` and the `projects/` folder tree into the JavaScript the pages
-read. There is a local admin for editing. It is confidential-safe: project
-codes only, no client names.
+Read §1 and §2 first. §1 is a live bug with a known cause; §2 is the copy the
+user asked for and did not get before the session ended.
 
 ---
 
-## 2. Run it
+## 1. THE LIVE BUG — light/dark toggle does nothing
+
+**Symptom:** clicking the theme button flips `data-theme` on `<html>` from
+`dark` to `light` correctly, but the page looks identical. Body background
+stays `rgb(255,255,255)` in both.
+
+**Cause — found and confirmed, not a guess:**
 
 ```
-START.bat        regenerate, serve site + admin, open both
-BUILD.bat        produce dist\asure-showcase.html (one self-contained file)
+assets/css/light.css:85   html, body{ background:var(--paper) !important; color:var(--ink); }
+assets/css/dala.css:72    html, body{ background:var(--color-void) !important; ... }
 ```
 
-| | |
-|---|---|
-| Site | http://127.0.0.1:8099/index.html |
-| Media desk | http://127.0.0.1:8099/cms.html |
-| Admin | http://127.0.0.1:8787/ |
+`light.css` is linked *after* `theme.css` in `index.html` and forces the body
+background with `!important`. `theme.css` themes the site through `--bg` tokens
+under `:root[data-theme="dark"]` / `:root[data-theme="light"]`. The `!important`
+wins, so the token system is inert and the toggle is decorative.
 
-If `START.bat` does nothing: this folder is on a mapped network drive and
-cmd.exe refuses UNC paths as a working directory. The scripts use `pushd` for
-that reason. Fallback: `py -3 _tools\serve.py 8099`.
+These files arrived in commits `9bb6ed8`, `68b4771` and `433382e` — a "Dala"
+skin added on `design/dala` and carried into `design/light`. **They were not
+written in this session and it is not obvious which system is meant to win.**
 
-**Python is 3.13 here** (`py -3`). Do not reintroduce `cgi` — it was removed in
-3.13 and `_tools/admin.py` has its own multipart parser.
+**This is a decision, not a fix. Ask Surya which he wants:**
+
+- **(a) Dala skin is the design** → then the theme toggle is meaningless and
+  should be *removed* from the topbar, not left as a dead control.
+- **(b) Light/dark is a real feature** → then `light.css` and `dala.css` must
+  stop forcing `html, body` background. Drop the `!important`, or better,
+  express the Dala palette as values for `theme.css`'s existing `--bg` /
+  `--surface` / `--text` tokens under the two `data-theme` blocks, so one
+  system owns colour.
+
+Do not just delete `!important` and ship it — check the whole Dala skin still
+holds together in both themes first.
+
+Secondary: `localStorage.getItem('asure.theme')` returns `null` after a toggle,
+so the preference does not persist either. Same root cause area; fix with (b).
 
 ---
 
-## 3. Architecture
+## 2. COPY THE USER ASKED FOR — not yet done
 
-**The folder tree is the CMS.** Nothing is hand-edited in JavaScript.
+The hero currently reads:
+
+> **AI doesn't mean artificial here. It means Asure Intelligence.**
+> Intelligence built inside the studio, for the studio — not bolted on from
+> outside. Fifty-two tools so far: plugins that live inside Revit, dashboards a
+> client can read, pipelines that turn drawings into quantities, and agents that
+> decide their own next step. And a roadmap for where architecture and
+> intelligence go next.
+
+**His instruction, verbatim:** the headline should be
 
 ```
-content/<id>.json                     one record per project (52)
-projects/<id>/screenshots/hero.jpg    card + page image
-projects/<id>/screenshots/01.jpg …    gallery, filename order
-projects/<id>/{videos,html,docs}/     players, live demos, downloads
-_local/sources.json                   links to real project folders — GITIGNORED
+AI
+Asure Intelligence
 ```
 
-| Script | Does |
-|---|---|
-| `_tools/build_content.py` | validates records → `assets/js/projects_data.js` |
-| `_tools/build_media_manifest.py` | scans folders → `assets/js/media_manifest.js` |
-| `_tools/admin.py` + `admin_ui.html` | localhost editor: create, edit, upload, publish |
-| `_tools/sources.py` + `link_sources.py` | link a record to its real folder on disk |
-| `_tools/serve.py` | no-cache dev server |
-| `_tools/build_single_file.py` | the one-file build |
+and the paragraph below should **not mention the number of tools or list
+them** — "just the main intent and direction."
 
-**Validation is fatal and should stay that way.** Missing required field,
-unknown kind/domain/status, duplicate id or code, filename not matching id, or
-`related` pointing at a non-existent id — all stop the build. Do not weaken it
-to force a record through.
+So: two-line headline (the letters `AI`, then `Asure Intelligence` expanded
+beneath — the abbreviation resolving into its real meaning), and a short lede
+about intent and direction only. No "fifty-two", no plugin/dashboard/pipeline
+list. That list already lives in the stats row and the kinds section directly
+below; repeating it in the hero is the redundancy he is reacting to.
 
-### Page structure
-
-- `index.html` + `home.js` — landing. Order: count → kinds → how they connect → all tools.
-- `tool.html` + `tool.js` + `assets/css/tool-page.css` — every tool page, in the
-  signed-off template from `tool_template.html`.
-- `cms.html` + `cms.js` — read-only media coverage board.
+Hero markup: `index.html`, `<section class="band tall" id="top">`.
+The emphasis span is `.g-primary` (solid violet, 7.4:1 — do not reintroduce
+gradient text, it is a banned pattern).
 
 ---
 
-## 4. THE MAIN REMAINING TASK
+## 3. Also open — he asked, I measured, did not finish
 
-**Fill in tool detail for the other 51 projects, using P01 as the pattern.**
+He confirmed three areas need work: **hero**, **roadmap**, **spacing & rhythm**.
+Measurements taken, no changes made:
 
-P01 `phoenix-l1` is the only complete record. Everything else is thin. Measured
-today:
+**Spacing is uniform and that is the problem.** Every band on the landing uses
+identical `79.2px` top and bottom padding, while section heights run from 364px
+(close) to 11,403px (the 52-card grid). Uniform padding across wildly different
+densities is why it reads flat. Vary it: tighter around short sections, more air
+before the grid.
 
-| Field | Filled |
-|---|---|
-| `objective`, `solution` | 52/52 |
-| `problem` | 39/52 |
-| `related` | 38/52 |
-| `efficiency` | 5/52 |
-| hero image | 5/52 |
-| gallery | 5/52 |
-| `howItWorks` | **1/52** |
-| `timeline` | **1/52** |
-| `challenges` / `lessons` / `roadmap` | **1/52** |
+**Hero:** h1 is 81.92px at weight 400 over 4 lines, in an 1100px column while
+the lede caps at ~557px. The weight is light for display at that size, and the
+two columns disagree. Worth setting deliberately once the copy in §2 lands,
+since shorter copy changes the line count.
 
-**Complete on every field: 1 (P01).** Average across the catalogue is 3.9 of 12
-fields. Least complete: P19, P14, P16, P11, P20, P21, P12, P17 — all at 2/12.
-
-### What "done" looks like for one tool
-
-Open `content/phoenix-l1.json`. That is the target. Concretely:
-
-- `page.objective` / `problem` / `solution` — one sentence each
-- `page.howItWorks` — the real steps, `{title, detail}`, usually 4–6
-- `page.timeline` — real dates, `{date: "Apr 2026", label: "…"}`
-- `page.challenges` / `lessons` / `roadmap` — 2–3 short entries each
-- `efficiency` — **only if a real before-and-after was observed**
-- `projects/<id>/screenshots/hero.jpg` plus a numbered gallery
-
-### How to work it
-
-The tool folders on disk are already linked for 20 projects — run
-`py -3 _tools/link_sources.py` to see the state, `--apply` to add
-high-confidence links. Then in the admin, each linked project shows its real
-folder: file counts, last modified, git history, README text, and one-click
-import for any image or document sitting there. **Across the 19 linked folders
-there are 109 images, 80 demos and 37 documents already on disk** waiting to be
-pulled in.
-
-**Suggested order:** the four `plugin` records first (they are the most
-externally interesting and already average 5.0/12), then `dashboard`, then the
-rest. Decks need least — they lead with the deck itself.
-
-### Two rules that matter more than speed
-
-1. **Never invent an efficiency number.** 47 tools have no measured
-   before-and-after. The page says "Not measured" and explains why, and the
-   landing-page total is built only from measured tools. A fabricated number
-   would quietly corrupt the headline figure.
-2. **Everything must be true of the tool as it is today**, not as pitched. If
-   it cannot be verified from the source folder or from Surya, leave the field
-   out. A missing field renders as nothing; a wrong one ships.
-
-### Other people are contributing
-
-`dist/asure-showcase-contributor-kit.zip` (source in `_contributor_kit/`) is
-handed to people documenting their own tools. They attach it to Claude or
-ChatGPT and return one folder per tool that drops straight in. **If you change
-the record schema, the validator, or the kind/domain lists, update that kit in
-the same commit** — its rules were verified against `build_content.py` and must
-stay in step.
+**Roadmap** (`#roadmap`, styles in `deck.css` under `.rmap`): 945px tall, three
+equal columns at 247px, heading 53.76px. Content is three horizons — Running
+now / Building next / On the horizon — written from real catalogue work but
+**never reviewed by Surya**. Confirm the content is right before polishing the
+layout.
 
 ---
 
-## 5. Open decisions — need Surya, do not guess
+## 4. Where things stand
 
-1. **P06 `archviz-suite`** is filed as `evaluation` but its own tagline
-   describes a pipeline: "Local idea → elevations → 3D → render pipeline on
-   ComfyUI". Probably should move to `pipeline`.
-2. **P16 `ads-lifecycle`** (Plugin/Design) and **P20 `architecture-ai`**
-   (Pipeline/Design) were flagged `CHECK` during classification and never
-   confirmed.
-3. **Index tiles.** 5 of 52 have real images, 47 show generated placeholder
-   art. Research found that respected catalogues either require imagery on
-   everything or abolish it entirely — nobody ships a mixed grid. Either
-   commission artwork for all 52 or make the tiles uniformly media-free.
-4. **Two filter axes.** kind × domain is 8 × 7 = 56 cells for 52 items, so most
-   combinations return nothing. Consider kind as the only visible axis with
-   domain as a searchable tag.
-5. **Three divergences from Shravan's UI kit spec** are on record and unresolved:
-   the tall hero (spec says none), full-height bands (spec caps at 150px), and
-   display headlines not on the kit's 21px-capped type scale.
-
----
-
-## 6. Traps that already cost time here
-
-- **String-anchor patching of `_tools/build_single_file.py` has broken it three
-  times.** Twice it matched source code by exact spelling — reformatting an
-  IIFE from `(function(){` to `(function () {` failed with "substring not
-  found", and a `const`→`var` change made the router's id rewrite silently stop
-  applying so every tool route rendered "Not found" with no error. Both are
-  patterns now and raise named errors. Once a backwards slice duplicated 6 KB
-  of the file. **Prefer rewriting that file to patching it.**
-- **Backslashes collapse through bash heredocs in this environment.** `'\\a'`
-  became a BEL character in a `.bat` file. Use `chr(92)` or write via the file
-  tools.
-- **Windows lets a second process bind an already-listening port.** A stale
-  admin answered for a new one for a whole debugging round. `serve.py` and
-  `admin.py` now set `allow_reuse_address = False` and refuse.
-- **A network drive's clock differs from the local one**, so conditional
-  requests won a stale `projects.js` for an entire session — the browser served
-  17,843 bytes against 22,853 on disk. `serve.py` strips validators and sends
-  `no-store`. Do not "optimise" that away.
-- **The kit's PNG wordmarks are black on transparency.** They are inverted to
-  white on dark and used as-drawn on light. A plain `<img>` on a dark ground is
-  invisible — this is exactly how the loader shipped with no wordmark once.
-- **Verify visually, not only structurally.** Several bugs this session passed
-  every DOM assertion and were still wrong on screen. The browser pane could
-  not composite frames for most of the session, which is how the missing
-  wordmark got through.
-
----
-
-## 7. Conventions
-
-- **Theme: light is the default.** The image system is drawn on a light canvas
-  (`#F5F8FA`), so a first-time visitor lands on the ground the artwork was made
-  for. A saved choice still wins. Both themes must work for anything added.
-- **Images:** `TOOL_TEMPLATE_IMAGE_GENERATION_PROCEDURE.md` is binding, not
-  advisory. Two images per tool, flat 2D for the technical one, fixed palette,
-  blue = processing, amber = controlled write, green = verification.
-- **Type:** Inter and JetBrains Mono, site and diagrams alike.
-- **Colour:** navy `#2f6db5` is chrome the UI kit owns; violet is research
-  content. Do not blend them.
-- **Confidentiality:** project codes only. Check the pixels of a screenshot,
-  not just its filename — client names hide inside images.
-- Deleting a record leaves its uploaded media on disk. One is reversible.
-
----
-
-## 8. Branches
+Nine branches, which is now itself a problem:
 
 ```
 main
-└── redesign/deck-style
-    └── redesign/uikit          navy chrome, real captures, CMS, source linking
-        └── feat/evolve-loader  the Asure → Evolve opening
-            └── final/tool-template   ← HERE
+└── redesign/deck-style → redesign/uikit → feat/evolve-loader
+    └── final/tool-template
+        └── design/impeccable      design-principle pass (AI-grammar tells removed)
+            └── design/dala        Dala dark-void skin
+                └── design/light   ← YOU ARE HERE
 ```
 
-Recent commits on this branch:
+`final/tool-template` is the last branch that was a coherent "known good" site.
+Everything after it is design exploration. **Worth agreeing with Surya which
+branch is the real one and collapsing the rest** before more work lands.
 
-```
-b1c483e  Stop the bundler matching source code by exact string
-d06860a  Add a contributor kit so other people can document their own tools
-802d9e0  Every tool page now renders in the signed-off template
-4d60337  Rename the Study kind to Evaluation
-3b758af  Plain language on the landing page, and a deck that opens as a deck
-```
+### What was done this session (all on the design/* chain)
+
+- **Design-principle pass** (impeccable skill + its detector, now zero
+  violations): removed gradient text, cut section eyebrows from six to two
+  bookends, removed `01/02/03` numbered markers, loosened display tracking from
+  −0.05em to −0.022em, fixed a 4.34 contrast caption.
+- **Declutter:** sidebar 20 items → 13 (dropped the domain axis; it still shows
+  on cards and in search), removed four restated stat captions, kind blurbs
+  214 → 174 words.
+- **Finished-site additions:** landing footer, skip link + focus-visible rings
+  on all three pages, mobile fix (sidebar hidden below 900px so content leads),
+  a generated 1200×630 OG cover, OG/Twitter tags, `robots.txt`.
+- **Root organised:** 28 loose files → 17. Eleven `tool_template_*` snapshots and
+  a stale `assets.zip` → `_archive/` (see `_archive/README.md`).
+- **Asure Intelligence reframe + roadmap section** (the copy now needs revising
+  per §2).
 
 ---
 
-## 9. First thing to do
+## 5. Traps — these cost real time, none are visible from the code
+
+- **`!important` in `light.css` / `dala.css` beats everything**, including
+  inline styles set from JS. This defeated a mobile nav drawer entirely before
+  the cause was found (see §1). If an override "impossible fails", check those
+  two files first.
+- **Apostrophes break `projects.js`.** Blurbs are single-quoted JS strings;
+  writing `project's` closes the string and blanks the whole page. It happened
+  once this session. Rephrase, or use the `content/*.json` records instead.
+- **Backslashes collapse through bash heredocs** in this shell — `'\\a'` became
+  a BEL character in a `.bat`. Use `chr(92)`.
+- **cmd.exe refuses UNC paths**, and this folder is on a mapped drive. The
+  `.bat` files use `pushd` for that reason; `cd /d` fails.
+- **Git background repack fails on `Y:`** ("could not write multi-pack-index:
+  Permission denied"). Commits succeed; only maintenance fails. Harmless.
+- **The preview browser cannot screenshot here** (pane not compositing), so
+  visual verification was done by measuring computed styles. That is how the
+  missing loader wordmark slipped through earlier in the project — measure, but
+  get a human to *look*.
+
+---
+
+## 6. Run it
 
 ```
-py -3 _tools/build_content.py      should say: validated 52 records, no errors
-py -3 _tools/link_sources.py       shows which tools are linked to real folders
-START.bat
+START.bat                       regenerate, serve + admin, open both
+py -3 _tools/serve.py 5173      just the site  → http://localhost:5173
+BUILD.bat                       dist\asure-showcase.html (one self-contained file)
 ```
 
-Then open http://127.0.0.1:8787/, pick a `plugin`, and look at its Source panel.
-Everything needed to fill that record in is usually already sitting in the
-folder it points at.
+Python here is **3.13** (`py -3`). Do not reintroduce `cgi`; `_tools/admin.py`
+has its own multipart parser because 3.13 removed it.
+
+Content model is unchanged and documented in `CLAUDE.md`: `content/<id>.json`
+plus `projects/<id>/{screenshots,videos,html,docs}/`, generated by
+`_tools/build_content.py` and `_tools/build_media_manifest.py`. Validation is
+fatal by design — do not weaken it to force a record through.
+
+---
+
+## 7. Still true from the previous handoff
+
+The content gap has not moved: **P01 is the only project complete on all twelve
+fields**; the catalogue averages 3.9. `howItWorks`, `timeline`, `challenges`,
+`lessons` and `roadmap` each exist on exactly one project. 109 images, 80 demos
+and 37 documents are already sitting in linked source folders waiting to be
+imported through the admin's Source panel.
+
+Open classification questions, still unanswered: **P06 `archviz-suite`** is
+filed as `evaluation` but its own tagline describes a pipeline; **P16
+`ads-lifecycle`** and **P20 `architecture-ai`** were flagged `CHECK` and never
+confirmed.
