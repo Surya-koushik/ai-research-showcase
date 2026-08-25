@@ -19,6 +19,10 @@ mega-menu, 8 SketchUp integration icon row.
   canvas, hero-only, held back to opacity .55 under a paper wash so the cyan
   spine still leads. Headline rescaled, lede cut to two sentences, CTAs are
   "See the work" / "The roadmap" at a smaller size.
+- **C (built-so-far) — done.** Stat row rebuilt as cards: tinted icon chip,
+  number, one line, soft shadow, staggered scroll-in (90ms apart).
+- **E (kinds) — done.** Kind cards lost the generated diagram for a plain icon
+  chip; 70ms stagger. "How the tools connect" removed along with its nav link.
 - **H (contact) — placeholder only.** Section and nav link exist; phone and
   address are marked TODO pending asure.in.
 
@@ -48,7 +52,7 @@ mega-menu, 8 SketchUp integration icon row.
 | B6 | **No numbers in the CTA buttons** | "See all 52" → no count |
 | B7 | **Adjust button size** | |
 
-## C. "What we have built so far"
+## C. "What we have built so far"  ✅ DONE 2026-08-25
 
 | # | Item | Notes |
 |---|---|---|
@@ -63,7 +67,7 @@ mega-menu, 8 SketchUp integration icon row.
 | D2 | Show **integrations converging into a central intelligence**, reference 2 | Reserve generous space; rough HTML acceptable |
 | D3 | **Heads' note / direction block at the top**, reference 3 (BCG) | See question Q2 — I will not invent this |
 
-## E. Kinds of tool
+## E. Kinds of tool  ✅ DONE 2026-08-25
 
 | # | Item | Notes |
 |---|---|---|
@@ -93,6 +97,17 @@ mega-menu, 8 SketchUp integration icon row.
 | # | Item | Notes |
 |---|---|---|
 | H1 | **Contact section at the end**, content sourced from asure.in | Needs a fetch — see Q4 |
+
+---
+
+## Finding 3 — light.css flattens every card
+
+`light.css` deliberately strips cards to borderless, rule-topped blocks with
+`!important` (`background:transparent`, `box-shadow:none`, `border:none`).
+That is the Dala discipline and it directly contradicts the card design in
+references 4 and 5. Resolved by releasing **only** `.statrow .stat` and
+`.kindcard` from those rules; `.a-note`, `.tcard`, `.rel-card` still flatten.
+**`.tcard` will hit the same wall when F starts.**
 
 ---
 
@@ -129,10 +144,10 @@ the toggle and strip the dead dark-theme tokens.
 heads. Either send me their actual text, or say explicitly that you want a draft
 clearly marked as placeholder for them to approve.
 
-**Q3 — How many tool pages (F5/G2)?** 52 tools. Options: (a) build the template
-plus 3–5 real pages and route the rest to a stub, (b) generate all 52 from
-`projects.js` with real content where it exists, (c) build the template only and
-wire pages later. Content, not code, is the constraint here.
+**Q3 — ANSWERED 2026-08-25.** Only the **H10 dashboard** gets a bespoke page.
+Every other tool is served through the **CMS**, not hand-built. `tool.html?id=<id>`
+already exists and the ecosystem grid already links to it, so the route is in
+place; F/G becomes "make the CMS template good", not "build 52 pages".
 
 **Q4 — asure.in (H1).** Confirm I may fetch the live site to pull contact
 details, or paste what you want used.

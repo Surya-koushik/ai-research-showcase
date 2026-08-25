@@ -122,16 +122,14 @@ body{ font-weight:400; }
 .eyebrow{ color:var(--accent) !important; }
 
 /* --- no filled cards: hairlines and space ---------------------------------- */
-.kindcard, .a-note, .tcard, .rel-card, .rail-kpi, .time-box{
+.a-note, .tcard, .rel-card, .rail-kpi, .time-box{
   background:transparent !important;
   box-shadow:none !important;
 }
-.kindcard, .a-note{ border:none !important; border-top:1px solid var(--line) !important;
+.a-note{ border:none !important; border-top:1px solid var(--line) !important;
   border-radius:0 !important; padding:22px 0 !important; }
-.kindcard:hover{ transform:none !important; }
 
-.statrow .stat{ background:transparent !important; box-shadow:none !important;
-  border:none !important; border-top:2px solid var(--ink) !important; }
+/* .statrow .stat is styled as a card in site-chrome.css (item C1). */
 
 .tcard{ background:transparent !important; border:none !important; border-radius:0 !important; }
 .tcard .shot{ border-radius:14px; overflow:hidden; border:1px solid var(--line-2); }

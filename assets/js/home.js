@@ -61,8 +61,9 @@
     { n: PROJECTS.length - shipped, icon: 'clock', l: 'In progress or research' },
     { n: savedTotal, u: 'hrs/wk', icon: 'gauge', l: 'Hours saved each week' }
   ];
-  $('#stats').innerHTML = STATS.map(function (s) {
-    return '<div class="stat rv"><div class="si">' + ICON(s.icon) + '</div>' +
+  $('#stats').innerHTML = STATS.map(function (s, i) {
+    return '<div class="stat rv" style="--d:' + (i * 90) + 'ms">' +
+      '<div class="si">' + ICON(s.icon) + '</div>' +
       '<div class="n">' + s.n + (s.u ? '<span class="u">' + s.u + '</span>' : '') + '</div>' +
       '<div class="l">' + s.l + '</div>' +
       (s.src ? '<div class="src">' + s.src + '</div>' : '') + '</div>';
@@ -72,13 +73,15 @@
   function count(kind) {
     return PROJECTS.filter(function (p) { return p.kind === kind; }).length;
   }
-  $('#kindGrid').innerHTML = KINDS.filter(function (k) { return k.id !== 'all'; }).map(function (k) {
+  /* Simplified 2026-08-25: the per-kind diagram was visual noise beside eight
+     cards. An icon chip carries the same signal at a fraction of the weight. */
+  $('#kindGrid').innerHTML = KINDS.filter(function (k) { return k.id !== 'all'; }).map(function (k, i) {
     var n = count(k.id);
-    return '<a class="kindcard rv" href="#ecosystem" data-jump="' + k.id + '" style="--kc:' + ACCENT[k.id] + '">' +
-      '<div class="kh"><h3>' + k.label + '</h3>' +
-      '<span class="ct">' + n + '</span></div>' +
-      '<p>' + k.blurb + '</p>' +
-      '<div class="art">' + DIAGRAM(k.id) + '</div></a>';
+    return '<a class="kindcard rv" href="#ecosystem" data-jump="' + k.id + '"' +
+      ' style="--kc:' + ACCENT[k.id] + ';--d:' + (i * 70) + 'ms">' +
+      '<div class="ki">' + ICON(k.icon) + '</div>' +
+      '<div class="kh"><h3>' + k.label + '</h3><span class="ct">' + n + '</span></div>' +
+      '<p>' + k.blurb + '</p></a>';
   }).join('');
 
   /* Clicking a kind card scrolls to the grid with that filter applied. */

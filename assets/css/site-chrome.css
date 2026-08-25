@@ -160,3 +160,48 @@ body.a-app > .a-sidebar{ overflow:hidden }
 body.a-app > .a-sidebar > .a-nav{ flex:1 1 auto; min-height:0; overflow-y:auto }
 body.a-app > .a-sidebar > .a-sidebar-brand{ flex:none }
 body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
+
+/* --- stat + kind cards (items C1, C2, E1) -------------------------------
+   References 4 and 5: a white card, a tinted icon chip, one number, one
+   line. The old stat row was a bare top-rule; the old kind card carried a
+   generated diagram that read as clutter next to eight of them.
+   ---------------------------------------------------------------------- */
+.statrow{ grid-template-columns:repeat(auto-fit,minmax(212px,1fr)); gap:clamp(16px,1.8vw,24px) }
+.statrow .stat{
+  border:1px solid var(--line); border-top:1px solid var(--line); border-radius:14px;
+  background:var(--surface,#fff); padding:22px 22px 20px;
+  box-shadow:0 1px 2px rgba(16,45,70,.04), 0 12px 28px -22px rgba(16,45,70,.28);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.statrow .stat:hover{
+  transform:translateY(-3px);
+  box-shadow:0 2px 4px rgba(16,45,70,.05), 0 20px 38px -24px rgba(16,45,70,.34);
+}
+.statrow .stat .si{
+  display:grid; place-items:center; width:38px; height:38px; margin-bottom:16px;
+  border-radius:11px; background:var(--accent-soft,rgba(124,92,255,.10)); color:var(--accent,#7C5CFF);
+}
+.statrow .stat .si svg{ width:18px; height:18px }
+.statrow .stat .n{ margin:0 }
+.statrow .stat .l{ max-width:22ch }
+
+.kindcard{ border-radius:14px; padding:22px }
+.kindcard .ki{
+  display:grid; place-items:center; width:36px; height:36px; margin-bottom:14px;
+  border-radius:10px; color:var(--kc,var(--violet-500));
+  background:color-mix(in srgb, var(--kc,#7C5CFF) 12%, transparent);
+}
+.kindcard .ki svg{ width:17px; height:17px }
+.kindcard p{ min-height:0 }
+
+/* Staggered scroll-in: each card carries its own --d, so a row assembles
+   left to right as it enters rather than snapping in as one block. */
+.rv{ transition-delay:var(--d,0ms) }
+@media (prefers-reduced-motion:reduce){ .rv{ transition-delay:0ms } }
+
+/* deck.css draws a 3px accent bar via .kindcard::before; now that the card has
+   a radius, clip it so the bar follows the rounded top corners. */
+.kindcard{ overflow:hidden; border:1px solid var(--line); background:var(--surface,#fff);
+  box-shadow:0 1px 2px rgba(16,45,70,.04), 0 12px 28px -22px rgba(16,45,70,.26) }
+.kindcard:hover{ transform:translateY(-3px);
+  box-shadow:0 2px 4px rgba(16,45,70,.05), 0 20px 38px -24px rgba(16,45,70,.32) }
