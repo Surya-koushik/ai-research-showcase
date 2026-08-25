@@ -249,6 +249,9 @@
   }
 
   /* ---------------------------------------------------------------- reveal -- */
+  /* Hidden state is opt-in: adding js-reveal proves a script is running, so
+     a no-JS or stalled render still shows every section. */
+  document.documentElement.classList.add('js-reveal');
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
