@@ -8,7 +8,23 @@ mega-menu, 8 SketchUp integration icon row.
 
 ---
 
-## A. Chrome — sidebar, topbar, nav
+## Progress
+
+- **A (chrome) — done.** Sidebar is an off-canvas drawer at every width, opened
+  by a hamburger; EVOLVE wordmark sits in the topbar; Asure pinned to the drawer
+  foot; "AI Research & Innovation" removed from the topbar; nav is now
+  The system / What we build / Roadmap / All work / Contact with the 52 chip
+  last; theme toggle removed and the page pinned to light.
+- **B (hero) — done.** 1920x1080 background video (1.7MB, from 20MB) behind the
+  canvas, hero-only, held back to opacity .55 under a paper wash so the cyan
+  spine still leads. Headline rescaled, lede cut to two sentences, CTAs are
+  "See the work" / "The roadmap" at a smaller size.
+- **H (contact) — placeholder only.** Section and nav link exist; phone and
+  address are marked TODO pending asure.in.
+
+---
+
+## A. Chrome — sidebar, topbar, nav  ✅ DONE 2026-08-25
 
 | # | Item | Notes |
 |---|---|---|
@@ -20,7 +36,7 @@ mega-menu, 8 SketchUp integration icon row.
 | A6 | Keep the **52 chip last** in that nav | Numbers stay here, leave the CTAs |
 | A7 | **Remove the dark/light toggle** — one version only | See decision D1 |
 
-## B. Hero
+## B. Hero  ✅ DONE 2026-08-25
 
 | # | Item | Notes |
 |---|---|---|
@@ -72,7 +88,7 @@ mega-menu, 8 SketchUp integration icon row.
 | G2 | Integrate the template into the site so tools resolve to real pages | |
 | G3 | Per-tool dropdown explaining what each one actually does | Even where the name seems self-evident |
 
-## H. Contact
+## H. Contact  ⚠️ PLACEHOLDER IN PLACE
 
 | # | Item | Notes |
 |---|---|---|

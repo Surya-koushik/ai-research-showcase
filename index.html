@@ -53,50 +53,57 @@
 </div>
 <!-- /evo -->
 
-<aside class="a-sidebar no-print">
-  <a class="a-sidebar-brand" href="index.html">
-    <img class="wm lightonly" src="assets/logos/brand/asure_wordmark.png" alt="asure">
-    <img class="wm darkonly" src="assets/logos/brand/asure_wordmark_white.png" alt="" aria-hidden="true">
-    <span class="a-brand-cap">Research</span>
-  </a>
+<aside class="a-sidebar no-print" id="sidebar" aria-hidden="true" aria-label="Site navigation">
+  <div class="a-sidebar-brand">
+    <a href="index.html" aria-label="Evolve — home"><img class="wm" src="assets/loader/evolve.png" alt="Evolve"></a>
+    <button class="nav-close" id="navClose" type="button" aria-label="Close menu">&times;</button>
+  </div>
   <nav class="a-nav" id="nav"><!-- injected: kind + domain registry --></nav>
-  <div class="a-sidebar-foot">EVOLVE · Empower with Knowledge</div>
+  <div class="a-sidebar-foot">
+    <img src="assets/logos/brand/asure_wordmark.png" alt="Asure">
+    <span>Asure Design Studio</span>
+  </div>
 </aside>
+<div class="nav-scrim" id="navScrim" hidden></div>
 
 <div class="a-main">
 
   <header class="a-topbar no-print">
-    <div class="a-hero" id="crumb">AI Research &amp; Innovation</div>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu"
+            aria-expanded="false" aria-controls="sidebar"><span></span><span></span><span></span></button>
+    <a class="topbar-brand" href="index.html" aria-label="Evolve — home"><img src="assets/loader/evolve.png" alt="Evolve"></a>
     <div class="a-topbar-spacer"></div>
-    <span class="a-pill" id="pillCount" style="min-width:118px">52 in catalogue</span>
     <a class="nl opt" href="#system">The&nbsp;system</a>
     <a class="nl opt" href="#kinds">What&nbsp;we&nbsp;build</a>
+    <a class="nl opt" href="#roadmap">Roadmap</a>
     <a class="nl" href="#ecosystem">All&nbsp;work</a>
-    <button class="btn icon ghost" id="themeBtn" title="Toggle theme" aria-label="Toggle theme"></button>
+    <a class="nl opt" href="#contact">Contact</a>
+    <span class="a-pill" id="pillCount" style="min-width:118px">52 in catalogue</span>
   </header>
 
   <main class="a-view">
   <div class="a-content">
 
 <!-- ============================== HERO ============================== -->
-<section class="band tall" id="top">
+<section class="band tall has-video" id="top">
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+         poster="assets/hero/hero-bg-poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="assets/hero/hero-bg.mp4" type="video/mp4">
+  </video>
+  <div class="hero-veil" aria-hidden="true"></div>
   <div class="bg-grid"></div>
-  <div class="glow" style="width:620px;height:620px;background:#7C5CFF;left:-140px;top:-160px"></div>
-  <div class="glow" style="width:520px;height:520px;background:#00D4FF;right:-120px;bottom:-180px;opacity:.32"></div>
   <canvas id="heroCanvas" aria-hidden="true"
-          style="position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.85"></canvas>
+          style="position:absolute;inset:0;width:100%;height:100%;z-index:2;opacity:.85"></canvas>
   <div class="scrim-l" aria-hidden="true"></div>
 
-  <div style="max-width:1100px">
+  <div class="hero-copy" style="max-width:1100px">
     <div class="eyebrow-rule">Asure Design Studio</div>
     <h1 class="d1">AI<br><span class="g-primary">Asure&nbsp;Intelligence</span></h1>
-    <p class="lede">Intelligence built inside the studio, for the studio — not bolted on from outside.
-      The intent isn’t to automate architecture; it’s to clear room for it — less time lost to the
-      mechanical, more spent on the work that needs judgement. And a clear direction for where
-      architecture and intelligence go next.</p>
-    <div style="margin-top:38px;display:flex;gap:12px;flex-wrap:wrap">
-      <a class="btn primary lg" href="#ecosystem">See all 52</a>
-      <a class="btn lg" href="#roadmap">The roadmap</a>
+    <p class="lede">Intelligence built inside the studio, for the studio — not bolted on from
+      outside. Less time lost to the mechanical, more spent on the work that needs judgement.</p>
+    <div class="hero-actions">
+      <a class="btn primary hero-cta" href="#ecosystem">See the work</a>
+      <a class="btn hero-cta" href="#roadmap">The roadmap</a>
     </div>
   </div>
 </section>
@@ -223,6 +230,28 @@
   <h2 class="d1 rv"><span class="g-primary">One tool at a time.</span></h2>
   <p class="lede rv">Built inside a working architecture practice, against real projects,
     on our own hardware.</p>
+</section>
+
+<!-- ============================== CONTACT ==============================
+     PLACEHOLDER — item H1. Real details still to be pulled from asure.in
+     (awaiting Surya's go-ahead to fetch, or his pasted copy). Everything
+     marked TODO below is invented structure, not verified fact. -->
+<section class="band uikit" id="contact">
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,72px);align-items:start">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2 class="d2 rv" style="max-width:18ch">Talk to the studio.</h2>
+      <p class="lede" style="max-width:48ch">Placeholder copy. Replace with the positioning
+        line from asure.in once confirmed.</p>
+    </div>
+    <dl class="contact-list">
+      <div><dt>Studio</dt><dd>Asure Design Studio, Hyderabad</dd></div>
+      <div><dt>Email</dt><dd><a href="mailto:studio@asure.in">studio@asure.in</a></dd></div>
+      <div><dt>Web</dt><dd><a href="https://asure.in" rel="noopener">asure.in</a></dd></div>
+      <div><dt>Phone</dt><dd>TODO — not verified</dd></div>
+      <div><dt>Address</dt><dd>TODO — not verified</dd></div>
+    </dl>
+  </div>
 </section>
 
 <footer class="site-footer no-print">

@@ -21,15 +21,57 @@
   outline:2px solid #6748E8; outline-offset:2px; border-radius:4px;
 }
 
-/* --- mobile: content leads, sidebar steps aside ------------------------- */
-/* Below 900px the kit stacks the sidebar full-width above everything, so a
-   phone visitor scrolled the entire nav before reaching the hero. The sidebar
-   is hidden there instead. Nothing is lost: the "Kinds of tool" section filters
-   on tap, and the search box covers the rest. (A slide-in drawer was tried and
-   abandoned -- the kit's positioning could not be overridden reliably.) */
-@media (max-width:900px){
-  .a-app > .a-sidebar{ display:none }
-  .nav-toggle, .nav-scrim, .a-sidebar .nav-close{ display:none }
+/* --- navigation drawer -------------------------------------------------
+   The sidebar is off-canvas at EVERY width now, opened by the hamburger in
+   the topbar. An earlier attempt failed because it tried to keep the kit flex
+   child in flow; taking it out of flow with position:fixed sidesteps the kit
+   entirely, and .a-main becomes the only flex child, so it fills the width.
+   ---------------------------------------------------------------------- */
+body.a-app > .a-sidebar{
+  position:fixed; z-index:120; left:0; top:0; bottom:0;
+  width:min(300px,86vw); display:flex; flex-direction:column; overflow:auto;
+  transform:translateX(-102%); transition:transform .32s cubic-bezier(.4,0,.2,1);
+  border-right:1px solid var(--line);
+}
+body.a-app.nav-open > .a-sidebar{
+  transform:none; box-shadow:0 0 64px -14px rgba(16,45,70,.34);
+}
+.nav-scrim{
+  position:fixed; inset:0; z-index:110; background:rgba(16,24,32,.42);
+  opacity:0; pointer-events:none; transition:opacity .32s ease;
+}
+body.a-app.nav-open .nav-scrim{ opacity:1; pointer-events:auto }
+
+.nav-toggle{
+  display:grid; place-content:center; gap:5px; flex:none;
+  width:40px; height:40px; margin-right:4px; cursor:pointer;
+  border:1px solid var(--line); border-radius:10px;
+  background:transparent; color:inherit;
+}
+.nav-toggle span{
+  display:block; width:17px; height:2px; border-radius:2px; background:currentColor;
+  transition:transform .28s ease, opacity .18s ease;
+}
+body.a-app.nav-open .nav-toggle span:nth-child(1){ transform:translateY(7px) rotate(45deg) }
+body.a-app.nav-open .nav-toggle span:nth-child(2){ opacity:0 }
+body.a-app.nav-open .nav-toggle span:nth-child(3){ transform:translateY(-7px) rotate(-45deg) }
+
+.topbar-brand{ display:flex; align-items:center; flex:none }
+.topbar-brand img{ height:19px; width:auto; display:block }
+
+.a-sidebar-brand{ display:flex; align-items:center; justify-content:space-between; gap:12px }
+.a-sidebar-brand .wm{ height:20px; width:auto }
+.nav-close{
+  width:32px; height:32px; flex:none; cursor:pointer; font-size:21px; line-height:1;
+  border:1px solid var(--line); border-radius:8px; background:transparent; color:inherit;
+}
+.a-sidebar-foot{ display:flex; flex-direction:column; gap:6px; align-items:flex-start }
+.a-sidebar-foot img{ height:18px; width:auto; opacity:.9 }
+.a-sidebar-foot span{ font-size:11px; letter-spacing:.02em }
+
+@media (prefers-reduced-motion:reduce){
+  body.a-app > .a-sidebar, .nav-scrim{ transition:none }
+}
 }
 .nav-toggle, .nav-scrim, .a-sidebar .nav-close{ display:none }
 
@@ -65,3 +107,56 @@
 @media (max-width:720px){
   .site-footer .wrap{ grid-template-columns:1fr; gap:26px }
 }
+
+/* --- hero: full-bleed video under the parametric canvas -----------------
+   The clip is a pale grey particle wave whose density sits on the RIGHT —
+   the same side as the canvas spine. It is held back deliberately: reduced
+   opacity plus a paper wash, so it reads as texture and the cyan structure
+   stays the thing you look at. Hero only; nothing below inherits it.
+   ---------------------------------------------------------------------- */
+.band.tall.has-video{ position:relative; overflow:hidden }
+.hero-video{
+  position:absolute; z-index:0; inset:0;
+  width:100%; height:100%; object-fit:cover; object-position:center right;
+  opacity:.55; filter:saturate(.5) contrast(1.02); pointer-events:none;
+}
+.hero-veil{
+  position:absolute; z-index:1; inset:0; pointer-events:none;
+  background:
+    linear-gradient(90deg, var(--paper,#fff) 6%, rgba(255,255,255,.72) 34%, rgba(255,255,255,0) 68%),
+    linear-gradient(0deg,  var(--paper,#fff) 0%,  rgba(255,255,255,0) 26%);
+}
+.band.tall.has-video > .hero-copy{ position:relative; z-index:3 }
+.band.tall.has-video > .bg-grid{ z-index:1; opacity:.5 }
+.band.tall.has-video > .scrim-l{ z-index:2 }
+
+/* Copy sizing: the headline was set before there was anything behind it. */
+.band.tall.has-video .d1{ font-size:clamp(46px,6.4vw,92px); line-height:.94; letter-spacing:-.035em }
+.band.tall.has-video .lede{ max-width:54ch; font-size:clamp(16px,1.25vw,19px) }
+.hero-actions{ margin-top:34px; display:flex; gap:12px; flex-wrap:wrap }
+.hero-cta{ padding:12px 22px; font-size:15px; border-radius:10px }
+
+@media (max-width:900px){
+  .hero-video{ object-position:center }
+  .hero-veil{ background:linear-gradient(0deg, var(--paper,#fff) 4%, rgba(255,255,255,.55) 55%, rgba(255,255,255,.25) 100%) }
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-video{ display:none }
+}
+
+/* --- contact (placeholder, item H1) ------------------------------------- */
+.contact-list{ margin:0; border-top:1px solid var(--line) }
+.contact-list > div{ display:grid; grid-template-columns:92px 1fr; gap:18px;
+  padding:13px 0; border-bottom:1px solid var(--line) }
+.contact-list dt{ font-family:var(--f-mono,ui-monospace,monospace); font-size:10.5px;
+  text-transform:uppercase; letter-spacing:.1em; color:var(--muted) }
+.contact-list dd{ margin:0; font-size:14px }
+@media (max-width:760px){ #contact > div{ grid-template-columns:1fr !important } }
+
+/* Drawer internals: the nav scrolls, the Asure foot stays pinned to the
+   bottom. Without this the whole drawer scrolled and the foot fell below
+   the fold on a 900px-tall viewport. */
+body.a-app > .a-sidebar{ overflow:hidden }
+body.a-app > .a-sidebar > .a-nav{ flex:1 1 auto; min-height:0; overflow-y:auto }
+body.a-app > .a-sidebar > .a-sidebar-brand{ flex:none }
+body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }

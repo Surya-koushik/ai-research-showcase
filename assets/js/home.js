@@ -25,23 +25,26 @@
   };
 
   /* ---------------------------------------------------------------- chrome -- */
-  var themeBtn = $('#themeBtn');
-  function setTheme(t) {
-    document.documentElement.setAttribute('data-theme', t);
-    localStorage.setItem(STORE_KEY, t);
-    themeBtn.innerHTML = ICON(t === 'dark' ? 'sun' : 'moon');
-    if (window.__heroReload) window.__heroReload();
+  /* One theme, no toggle. Removed 2026-08-25 on Surya's instruction: light.css
+     and dala.css each force html/body with !important, so the dark path never
+     actually painted and the control was decorative. */
+  document.documentElement.setAttribute("data-theme", "light");
+
+  /* --- navigation drawer ------------------------------------------------ */
+  var navToggle = $("#navToggle"), navScrim = $("#navScrim"),
+      navClose = $("#navClose"), sidebar = $("#sidebar");
+  navScrim.hidden = false;               // markup ships it hidden so it cannot flash
+  function setNav(open) {
+    document.body.classList.toggle("nav-open", open);
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    sidebar.setAttribute("aria-hidden", open ? "false" : "true");
   }
-  /* This design was drawn dark-first. A preference stored before the redesign
-     should not silently open it in the weaker of the two themes. */
-  var STORE_KEY = 'ads_theme_v2';
-  /* Light is the default. The image system is drawn on a light canvas, so a
-     first-time visitor should land on the ground the artwork was made for.
-     A saved choice still wins. */
-  setTheme(localStorage.getItem(STORE_KEY) || 'light');
-  themeBtn.onclick = function () {
-    setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-  };
+  navToggle.onclick = function () { setNav(!document.body.classList.contains("nav-open")); };
+  navScrim.onclick  = function () { setNav(false); };
+  if (navClose) navClose.onclick = function () { setNav(false); };
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") setNav(false); });
+  $("#nav").addEventListener("click", function (e) { if (e.target.closest("a")) setNav(false); });
+
   $('#searchIc').innerHTML = ICON('search');
 
   /* ---------------------------------------------------------------- stats --- */
@@ -231,7 +234,6 @@
   $('#tbCount').textContent = PROJECTS.length + ' entries';
   $('#tbMeasured').textContent = measured.length + ' of ' + PROJECTS.length + ' measured';
   $('#tbRev').textContent = new Date().toISOString().slice(0, 10);
-  $('#crumb').title = 'AI Research & Innovation, ' + new Date().getFullYear();
 
   /* content is on screen; take the loader away */
   if(window.LOADER_DONE) window.LOADER_DONE();
