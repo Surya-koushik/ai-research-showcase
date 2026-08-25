@@ -23,6 +23,17 @@ mega-menu, 8 SketchUp integration icon row.
   number, one line, soft shadow, staggered scroll-in (90ms apart).
 - **E (kinds) — done.** Kind cards lost the generated diagram for a plain icon
   chip; 70ms stagger. "How the tools connect" removed along with its nav link.
+- **D (roadmap) — done.** Real programme spine from `04_Draft_Roadmap.md`:
+  Q1 Foundation / Q2 Workflows / Q3 Agents / Q4 The Loop, each with its actual
+  gate, plus year-two decisions held back deliberately. Convergence diagram
+  (reference 2) added. **Heads' note is a placeholder carrying a loud draft tag.**
+- **F (all tools) — done.** The 52-screenshot-card grid is replaced by a vertical
+  category rail (reference 6) beside indexed rows (reference 7/8). Each row
+  carries real product logos, a kind tag and status, and opens in place to say
+  what the tool does — item G3 — with its own page one click further.
+- **G (tool pages) — done.** No pages were hand-built: `tool.html?id=<id>` is the
+  CMS route and now wears the same chrome as the landing page — hamburger
+  drawer, EVOLVE wordmark, no theme toggle.
 - **H (contact) — placeholder only.** Section and nav link exist; phone and
   address are marked TODO pending asure.in.
 
@@ -59,7 +70,7 @@ mega-menu, 8 SketchUp integration icon row.
 | C1 | Rebuild as **cards with icons**, references 4 + 5 | Neat, clean, not crowded |
 | C2 | **Scroll-in load animation** on the cards | |
 
-## D. Roadmap — new layer
+## D. Roadmap — new layer  ✅ DONE 2026-08-25 (heads' note = placeholder)
 
 | # | Item | Notes |
 |---|---|---|
@@ -74,7 +85,7 @@ mega-menu, 8 SketchUp integration icon row.
 | E1 | Simple per-kind indication, references 4 + 5 | |
 | E2 | **"How the tools connect" — remove** | "if that is not needed, we can skip" |
 
-## F. All tools
+## F. All tools  ✅ DONE 2026-08-25
 
 | # | Item | Notes |
 |---|---|---|
@@ -84,7 +95,7 @@ mega-menu, 8 SketchUp integration icon row.
 | F4 | Where items are many, use a **numbered / indexed reference** | |
 | F5 | Clicking a tool opens a **dedicated page** | |
 
-## G. Tool pages
+## G. Tool pages  ✅ DONE 2026-08-25
 
 | # | Item | Notes |
 |---|---|---|
@@ -99,6 +110,19 @@ mega-menu, 8 SketchUp integration icon row.
 | H1 | **Contact section at the end**, content sourced from asure.in | Needs a fetch — see Q4 |
 
 ---
+
+## Finding 4 — two logo files are missing
+
+`assets/logos/software/` is missing **`rhino.svg`** and **`grasshopper.svg`**.
+Both 404 and fall back to a monogram letter, which breaks the "specific logos,
+never generic" rule in F3. Drop the two SVGs in at that path and they appear
+with no code change.
+
+## Finding 5 — tool.html loaded its stylesheets in a different order
+
+`tool.html` loaded `site-chrome.css` *before* `light.css`; `index.html` loads it
+last. Same files, opposite cascade — the tool page would silently drift from the
+landing page. Fixed by matching index.html.
 
 ## Finding 3 — light.css flattens every card
 

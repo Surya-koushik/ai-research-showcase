@@ -84,6 +84,15 @@
       '<p>' + k.blurb + '</p></a>';
   }).join('');
 
+  /* The explorer rail filters in place. #exRail is stable -- only its
+     innerHTML is replaced -- so one delegated listener is enough. */
+  document.getElementById('exRail').addEventListener('click', function (e) {
+    var tab = e.target.closest('[data-kind]');
+    if (!tab) return;
+    state.kind = tab.dataset.kind; state.domain = 'all';
+    renderNav(); renderAndReveal();
+  });
+
   /* Clicking a kind card scrolls to the grid with that filter applied. */
   $('#kindGrid').addEventListener('click', function (e) {
     var card = e.target.closest('[data-jump]');
@@ -182,31 +191,44 @@
     return true;
   }
 
-  function card(p) {
-    var ph = PLACEHOLDER(p, { code: true, mark: true });
-    var shot = (p.media && p.media.hero)
-      ? '<img src="' + p.media.hero + '" alt="" loading="lazy" ' +
-        'onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'">' +
-        PLACEHOLDER(p, { code: true, mark: true, hidden: true })
-      : ph;
-    /* A deck opens as a deck. Its own page leads with the slides, so the card
-       goes there rather than to a page of prose about a presentation. */
+  function row(p, i) {
     var km = kindMeta(p.kind);
-    return '<a class="tcard rv" href="tool.html?id=' + p.id + '" style="--kc:' + ACCENT[p.kind] + '">' +
-      '<div class="shot">' + shot +
-        '<span class="ktag">' + ICON(km.icon) + km.label + '</span>' +
-      '</div>' +
-      '<div class="meta">' +
-        '<div class="row1"><span class="code">' + p.code + '</span>' +
-          '<span class="st st-' + p.status + '"><i></i>' + STATUS[p.status].label + '</span></div>' +
-        '<h3>' + p.name + '</h3><p>' + p.tagline + '</p>' +
-        '<div class="foot"><span class="dom">' + domainMeta(p.domain).label + '</span></div>' +
-      '</div></a>';
+    var logos = (p.tech || []).slice(0, 4).map(function (t) { return logoImg(t, 16); }).join('');
+    var n = String(i + 1).length < 2 ? '0' + (i + 1) : String(i + 1);
+    return '<details class="trow rv" style="--kc:' + ACCENT[p.kind] + ';--d:' + Math.min(i * 26, 400) + 'ms">' +
+      '<summary>' +
+        '<span class="tr-i">' + n + '</span>' +
+        '<span class="tr-logos">' + logos + '</span>' +
+        '<span class="tr-name">' + p.name + '<em>' + p.tagline + '</em></span>' +
+        '<span class="tr-kind">' + km.label + '</span>' +
+        '<span class="tr-st st-' + p.status + '"><i></i>' + STATUS[p.status].label + '</span>' +
+        '<span class="tr-chev" aria-hidden="true"></span>' +
+      '</summary>' +
+      '<div class="tr-body">' +
+        '<p>' + (p.description || p.tagline) + '</p>' +
+        '<a class="tr-go" href="tool.html?id=' + p.id + '">Open ' + p.name + ' &rarr;</a>' +
+      '</div></details>';
+  }
+
+  /* Vertical category rail, reference 6. Counts come from the data, so a
+     kind that gains a tool needs no edit here. */
+  function renderRail() {
+    var el = document.getElementById('exRail');
+    if (!el) return;
+    el.innerHTML = KINDS.map(function (k) {
+      var n = k.id === 'all' ? PROJECTS.length : count(k.id);
+      return '<button type="button" class="ex-tab' + (state.kind === k.id ? ' is-on' : '') + '"' +
+        ' data-kind="' + k.id + '" style="--kc:' + (ACCENT[k.id] || 'var(--accent)') + '">' +
+        '<span class="ex-ic">' + ICON(k.icon || 'grid') + '</span>' +
+        '<span class="ex-l">' + k.label + '</span>' +
+        '<span class="ex-n">' + n + '</span></button>';
+    }).join('');
   }
 
   function render() {
     var list = PROJECTS.filter(match);
-    $('#grid').innerHTML = list.map(card).join('');
+    $('#grid').innerHTML = list.map(row).join('');
+    renderRail();
     $('#empty').style.display = list.length ? 'none' : 'block';
     renderScope(list.length);
     $('#pillCount').textContent = list.length === PROJECTS.length

@@ -75,8 +75,9 @@
 
   var sidebar =
     '<aside class="app-sidebar" aria-label="Project navigation">' +
-      '<div class="side-brand"><img src="assets/logos/brand/asure_wordmark_white.png" alt="Asure">' +
-        '<span>AI Research</span></div>' +
+      '<div class="side-brand">' +
+        '<a href="index.html" aria-label="Evolve \u2014 home"><img src="assets/loader/evolve.png" alt="Evolve"></a>' +
+        '<button class="nav-close" id="navClose" type="button" aria-label="Close menu">&times;</button></div>' +
       '<div class="side-label">Tool page</div><nav>' +
         SECTIONS.map(function (s, i) {
           return '<a class="side-link' + (i ? '' : ' active') + '" href="' + s[0] + '">' + s[1] + '</a>';
@@ -143,6 +144,10 @@
   /* ---- topbar ----------------------------------------------------------- */
   var topbar =
     '<header class="topbar"><div class="shell topbar-inner">' +
+      '<button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">' +
+        '<span></span><span></span><span></span></button>' +
+      '<a class="topbar-brand" href="index.html" aria-label="Evolve \u2014 home">' +
+        '<img src="assets/loader/evolve.png" alt="Evolve"></a>' +
       '<a class="topbar-title" href="#top">' + esc(p.code) + ' &middot; ' + esc(p.name) + '</a>' +
       '<nav class="topnav" aria-label="Primary">' +
         SECTIONS.slice(1).map(function (s) {
@@ -420,4 +425,28 @@
   }
 
   if (window.LOADER_DONE) window.LOADER_DONE();
+})();
+
+/* --- drawer, matching the landing page (added 2026-08-25) --------------
+   tool.js writes its chrome into #tp, so this runs after that innerHTML
+   assignment rather than on DOMContentLoaded. */
+(function () {
+  var toggle = document.getElementById('navToggle');
+  var side   = document.querySelector('.app-sidebar');
+  if (!toggle || !side) return;
+  var scrim = document.createElement('div');
+  scrim.className = 'nav-scrim';
+  document.body.appendChild(scrim);
+  function setNav(open) {
+    document.body.classList.toggle('nav-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    side.setAttribute('aria-hidden', open ? 'false' : 'true');
+  }
+  setNav(false);
+  toggle.addEventListener('click', function () { setNav(!document.body.classList.contains('nav-open')); });
+  scrim.addEventListener('click', function () { setNav(false); });
+  var close = document.getElementById('navClose');
+  if (close) close.addEventListener('click', function () { setNav(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setNav(false); });
+  side.addEventListener('click', function (e) { if (e.target.closest('a')) setNav(false); });
 })();
