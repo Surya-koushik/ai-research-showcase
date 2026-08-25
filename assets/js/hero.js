@@ -14,6 +14,14 @@
   const LOOP_MS = 26000, MOTION_SPEED = 1.0, FRAGMENT_DENSITY = 1.0, STRUCTURE_DENSITY = 1.0, DEPTH_STRENGTH = 1.0;
   const TAU = Math.PI * 2, VIOLET = [124, 92, 255], CYAN = [0, 212, 255];
 
+  /* Spine axis — the structure climbs left→right instead of running flat.
+   * Everything anchored to the flow (centreline, conversion point, its glow and
+   * gateway rings) reads its Y from axisYAtX so they stay on one line. */
+  const AXIS_X0 = .48, AXIS_X1 = 1.02, AXIS_Y0 = .63, AXIS_Y1 = .29;
+  const AXIS_SLOPE = (AXIS_Y1 - AXIS_Y0) / (AXIS_X1 - AXIS_X0);
+  const axisYAtX = xf => H * (AXIS_Y0 + (xf - AXIS_X0) * AXIS_SLOPE);
+  const axisTilt = () => Math.atan2((AXIS_Y1 - AXIS_Y0) * H, (AXIS_X1 - AXIS_X0) * W);
+
   let W = 0, H = 0, DPR = 1, fragments = [], pulses = [], ripples = [], bokeh = [];
   let frameTime = 0, lastFrameTime = 0, clickEnergy = 0, rafId = 0, running = false, visible = true;
   let rand = seededRandom(981273);
@@ -106,7 +114,7 @@
   function buildScene() {
     rand = seededRandom(Math.round(W * 19 + H * 43));
     fragments = []; pulses = []; bokeh = [];
-    const minDim = Math.min(W, H), conversionX = W * .48, conversionY = H * .50;
+    const minDim = Math.min(W, H), conversionX = W * .48, conversionY = axisYAtX(.48);
     const fragmentCount = Math.max(70, Math.round((W * H / 8200) * FRAGMENT_DENSITY));
     for (let i = 0; i < fragmentCount; i++) {
       const mode = rand(); let sx, sy;
@@ -143,7 +151,7 @@
   function drawBackground() {
     const dark = isDarkTheme();
     ctx.clearRect(0, 0, W, H); // transparent — blend over the page hero
-    const g1 = ctx.createRadialGradient(W * .48, H * .50, 0, W * .48, H * .50, Math.min(W, H) * .30);
+    const g1 = ctx.createRadialGradient(W * .48, axisYAtX(.48), 0, W * .48, axisYAtX(.48), Math.min(W, H) * .30);
     g1.addColorStop(0, dark ? "rgba(124,92,255,.10)" : "rgba(124,92,255,.055)");
     g1.addColorStop(.46, dark ? "rgba(0,212,255,.038)" : "rgba(0,212,255,.020)");
     g1.addColorStop(1, "rgba(0,0,0,0)");
@@ -168,8 +176,8 @@
     ctx.filter = "none"; ctx.restore();
   }
   function drawConversionField(loop) {
-    const dark = isDarkTheme(), x = W * .48, y = H * .50, minDim = Math.min(W, H);
-    ctx.save(); ctx.translate(x, y); ctx.rotate(Math.sin(loop * TAU) * .035);
+    const dark = isDarkTheme(), x = W * .48, y = axisYAtX(.48), minDim = Math.min(W, H);
+    ctx.save(); ctx.translate(x, y); ctx.rotate(axisTilt() + Math.sin(loop * TAU) * .035);
     for (let i = 0; i < 5; i++) {
       const pulse = .5 + .5 * Math.sin(loop * TAU * 2 + i * 1.3);
       const rx = minDim * (.018 + i * .010 + pulse * .0025), ry = minDim * (.062 + i * .017 + pulse * .006);
@@ -214,7 +222,7 @@
   function parametricCenterline(u, loop) {
     const x = lerp(W * .50, W * 1.02, u);
     const primary = Math.sin(u * TAU * 1.05 + loop * TAU * 2) * H * .045, secondary = Math.sin(u * TAU * 2.15 - loop * TAU) * H * .014;
-    return { x, y: H * .50 + primary + secondary, z: Math.sin(u * TAU * 1.30 + loop * TAU) * .45 };
+    return { x, y: axisYAtX(x / W) + primary + secondary, z: Math.sin(u * TAU * 1.30 + loop * TAU) * .45 };
   }
   function structurePoint(u, rail, loop) {
     const center = parametricCenterline(u, loop), railCount = 8, theta = rail / railCount * TAU;

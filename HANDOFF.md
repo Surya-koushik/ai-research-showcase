@@ -48,7 +48,7 @@ so the preference does not persist either. Same root cause area; fix with (b).
 
 ---
 
-## 2. COPY THE USER ASKED FOR — not yet done
+## 2. COPY THE USER ASKED FOR — DONE 2026-08-25
 
 The hero currently reads:
 
@@ -76,6 +76,19 @@ list. That list already lives in the stats row and the kinds section directly
 below; repeating it in the hero is the redundancy he is reacting to.
 
 Hero markup: `index.html`, `<section class="band tall" id="top">`.
+
+**Applied 2026-08-25.** Headline is now `AI` / `Asure Intelligence` on two lines
+(`.g-primary` on the second, no gradient text). The lede carries intent and
+direction only — no count, no plugin/dashboard/pipeline list. `meta description`,
+`og:description` and `twitter:description` were updated to match; the old
+`og:description` still quoted the retired headline.
+
+Deliberately **kept**: the `See all 52` CTA and the `52 in catalogue` topbar chip.
+Those are navigation labels, not prose, and the instruction was about the
+paragraph. Say the word and they go too.
+
+Also **still stale**: `dist/asure-showcase-dala.html` is a generated single-file
+bundle and now predates this copy. Regenerate it before shipping that artefact.
 The emphasis span is `.g-primary` (solid violet, 7.4:1 — do not reintroduce
 gradient text, it is a banned pattern).
 
