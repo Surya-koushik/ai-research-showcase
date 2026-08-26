@@ -530,3 +530,8 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
     padding-inline:calc((100vw - 1280px) / 2 + 64px);
   }
 }
+
+/* Hero video mirrored. Its particle density sits on the right, the same side
+   as the cyan canvas spine, so the two competed. Flipping moves the texture
+   to the left and gives the spine the right half to itself. */
+.hero-video{ transform:scaleX(-1) }
