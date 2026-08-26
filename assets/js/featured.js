@@ -14,7 +14,7 @@
 window.FEATURED = [
   {
     id: 'phoenix-l1',
-    img: 'assets/visuals/tool-hero-workflow-ads-l1.png', generated: false,
+    img: 'assets/visuals/featured/asure-certify', generated: true,
     why:   'The weekly Level-1 self-certification was a manual walkthrough of the model — slow, and only as consistent as whoever ran it that week.',
     what:  'A native Revit add-in that runs 22 model-health checks across 5 quality gates in a single click.',
     helps: 'Produces the pass/fail audit report automatically, so certification is a record rather than a recollection.',

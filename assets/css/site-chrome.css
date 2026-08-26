@@ -480,3 +480,25 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
 .fc-art{ display:block; margin:-24px -24px 18px; border-radius:14px 14px 0 0; overflow:hidden;
   background:var(--surface-2,#F7F8FB); border-bottom:1px solid var(--line) }
 .fc-art img{ display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover }
+
+/* ===================== FAQ (exhibition pass, item B3) ===================
+   Disclosure list, same mechanics as the tool buckets so the page teaches
+   one interaction rather than three. Answers stay inside 70ch.
+   ---------------------------------------------------------------------- */
+.faq{ display:flex; flex-direction:column; border-top:1px solid var(--line); margin-top:30px;
+  max-width:900px }
+.faq-q{ border-bottom:1px solid var(--line) }
+.faq-q > summary{
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+  padding:18px 4px; cursor:pointer; list-style:none;
+  font-size:16.5px; font-weight:600; letter-spacing:-.01em;
+}
+.faq-q > summary::-webkit-details-marker{ display:none }
+.faq-q > summary:hover{ color:var(--accent-deep,#5B2FD6) }
+.faq-a{ padding:0 4px 22px }
+.faq-a p{ margin:0; font-size:14.5px; line-height:1.68; color:var(--text-2,var(--ink-2));
+  max-width:70ch }
+.faq-a a{ color:var(--accent-deep,#5B2FD6); font-weight:600 }
+.faq-a a:hover{ text-decoration:underline }
+/* Anything not yet confirmed is marked, not smoothed over. */
+.faq-todo{ color:var(--amber-ink,#9A6B00) }
