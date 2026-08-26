@@ -12,13 +12,15 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="assets/logos/brand/og-cover.png">
 <link rel="icon" href="assets/logos/brand/favicon.png">
-<!-- Same load order as the landing page: the kit first so our radii win
-     globally, then the bridge last to re-point the kit's tokens. -->
+<!-- Same stylesheets, same order as index.html and tool_template.html: the kit
+     first so our radii win globally, then the bridge to re-point the kit's
+     tokens. assets/css/tool-page.css is gone -- it padded <body> for a fixed
+     232px sidebar and a 292px right rail, neither of which exists now that
+     tool.js renders the template's single-column app frame. -->
 <link rel="stylesheet" href="assets/vendor/asure-ui-kit/asure-ui.css">
 <link rel="stylesheet" href="assets/css/theme.css">
 <link rel="stylesheet" href="assets/css/deck.css">
 <link rel="stylesheet" href="assets/css/uikit-bridge.css">
-<link rel="stylesheet" href="assets/css/tool-page.css">
 <link rel="stylesheet" href="assets/css/loader.css">
 <link rel="stylesheet" href="assets/css/visuals-scroll.css">
 <link rel="stylesheet" href="assets/css/light.css">
@@ -28,7 +30,11 @@
 <script src="assets/js/auth.js"></script>
 <noscript><style>.evo-loader{display:none!important}</style></noscript>
 </head>
-<body class="toolpage">
+<!-- The kit's app frame, exactly as index.html and tool_template.html declare
+     it. The chrome is real markup rather than an innerHTML string so it paints
+     on the first frame, and so the `body.a-app > .a-sidebar` rules in
+     site-chrome.css still match. tool.js fills #nav and #tp. -->
+<body class="a-app deck uikit">
 <a class="skip-link" href="#top">Skip to content</a>
 
 <!-- Asure -> Evolve opening. In the markup, not injected, so it paints on the
@@ -51,9 +57,45 @@
 </div>
 <!-- /evo -->
 
-<div id="tp"><!-- tool page injected by assets/js/tool.js --></div>
+<aside class="a-sidebar no-print" id="sidebar" aria-hidden="true" aria-label="Site navigation">
+  <div class="a-sidebar-brand">
+    <a href="index.html" aria-label="Evolve — home"><img class="wm" src="assets/loader/evolve.png" alt="Evolve"></a>
+    <button class="nav-close" id="navClose" type="button" aria-label="Close menu">&times;</button>
+  </div>
+  <nav class="a-nav" id="nav"><!-- injected by tool.js: this tool's sections --></nav>
+  <div class="a-sidebar-foot">
+    <img src="assets/logos/brand/asure_wordmark.png" alt="Asure">
+    <span>Asure Design Studio</span>
+  </div>
+</aside>
+<div class="nav-scrim" id="navScrim" hidden></div>
 
-<div class="lightbox" id="lightbox"><div class="x" id="lbClose"></div><img id="lbImg" alt=""></div>
+<div class="a-main">
+
+  <header class="a-topbar no-print">
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu"
+            aria-expanded="false" aria-controls="sidebar"><span></span><span></span><span></span></button>
+    <a class="topbar-brand" href="index.html" aria-label="Evolve — home"><img src="assets/loader/evolve.png" alt="Evolve"></a>
+    <div class="a-topbar-spacer"></div>
+    <!-- tool.js inserts this tool's section links immediately before the
+         back link, so the bar only ever offers sections that exist. -->
+    <a class="nl" id="backLink" href="index.html#ecosystem">&larr;&nbsp;All&nbsp;work</a>
+  </header>
+
+  <main class="a-view">
+  <div class="a-content">
+    <div id="tp"><!-- tool page injected by assets/js/tool.js --></div>
+  </div>
+  </main>
+
+</div>
+
+<!-- theme.css opens this on `.open`. tool.js used to toggle `.on`, which no
+     stylesheet has ever matched, so clicking a screenshot did nothing. -->
+<div class="lightbox" id="lightbox">
+  <div class="x" id="lbClose" role="button" tabindex="0" aria-label="Close">&times;</div>
+  <img id="lbImg" alt="">
+</div>
 
 <script src="assets/js/loader.js"></script>
 <script src="assets/vendor/asure-ui-kit/asure-illustrations.js"></script>

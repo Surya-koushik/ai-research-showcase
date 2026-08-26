@@ -738,3 +738,92 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
   .vgrid{ grid-template-columns:1fr }
   .vbody{ padding:18px }
 }
+
+/* ==========================================================================
+   TOOL PAGE  (2026-08-26)
+   --------------------------------------------------------------------------
+   tool_template.html carried these rules in a private <style> block, so the
+   live pages rendered by assets/js/tool.js -- which now emit the template's
+   markup -- had no styles for them at all. They move here verbatim, minus the
+   template's two off-scale inline font sizes, so template and live page are
+   fed by one stylesheet and cannot drift again.
+
+   Nothing here introduces a font size outside 10 11 12 14 16 19 22 27 38 60 92.
+   ========================================================================== */
+
+/* Bare .d1 resolves to clamp(38px,6.4vw,104px) -- set for a two-word landing
+   headline, not for a tool name like "ADS AI + BIM Build Tracker". The cap
+   drops to 60px, which is the step below 92 on the declared scale; the floor
+   stays at 38, also on the scale. */
+.band.tall .tpl-hero .d1{ font-size:clamp(38px,5.2vw,60px); line-height:.98; letter-spacing:-.032em }
+
+.tp-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px }
+.tp-tag, .tp-status{
+  display:inline-flex; align-items:center; gap:7px; padding:5px 11px; border-radius:999px;
+  border:1px solid var(--line-2); font-size:12px; color:var(--text-2);
+}
+.tp-status{ color:var(--verdant); border-color:color-mix(in srgb,var(--verdant) 30%,transparent) }
+.tp-status i{ width:6px; height:6px; border-radius:50%; background:currentColor }
+.tp-tag img{ width:14px; height:14px; object-fit:contain }
+
+.tp-gallery{ margin:34px 0 0 }
+.tp-stage{
+  position:relative; aspect-ratio:16/9; overflow:hidden; border-radius:14px;
+  border:1px solid var(--line); background:var(--surface-2);
+}
+.tp-stage img, .tp-stage video{ width:100%; height:100%; object-fit:contain; display:block }
+/* A live demo is the stage for a deck, so the frame fills it the same way. */
+.tp-stage iframe{ width:100%; height:100%; border:0; display:block; background:var(--paper,#fff) }
+/* display:block above out-specifies the UA [hidden] rule, so the inactive
+   <video> kept a full stage height and pushed the image out of view. */
+.tp-stage [hidden]{ display:none !important }
+.tp-arrow{
+  position:absolute; z-index:3; top:50%; translate:0 -50%; width:38px; height:38px; cursor:pointer;
+  border:1px solid var(--line-2); border-radius:50%; background:var(--paper); color:var(--text);
+  font-size:19px; line-height:1; display:grid; place-items:center;
+  transition:border-color .18s ease, color .18s ease;
+}
+.tp-arrow:hover{ border-color:var(--accent); color:var(--accent) }
+.tp-arrow.prev{ left:14px } .tp-arrow.next{ right:14px }
+.tp-caption{
+  display:flex; justify-content:space-between; align-items:baseline; gap:22px;
+  padding:15px 2px; font-size:14px; color:var(--text-2);
+}
+.tp-count{ font-family:var(--f-mono); font-size:11px; color:var(--text-3); white-space:nowrap }
+.tp-count b{ color:var(--text) }
+.tp-thumbs{ display:flex; gap:9px; overflow-x:auto; padding-bottom:4px }
+.tp-thumbs:empty{ display:none }
+.tp-thumbs button{
+  flex:none; width:104px; aspect-ratio:16/9; padding:0; cursor:pointer; overflow:hidden;
+  border:1px solid var(--line); border-radius:8px; background:var(--surface-2); opacity:.62;
+  color:var(--text-2); font-size:14px;
+  transition:opacity .18s ease, border-color .18s ease;
+}
+.tp-thumbs button img{ width:100%; height:100%; object-fit:cover; display:block }
+.tp-thumbs button:hover{ opacity:.85 }
+.tp-thumbs button[aria-current="true"]{ opacity:1; border-color:var(--accent) }
+
+.tp-how{ display:grid; grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);
+  gap:clamp(30px,5vw,72px); align-items:start; margin-top:8px }
+.tp-how-lede{ margin:0; font-size:clamp(16px,1.7vw,19px); line-height:1.5;
+  letter-spacing:-.012em; color:var(--text); max-width:60ch }
+.tp-meta{ margin:0; border-top:1px solid var(--line) }
+.tp-meta > div{ display:grid; grid-template-columns:96px 1fr; gap:18px;
+  padding:13px 0; border-bottom:1px solid var(--line) }
+.tp-meta dt{ font-family:var(--f-mono); font-size:10px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--text-3) }
+.tp-meta dd{ margin:0; font-size:14px; color:var(--text-2) }
+
+/* Challenges / lessons / next steps are short statements, so they sit in the
+   same quiet note block the rest of the site uses for caveats. */
+.a-note ul{ margin:10px 0 0; padding-left:18px }
+.a-note li{ margin-top:6px; line-height:1.6 }
+
+/* The gallery figure and the workflow drawing both scroll their own overflow
+   rather than widening the page. */
+.tp-gallery{ max-width:100%; min-width:0 }
+
+@media (max-width:820px){
+  .tp-how{ grid-template-columns:1fr }
+  .tp-arrow{ width:32px; height:32px }
+}
