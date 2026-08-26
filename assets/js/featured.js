@@ -14,6 +14,7 @@
 window.FEATURED = [
   {
     id: 'phoenix-l1',
+    img: 'assets/visuals/tool-hero-workflow-ads-l1.png', generated: false,
     why:   'The weekly Level-1 self-certification was a manual walkthrough of the model — slow, and only as consistent as whoever ran it that week.',
     what:  'A native Revit add-in that runs 22 model-health checks across 5 quality gates in a single click.',
     helps: 'Produces the pass/fail audit report automatically, so certification is a record rather than a recollection.',
@@ -21,6 +22,7 @@ window.FEATURED = [
   },
   {
     id: 'h10-dashboard',
+    img: 'assets/visuals/featured/asure-timeline', generated: true,
     why:   'Clients could not see where their project or their model actually stood without asking someone.',
     what:  'A live dashboard showing the stage timeline, discipline status, and a plain explanation of how the delivery works.',
     helps: 'The client reads it directly, in the studio’s own language, instead of waiting for a status email.',
@@ -28,24 +30,28 @@ window.FEATURED = [
   },
   {
     id: 'architecture-boq-template',
+    img: 'assets/visuals/featured/asure-quantities', generated: true,
     why:   'Quantities were pulled out of the model by hand and then retyped into BOQ lines.',
     what:  'Extracts quantities from native Revit parameters, classifies them against Uniclass, and formats structured BOQ lines for fabric, finishes, openings and joinery.',
     helps: 'The model becomes the source of the quantity document rather than something you transcribe from.'
   },
   {
     id: 'ads-bridge',
+    img: 'assets/visuals/featured/asure-bridge', generated: true,
     why:   'Every new automation needed its own bespoke way into Revit.',
     what:  'A local MCP server exposing the pyRevit ADS_Bridge HTTP API — query the model, run IronPython, set parameters, run pipelines, take screenshots.',
     helps: 'One connection the other tools stand on. This is plumbing, and it is why the rest of the catalogue could be built quickly.'
   },
   {
     id: 'ai-team-hub',
+    img: 'assets/visuals/featured/asure-board', generated: true,
     why:   'AI work was spread across chats, folders, and people’s heads.',
     what:  'A single interface for overview, work priorities, requirements, team, procedures, tools and settings.',
     helps: 'One place to see what is being built and who is on it.'
   },
   {
     id: 'feasibility-massing-tool',
+    img: 'assets/visuals/featured/asure-massing', generated: true,
     why:   'Early feasibility meant redrawing the same site tests by hand for every option.',
     what:  'Draw a site in the browser, apply NBC and Telangana GO rules, generate massing, export geometry to Rhino/Grasshopper, and download a PPTX deck.',
     helps: 'Compresses the front end of a project — from site outline to something you can put in front of a client.'

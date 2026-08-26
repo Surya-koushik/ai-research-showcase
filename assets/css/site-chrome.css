@@ -474,3 +474,9 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
   .bk-b{ display:none }
   .bk-list{ padding-left:34px }
 }
+
+/* Featured-card art. Abstract illustrations, not screenshots — see
+   assets/visuals/featured/SOURCES.md for provenance. */
+.fc-art{ display:block; margin:-24px -24px 18px; border-radius:14px 14px 0 0; overflow:hidden;
+  background:var(--surface-2,#F7F8FB); border-bottom:1px solid var(--line) }
+.fc-art img{ display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover }

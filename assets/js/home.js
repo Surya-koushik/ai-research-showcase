@@ -244,7 +244,17 @@
       ? '<p class="fc-hours"><b>' + f.hours.before + 'h</b> &rarr; <b>' + f.hours.after + 'h</b>' +
         ' a week' + (f.hours.draft ? ' <em>&middot; draft figure, still being confirmed</em>' : '') + '</p>'
       : '';
+    /* Generated art is served as <picture> with a webp first; the real
+       Phoenix capture is a plain png. See assets/visuals/featured/SOURCES.md. */
+    var art = '';
+    if (f.img) {
+      art = f.generated
+        ? '<picture class="fc-art"><source srcset="' + f.img + '.webp" type="image/webp">' +
+          '<img src="' + f.img + '.png" alt="" loading="lazy" decoding="async"></picture>'
+        : '<picture class="fc-art"><img src="' + f.img + '" alt="" loading="lazy" decoding="async"></picture>';
+    }
     return '<a class="fcard rv" href="' + href(p) + '" style="--kc:' + ACCENT[p.kind] + '">' +
+      art +
       '<div class="fc-top"><span class="fc-kind">' + km.label + '</span>' +
         '<span class="fc-logos">' + logos + '</span></div>' +
       '<h4>' + p.name + '</h4>' +
