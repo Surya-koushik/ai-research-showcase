@@ -388,3 +388,89 @@ body.toolpage .topnav a{ white-space:nowrap }
 .embed-slot p{ margin:12px 0 0; font-size:14px; line-height:1.62; color:var(--text-2,var(--ink-2)); max-width:66ch }
 .embed-slot code{ font-family:var(--f-mono,ui-monospace,monospace); font-size:12.5px;
   background:var(--surface-3,#eef0f5); padding:2px 6px; border-radius:4px }
+
+/* ================= EXHIBITION PASS — reading container =================
+   The page had NO max-width: at 1440 the content measured 1440px wide, a 0%
+   side margin, and it kept stretching on anything wider. The kit ships
+   `.a-content.is-capped` for exactly this and it was never applied, with
+   --content-max sitting at 1500px.
+
+   1280px cap follows the reference layout in UI_10k §9 (max canvas 1280 ->
+   content area ~1204px). At 1440 that yields 80px of true outer margin per
+   side before the band's own gutter, so the page stops running edge to edge.
+   ---------------------------------------------------------------------- */
+body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
+
+/* With the cap providing outer margin, the band gutter no longer has to do
+   that job alone — so it drops from clamp(22px,8vw,120px). */
+.band{ padding-inline:clamp(20px,5vw,64px) }
+
+/* ============ EXHIBITION PASS — featured tools + kind buckets ============
+   The flat 52-row list was 4,248px, 40% of the whole page. Six tools now
+   carry the story; the other 46 sit in collapsed buckets so the shape of the
+   catalogue is visible without reading all of it.
+   ---------------------------------------------------------------------- */
+.feat{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:clamp(16px,1.6vw,22px); margin-top:34px;
+}
+.fcard{
+  display:flex; flex-direction:column; padding:24px; border-radius:14px;
+  border:1px solid var(--line); background:var(--surface,#fff);
+  box-shadow:0 1px 2px rgba(16,45,70,.05);
+  transition:transform .22s ease, border-color .22s ease;
+}
+.fcard:hover{ transform:translateY(-2px); border-color:var(--line-2) }
+.fc-top{ display:flex; align-items:center; gap:10px; margin-bottom:12px }
+.fc-kind{
+  padding:3px 8px; border-radius:5px; font-family:var(--f-mono,ui-monospace,monospace);
+  font-size:10px; letter-spacing:.07em; text-transform:uppercase;
+  background:color-mix(in srgb, var(--kc,#6A3FE0) 12%, transparent); color:var(--kc,#6A3FE0);
+}
+.fc-logos{ display:flex; gap:5px; margin-left:auto }
+.fc-logos img{ width:15px; height:15px; object-fit:contain }
+.fcard h4{ margin:0 0 14px; font-size:18px; font-weight:800; letter-spacing:-.015em; line-height:1.25 }
+.fc-body{ margin:0 0 14px }
+.fc-body dt{
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:9.5px; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--muted,var(--ink-3)); margin-top:12px;
+}
+.fc-body dt:first-child{ margin-top:0 }
+.fc-body dd{ margin:4px 0 0; font-size:13.5px; line-height:1.6; color:var(--text-2,var(--ink-2)) }
+.fc-hours{
+  margin:0 0 14px; padding:9px 12px; border-radius:8px; font-size:12.5px;
+  background:var(--surface-2,#F7F8FB); color:var(--text-2,var(--ink-2));
+}
+.fc-hours b{ color:var(--text,var(--ink)) }
+.fc-hours em{ font-style:normal; color:var(--muted,var(--ink-3)); font-size:11px }
+.fc-go{ margin-top:auto; font-size:13px; font-weight:600; color:var(--accent-deep,#5B2FD6) }
+.fcard:hover .fc-go{ text-decoration:underline }
+
+.buckets{ display:flex; flex-direction:column; border-top:1px solid var(--line); margin-top:26px }
+.bucket{ border-bottom:1px solid var(--line) }
+.bucket > summary{
+  display:grid; grid-template-columns:22px 132px minmax(0,1fr) 44px 18px;
+  align-items:center; gap:14px; padding:15px 4px; cursor:pointer; list-style:none;
+}
+.bucket > summary::-webkit-details-marker{ display:none }
+.bucket > summary:hover{ background:var(--glass,rgba(16,45,70,.035)) }
+.bk-ic{ display:grid; place-items:center; color:var(--kc,#6A3FE0) }
+.bk-ic svg{ width:16px; height:16px }
+.bk-l{ font-size:15px; font-weight:700; letter-spacing:-.01em }
+.bk-b{ font-size:13px; color:var(--muted,var(--ink-3));
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+.bk-n{ justify-self:end; font-family:var(--f-mono,ui-monospace,monospace);
+  font-size:11px; color:var(--muted,var(--ink-3)) }
+.bk-list{ list-style:none; margin:0; padding:0 4px 18px 168px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:2px 24px }
+.bk-list a{ display:block; padding:7px 0 }
+.bk-list b{ display:block; font-size:13.5px; font-weight:600 }
+.bk-list span{ display:block; font-size:12px; color:var(--muted,var(--ink-3));
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+.bk-list a:hover b{ color:var(--accent-deep,#5B2FD6) }
+
+@media (max-width:820px){
+  .bucket > summary{ grid-template-columns:20px minmax(0,1fr) 40px 16px }
+  .bk-b{ display:none }
+  .bk-list{ padding-left:34px }
+}

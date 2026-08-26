@@ -86,7 +86,9 @@
 
   /* The explorer rail filters in place. #exRail is stable -- only its
      innerHTML is replaced -- so one delegated listener is enough. */
-  document.getElementById('exRail').addEventListener('click', function (e) {
+  /* #exRail was removed in the exhibition pass; guard so this cannot throw. */
+  var railEl = document.getElementById('exRail');
+  if (railEl) railEl.addEventListener('click', function (e) {
     var tab = e.target.closest('[data-kind]');
     if (!tab) return;
     state.kind = tab.dataset.kind; state.domain = 'all';
@@ -230,11 +232,65 @@
     }).join('');
   }
 
+  /* Featured tools carry the story; everything else is bucketed by kind.
+     Copy comes from window.FEATURED, which derives every line from the
+     tool's own content record — see assets/js/featured.js. */
+  function featuredCard(f) {
+    var p = PROJECTS.filter(function (x) { return x.id === f.id; })[0];
+    if (!p) return '';
+    var km = kindMeta(p.kind);
+    var logos = (p.tech || []).slice(0, 4).map(function (t) { return logoImg(t, 15); }).join('');
+    var hrs = f.hours
+      ? '<p class="fc-hours"><b>' + f.hours.before + 'h</b> &rarr; <b>' + f.hours.after + 'h</b>' +
+        ' a week' + (f.hours.draft ? ' <em>&middot; draft figure, still being confirmed</em>' : '') + '</p>'
+      : '';
+    return '<a class="fcard rv" href="' + href(p) + '" style="--kc:' + ACCENT[p.kind] + '">' +
+      '<div class="fc-top"><span class="fc-kind">' + km.label + '</span>' +
+        '<span class="fc-logos">' + logos + '</span></div>' +
+      '<h4>' + p.name + '</h4>' +
+      '<dl class="fc-body">' +
+        '<dt>The problem</dt><dd>' + f.why + '</dd>' +
+        '<dt>What it does</dt><dd>' + f.what + '</dd>' +
+        '<dt>What it changes</dt><dd>' + f.helps + '</dd>' +
+      '</dl>' + hrs +
+      '<span class="fc-go">Open ' + p.name + ' &rarr;</span></a>';
+  }
+
+  function renderFeatured() {
+    var host = document.getElementById('featured');
+    if (!host || !window.FEATURED) return;
+    host.innerHTML = FEATURED.map(featuredCard).filter(Boolean).join('');
+  }
+
+  function renderBuckets(list) {
+    var host = document.getElementById('buckets');
+    if (!host) return;
+    var featuredIds = (window.FEATURED || []).map(function (f) { return f.id; });
+    var rest = list.filter(function (p) { return featuredIds.indexOf(p.id) === -1; });
+    var open = !!state.q || state.kind !== 'all';
+    host.innerHTML = KINDS.filter(function (k) { return k.id !== 'all'; }).map(function (k) {
+      var items = rest.filter(function (p) { return p.kind === k.id; });
+      if (!items.length) return '';
+      return '<details class="bucket rv"' + (open ? ' open' : '') +
+        ' style="--kc:' + ACCENT[k.id] + '">' +
+        '<summary><span class="bk-ic">' + ICON(k.icon || 'grid') + '</span>' +
+          '<span class="bk-l">' + k.label + '</span>' +
+          '<span class="bk-b">' + k.blurb + '</span>' +
+          '<span class="bk-n">' + items.length + '</span>' +
+          '<span class="tr-chev" aria-hidden="true"></span></summary>' +
+        '<ul class="bk-list">' + items.map(function (p) {
+          return '<li><a href="' + href(p) + '"><b>' + p.name + '</b>' +
+                 '<span>' + p.tagline + '</span></a></li>';
+        }).join('') + '</ul></details>';
+    }).join('');
+  }
+
   function render() {
     var list = PROJECTS.filter(match);
-    $('#grid').innerHTML = list.map(row).join('');
-    renderRail();
-    $('#empty').style.display = list.length ? 'none' : 'block';
+    renderFeatured();
+    renderBuckets(list);
+    var emptyEl = document.getElementById('empty');
+    if (emptyEl) emptyEl.style.display = list.length ? 'none' : 'block';
     renderScope(list.length);
     $('#pillCount').textContent = list.length === PROJECTS.length
       ? PROJECTS.length + ' in catalogue'
