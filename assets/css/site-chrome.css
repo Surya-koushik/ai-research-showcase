@@ -72,8 +72,6 @@ body.a-app.nav-open .nav-toggle span:nth-child(3){ transform:translateY(-7px) ro
 @media (prefers-reduced-motion:reduce){
   body.a-app > .a-sidebar, .nav-scrim{ transition:none }
 }
-}
-.nav-toggle, .nav-scrim, .a-sidebar .nav-close{ display:none }
 
 /* --- landing footer ----------------------------------------------------- */
 /* The tool page had a footer; the landing -- the main page -- ended on the
