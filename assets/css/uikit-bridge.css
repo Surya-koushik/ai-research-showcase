@@ -110,7 +110,7 @@
 /* ---------------------------------------------------------------- notes ----- */
 /* The kit's honesty callout, which is exactly what our unmeasured and draft
    figures need. Given a little more air than the dense-UI default. */
-.uikit .a-note{padding:12px 15px;font-size:13px;line-height:1.55;border-radius:var(--r-md)}
+.uikit .a-note{padding:12px 15px;font-size:14px;line-height:1.55;border-radius:var(--r-md)}
 .uikit .a-note .lb{font-family:var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
 
 /* ---------------------------------------------------------------- light ----- */
@@ -191,13 +191,13 @@ a{ color:inherit; }
 .a-nav-item.is-active{background:var(--surface-3);color:var(--text)}
 .a-nav-item .ic{display:grid;place-items:center;width:16px;height:16px;flex:none;opacity:.75}
 .a-nav-item .ic svg{width:15px;height:15px}
-.a-nav-item .n{margin-left:auto;font-family:var(--f-mono);font-size:10.5px;color:var(--muted)}
+.a-nav-item .n{margin-left:auto;font-family:var(--f-mono);font-size:10px;color:var(--muted)}
 .a-nav-item.is-active .n{color:var(--text-3)}
 .a-nav-sect .a-label{color:var(--text-3)}   /* --muted only reached 2.9:1 here */
 
 /* Topbar: the kit's near-white bar would punch a hole in a dark page. */
 .a-topbar{background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom-color:var(--line)}
-.a-topbar .a-hero{color:var(--text);font-size:15px;font-weight:700;letter-spacing:-.01em}
+.a-topbar .a-hero{color:var(--text);font-size:16px;font-weight:700;letter-spacing:-.01em}
 .a-topbar .nl{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--text-3);text-decoration:none}
 .a-topbar .nl:hover{color:var(--text)}

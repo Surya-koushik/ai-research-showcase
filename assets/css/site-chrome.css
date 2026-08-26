@@ -10,7 +10,7 @@
   position:fixed; top:10px; left:10px; z-index:10000;
   transform:translateY(-160%); transition:transform .16s ease;
   background:#102F4C; color:#fff; padding:10px 16px; border-radius:8px;
-  font:600 13px/1 'Inter','Segoe UI',system-ui,sans-serif; text-decoration:none;
+  font:600 14px/1 'Inter','Segoe UI',system-ui,sans-serif; text-decoration:none;
 }
 .skip-link:focus{ transform:none; outline:2px solid #6748E8; outline-offset:2px }
 
@@ -62,7 +62,7 @@ body.a-app.nav-open .nav-toggle span:nth-child(3){ transform:translateY(-7px) ro
 .a-sidebar-brand{ display:flex; align-items:center; justify-content:space-between; gap:12px }
 .a-sidebar-brand .wm{ height:20px; width:auto }
 .nav-close{
-  width:32px; height:32px; flex:none; cursor:pointer; font-size:21px; line-height:1;
+  width:32px; height:32px; flex:none; cursor:pointer; font-size:22px; line-height:1;
   border:1px solid var(--line); border-radius:8px; background:transparent; color:inherit;
 }
 .a-sidebar-foot{ display:flex; flex-direction:column; gap:6px; align-items:flex-start }
@@ -87,14 +87,14 @@ body.a-app.nav-open .nav-toggle span:nth-child(3){ transform:translateY(-7px) ro
 }
 .site-footer .brandcol img{ height:26px; width:auto; display:block; margin-bottom:14px }
 .site-footer .brandcol p{
-  margin:0; max-width:38ch; font-size:13.5px; line-height:1.6; color:var(--text-3);
+  margin:0; max-width:38ch; font-size:14px; line-height:1.6; color:var(--text-3);
 }
 .site-footer h4{
   margin:0 0 12px; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
   color:var(--text-3); font-weight:600;
 }
 .site-footer ul{ list-style:none; margin:0; padding:0; display:grid; gap:9px }
-.site-footer a, .site-footer li{ font-size:13.5px; color:var(--text-2); text-decoration:none }
+.site-footer a, .site-footer li{ font-size:14px; color:var(--text-2); text-decoration:none }
 .site-footer a:hover{ color:var(--text) }
 .site-footer .foot-base{
   max-width:1180px; margin:clamp(30px,4vw,52px) auto 0; padding-inline:clamp(22px,5vw,72px);
@@ -132,7 +132,7 @@ body.a-app.nav-open .nav-toggle span:nth-child(3){ transform:translateY(-7px) ro
 .band.tall.has-video .d1{ font-size:clamp(46px,6.4vw,92px); line-height:.94; letter-spacing:-.035em }
 .band.tall.has-video .lede{ max-width:54ch; font-size:clamp(16px,1.25vw,19px) }
 .hero-actions{ margin-top:34px; display:flex; gap:12px; flex-wrap:wrap }
-.hero-cta{ padding:12px 22px; font-size:15px; border-radius:10px }
+.hero-cta{ padding:12px 22px; font-size:16px; border-radius:10px }
 
 @media (max-width:900px){
   .hero-video{ object-position:center }
@@ -146,7 +146,7 @@ body.a-app.nav-open .nav-toggle span:nth-child(3){ transform:translateY(-7px) ro
 .contact-list{ margin:0; border-top:1px solid var(--line) }
 .contact-list > div{ display:grid; grid-template-columns:92px 1fr; gap:18px;
   padding:13px 0; border-bottom:1px solid var(--line) }
-.contact-list dt{ font-family:var(--f-mono,ui-monospace,monospace); font-size:10.5px;
+.contact-list dt{ font-family:var(--f-mono,ui-monospace,monospace); font-size:10px;
   text-transform:uppercase; letter-spacing:.1em; color:var(--muted) }
 .contact-list dd{ margin:0; font-size:14px }
 @media (max-width:760px){ #contact > div{ grid-template-columns:1fr !important } }
@@ -228,7 +228,7 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
 }
 .heads-note figcaption{ margin-top:20px; display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline }
 .hn-name{ font-weight:700; font-size:14px }
-.hn-role{ font-size:12.5px; color:var(--muted,var(--ink-3)) }
+.hn-role{ font-size:12px; color:var(--muted,var(--ink-3)) }
 
 /* Programme spine */
 .rmap-head{ margin:clamp(48px,6vw,80px) 0 clamp(24px,3vw,38px) }
@@ -251,12 +251,12 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
 }
 .ss-win{ font-family:var(--f-mono,ui-monospace,monospace); font-size:11px; color:var(--muted,var(--ink-3)) }
 .ss-body h4{ margin:0 0 8px; font-size:19px; font-weight:800; letter-spacing:-.015em }
-.ss-body p{ margin:0; font-size:14.5px; line-height:1.62; color:var(--text-2,var(--ink-2)); max-width:62ch }
-.ss-gate{ margin-top:12px !important; font-size:13px !important }
+.ss-body p{ margin:0; font-size:14px; line-height:1.62; color:var(--text-2,var(--ink-2)); max-width:62ch }
+.ss-gate{ margin-top:12px !important; font-size:14px !important }
 .ss-gate .lb{
   display:inline-block; margin-right:8px; padding:3px 7px; border-radius:5px;
   background:var(--accent-soft,rgba(124,92,255,.10)); color:var(--accent-deep,#4b2fd6);
-  font-family:var(--f-mono,ui-monospace,monospace); font-size:9.5px;
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:10px;
   letter-spacing:.08em; text-transform:uppercase;
 }
 /* Year two is not committed work, so it does not read like the four that are. */
@@ -275,7 +275,7 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
 .hub-ring{ fill:none; stroke:var(--accent,#7C5CFF); stroke-width:1; opacity:.35 }
 .hub-core{ fill:var(--accent,#7C5CFF) }
 .hub-core-t{
-  font-family:var(--f-sans,system-ui,sans-serif); font-size:15px; font-weight:800;
+  font-family:var(--f-sans,system-ui,sans-serif); font-size:16px; font-weight:800;
   fill:#fff; text-anchor:middle; letter-spacing:-.01em;
 }
 .hub-flow path{ stroke-dasharray:5 7; animation:hubdrift 2.6s linear infinite }
@@ -301,13 +301,13 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
 .ex-tab{
   display:flex; align-items:center; gap:10px; width:100%; padding:9px 12px; cursor:pointer;
   border:0; border-radius:9px; background:transparent; color:var(--text-2,var(--ink-2));
-  font:inherit; font-size:13.5px; text-align:left; transition:background .18s ease, color .18s ease;
+  font:inherit; font-size:14px; text-align:left; transition:background .18s ease, color .18s ease;
 }
 .ex-tab:hover{ background:var(--glass,rgba(16,45,70,.05)); color:var(--text,var(--ink)) }
 .ex-tab.is-on{ background:var(--accent-soft,rgba(124,92,255,.10)); color:var(--accent-deep,#4b2fd6); font-weight:600 }
 .ex-tab .ex-ic{ display:grid; place-items:center; width:17px; height:17px; flex:none; opacity:.8 }
 .ex-tab .ex-ic svg{ width:15px; height:15px }
-.ex-tab .ex-n{ margin-left:auto; font-family:var(--f-mono,ui-monospace,monospace); font-size:10.5px; color:var(--muted,var(--ink-3)) }
+.ex-tab .ex-n{ margin-left:auto; font-family:var(--f-mono,ui-monospace,monospace); font-size:10px; color:var(--muted,var(--ink-3)) }
 .ex-tab.is-on .ex-n{ color:var(--accent-deep,#4b2fd6) }
 
 .toollist{ display:flex; flex-direction:column; border-top:1px solid var(--line) }
@@ -323,11 +323,11 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
 .tr-logos{ display:flex; align-items:center; gap:6px }
 .tr-logos img{ width:16px; height:16px; object-fit:contain }
 .tr-name{ min-width:0; display:flex; flex-direction:column; gap:2px }
-.tr-name em{ font-style:normal; font-size:12.5px; color:var(--muted,var(--ink-3));
+.tr-name em{ font-style:normal; font-size:12px; color:var(--muted,var(--ink-3));
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
-.trow .tr-name{ font-size:15px; font-weight:600; letter-spacing:-.01em }
+.trow .tr-name{ font-size:16px; font-weight:600; letter-spacing:-.01em }
 .tr-kind{
-  justify-self:start; padding:3px 8px; border-radius:5px; font-size:10.5px;
+  justify-self:start; padding:3px 8px; border-radius:5px; font-size:10px;
   font-family:var(--f-mono,ui-monospace,monospace); letter-spacing:.05em; text-transform:uppercase;
   background:color-mix(in srgb, var(--kc,#7C5CFF) 12%, transparent); color:var(--kc,#7C5CFF);
 }
@@ -340,7 +340,7 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
 .trow[open] .tr-chev{ transform:rotate(225deg) translate(-2px,-2px) }
 .tr-body{ padding:2px 4px 20px calc(34px + 78px + 28px) }
 .tr-body p{ margin:0 0 12px; font-size:14px; line-height:1.62; color:var(--text-2,var(--ink-2)); max-width:70ch }
-.tr-go{ font-size:13px; font-weight:600; color:var(--accent-deep,#4b2fd6) }
+.tr-go{ font-size:14px; font-weight:600; color:var(--accent-deep,#4b2fd6) }
 .tr-go:hover{ text-decoration:underline }
 
 @media (max-width:900px){
@@ -386,7 +386,7 @@ body.toolpage .topnav a{ white-space:nowrap }
   padding:clamp(24px,3vw,38px); background:var(--surface-2,#f7f9fc);
 }
 .embed-slot p{ margin:12px 0 0; font-size:14px; line-height:1.62; color:var(--text-2,var(--ink-2)); max-width:66ch }
-.embed-slot code{ font-family:var(--f-mono,ui-monospace,monospace); font-size:12.5px;
+.embed-slot code{ font-family:var(--f-mono,ui-monospace,monospace); font-size:12px;
   background:var(--surface-3,#eef0f5); padding:2px 6px; border-radius:4px }
 
 /* ================= EXHIBITION PASS — reading container =================
@@ -429,21 +429,21 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
 }
 .fc-logos{ display:flex; gap:5px; margin-left:auto }
 .fc-logos img{ width:15px; height:15px; object-fit:contain }
-.fcard h4{ margin:0 0 14px; font-size:18px; font-weight:800; letter-spacing:-.015em; line-height:1.25 }
+.fcard h4{ margin:0 0 14px; font-size:19px; font-weight:800; letter-spacing:-.015em; line-height:1.25 }
 .fc-body{ margin:0 0 14px }
 .fc-body dt{
-  font-family:var(--f-mono,ui-monospace,monospace); font-size:9.5px; letter-spacing:.09em;
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:10px; letter-spacing:.09em;
   text-transform:uppercase; color:var(--muted,var(--ink-3)); margin-top:12px;
 }
 .fc-body dt:first-child{ margin-top:0 }
-.fc-body dd{ margin:4px 0 0; font-size:13.5px; line-height:1.6; color:var(--text-2,var(--ink-2)) }
+.fc-body dd{ margin:4px 0 0; font-size:14px; line-height:1.6; color:var(--text-2,var(--ink-2)) }
 .fc-hours{
-  margin:0 0 14px; padding:9px 12px; border-radius:8px; font-size:12.5px;
+  margin:0 0 14px; padding:9px 12px; border-radius:8px; font-size:12px;
   background:var(--surface-2,#F7F8FB); color:var(--text-2,var(--ink-2));
 }
 .fc-hours b{ color:var(--text,var(--ink)) }
 .fc-hours em{ font-style:normal; color:var(--muted,var(--ink-3)); font-size:11px }
-.fc-go{ margin-top:auto; font-size:13px; font-weight:600; color:var(--accent-deep,#5B2FD6) }
+.fc-go{ margin-top:auto; font-size:14px; font-weight:600; color:var(--accent-deep,#5B2FD6) }
 .fcard:hover .fc-go{ text-decoration:underline }
 
 .buckets{ display:flex; flex-direction:column; border-top:1px solid var(--line); margin-top:26px }
@@ -456,15 +456,15 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
 .bucket > summary:hover{ background:var(--glass,rgba(16,45,70,.035)) }
 .bk-ic{ display:grid; place-items:center; color:var(--kc,#6A3FE0) }
 .bk-ic svg{ width:16px; height:16px }
-.bk-l{ font-size:15px; font-weight:700; letter-spacing:-.01em }
-.bk-b{ font-size:13px; color:var(--muted,var(--ink-3));
+.bk-l{ font-size:16px; font-weight:700; letter-spacing:-.01em }
+.bk-b{ font-size:14px; color:var(--muted,var(--ink-3));
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
 .bk-n{ justify-self:end; font-family:var(--f-mono,ui-monospace,monospace);
   font-size:11px; color:var(--muted,var(--ink-3)) }
 .bk-list{ list-style:none; margin:0; padding:0 4px 18px 168px;
   display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:2px 24px }
 .bk-list a{ display:block; padding:7px 0 }
-.bk-list b{ display:block; font-size:13.5px; font-weight:600 }
+.bk-list b{ display:block; font-size:14px; font-weight:600 }
 .bk-list span{ display:block; font-size:12px; color:var(--muted,var(--ink-3));
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
 .bk-list a:hover b{ color:var(--accent-deep,#5B2FD6) }
@@ -491,14 +491,42 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
 .faq-q > summary{
   display:flex; align-items:center; justify-content:space-between; gap:24px;
   padding:18px 4px; cursor:pointer; list-style:none;
-  font-size:16.5px; font-weight:600; letter-spacing:-.01em;
+  font-size:16px; font-weight:600; letter-spacing:-.01em;
 }
 .faq-q > summary::-webkit-details-marker{ display:none }
 .faq-q > summary:hover{ color:var(--accent-deep,#5B2FD6) }
 .faq-a{ padding:0 4px 22px }
-.faq-a p{ margin:0; font-size:14.5px; line-height:1.68; color:var(--text-2,var(--ink-2));
+.faq-a p{ margin:0; font-size:14px; line-height:1.68; color:var(--text-2,var(--ink-2));
   max-width:70ch }
 .faq-a a{ color:var(--accent-deep,#5B2FD6); font-weight:600 }
 .faq-a a:hover{ text-decoration:underline }
 /* Anything not yet confirmed is marked, not smoothed over. */
 .faq-todo{ color:var(--amber-ink,#9A6B00) }
+
+/* ================= ONE TYPE SCALE (10k Lesson 18, mistake #5) ===========
+   Root cause of "random text sizes": the vendor kit ships its OWN six-token
+   scale (11/12/12.5/13.5/15/21) which fought the site's. Rather than edit
+   ~100 declarations, the kit's tokens are re-pointed at our scale, so both
+   systems resolve to the same steps.
+
+   The scale:  10 · 11 · 12 · 14 · 16 · 19 · 22 · 27 · 38 · 60 · 92
+   Nothing outside this list should be introduced.
+   ---------------------------------------------------------------------- */
+:root{
+  --t-cap:11px;    /* micro-labels, mono captions   (was 11)   */
+  --t-sm:12px;     /* secondary text                (was 12)   */
+  --t-body:14px;   /* default reading size          (was 12.5) */
+  --t-md:14px;     /* emphasised body, nav          (was 13.5) */
+  --t-lg:16px;     /* card and section titles       (was 15)   */
+  --t-xl:19px;     /* KPI values, small hero        (was 21)   */
+}
+
+/* Hero breaks out of the reading cap so the video is full-bleed, while its
+   text stays on the same left edge as every section below it.
+   Only above the cap width — below 1280 the container is already 100%. */
+@media (min-width:1281px){
+  .band.tall.has-video{
+    margin-inline:calc((1280px - 100vw) / 2);
+    padding-inline:calc((100vw - 1280px) / 2 + 64px);
+  }
+}
