@@ -248,7 +248,7 @@ h1,h2,h3{letter-spacing:-.02em;line-height:1.1;font-weight:700}
   display:grid;place-items:center;overflow:hidden;title:attr(data-t);
 }
 .tech-row .tl img{width:15px;height:15px;object-fit:contain}
-.tech-row .tl span{font-size:9px;font-family:var(--f-mono);color:var(--text-3);font-weight:600}
+.tech-row .tl span{font-size:10px;font-family:var(--f-mono);color:var(--text-3);font-weight:600}
 .tech-row .more{font-size:11px;color:var(--text-3);font-family:var(--f-mono);align-self:center}
 
 /* ---- Reveal animation ---- */
@@ -616,7 +616,7 @@ h1,h2,h3{letter-spacing:-.02em;line-height:1.1;font-weight:700}
 @media (prefers-reduced-motion:reduce){.hero-cap .d{animation:none}}
 
 /* --- live KPI badge --- */
-.kpi2 .live{display:inline-flex;align-items:center;gap:5px;margin-left:auto;font-family:var(--f-mono);font-size:9px;letter-spacing:.11em;color:var(--emerald-400);text-transform:uppercase}
+.kpi2 .live{display:inline-flex;align-items:center;gap:5px;margin-left:auto;font-family:var(--f-mono);font-size:10px;letter-spacing:.11em;color:var(--emerald-400);text-transform:uppercase}
 .kpi2 .live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--emerald-500);box-shadow:0 0 8px var(--emerald-500);animation:ai-pulse 1.8s var(--ease) infinite}
 @media (prefers-reduced-motion:reduce){.kpi2 .live::before{animation:none}}
 

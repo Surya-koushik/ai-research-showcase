@@ -244,26 +244,40 @@
       ? '<p class="fc-hours"><b>' + f.hours.before + 'h</b> &rarr; <b>' + f.hours.after + 'h</b>' +
         ' a week' + (f.hours.draft ? ' <em>&middot; draft figure, still being confirmed</em>' : '') + '</p>'
       : '';
-    /* Generated art is served as <picture> with a webp first; the real
-       Phoenix capture is a plain png. See assets/visuals/featured/SOURCES.md. */
-    var art = '';
-    if (f.img) {
-      art = f.generated
-        ? '<picture class="fc-art"><source srcset="' + f.img + '.webp" type="image/webp">' +
-          '<img src="' + f.img + '.png" alt="" loading="lazy" decoding="async"></picture>'
-        : '<picture class="fc-art"><img src="' + f.img + '" alt="" loading="lazy" decoding="async"></picture>';
-    }
+    /* One strong mark per tool, after the product-family strip Surya sent as
+       reference (evolvelab.io). It replaces the six generated illustrations,
+       which each carried three or four competing ideas at once; those files
+       stay on disk, unreferenced, recorded in visuals/featured/SOURCES.md. */
+    var mark = f.mark
+      ? '<img class="fc-mark" src="' + f.mark + '" alt="" width="56" height="56" loading="lazy" decoding="async">'
+      : '';
     return '<a class="fcard rv" href="' + href(p) + '" style="--kc:' + ACCENT[p.kind] + '">' +
-      art +
-      '<div class="fc-top"><span class="fc-kind">' + km.label + '</span>' +
+      '<div class="fc-top">' + mark +
+        '<span class="fc-id"><b>' + p.name + '</b>' +
+        '<span class="fc-cat">' + (f.cat || km.label) + '</span></span>' +
         '<span class="fc-logos">' + logos + '</span></div>' +
-      '<h4>' + p.name + '</h4>' +
       '<dl class="fc-body">' +
         '<dt>The problem</dt><dd>' + f.why + '</dd>' +
         '<dt>What it does</dt><dd>' + f.what + '</dd>' +
         '<dt>What it changes</dt><dd>' + f.helps + '</dd>' +
       '</dl>' + hrs +
-      '<span class="fc-go">Open ' + p.name + ' &rarr;</span></a>';
+      '<span class="fc-go">See ' + (f.short || p.name) + ' &rarr;</span></a>';
+  }
+
+  /* The product-family strip. Same six tools as the cards, same source array,
+     so the strip and the cards cannot drift. One mark, one name, one category
+     word each - the reference pattern, and nothing more per tile. */
+  function renderMarkStrip() {
+    var host = document.getElementById('markstrip');
+    if (!host || !window.FEATURED) return;
+    host.innerHTML = FEATURED.map(function (f) {
+      var p = PROJECTS.filter(function (x) { return x.id === f.id; })[0];
+      if (!p || !f.mark) return '';
+      return '<a class="mk" href="' + href(p) + '">' +
+        '<img src="' + f.mark + '" alt="" width="64" height="64" decoding="async">' +
+        '<b>' + (f.short || p.name) + '</b>' +
+        '<span>' + (f.cat || '') + '</span></a>';
+    }).filter(Boolean).join('');
   }
 
   function renderFeatured() {
@@ -297,6 +311,7 @@
 
   function render() {
     var list = PROJECTS.filter(match);
+    renderMarkStrip();
     renderFeatured();
     renderBuckets(list);
     var emptyEl = document.getElementById('empty');

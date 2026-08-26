@@ -130,7 +130,7 @@ body.deck .app{display:block}          /* the rail-and-content grid is retired h
 .dgm .dash{stroke-dasharray:4 4}
 .dgm .dim{stroke:var(--muted);stroke-width:1.4}
 .dgm .on{stroke:var(--text);stroke-width:1.4}
-.dgm .lb{font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;fill:var(--text-3);stroke:none}
+.dgm .lb{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;fill:var(--text-3);stroke:none}
 .dgm .lb.on{fill:var(--text)}
 .dgm .lb.sm{font-size:8.5px;letter-spacing:.05em;fill:var(--muted)}
 .dgm .lb.mid{text-anchor:middle}

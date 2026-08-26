@@ -100,12 +100,62 @@
   <div class="hero-copy" style="max-width:1100px">
     <div class="eyebrow-rule">Asure Design Studio</div>
     <h1 class="d1">AI<br><span class="g-primary">Asure&nbsp;Intelligence</span></h1>
-    <p class="lede">Intelligence built inside the studio, for the studio — not bolted on from
-      outside. Less time lost to the mechanical, more spent on the work that needs judgement.</p>
+    <p class="lede">Software an architecture practice built for itself — running inside Revit,
+      on our own hardware. It takes the mechanical half of delivery off people&rsquo;s desks, so the
+      hours that are left go to the work that needs judgement.</p>
     <div class="hero-actions">
       <a class="btn primary hero-cta" href="#ecosystem">See the work</a>
       <a class="btn hero-cta" href="#roadmap">The roadmap</a>
     </div>
+  </div>
+</section>
+
+<!-- ============================== THE SIX ============================== -->
+<section class="band uikit family" id="family">
+  <p class="fam-lead rv">Fifty-two tools have been built. Six of them carry the work.</p>
+  <div class="markstrip" id="markstrip"><!-- injected: product family --></div>
+</section>
+
+<!-- ============================== PAINS ============================== -->
+<section class="band uikit" id="pains">
+  <div class="rmap-head rv" style="margin-top:0">
+    <h2 class="d2">Familiar. Not any more.</h2>
+    <p class="lede" style="max-width:56ch">Four things that got said in this office most weeks.
+      Each one now has a tool with its name against it.</p>
+  </div>
+
+  <div class="pains">
+    <div class="pain rv" style="--d:0ms">
+      <p class="pn-said">&ldquo;Which model is the one we certified?&rdquo;</p>
+      <p class="pn-fix">Phoenix runs the weekly check inside Revit and writes the result down.
+        The answer becomes a record you can produce, not a memory of last Thursday.</p>
+      <a class="pn-go" href="tool.html?id=phoenix-l1">See Phoenix &rarr;</a>
+    </div>
+    <div class="pain rv" style="--d:60ms">
+      <p class="pn-said">&ldquo;The client wants a status update. Again.&rdquo;</p>
+      <p class="pn-fix">H10 puts the stage timeline and discipline status in front of the client
+        directly, so nobody loses an afternoon writing it out by hand.</p>
+      <a class="pn-go" href="h10.html">See H10 &rarr;</a>
+    </div>
+    <div class="pain rv" style="--d:120ms">
+      <p class="pn-said">&ldquo;These quantities have been typed out three times.&rdquo;</p>
+      <p class="pn-fix">The BOQ engine reads them from the model&rsquo;s own parameters and writes
+        the lines once. Every retype removed is a billable number that can no longer drift.</p>
+      <a class="pn-go" href="tool.html?id=architecture-boq-template">See the BOQ engine &rarr;</a>
+    </div>
+    <div class="pain rv" style="--d:180ms">
+      <p class="pn-said">&ldquo;We have redrawn this site test four times this week.&rdquo;</p>
+      <p class="pn-fix">Massing applies the NBC and Telangana rules and generates the options,
+        so testing another one costs a click instead of an evening.</p>
+      <a class="pn-go" href="tool.html?id=feasibility-massing-tool">See Massing &rarr;</a>
+    </div>
+  </div>
+
+  <div class="a-note rv" style="margin-top:38px;max-width:66ch">
+    <span class="lb">Why not just use a chatbot</span>
+    A general assistant cannot open a Revit model, cannot read a drawing set, and does not
+    know NBC from Uniclass &mdash; and it will answer confidently anyway. Everything here runs
+    against the actual model file, inside the software the work is already happening in.
   </div>
 </section>
 
@@ -144,7 +194,10 @@
 <section class="band uikit" id="ecosystem">
   <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
     <div style="flex:1 1 380px">
-      <h2 class="d2 rv">All tools</h2>
+      <h2 class="d2 rv" style="max-width:20ch">Everything we have built.</h2>
+      <p class="lede rv" style="max-width:52ch">Six carry the work and are set out in full.
+        The other forty-six are grouped, so you can see the shape of it without reading
+        fifty-two entries.</p>
     </div>
     <div class="illus-lane rv" data-a-illus="skyline" aria-hidden="true"></div>
   </div>
@@ -162,9 +215,7 @@
 
   <div class="rmap-head rv" style="margin-top:clamp(56px,7vw,88px)">
     <h3 class="rmap-title">The rest of the catalogue, by kind.</h3>
-    <p class="lede" style="max-width:56ch">Not everything needs a stage. These are grouped so you
-      can see the shape of the work without reading fifty-two entries.</p>
-  </div>
+    </div>
 
   <div class="buckets" id="buckets"><!-- injected: kind buckets --></div>
 

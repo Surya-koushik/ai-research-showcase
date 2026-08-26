@@ -39,3 +39,20 @@ deliberately abstract.
 ## Encoding
 Source PNGs were 1672x941, ~800KB-1.1MB each. Shipped at 1200px wide:
 PNG ~440-560KB as fallback, WebP at quality 88 — **164KB for all six combined**.
+
+---
+
+## Superseded, 2026-08-26
+
+The six generated illustrations in this folder are **no longer referenced by any
+page**. They were replaced by the mark system in `assets/visuals/marks/`, after
+Surya sent the EvolveLab product-family strip (evolvelab.io) as the reference:
+one strong glyph per product, the name under it, one category word under that.
+
+Reason for the swap, recorded so it is not undone by accident: each generated
+illustration carried three or four competing ideas at once, and no two shared a
+drawing style — so six cards side by side read as six unrelated products. The
+marks are drawn by hand as plain SVG (brand tile → white disc → one geometric
+idea), share one construction, and total 3KB against 164KB.
+
+The files are kept, not deleted, in case a future page wants full-bleed art.
