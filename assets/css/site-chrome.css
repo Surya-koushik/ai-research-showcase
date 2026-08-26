@@ -653,3 +653,88 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
    holds across pages. tool.js still emits the older media-hero structure, so
    the other 51 pages do not get one yet - tracked as gate C3. */
 .pg-mark{ display:block; width:64px; height:64px; border-radius:6px; margin-bottom:20px }
+
+/* ======================= VIDEOS (#videos band) ==========================
+   Same card physics as .fcard above — white surface, 1px --line, 14px radius,
+   the 1px shadow and the -2px hover lift — so the band reads as part of the
+   set rather than an embed dropped into the page.
+
+   The clip fills the top of the card the way .fc-art does, but object-fit is
+   `contain`, not `cover`: these are screen recordings between 1.82:1 and
+   2.02:1, and cropping them to 16/9 would cut off the dialog or the ribbon
+   that is the whole point of the frame. The thin bars sit on --surface-2, so
+   against a white card they read as the frame's edge, not as letterboxing.
+
+   Nothing here introduces a size outside 10 · 11 · 12 · 14 · 16 · 19 · 22 ·
+   27 · 38 · 60 · 92.
+   ---------------------------------------------------------------------- */
+.vgrid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:clamp(18px,2vw,26px); margin-top:34px;
+}
+.vcard{
+  display:flex; flex-direction:column; overflow:hidden;
+  border:1px solid var(--line); border-radius:14px; background:var(--surface,#fff);
+  box-shadow:0 1px 2px rgba(16,45,70,.05);
+  transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.vcard:hover{
+  transform:translateY(-2px); border-color:var(--line-2);
+  box-shadow:0 2px 6px rgba(16,45,70,.07);
+}
+/* preload="none" + poster means the browser fetches the JPEG and nothing else
+   until the visitor presses play. Twelve autoloading clips is ~30MB on load. */
+.vplayer{
+  display:block; width:100%; aspect-ratio:16/9; height:auto;
+  object-fit:contain; background:var(--surface-2,#F7F8FB);
+  border-bottom:1px solid var(--line);
+}
+/* flex:1 so the mono software line can be pushed to the card floor with an
+   auto top margin - without it, cards in a row end their captions at
+   different heights and the bottom rule looks ragged across the grid. */
+.vbody{ display:flex; flex-direction:column; flex:1 1 auto; padding:20px 22px 22px }
+.vmeta{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:0 0 10px;
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:10px;
+  letter-spacing:.09em; text-transform:uppercase;
+}
+.vdur{
+  padding:3px 8px; border-radius:5px;
+  background:var(--accent-soft,rgba(124,92,255,.10)); color:var(--accent-deep,#4b2fd6);
+}
+/* Two of the twelve are a vendor's webinar, not studio work. The tag is loud
+   on purpose — same reasoning as .draft-tag on the roadmap. */
+.vtag{
+  padding:3px 8px; border-radius:5px;
+  background:rgba(224,122,10,.12); color:#9a5b04;
+}
+.vtitle{
+  margin:0 0 12px; font-size:19px; font-weight:800;
+  letter-spacing:-.015em; line-height:1.25;
+}
+.vsee{
+  margin:0 0 14px; font-size:14px; line-height:1.62;
+  color:var(--text-2,var(--ink-2)); max-width:62ch;
+}
+.vwhy{
+  margin:0 0 14px; padding:10px 12px; border-radius:8px;
+  background:var(--surface-2,#F7F8FB);
+  font-size:14px; line-height:1.55; color:var(--text-2,var(--ink-2));
+}
+.vwhy .lb{
+  display:inline-block; margin-right:8px; padding:3px 7px; border-radius:5px;
+  background:var(--surface-3,#eef0f5); color:var(--muted,var(--ink-3));
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:10px;
+  letter-spacing:.08em; text-transform:uppercase;
+}
+.vsoft{
+  margin:auto 0 0; padding-top:12px; border-top:1px solid var(--line);
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:11px;
+  color:var(--muted,var(--ink-3));
+}
+/* One column well before the grid would force it, so a caption never has to be
+   read at three or four words a line. */
+@media (max-width:560px){
+  .vgrid{ grid-template-columns:1fr }
+  .vbody{ padding:18px }
+}

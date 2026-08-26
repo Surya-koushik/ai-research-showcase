@@ -77,6 +77,7 @@
     <a class="nl opt" href="#kinds">What&nbsp;we&nbsp;build</a>
     <a class="nl opt" href="#roadmap">Roadmap</a>
     <a class="nl" href="#ecosystem">All&nbsp;work</a>
+    <a class="nl opt" href="#videos">Videos</a>
     <a class="nl opt" href="#faq">FAQ</a>
     <a class="nl opt" href="#contact">Contact</a>
     <span class="a-pill" id="pillCount" style="min-width:118px">52 in catalogue</span>
@@ -223,6 +224,34 @@
     <div class="a-title">Nothing matches that scope</div>
     <p style="margin-top:6px;font-size:var(--t-sm)">Clear the filter or widen the search.</p>
   </div>
+</section>
+
+<!-- ============================== VIDEOS ==============================
+     Twelve screen recordings, cut to the 30-60 seconds where the tool does
+     the thing. Captions, clip windows and the two "not our work" tags all
+     live in assets/js/videos.js, which also documents the privacy pass each
+     clip went through. Poster-first: preload="none" means nothing but the
+     JPEG loads until a visitor presses play. -->
+<section class="band uikit" id="videos">
+  <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
+    <div style="flex:1 1 420px">
+      <h2 class="d2 rv" style="max-width:20ch">What it looks like running.</h2>
+      <p class="lede rv" style="max-width:62ch">Recordings from the desk, cut down to the part
+        that matters &mdash; the click that runs the tool and the result arriving. Two of the
+        twelve are a vendor&rsquo;s webinar rather than our own work, and are labelled as such.</p>
+    </div>
+    <div class="illus-lane rv" data-a-illus="knowledge" aria-hidden="true"></div>
+  </div>
+
+  <div class="vgrid" id="videoGrid"><!-- injected: assets/js/videos.js --></div>
+
+  <noscript>
+    <p class="a-note" style="margin-top:34px;max-width:64ch">
+      <span class="lb">Scripts off</span>
+      The clips are rendered from a data file, so this band needs JavaScript. The
+      files themselves sit in <code>assets/videos/</code>.
+    </p>
+  </noscript>
 </section>
 
 <!-- ============================== ROADMAP ============================== -->
@@ -551,6 +580,7 @@
 <script src="assets/js/projects.js"></script>
 <script src="assets/js/featured.js"></script>
 <script src="assets/js/home.js"></script>
+<script src="assets/js/videos.js"></script>
 <script src="assets/js/hero.js"></script>
 </body>
 </html>

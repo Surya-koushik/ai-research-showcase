@@ -2,3 +2,11 @@
 __pycache__/
 _local/
 dist/
+
+# Full-length compressed recordings (90MB) are kept on disk but not in git.
+# The video section only uses the *-clip.* files. Regenerate the full set with
+# scratchpad/transcode.sh if ever needed.
+assets/videos/*.mp4
+!assets/videos/*-clip.mp4
+assets/videos/*.jpg
+!assets/videos/*-clip.jpg
