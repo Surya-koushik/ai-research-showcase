@@ -54,7 +54,11 @@
     document.body.classList.toggle("nav-open", open);
     navToggle.setAttribute("aria-expanded", open ? "true" : "false");
     sidebar.setAttribute("aria-hidden", open ? "false" : "true");
+    sidebar.inert = !open;
+    if (open && navClose) navClose.focus();
+    else if (!open && sidebar.contains(document.activeElement)) navToggle.focus();
   }
+  sidebar.inert = true;
   navToggle.onclick = function () { setNav(!document.body.classList.contains("nav-open")); };
   navScrim.onclick  = function () { setNav(false); };
   if (navClose) navClose.onclick = function () { setNav(false); };
@@ -524,6 +528,13 @@
       : shown + ' matching';
     observe();
   }
+  var resetFilters = document.getElementById('resetFilters');
+  if (resetFilters) resetFilters.addEventListener('click', function () {
+    state.kind = 'all'; state.domain = 'all'; state.tech = 'all'; state.q = ''; state.page = 0;
+    search.value = '';
+    renderRail(); renderTechFilter(); render();
+    search.focus();
+  });
   /* Only a deliberate filter action moves the page. Typing in the search box
      must never yank it, which is what calling this from render() did. */
   function renderAndReveal() {
