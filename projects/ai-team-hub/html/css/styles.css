@@ -324,7 +324,7 @@ textarea.input { resize: vertical; min-height: 60px; }
   #sidebar-toggle {
     display: flex; align-items: center; justify-content: center;
     position: fixed; top: 0.75rem; left: 0.75rem;
-    width: 40px; height: 40px; background: var(--bg-card);
+    width: 44px; height: 44px; background: var(--bg-card);
     border: 1px solid var(--border); border-radius: var(--radius-sm);
     color: var(--text); font-size: 1.2rem; cursor: pointer; z-index: 99;
   }
