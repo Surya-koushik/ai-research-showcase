@@ -738,10 +738,15 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
    the other 51 pages do not get one yet - tracked as gate C3. */
 .pg-mark{ display:block; width:64px; height:64px; border-radius:6px; margin-bottom:20px }
 
-/* ======================= VIDEOS (#videos band) ==========================
-   Same card physics as .fcard above — white surface, 1px --line, 14px radius,
-   the 1px shadow and the -2px hover lift — so the band reads as part of the
-   set rather than an embed dropped into the page.
+/* ======================= FIELD CLIPS (full form) =========================
+   Was "VIDEOS (#videos band)" -- that band folded into #ecosystem 2026-08-31
+   and its cards got cut down (see .vclip-* below). .vgrid/.vcard keep their
+   original full-length shape here instead: assets/js/tool.js now uses them
+   for a tool page's own "Seeing it run" section, the one place the long
+   `seeing`/`why`/`software` copy that used to live on the landing-page card
+   actually lives now. Same card physics as .fcard above — white surface, 1px
+   --line, 14px radius, the 1px shadow and the -2px hover lift — so a field
+   clip still reads as part of the set rather than an embed dropped in.
 
    The clip fills the top of the card the way .fc-art does, but object-fit is
    `contain`, not `cover`: these are screen recordings between 1.82:1 and
@@ -822,6 +827,50 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
   .vgrid{ grid-template-columns:1fr }
   .vbody{ padding:18px }
 }
+
+/* ======================= FIELD CLIPS (short form) =========================
+   The landing-page shape (Surya: "this should be short like the tool card" —
+   cut to video, title, one line). Rides on .fcard for the physics (white
+   surface, border, shadow, -2px hover lift) exactly like every other card in
+   the merged tools section, so the ten clips read as the section's cards,
+   not a different component next to them.
+
+   Media keeps object-fit:contain like the full-form .vplayer above (same
+   reason — these are screen recordings, not 16:9 footage), but sits inside
+   the .pv-media--card bleed/radius other cards use, with the duration
+   overlaid on the corner instead of a meta row above the title -- there is
+   no room left on a card this short for a second row that isn't the line
+   itself. No REPLACES box and no monospace footer here: that copy moved to
+   the tool page (assets/js/tool.js, "Seeing it run").
+   ---------------------------------------------------------------------- */
+.vclip-card{ padding:24px }
+.vclip-media{
+  position:relative; margin:-24px -24px 16px; border-radius:14px 14px 0 0;
+  aspect-ratio:16/9; overflow:hidden;
+  background:var(--surface-2,#F7F8FB); border-bottom:1px solid var(--line);
+}
+.vclip-media video{
+  display:block; width:100%; height:100%; object-fit:contain;
+  background:var(--surface-2,#F7F8FB);
+}
+.vclip-dur{
+  position:absolute; right:10px; bottom:10px; z-index:2; pointer-events:none;
+  padding:3px 8px; border-radius:5px;
+  background:rgba(12,41,64,.72); color:#fff;
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:10px;
+  letter-spacing:.09em; text-transform:uppercase;
+}
+.vclip-tag{
+  position:absolute; left:10px; bottom:10px; z-index:2; pointer-events:none;
+  padding:3px 8px; border-radius:5px;
+  background:rgba(224,122,10,.88); color:#fff;
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:10px;
+  letter-spacing:.08em; text-transform:uppercase;
+}
+.vclip-card .fc-id b{ font-size:var(--t-lg,16px) }
+/* .fc-go's margin-top:auto (defined with .fcard above) is kept as-is here on
+   purpose -- it pins the go-link to the card floor, so a row of clips with
+   and without a resolved toolId still lines up along the same bottom edge. */
 
 /* ==========================================================================
    TOOL PAGE  (2026-08-26)
@@ -1132,24 +1181,18 @@ html.intro-curtain-active body{ overflow:hidden }
   color:var(--accent-deep,#4b2fd6);
 }
 
-/* --- 5c/5d. six at a time, arrows to page, preview + name + one line -----
-   .pgrid holds exactly one page (up to six .fcard tiles -- same card shape
-   the old featured six used, now carrying the whole browser). The arrows
+/* --- 5c/5d. fourteen at a time, arrows to page, the compact all-tools list -
+   .toollist (base rule up near .trow) holds exactly one page of rows -- the
+   rest of the catalogue once the ten field clips have led with the tools
+   that actually have footage (assets/js/videos.js). Was .pgrid, a 3-up grid
+   of .fcard tiles; replaced 2026-08-31 so "the other 60" reads as a list to
+   scan, not a second card wall competing with the clips above it. The arrows
    share their visual language with .tp-arrow on the tool page, so the same
    control reads the same everywhere on the site. Keyboard accessible: real
    <button>s, plus ArrowLeft/ArrowRight anywhere inside .pager (home.js). */
 .pager{
   display:grid; grid-template-columns:44px minmax(0,1fr) 44px;
   align-items:center; gap:clamp(10px,1.6vw,20px); margin-top:30px;
-}
-.pgrid{
-  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
-  /* Mixed card heights are now real (a text-only 'fcard--text' card sitting
-     next to a full media card, Fix 1, 2026-08-31) -- align-items:start stops
-     grid's default stretch from padding the short card out to match the
-     tall one; a ragged row is the honest result, not a bug. */
-  align-items:start;
-  gap:clamp(16px,1.6vw,22px);
 }
 .pager-arrow{
   width:44px; height:44px; flex:none; cursor:pointer;
@@ -1165,13 +1208,12 @@ html.intro-curtain-active body{ overflow:hidden }
   margin:14px 2px 0; font-family:var(--f-mono,ui-monospace,monospace); font-size:11px;
   letter-spacing:.04em; color:var(--muted,var(--ink-3));
 }
-@media (max-width:900px){ .pgrid{ grid-template-columns:repeat(2,minmax(0,1fr)) } }
 @media (max-width:720px){
   .pager{
     grid-template-columns:1fr 1fr; grid-template-areas:"grid grid" "prev next";
     gap:14px;
   }
-  .pgrid{ grid-area:grid; grid-template-columns:1fr }
+  .pager .toollist{ grid-area:grid }
   .pager-arrow.prev{ grid-area:prev; justify-self:start }
   .pager-arrow.next{ grid-area:next; justify-self:end }
 }
@@ -1330,11 +1372,94 @@ html.intro-curtain-active body{ overflow:hidden }
    to read as intentional.
    ============================================================================ */
 
-#ecosystem, #videos, #faq{ background:var(--bg-2,#F7F8FB) }
+#ecosystem, #faq{ background:var(--bg-2,#F7F8FB) }
 
-#ecosystem, #videos, #roadmap, #close, #faq, #contact{
+#ecosystem, #roadmap, #close, #faq, #contact{
   box-shadow:inset 0 30px 40px -38px rgba(14,17,22,.10);
 }
+/* #videos used to be its own .band section, so it carried both rules above
+   in its own right. Folded into #ecosystem 2026-08-31 (the video-led cards
+   are now that section's lead, not a second chapter repeating it) -- #videos
+   is a plain wrapper div inside #ecosystem now, kept only as the anchor
+   target inbound links already point at, so it is dropped from both
+   selector lists rather than doubling the tint and the inset shadow on a
+   patch of the same band. */
 
 .depth-glow{ will-change:transform }
 @media (prefers-reduced-motion:reduce){ .depth-glow{ transform:none !important } }
+
+/* ============================================================================
+   STRUCTURAL DEPTH II — the film's vocabulary, in the site's own tokens
+   ----------------------------------------------------------------------------
+   Surya: "add something in the back with UI kit, also add some great visuals
+   similar to the video that I gave as reference" -- the brand film
+   (film-v10.mp4, analysed in _coordination/board/tool-videos/STYLE-NIVO.md).
+   That film's stage is deep navy resolving to light, with UI panels floating
+   at a slight 3D tilt (soft shadow, faint edge light), a glowing node-and-
+   beam motif, and large ghosted type sitting behind content -- everything
+   drifting, never static.
+
+   Three additions on top of the .glow system above, built entirely from the
+   UI kit's own navy scale (--brand-900..500, asure-ui.css: #0c2940 up to
+   #2f6db5) plus the site's existing violet and amber -- no new hue anywhere:
+
+     1. GHOST WORD. One oversized, near-invisible word behind a heading --
+        the film's kinetic-type device stilled into a resting position (the
+        page has no cross-fade budget; a fixed ghost reads the same way,
+        typographic depth rather than a picture). Plain solid colour at low
+        opacity -- not clipped to a gradient, which the brief rules out.
+     2. FLOATING PANEL. A soft-edged rectangle on a navy gradient, tilted in
+        3D (perspective + rotateY, the film's own UI-panel treatment) with a
+        drop shadow and a faint top edge-light -- an abstract stand-in for
+        "a screen", never a literal one, sitting behind real content. The
+        tilt transform is set inline per instance (matching how #close's
+        centred .glow already carries its own translateX(-50%) inline) so
+        depth.js's scroll drift -- which reads and re-appends whatever is
+        already in the element's inline style -- composes with it instead of
+        overwriting it; nothing here duplicates that logic.
+     3. NODE FIELD. A handful of points on faint connecting beams -- the
+        film's node-and-beam motif at rest, echoing the hero canvas's own
+        particle system at a much smaller scale rather than repeating it.
+
+   Every element is aria-hidden and decorative only. data-depth on the panel
+   and node field hooks the same scroll-tied drift assets/js/depth.js already
+   drives every .glow with, so all three planes move at the same few-percent
+   rate. None of this is a repeating-linear-gradient stripe, a two-axis grid
+   overlay, frosted glass, or gradient-filled text -- the four the brief rules
+   out by name.
+   ============================================================================ */
+
+.ghost-word{
+  position:absolute; z-index:0; pointer-events:none; user-select:none;
+  font-weight:800; letter-spacing:-.04em; line-height:1;
+  font-size:clamp(80px,13vw,208px);
+  color:var(--brand-900,#0c2940); opacity:.045;
+  white-space:nowrap;
+}
+
+.depth-panel{
+  position:absolute; z-index:0; pointer-events:none; overflow:hidden;
+  border-radius:16px; opacity:.16;
+  background:linear-gradient(155deg, var(--brand-900,#0c2940) 0%, var(--brand-700,#1c466f) 55%, var(--brand-500,#2f6db5) 100%);
+  box-shadow:0 40px 70px -30px rgba(12,41,64,.4);
+  border:1px solid rgba(255,255,255,.08);
+}
+.depth-panel::after{
+  /* Faint edge light along the top -- the film's panels catch a highlight on
+     the side facing the key light, never sitting as a flat, even fill. */
+  content:""; position:absolute; inset:0 0 auto 0; height:42%;
+  background:linear-gradient(180deg, rgba(255,255,255,.18), transparent);
+}
+
+/* theme.css's global svg{width:16px;height:16px} reset (an icon default)
+   otherwise wins here -- nothing else sets a size on this element, so the
+   generic element selector is the only rule touching it. Fixed to match the
+   viewBox each instance already carries. */
+.depth-nodes{ position:absolute; z-index:0; pointer-events:none; opacity:.24; overflow:visible;
+  width:420px; height:260px }
+.depth-nodes circle{ fill:var(--accent,#6A3FE0) }
+.depth-nodes .dn-b{ fill:var(--brand-500,#2f6db5) }
+.depth-nodes line{ stroke:var(--brand-700,#1c466f); stroke-width:1 }
+
+@media (prefers-reduced-motion:reduce){ .depth-panel, .depth-nodes{ transform:none !important } }
+@media (max-width:820px){ .ghost-word, .depth-panel, .depth-nodes{ display:none } }

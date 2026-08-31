@@ -190,6 +190,13 @@
 <section class="band uikit" id="ecosystem">
   <div class="glow depth-glow" data-depth="0.05" aria-hidden="true"
        style="width:520px;height:360px;background:#7C5CFF;right:-90px;top:260px;opacity:.12"></div>
+  <!-- Floating panel, item 3: the film's tilted-UI motif at rest, behind the
+       header rather than illustrating any one tool -- see the CSS comment
+       ("STRUCTURAL DEPTH II") for why the tilt has to live in this inline
+       style rather than the class rule. -->
+  <div class="depth-panel" data-depth="0.04" aria-hidden="true"
+       style="width:360px;height:230px;right:-40px;top:-30px;
+              transform:perspective(1400px) rotateY(-13deg) rotateX(4deg)"></div>
   <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
     <div style="flex:1 1 420px">
       <h2 class="d2 rv" style="max-width:22ch">The tools we build.</h2>
@@ -214,11 +221,55 @@
     </div>
   </div>
 
+  <!-- ============================== RUNNING ==============================
+       Item 1, 2026-08-31: was its own #videos section repeating the same 70
+       tools #ecosystem had just shown as text cards -- "this section needs
+       to be directly replaced with the Now watch them run cards" (Surya).
+       Folded in here as this section's lead: the ten tools with real footage
+       carry the catalogue's opening, cut to the tool-card shape (item 2 —
+       video, title, one line; the long copy that used to sit on each card
+       moved to that tool's own page, rendered by tool.js's "Seeing it run").
+       The #videos id stays on this wrapper (inbound anchors, the topbar's
+       own "Running" link) though the framing around it does not; it is no
+       longer a second .band, just where this section's lead cards live. -->
+  <div id="videos" style="position:relative;margin-top:clamp(48px,6vw,72px)">
+    <span class="ghost-word depth-glow" data-depth="0.03" aria-hidden="true" style="left:-6px;top:-18px">RUNNING</span>
+    <p class="eyebrow rv">The tools we build</p>
+    <h3 class="rmap-title rv" style="max-width:26ch">Now watch them run.</h3>
+    <p class="lede rv" style="max-width:62ch;margin-top:10px">Recordings from the desk, cut down to
+      the part that matters &mdash; the click that runs the tool and the result arriving.</p>
+
+    <div class="vgrid" id="videoGrid" style="margin-top:clamp(24px,3vw,34px)"><!-- injected: assets/js/videos.js --></div>
+
+    <noscript>
+      <p class="a-note" style="margin-top:34px;max-width:64ch">
+        <span class="lb">Scripts off</span>
+        The clips are rendered from a data file, so this needs JavaScript. The
+        files themselves sit in <code>assets/videos/</code>.
+      </p>
+    </noscript>
+  </div>
+
   <!-- ===================== THE TOOL BROWSER (item 5) =====================
-       a. search, unmistakable                b. logo filters, click to scope
-       c. six cards at a time, arrows page     d. preview + name + one line
-       assets/js/home.js owns all of it — render, filter state, and paging. -->
-  <label class="searchline searchline-lg rv" for="search" style="margin-top:clamp(48px,6vw,72px)">
+       Everything else in the catalogue -- the tools with no footage yet, the
+       majority of it -- stays reachable through the same search this browser
+       always had: a. search, unmistakable   b. logo filters, click to scope
+       c. fourteen rows at a time, arrows page   d. name, tagline, kind, status,
+       opening to a description and "Open X". Was a 3-up grid of the same
+       card shape the clips above now carry (Fix 1, 2026-08-31: "not 70 cards
+       of which 47 are text-only" is exactly the wall this replaces); a
+       compact list is what "browse the other 60" actually needs, and it is
+       the shape this component already had, unused, since the exhibition
+       pass (row(), assets/js/home.js). assets/js/home.js owns all of it —
+       render, filter state, and paging. -->
+  <div class="rmap-head rv" style="margin-top:clamp(52px,6vw,80px)">
+    <p class="eyebrow">The rest of the catalogue</p>
+    <h3 class="rmap-title">Every tool, findable.</h3>
+    <p class="lede" style="max-width:60ch;margin-top:10px">Search by name, kind or the software it
+      runs on &mdash; every entry opens to what it does and a page of its own.</p>
+  </div>
+
+  <label class="searchline searchline-lg rv" for="search" style="margin-top:clamp(22px,3vw,30px)">
     <span class="search-ic" id="searchIc"></span>
     <input id="search" type="search" placeholder="Search the catalogue by name, kind or technology…" autocomplete="off">
     <span class="search-kbd" aria-hidden="true">/</span>
@@ -232,11 +283,11 @@
   <div class="scoperow rv" id="scope"><!-- injected --></div>
 
   <div class="pager rv" id="pager">
-    <button type="button" class="pager-arrow prev" id="pagerPrev" aria-label="Previous 6 tools">
+    <button type="button" class="pager-arrow prev" id="pagerPrev" aria-label="Previous 14 tools">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
     </button>
-    <div class="pgrid" id="pageGrid"><!-- injected: 6 tool cards --></div>
-    <button type="button" class="pager-arrow next" id="pagerNext" aria-label="Next 6 tools">
+    <div class="toollist" id="pageGrid"><!-- injected: 14 tool rows --></div>
+    <button type="button" class="pager-arrow next" id="pagerNext" aria-label="Next 14 tools">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
     </button>
   </div>
@@ -246,33 +297,6 @@
     <div class="a-title">Nothing matches that scope</div>
     <p style="margin-top:6px;font-size:var(--t-sm)">Clear the filter or widen the search.</p>
   </div>
-</section>
-
-<!-- ============================== RUNNING ==============================
-     Continuation of the tools section above, not a separate gallery — one
-     video per tool lives on that tool's own page; this is the same catalogue
-     shown running, cut to the 30-60 seconds where the thing actually happens.
-     Captions and clip windows live in assets/js/videos.js, which also
-     documents the privacy pass each clip went through. Poster-first:
-     preload="none" means nothing but the JPEG loads until a visitor presses
-     play. The #videos id stays (inbound anchors), the framing does not. -->
-<section class="band uikit band-continue" id="videos">
-  <div class="glow depth-glow" data-depth="0.045" aria-hidden="true"
-       style="width:480px;height:320px;background:#FFB829;left:-70px;top:55%;opacity:.10"></div>
-  <p class="eyebrow">The tools we build, continued</p>
-  <h3 class="rmap-title" style="max-width:26ch">Now watch them run.</h3>
-  <p class="lede rv" style="max-width:62ch;margin-top:10px">Recordings from the desk, cut down to
-    the part that matters &mdash; the click that runs the tool and the result arriving.</p>
-
-  <div class="vgrid" id="videoGrid"><!-- injected: assets/js/videos.js --></div>
-
-  <noscript>
-    <p class="a-note" style="margin-top:34px;max-width:64ch">
-      <span class="lb">Scripts off</span>
-      The clips are rendered from a data file, so this band needs JavaScript. The
-      files themselves sit in <code>assets/videos/</code>.
-    </p>
-  </noscript>
 </section>
 
 <!-- ============================== ROADMAP ============================== -->
@@ -417,6 +441,24 @@
 <section class="band closeband" id="close">
   <div class="glow depth-glow" data-depth="0.06" aria-hidden="true"
        style="width:640px;height:420px;background:#7C5CFF;left:50%;top:20%;transform:translateX(-50%);opacity:.28"></div>
+  <!-- Node field, item 3: the film's node-and-beam motif at rest -- a handful
+       of points, not the hero canvas's hundreds, so it reads as an echo
+       rather than a repeat. -->
+  <svg class="depth-nodes" data-depth="0.03" aria-hidden="true" width="420" height="260"
+       viewBox="0 0 420 260" style="right:-30px;bottom:-50px">
+    <line x1="46" y1="200" x2="130" y2="70"></line>
+    <line x1="130" y1="70" x2="236" y2="150"></line>
+    <line x1="236" y1="150" x2="320" y2="46"></line>
+    <line x1="320" y1="46" x2="382" y2="170"></line>
+    <line x1="236" y1="150" x2="196" y2="226"></line>
+    <line x1="130" y1="70" x2="196" y2="226"></line>
+    <circle class="dn-a" cx="46" cy="200" r="4"></circle>
+    <circle class="dn-b" cx="130" cy="70" r="5"></circle>
+    <circle class="dn-a" cx="236" cy="150" r="4"></circle>
+    <circle class="dn-b" cx="320" cy="46" r="5"></circle>
+    <circle class="dn-a" cx="382" cy="170" r="4"></circle>
+    <circle class="dn-a" cx="196" cy="226" r="4"></circle>
+  </svg>
   <div class="eyebrow-rule rv" style="justify-content:center">Increasing efficiency</div>
   <h2 class="d1 rv"><span class="g-primary">One tool at a time.</span></h2>
   <p class="lede rv">Built inside a working architecture practice, against real projects,

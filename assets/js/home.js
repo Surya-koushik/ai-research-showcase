@@ -400,43 +400,21 @@
   });
 
   /* ------------------------------------------------------ the browser (5) ----
-     One card shape, used for every tool: the preview, the name and category
-     (the EvolveLab pattern the rest of the site already keeps to), one short
-     line. No separate "featured six" any more and no long accordion of the
-     rest of the catalogue underneath it -- everything in the current scope
-     is paged six at a time (5c), so the same cards carry the whole browser
-     instead of two different treatments competing for attention.
+     The paged .fcard grid (preview + name/category + one line) is gone from
+     here 2026-08-31 -- that card shape now belongs to the ten clips in
+     assets/js/videos.js, which lead the merged tools section as the tools we
+     can actually show running. What is left to browse is the other 60-odd
+     entries with no clip, so this is the compact list Surya asked for
+     instead: `row()` (below), one line per tool, name + tagline + kind +
+     status, opening to its own description and an "Open X" link. Same
+     search/tech-filter/scope state as before, same paging -- just a list
+     shape, not a card grid, because a scan-and-open list is what "browse
+     the other 60" actually needs. */
+  var PAGE_SIZE = 14;
 
-     Three-tier media (Surya's Fix 1, 2026-08-31): PREVIEW_MEDIA returns a
-     video block, a still-image block, or '' -- never the old tinted icon
-     panel. On '' the card gets the 'fcard--text' modifier and simply has no
-     top-media element: no bleed margin to fight, no empty box to explain.
-     .pgrid uses align-items:start (site-chrome.css) so a short text card
-     sitting next to a tall media card in the same row does not get
-     stretched to match it -- ragged row heights are the honest result of
-     mixed content, not a bug. */
-  var PAGE_SIZE = 6;
-  function browseCard(p) {
-    var f = (window.FEATURED || []).filter(function (x) { return x.id === p.id; })[0];
-    var cat = (p.highlights && p.highlights.category) || (f && f.cat) || kindMeta(p.kind).label;
-    /* A handful of tools carry a bespoke product mark (assets/visuals/marks/);
-       everything else falls back to its kind glyph on the kind's own solid
-       square, the same treatment the kind grid above uses. */
-    var mark = (f && f.mark)
-      ? '<img class="fc-mark" src="' + f.mark + '" alt="" width="44" height="44" loading="lazy" decoding="async">'
-      : '<span class="fc-mark fc-mark--kind" style="--kc:' + ACCENT[p.kind] + '">' + KIND_ICON(p.kind) + '</span>';
-    var media = window.PREVIEW_MEDIA ? PREVIEW_MEDIA(p.id, p.kind, 'pv-media--card') : '';
-    var cardCls = 'fcard rv' + (media ? '' : ' fcard--text');
-    return '<a class="' + cardCls + '" href="' + href(p) + '" style="--kc:' + ACCENT[p.kind] + '">' +
-      media +
-      '<div class="fc-top">' + mark +
-        '<span class="fc-id"><b>' + p.name + '</b>' +
-        '<span class="fc-cat">' + cat + '</span></span></div>' +
-      '<p class="fc-line">' + cardLine(p) + '</p>' +
-    '</a>';
-  }
-
-  /* Six at a time, arrows to page -- never the full list at once (item 5c).
+  /* Fourteen at a time (bumped from six -- a text row is a fraction of a
+     card's height, so more per page still reads as one screenful), arrows
+     to page -- never the full list at once (item 5c).
      Returns the number of tools in the current scope so render() can drive
      the empty state and the pill off the same figure. */
   function renderPager() {
@@ -450,9 +428,9 @@
 
     var gridEl = document.getElementById('pageGrid');
     if (gridEl) {
-      gridEl.innerHTML = items.map(browseCard).join('');
+      gridEl.innerHTML = items.map(row).join('');
       /* The pager itself is only ever on screen after a deliberate click on
-         it, so its cards reveal immediately rather than waiting on the
+         it, so its rows reveal immediately rather than waiting on the
          scroll-in observer below -- that observer needs a fresh intersection
          event to fire, which never happens for a page swap the visitor is
          already looking at (and won't happen at all in a background/inactive
@@ -473,8 +451,7 @@
       ? 'Set ' + (state.page + 1) + ' of ' + pages + ' — ' + total + ' tool' + (total === 1 ? '' : 's') + ' in this scope'
       : '';
 
-    if (window.PREVIEW_INIT) PREVIEW_INIT();
-    /* Paging replaces .pageGrid's contents with fresh .rv nodes that start
+    /* Paging replaces .toollist's contents with fresh .rv nodes that start
        at opacity 0 (js-reveal) -- the prev/next handlers call renderPager()
        directly, not render(), so without this they would never be observed
        and the new page would render permanently invisible. Already on

@@ -394,6 +394,44 @@
       '</section>';
   }
 
+  /* ---- seeing it run ------------------------------------------------------
+     The long copy that used to sit on the landing page's video cards
+     (assets/js/videos.js, "Fold #videos and #ecosystem" pass, 2026-08-31) —
+     the card there is now just the clip, the title and one line; what it
+     actually caught on screen, why it matters and what it was running on
+     belong here, on the tool the clip is evidence for. Reuses the same
+     .vgrid/.vcard shape the landing page's clip once had, so a visitor who
+     followed "Open X" from a short card lands on a page that speaks the same
+     visual language, just at full depth. Silent unless window.VIDEOS carries
+     a clip whose `toolId` matches this page — most tools have none yet. */
+  var clips = (window.VIDEOS || []).filter(function (v) { return v.toolId === p.id; });
+  var fieldHTML = clips.length
+    ? '<section class="band uikit" id="seeing-it-run">' +
+        '<div class="rmap-head rv" style="margin-top:0">' +
+          '<h3 class="rmap-title">Seeing it run.</h3>' +
+          '<p class="lede" style="max-width:56ch">Recordings from the desk, not a demo cut for ' +
+            'this page — what' + (clips.length > 1 ? ' each clip' : ' the clip') + ' actually caught on screen.</p>' +
+        '</div>' +
+        '<div class="vgrid">' + clips.map(function (v, i) {
+          var base = 'assets/videos/' + v.slug + '-clip';
+          return '<article class="vcard rv" style="--d:' + (i * 90) + 'ms">' +
+            '<video class="vplayer" controls preload="none" playsinline ' +
+                   'poster="' + base + '.jpg" aria-label="' + esc(v.title) + '">' +
+              '<source src="' + base + '.mp4" type="video/mp4">This browser cannot play the clip.' +
+            '</video>' +
+            '<div class="vbody">' +
+              '<p class="vmeta"><span class="vdur">' +
+                Math.floor(v.dur / 60) + ':' + pad(v.dur % 60) + '</span></p>' +
+              '<h4 class="vtitle">' + esc(v.title) + '</h4>' +
+              '<p class="vsee">' + esc(v.seeing) + '</p>' +
+              '<p class="vwhy"><span class="lb">Replaces</span>' + esc(v.why) + '</p>' +
+              '<p class="vsoft">' + esc(v.software) + '</p>' +
+            '</div>' +
+          '</article>';
+        }).join('') + '</div>' +
+      '</section>'
+    : '';
+
   /* ---- development ------------------------------------------------------- */
   var devHTML = '';
   if (hasDev) {
@@ -450,7 +488,7 @@
       '</section>'
     : '';
 
-  host.innerHTML = heroHTML + effectHTML + insideHTML + howHTML + devHTML + relHTML;
+  host.innerHTML = heroHTML + effectHTML + insideHTML + howHTML + fieldHTML + devHTML + relHTML;
   document.title = p.name + ' — AI Research & Innovation';
 
   /* ---- gallery ------------------------------------------------------------

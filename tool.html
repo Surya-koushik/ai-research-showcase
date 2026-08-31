@@ -106,6 +106,11 @@
 <script src="assets/js/projects_data.js"></script>
 <script src="assets/js/media_manifest.js"></script>
 <script src="assets/js/projects.js"></script>
+<!-- Field clips (assets/js/videos.js) carry the "Seeing it run" copy for any
+     tool a screen recording traces to (its `toolId`) -- see that file's own
+     header. Its render pass is a no-op here (no #videoGrid on this page); it
+     is loaded only so tool.js can read window.VIDEOS. -->
+<script src="assets/js/videos.js"></script>
 <script src="assets/js/tool.js"></script>
 </body>
 </html>
