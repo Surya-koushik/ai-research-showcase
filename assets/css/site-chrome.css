@@ -1295,3 +1295,46 @@ html.intro-curtain-active body{ overflow:hidden }
   }
   .rmap-out em{ display:block }
 }
+
+/* ============================================================================
+   STRUCTURAL DEPTH — layered planes, seams, ambient light
+   ----------------------------------------------------------------------------
+   Surya's note: "check the background — if it's too simple, add some elements
+   to make it professional." The hero carries real depth (video + constellation
+   canvas + bg-grid). Everything below it sat on one flat #fff with nothing to
+   answer that — six bands in a row on the same plane. Three additions, none of
+   them a new decorative motif:
+
+     1. GROUND. light.css already cut a second, quieter paper tone for exactly
+        this ("--bg-2, one quiet step for alternating sections") but nothing
+        used it. The catalogue — #ecosystem and #videos, read together as one
+        chapter per the HTML's own comments — and #faq now sit on it. #roadmap,
+        #close and #contact stay on the brighter --bg, so the page reads as
+        distinct chapters instead of one unbroken scroll.
+     2. SEAM. Every band already carries a 1px hairline top border
+        (deck.css, .band+.band). A soft inset shadow just under that line
+        reads as an actual edge — the plane above sits slightly forward of the
+        one below it, the way stacked sheets would, rather than the border
+        being the only thing marking a new section.
+     3. AMBIENT LIGHT. #close already carried one soft violet .glow behind its
+        headline — a single blurred radial blob, opacity capped low, never
+        competing with content. That same device now recurs through the flat
+        sections below, alternating the two accents already in the token set
+        (violet #7C5CFF; amber #FFB829, light.css's own "warm note") instead
+        of inventing a third colour. One glow per band, at most.
+
+   Motion for the glows (a very small scroll-tied drift) lives in
+   assets/js/depth.js and is skipped entirely under prefers-reduced-motion —
+   the positions set here are a complete, correct static resting state on
+   their own; the drift is an enhancement, not a requirement for the layout
+   to read as intentional.
+   ============================================================================ */
+
+#ecosystem, #videos, #faq{ background:var(--bg-2,#F7F8FB) }
+
+#ecosystem, #videos, #roadmap, #close, #faq, #contact{
+  box-shadow:inset 0 30px 40px -38px rgba(14,17,22,.10);
+}
+
+.depth-glow{ will-change:transform }
+@media (prefers-reduced-motion:reduce){ .depth-glow{ transform:none !important } }
