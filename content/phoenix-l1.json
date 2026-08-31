@@ -84,5 +84,14 @@
     "h10-dashboard",
     "revit-toolbox",
     "p25-predictability"
-  ]
+  ],
+  "highlights": {
+    "category": "Coordination & Documentation",
+    "headline": "One click runs all 22 Level-1 checks across 5 quality gates.",
+    "points": [
+      "22 rules map to 5 gate stages in RuleCatalog.cs, file setup through output prep.",
+      "2 checks auto-fix in place (RuleCatalog.cs); the rest report the exact failing elements.",
+      "Produces a PDF audit report via headless Edge, ready for the weekly record."
+    ]
+  }
 }

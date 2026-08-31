@@ -16,5 +16,14 @@
   "page": {
     "objective": "Connects Claude live to AutoCAD for exporting site layouts as lossless JSON.",
     "solution": "Automatically loads a .NET add-in in AutoCAD that listens on port 48810 and exports the current selection of objects into a lossless, scale-preserving JSON file. The same export can be done offline using ZWCAD's `SITEJSON` command without an active listener."
+  },
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "Streams live AutoCAD site layouts to Claude as lossless JSON.",
+    "points": [
+      "CadBridge.dll auto-loads in AutoCAD and listens on 127.0.0.1:48810/cad-bridge/.",
+      "Offline mode too: a .lsp export writes the same JSON contract to a queue.",
+      "One JSON contract for both paths — Claude reads, validates, and summarizes it."
+    ]
   }
 }

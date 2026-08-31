@@ -1,0 +1,31 @@
+{
+  "id": "p25-predictability",
+  "code": "P03",
+  "name": "P25 Predictability Dashboard",
+  "status": "production",
+  "kind": "dashboard",
+  "domain": "controls",
+  "workflowStage": "Analytics & Insight",
+  "logo": "asure",
+  "tagline": "Delivery predictability analytics — the studio quality benchmark.",
+  "description": "A premium analytics dashboard tracking delivery predictability with the studio design system — the visual and data-clarity benchmark the rest of the platform is measured against.",
+  "tech": [
+    "html",
+    "javascript",
+    "css"
+  ],
+  "efficiency": {
+    "manualHrsPerWeek": 2.5,
+    "aiHrsPerWeek": 0.5,
+    "draft": true
+  },
+  "page": {
+    "objective": "Make delivery predictability measurable and legible at a glance.",
+    "problem": "Predictability signals were scattered and hard to read across projects.",
+    "solution": "A single analytics surface with premium data visualization and clear hierarchy."
+  },
+  "related": [
+    "h10-dashboard",
+    "phoenix-l1"
+  ]
+}

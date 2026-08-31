@@ -1,0 +1,27 @@
+{
+  "id": "revit-toolbox",
+  "code": "P10",
+  "name": "ADS Revit Toolbox",
+  "status": "in-progress",
+  "kind": "plugin",
+  "domain": "design",
+  "workflowStage": "Authoring / Productivity",
+  "logo": "revit",
+  "tagline": "A general-purpose productivity toolbox for day-to-day Revit work.",
+  "description": "A collection of everyday Revit productivity tools — the most-requested repetitive actions distilled into one-click commands, sitting alongside the Phoenix compliance suite.",
+  "tech": [
+    "revit",
+    "csharp",
+    "dotnet",
+    "pyrevit"
+  ],
+  "page": {
+    "objective": "Cut the repetitive clicks out of everyday Revit modeling.",
+    "problem": "Common Revit actions take many steps and are repeated hundreds of times a week.",
+    "solution": "A curated set of one-click tools for the highest-frequency tasks."
+  },
+  "related": [
+    "phoenix-l1",
+    "cad3d-studio"
+  ]
+}

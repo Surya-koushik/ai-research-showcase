@@ -20,5 +20,14 @@
   },
   "related": [
     "team-assess"
-  ]
+  ],
+  "highlights": {
+    "category": "Infrastructure & R&D",
+    "headline": "A local proxy that compresses Claude's context before the API call.",
+    "points": [
+      "Installed 2026-06-11; runs as a live compression proxy on port 8787.",
+      "Gated by a dedicated launcher — only claude-fable-5 sessions route through it.",
+      "Compresses via tokenizers + ONNX + a Rust core, no GPU needed."
+    ]
+  }
 }

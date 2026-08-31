@@ -2,18 +2,27 @@
   "id": "architecture-ai",
   "code": "P20",
   "name": "Architecture AI",
-  "status": "production",
-  "kind": "pipeline",
+  "status": "research",
+  "kind": "evaluation",
   "domain": "design",
   "workflowStage": "integration into design workflow for real-time feedback and visualization",
   "logo": "revit",
-  "tagline": "AI-driven architecture visualization and analysis tools for designers.",
-  "description": "A suite of AI-powered tools designed to enhance architectural design processes by automating the creation of photorealistic renders, validating Revit models in real-time, and generating fly-through videos. These tools are tailored specifically for architects, visualizers, and BIM staff, integrating seamlessly with existing workflows to improve efficiency.",
+  "tagline": "A curated index of the studio's architecture-specific AI stack.",
+  "description": "A reference index covering six topics in AI-assisted architecture — sketch-to-render, ControlNet, LoRA training, Revit+AI, AI video, and failure modes — each pointing to the tool or doc that covers it, plus the canonical pipeline documentation. It renders nothing and validates nothing itself; it is a map to the tools that do.",
   "tech": [
     "revit"
   ],
   "page": {
-    "objective": "AI-driven architecture visualization and analysis tools for designers.",
-    "solution": "A suite of AI-powered tools designed to enhance architectural design processes by automating the creation of photorealistic renders, validating Revit models in real-time, and generating fly-through videos. These tools are tailored specifically for architects, visualizers, and BIM staff, integrating seamlessly with existing workflows to improve efficiency."
+    "objective": "Give designers, visualisers, and BIM staff one place to find the AI tools and docs relevant to architecture work.",
+    "solution": "A short reference page and README indexing six topics — sketch-to-render, ControlNet, LoRA, Revit+AI, AI video, failure modes — each linking out to the tool or documentation that covers it."
+  },
+  "highlights": {
+    "category": "Conceptual & Feasibility",
+    "headline": "A curated knowledge index for the studio's AI-visualization pipeline.",
+    "points": [
+      "Indexes six topics: sketch-to-render, ControlNet, LoRA, Revit+AI, AI video, failure modes.",
+      "Points to the canonical pipeline doc rather than running any pipeline itself.",
+      "Not a build — a 98-line reference page plus a README index."
+    ]
   }
 }

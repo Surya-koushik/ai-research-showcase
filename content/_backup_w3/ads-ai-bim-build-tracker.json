@@ -1,0 +1,21 @@
+{
+  "id": "ads-ai-bim-build-tracker",
+  "code": "P19",
+  "name": "ADS AI BIM Build Tracker",
+  "status": "production",
+  "kind": "dashboard",
+  "domain": "controls",
+  "workflowStage": "integration",
+  "logo": "asure",
+  "tagline": "Tracks AI and BIM build progress across projects.",
+  "description": "The ADS_AI_BIM_Build_Tracker is a tool designed to monitor the status of AI-driven building information modeling (BIM) projects, ensuring that all tasks related to design, construction, and maintenance are on track. It provides real-time updates and analytics for project managers to make informed decisions.",
+  "tech": [
+    "html",
+    "css",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Tracks AI and BIM build progress across projects.",
+    "solution": "The ADS_AI_BIM_Build_Tracker is a tool designed to monitor the status of AI-driven building information modeling (BIM) projects, ensuring that all tasks related to design, construction, and maintenance are on track. It provides real-time updates and analytics for project managers to make informed decisions."
+  }
+}

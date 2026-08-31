@@ -17,5 +17,14 @@
   "page": {
     "objective": "Tracks AI and BIM build progress across projects.",
     "solution": "The ADS_AI_BIM_Build_Tracker is a tool designed to monitor the status of AI-driven building information modeling (BIM) projects, ensuring that all tasks related to design, construction, and maintenance are on track. It provides real-time updates and analytics for project managers to make informed decisions."
+  },
+  "highlights": {
+    "category": "Reporting & Leadership",
+    "headline": "Tracks AI and BIM build progress across tools, workstreams, and goals.",
+    "points": [
+      "Overview, live view, tools, workstream, and goals sections in one page.",
+      "Metrics ship as embedded JSON, not hand-typed HTML, so it's easy to update.",
+      "Self-contained single file — light/dark theme, no server required to view it."
+    ]
   }
 }

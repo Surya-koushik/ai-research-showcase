@@ -1,0 +1,37 @@
+{
+  "id": "architecture-workbench",
+  "code": "P67",
+  "name": "Architecture Workbench",
+  "status": "experimental",
+  "kind": "platform",
+  "domain": "ai",
+  "workflowStage": "AI Infrastructure",
+  "logo": "asure",
+  "tagline": "A node-graph workbench that wires the studio's AI design tools into one whole-project pipeline.",
+  "description": "An internal node-graph workbench, badged a local prototype, that lays out a 12-phase, whole-project pipeline where each node is one linked design tool (zoning, programme generation, massing options, pedestrian wind, solar and shadow, option comparison). A free-flow mode reveals a 272-contract system across 12 phases and 51 building typologies, each tagged by how much data-source coverage it has.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "See and wire the studio's separate design tools as one connected, whole-project pipeline instead of separate point tools.",
+    "problem": "Each design tool in the stack (zoning, massing, wind, solar, and the rest) runs on its own, with no shared view of how a project moves between them.",
+    "solution": "A node-graph lays every tool out as a stage in one pipeline, with a free-flow mode that expands the underlying contract and typology system behind it. It is explicitly badged a local prototype on its own screen."
+  },
+  "related": [
+    "site-gpt",
+    "plotting-agent",
+    "masterplan-zoning-agent",
+    "pedestrian-wind-analysis"
+  ],
+  "highlights": {
+    "category": "Infrastructure & R&D",
+    "headline": "One node-graph connecting the studio's separate AI design tools into a single pipeline.",
+    "points": [
+      "One pipeline, every tool — a 12-phase project pipeline where each node is a linked tool (zoning, programme, massing, wind, solar, comparison).",
+      "272-node design system — a free-flow view that expands into a 272-contract, 12-phase system.",
+      "Auto-expand site evidence — a site-intelligence pack that expands into OSM context, climate, rules, ecology, and utilities branches.",
+      "51 typologies, gap-tracked — a typology library of 51 building types, each tagged by data-source coverage."
+    ]
+  }
+}

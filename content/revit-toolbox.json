@@ -2,13 +2,13 @@
   "id": "revit-toolbox",
   "code": "P10",
   "name": "ADS Revit Toolbox",
-  "status": "in-progress",
-  "kind": "plugin",
+  "status": "research",
+  "kind": "evaluation",
   "domain": "design",
   "workflowStage": "Authoring / Productivity",
   "logo": "revit",
-  "tagline": "A general-purpose productivity toolbox for day-to-day Revit work.",
-  "description": "A collection of everyday Revit productivity tools — the most-requested repetitive actions distilled into one-click commands, sitting alongside the Phoenix compliance suite.",
+  "tagline": "A pain-point study for a planned Revit productivity toolbox.",
+  "description": "Market research for a general-purpose Revit productivity toolbox — the most-requested repetitive actions, ranked from Reddit, Autodesk forums, Quora, and plugin marketplaces, into a prioritised build list. Research phase, dated 2026-07-01; no code written yet.",
   "tech": [
     "revit",
     "csharp",
@@ -16,12 +16,21 @@
     "pyrevit"
   ],
   "page": {
-    "objective": "Cut the repetitive clicks out of everyday Revit modeling.",
+    "objective": "Work out which repetitive Revit actions are worth building one-click tools for, before writing any code.",
     "problem": "Common Revit actions take many steps and are repeated hundreds of times a week.",
-    "solution": "A curated set of one-click tools for the highest-frequency tasks."
+    "solution": "A ranked list of the highest-frequency pain points, sourced from Reddit, Autodesk forums, Quora, and plugin marketplaces, to set the build order once development starts."
   },
   "related": [
     "phoenix-l1",
     "cad3d-studio"
-  ]
+  ],
+  "highlights": {
+    "category": "Design Development",
+    "headline": "A ranked catalog of Revit pain points, not yet a built tool.",
+    "points": [
+      "Status: research phase, 2026-07-01 — README states \"No code yet.\"",
+      "Pain points sourced from Reddit, Autodesk forums, Quora, and plugin marketplaces.",
+      "Plans to reuse AdsPhoenixL1's licensing and UI patterns once building starts."
+    ]
+  }
 }

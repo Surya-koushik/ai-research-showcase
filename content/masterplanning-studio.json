@@ -1,0 +1,36 @@
+{
+  "id": "masterplanning-studio",
+  "code": "P54",
+  "name": "Masterplanning Studio",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Concept & Visualization",
+  "logo": "asure",
+  "tagline": "Trace a site boundary from satellite imagery and get a plot/road layout, 3D massing, and feasibility report.",
+  "description": "Traces a site from satellite imagery, auto-generates a road and plot subdivision layout with a live-updating spine road, snaps it into a 3D massing model, runs a climate and vastu analysis, and exports a client feasibility and financial report as a PDF.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Take a raw site boundary to a feasibility-ready master plan without manual plot subdivision.",
+    "problem": "Laying out roads and plots on a raw site, then re-checking feasibility whenever the layout changes, is normally a slow manual iteration.",
+    "solution": "The site is traced from satellite imagery, the road and plot layout auto-generates and updates live, and a massing plus feasibility report follow from the same model."
+  },
+  "related": [
+    "urban-intelligence",
+    "site-gpt",
+    "masterplan-zoning-agent"
+  ],
+  "highlights": {
+    "category": "Conceptual & Feasibility",
+    "headline": "Site trace to plot layout to massing to feasibility PDF in one pass.",
+    "points": [
+      "Traces the site boundary from satellite imagery rather than a manually drawn outline.",
+      "Auto-generates a spine road and plot layout that updates live as the road is adjusted.",
+      "Runs a climate and vastu analysis (sun path, wind rose) alongside the massing.",
+      "Exports a client feasibility and financial report directly as a PDF."
+    ]
+  }
+}

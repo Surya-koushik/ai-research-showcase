@@ -1,0 +1,34 @@
+{
+  "id": "light-studio",
+  "code": "P68",
+  "name": "Light Studio",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Schematic Design",
+  "logo": "asure",
+  "tagline": "Simulate a tower's lighting and electrical load floor by floor, live.",
+  "description": "Simulates a tower's lighting design and electrical load by floor and operating scene, with a night render showing live total and per-floor power draw in kW, drawn from a fixture library and photometric summary, and a design-analysis / pre-compliance (LPD) report.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "See a tower's real lighting load, floor by floor, before it's specified rather than after.",
+    "problem": "Lighting and electrical load are normally estimated per floor separately, without a live view of how they add up across the whole tower.",
+    "solution": "A tower model and operating scene drive a live night render with a real-time kW readout per floor, feeding directly into a pre-compliance report."
+  },
+  "related": [
+    "vt-designer",
+    "renewable-energy-lab"
+  ],
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "A live night render of a tower with real-time per-floor power draw.",
+    "points": [
+      "Runs solar path analysis on the 3D building model alongside a fixture-library photometric summary.",
+      "Night render updates a live total-power readout with a per-floor kW breakdown as scenes change.",
+      "Produces a Design Analysis / Pre-Compliance report from the same model."
+    ]
+  }
+}

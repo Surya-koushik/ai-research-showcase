@@ -1,0 +1,19 @@
+{
+  "id": "architecture-ai",
+  "code": "P20",
+  "name": "Architecture AI",
+  "status": "production",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "integration into design workflow for real-time feedback and visualization",
+  "logo": "revit",
+  "tagline": "AI-driven architecture visualization and analysis tools for designers.",
+  "description": "A suite of AI-powered tools designed to enhance architectural design processes by automating the creation of photorealistic renders, validating Revit models in real-time, and generating fly-through videos. These tools are tailored specifically for architects, visualizers, and BIM staff, integrating seamlessly with existing workflows to improve efficiency.",
+  "tech": [
+    "revit"
+  ],
+  "page": {
+    "objective": "AI-driven architecture visualization and analysis tools for designers.",
+    "solution": "A suite of AI-powered tools designed to enhance architectural design processes by automating the creation of photorealistic renders, validating Revit models in real-time, and generating fly-through videos. These tools are tailored specifically for architects, visualizers, and BIM staff, integrating seamlessly with existing workflows to improve efficiency."
+  }
+}

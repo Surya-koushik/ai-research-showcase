@@ -1,0 +1,35 @@
+{
+  "id": "sustainability-designer",
+  "code": "P59",
+  "name": "Sustainability Designer",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Schematic Design",
+  "logo": "asure",
+  "tagline": "Simulate a building's resource flows and get a live IGBC/LEED certification pre-assessment score.",
+  "description": "Animates a building's energy, water, and waste resource flows between grid, PV, municipal supply, and landfill, and pre-assesses its IGBC and LEED certification scores live as the design changes.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Show a green-building certification score early enough to still act on it, instead of at the end of design.",
+    "problem": "IGBC/LEED pre-assessment is normally a point-in-time exercise, done once a design is mostly fixed.",
+    "solution": "A resource-flow simulation and the IGBC/LEED score update together as the building's areas, occupancy, and systems change."
+  },
+  "related": [
+    "renewable-energy-lab",
+    "twinpulse",
+    "landscape-intelligence-lab"
+  ],
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "Live resource-flow diagram paired with an IGBC/LEED score that updates with it.",
+    "points": [
+      "Animates energy/water/waste ribbons flowing between grid, PV, municipal supply, and landfill.",
+      "Scores the design against IGBC and LEED certification live, side by side.",
+      "Exports the assessment as a structured .sud.json file."
+    ]
+  }
+}

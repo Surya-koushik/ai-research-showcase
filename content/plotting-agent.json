@@ -1,0 +1,35 @@
+{
+  "id": "plotting-agent",
+  "code": "P64",
+  "name": "Plotting Agent",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Concept & Visualization",
+  "logo": "asure",
+  "tagline": "Generate a code-compliant plot subdivision layout from a site boundary, with a clean DXF export.",
+  "description": "Takes a drawn or imported (DXF/DWG) site boundary, applies a building-code and plotting-strategy setup (NBC/Telangana, amenities, green parcels), auto-generates the full plot layout with a live metrics and compliance panel editable in 2D, and exports a DXF with named layers verified to open cleanly in AutoCAD.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Turn a site boundary into a code-compliant plot subdivision without laying it out parcel by parcel.",
+    "problem": "Subdividing a site into plots that satisfy a building code, while tracking density and FAR by hand, is a slow iterative process.",
+    "solution": "A site boundary and plotting-rule setup auto-generate a full plot layout with live compliance metrics, editable in 2D and exportable as a clean DXF."
+  },
+  "related": [
+    "masterplan-zoning-agent",
+    "urban-intelligence"
+  ],
+  "highlights": {
+    "category": "Conceptual & Feasibility",
+    "headline": "Site boundary to an editable, code-compliant plot layout to a clean DXF export.",
+    "points": [
+      "Draw or import your site — from a satellite trace or an imported DXF/DWG boundary.",
+      "Configure plotting rules — building code, plotting strategy, amenities, and green parcels in a setup wizard.",
+      "Auto-plot with live metrics — an editable 2D layout with plot count, density, FAR, and compliance flags updating live.",
+      "Export CAD-ready DXF — named layers verified to open cleanly in AutoCAD."
+    ]
+  }
+}

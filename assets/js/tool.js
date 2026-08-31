@@ -83,6 +83,7 @@
 
   var m  = p.media || {};
   var pg = p.page || {};
+  var hl = p.highlights || null;
   var km = kindMeta(p.kind);
   var dm = domainMeta(p.domain);
 
@@ -231,8 +232,14 @@
   var effectHTML = '';
   if (measured) {
     var saved = Math.round((eff.manualHrsPerWeek - eff.aiHrsPerWeek) * 10) / 10;
+    /* "Saved" is a subtraction of two hand-timed figures, not a measurement
+       in its own right -- while the underlying figure is draft:true, the
+       card has to say "estimated" itself rather than leaving that to the
+       note further down. Surya's call: soften in the sentence, don't cut. */
+    var savedLabel = eff.draft ? 'Saved per week, estimated' : 'Saved per week';
+    var savedN = eff.draft ? '~' + saved : saved;
     var cards = [], ci = 0;
-    cards.push(statCard('clock', saved, 'h/wk', 'Saved per week', ci++));
+    cards.push(statCard('clock', savedN, 'h/wk', savedLabel, ci++));
     cards.push(statCard('check', eff.manualHrsPerWeek + 'h &rarr; ' + eff.aiHrsPerWeek + 'h',
                         '', 'Before, then after', ci++));
     if (steps.length)    cards.push(statCard('list', steps.length, '', 'Steps in the flow', ci++));
@@ -372,6 +379,17 @@
           return '<div class="a-note rv" style="margin-top:30px;max-width:68ch">' +
                  '<span class="lb">' + nte[0] + '</span>' + esc(nte[1]) + '</div>';
         }).join('') +
+        /* highlights (content/<id>.json) — same labelled-note shape as the
+           problem/detail notes above, so a tool without the block renders
+           exactly as it did before this existed. */
+        (hl
+          ? '<div class="a-note rv" style="margin-top:30px;max-width:68ch">' +
+              '<span class="lb">Highlights</span>' + esc(hl.headline) +
+              (hl.points && hl.points.length
+                ? '<ul>' + hl.points.map(function (pt) { return '<li>' + esc(pt) + '</li>'; }).join('') + '</ul>'
+                : '') +
+            '</div>'
+          : '') +
         (noteHome === 'how' ? noteBlock : '') +
       '</section>';
   }

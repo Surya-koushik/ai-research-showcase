@@ -17,5 +17,14 @@
   "page": {
     "objective": "A dashboard for visualizing Earth-related projects.",
     "solution": "The TEP Dashboard is a web-based tool designed to provide an overview of various Earth projects, using interactive charts and graphs. It leverages Chart.js for data visualization and includes custom CSS styles for a unique user experience."
+  },
+  "highlights": {
+    "category": "Finance & Commercial",
+    "headline": "Eight Chart.js visualizations turn project data into one dashboard.",
+    "points": [
+      "Mixes bar, doughnut, and pie charts across a 1,000+ line single file.",
+      "Built for project and portfolio-level financial visualization, not just one job.",
+      "Runs as a live HTML preview — no server, no build step."
+    ]
   }
 }

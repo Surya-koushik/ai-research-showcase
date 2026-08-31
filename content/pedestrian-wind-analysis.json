@@ -1,0 +1,35 @@
+{
+  "id": "pedestrian-wind-analysis",
+  "code": "P65",
+  "name": "Pedestrian Wind Analysis",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Schematic Design",
+  "logo": "asure",
+  "tagline": "Estimation-grade pedestrian wind-comfort analysis for a real city context, built straight from OpenStreetMap.",
+  "description": "Builds a 3D city context directly from OpenStreetMap around a pinned location, runs a wind-comfort analysis (colour heatmap plus mean/P95/P99/max statistics per direction), exports the run as HTML/XLSX/CSV/JSON, and generates a PDF report that names the ML surrogate model used and its accuracy limits.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Give an early, explainable read on pedestrian wind comfort without commissioning a full CFD study.",
+    "problem": "Pedestrian-level wind comfort is normally assessed by full CFD, which is too slow to run at concept stage.",
+    "solution": "Real building context is pulled from OpenStreetMap around a pinned site, an ML surrogate estimates wind comfort, and the report states the model's own accuracy limits rather than presenting the numbers as exact."
+  },
+  "related": [
+    "traffic-design-studio",
+    "architecture-workbench"
+  ],
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "An OSM-built city context, a wind-speed heatmap, and a report that states its own limits.",
+    "points": [
+      "Build city context from OSM — pins a real-world location and auto-builds the surrounding buildings from OpenStreetMap.",
+      "Wind-speed heatmap + stats — a colour heatmap disc with mean/P95/P99/max statistics per wind direction.",
+      "Export the analysis run — HTML/XLSX/CSV/JSON, written locally with nothing uploaded.",
+      "Auto report, honest limits — a PDF report with an explicit methodology section naming the ML surrogate and its accuracy caveats."
+    ]
+  }
+}

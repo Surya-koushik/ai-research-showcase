@@ -18,5 +18,14 @@
     "objective": "Turn a construction drawing set into reliable BOQ quantities with local AI, no manual measuring.",
     "problem": "Manual takeoff from drawings is slow, repetitive and error-prone.",
     "solution": "Sheet classification, schedule extraction, symbol counting and OCR are chained via an MCP server so quantities fall out of the drawings automatically — all on local models."
+  },
+  "highlights": {
+    "category": "Documentation & Takeoff",
+    "headline": "Local AI pre-processes drawing sets so Claude only reads structured JSON.",
+    "points": [
+      "Qwen 2.5-VL classifies sheets and extracts schedules before Claude sees anything.",
+      "PaddleOCR fills in for scanned sheets that have no text layer.",
+      "MCP server exposes local Ollama models to Claude for this pipeline."
+    ]
   }
 }

@@ -1,0 +1,35 @@
+{
+  "id": "sketch-to-image",
+  "code": "P66",
+  "name": "Sketch to Image",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Concept & Visualization",
+  "logo": "asure",
+  "tagline": "Draw a freehand massing sketch and get a styled, photoreal architectural render in seconds.",
+  "description": "Renders a freehand line sketch into a photoreal architectural exterior live as it's drawn, with a choice of base model and swappable LoRA styles (an organic 'Bio Architecture' look, a smooth parametric curved-form look), output resolution up to 768px, and a downloadable image.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Let a designer see a photoreal read on a massing idea while still sketching it, not after modelling it.",
+    "problem": "Getting from a rough massing idea to a presentable render normally means building and rendering a 3D model first.",
+    "solution": "A freehand sketch renders live into a styled photoreal exterior, with swappable base models, LoRA styles, and resolution."
+  },
+  "related": [
+    "site-gpt",
+    "architecture-workbench"
+  ],
+  "highlights": {
+    "category": "Conceptual & Feasibility",
+    "headline": "A rough scribble becomes a styled photoreal render in about two seconds.",
+    "points": [
+      "Sketch to photoreal in seconds — a freehand line renders into a full exterior as it is drawn.",
+      "Swap style: organic form — an LoRA preset for an organic, lava-textured massing.",
+      "Parametric curved-form style — a base model + LoRA combination for smooth curved towers.",
+      "Pick model & resolution — choice of base architectural model and output resolution (512-768px)."
+    ]
+  }
+}

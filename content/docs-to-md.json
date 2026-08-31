@@ -25,5 +25,14 @@
   "related": [
     "team-assess",
     "headroom"
-  ]
+  ],
+  "highlights": {
+    "category": "Infrastructure & R&D",
+    "headline": "Batch-converts document folders and drawing sets into AI-queryable Markdown.",
+    "points": [
+      "Mode A converts Excel/Word/PPT/PDF/email to Markdown with a per-file manifest.",
+      "Mode B splits construction-drawing PDFs into per-sheet text + image + register.",
+      "Read-only on sources; one bad file never aborts the whole batch."
+    ]
+  }
 }

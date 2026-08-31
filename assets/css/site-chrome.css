@@ -205,6 +205,50 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
 .kindcard:hover{ transform:translateY(-2px); border-color:var(--line-2);
   box-shadow:0 2px 6px rgba(16,45,70,.07) }
 
+/* =============== TOOLS WE BUILD (merged #numbers+#kinds+#ecosystem) =====
+   The kind grid drops its blurb paragraph here — a logo grid reads by icon
+   and count, not a sentence per tile — so the 290px card minimum deck.css
+   ships is too wide; eight tiles want to sit closer to a real icon row.
+   ---------------------------------------------------------------------- */
+.kinds{ grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); margin-top:clamp(24px,3vw,36px) }
+.kindcard{ padding:20px 18px; text-align:left }
+.kindcard .ki{ width:40px; height:40px; margin-bottom:12px }
+.kindcard .ki svg{ width:19px; height:19px }
+.kindcard .kh{ display:flex; align-items:baseline; gap:8px; flex-wrap:wrap }
+.kindcard h3{ margin:0; font-size:var(--t-lg,16px); font-weight:800; letter-spacing:-.01em }
+.kindcard .ct{ font-family:var(--f-mono,ui-monospace,monospace); font-size:11px; color:var(--muted,var(--ink-3)) }
+
+/* Three build-state chips, one row. Ready / In production / In progress are a
+   3-way collapse of the four status values on the data (production /
+   in-progress / research+experimental) -- see home.js buildStates() for the
+   exact split. Colour is the same green already used for .st-production
+   elsewhere on the page, so "Ready" reads the same wherever it appears. */
+.toolstate-row{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:clamp(12px,1.6vw,18px);
+}
+.tstate{
+  display:flex; align-items:center; gap:12px;
+  padding:16px 18px; border:1px solid var(--line); border-radius:12px;
+  background:var(--surface,#fff);
+}
+.tstate-dot{ width:10px; height:10px; border-radius:50%; flex:none; background:var(--sc,var(--accent)) }
+.tstate-n{ font-size:var(--t-xl,19px); font-weight:800; letter-spacing:-.01em; color:var(--text,var(--ink)) }
+.tstate-l{ font-size:var(--t-sm,12px); color:var(--muted,var(--ink-3)) }
+
+/* Hours-saved counter: one big number, counts up on scroll-into-view via
+   home.js, respects prefers-reduced-motion by not animating at all. */
+.hourscounter{
+  display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;
+  margin-top:16px; padding:22px 24px; border:1px solid var(--line); border-radius:12px;
+  background:var(--surface-2,#F7F8FB);
+}
+.hourscounter .hc-n{ font-size:60px; font-weight:800; letter-spacing:-.02em; line-height:1; color:var(--accent-deep,#5B2FD6) }
+.hourscounter .hc-n .u{ font-size:16px; font-weight:700; margin-left:6px; color:var(--muted,var(--ink-3)) }
+.hourscounter .hc-l{ font-size:var(--t-body,14px); color:var(--text-2,var(--ink-2)); max-width:34ch }
+
+@media (max-width:520px){ .kinds{ grid-template-columns:repeat(2,minmax(0,1fr)) } }
+
 /* ======================= ROADMAP (items D1-D3) ========================= */
 
 /* Heads' note, reference 3. The draft tag is deliberately loud: the copy in
@@ -264,30 +308,71 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
 .spine-step.is-later .ss-mark::before{ color:var(--muted,var(--ink-3)); background:var(--line-2) }
 .spine-step.is-later .ss-gate .lb{ background:var(--surface-3,#eef0f5); color:var(--muted,var(--ink-3)) }
 
-/* Convergence diagram */
-.hub{ margin-top:clamp(20px,3vw,36px); overflow-x:auto }
-.hub svg{ display:block; width:100%; min-width:720px; height:auto }
-.hub-src rect, .hub-out rect{ fill:var(--surface,#fff); stroke:var(--line); stroke-width:1 }
-.hub-src text, .hub-out text{
-  font-family:var(--f-sans,system-ui,sans-serif); font-size:14px; font-weight:600;
-  fill:var(--text,var(--ink)); dominant-baseline:middle;
-}
-.hub-ring{ fill:none; stroke:var(--accent,#7C5CFF); stroke-width:1; opacity:.35 }
-.hub-core{ fill:var(--accent,#7C5CFF) }
-.hub-core-t{
-  font-family:var(--f-sans,system-ui,sans-serif); font-size:16px; font-weight:800;
-  fill:#fff; text-anchor:middle; letter-spacing:-.01em;
-}
-.hub-flow path{ stroke-dasharray:5 7; animation:hubdrift 2.6s linear infinite }
-@keyframes hubdrift{ to{ stroke-dashoffset:-24 } }
-
 @media (max-width:760px){
   .spine-step{ grid-template-columns:1fr; gap:10px }
   .ss-mark{ flex-direction:row; align-items:baseline; gap:10px }
   .ss-mark::before{ display:none }
 }
+
+/* ======================= ROADMAP HERO (rebuild) =========================
+   The convergence animation that replaces the static "hub" SVG above -- same
+   content (five sources, four outputs), livelier rendering. A dark card, not
+   a full-bleed band: the rest of the page is light, so this reads as a
+   signature visual sitting inside it, the same move the top hero already
+   makes with its own dark video canvas.
+   ---------------------------------------------------------------------- */
+.rmap-hero{
+  position:relative; overflow:hidden; isolation:isolate;
+  margin-top:clamp(28px,3.5vw,44px);
+  border-radius:14px; background:#0E1116;
+  aspect-ratio:21/9; min-height:320px;
+}
+.rmap-hero canvas{ position:absolute; inset:0; width:100%; height:100%; display:block }
+.rmap-hero-layer{ position:absolute; inset:0; pointer-events:none }
+
+.rmap-src, .rmap-out{
+  position:absolute; transform:translateY(-50%);
+  font-family:var(--f-mono,ui-monospace,monospace);
+  text-transform:uppercase; white-space:nowrap;
+  opacity:0; animation:rmapRise .9s cubic-bezier(.22,1,.36,1) forwards;
+}
+.rmap-src{
+  left:clamp(16px,3%,48px); font-size:11px; letter-spacing:.18em; color:#B9AEE0;
+  display:flex; align-items:center; gap:.7em;
+}
+.rmap-src::before{
+  content:""; width:5px; height:5px; border-radius:50%; flex:none;
+  background:#8B5CF6; box-shadow:0 0 9px #8B5CF6;
+}
+.rmap-out{
+  font-size:11px; letter-spacing:.14em; color:#F1EEFF;
+  text-shadow:0 0 16px rgba(0,0,0,.9), 0 0 40px rgba(0,0,0,.75);
+}
+.rmap-out em{
+  display:block; margin-top:.5em; font-style:normal; text-transform:none;
+  font-family:var(--f-sans,system-ui,sans-serif); font-size:12px; letter-spacing:0;
+  color:#B9AEE0;
+}
+@keyframes rmapRise{ from{ opacity:0; transform:translate(-14px,-50%) } to{ opacity:1; transform:translate(0,-50%) } }
+
+.rmap-transport{
+  position:absolute; z-index:2; right:14px; bottom:14px; width:34px; height:34px;
+  display:grid; place-items:center; background:transparent;
+  border:1px solid rgba(255,255,255,.28); border-radius:6px; cursor:pointer;
+  pointer-events:auto; transition:border-color .18s ease, background .18s ease;
+}
+.rmap-transport:hover{ border-color:#8B5CF6; background:rgba(139,92,246,.12) }
+.rmap-transport:focus-visible{ outline:2px solid #8B5CF6; outline-offset:2px }
+.rmap-transport svg{ width:11px; height:12px; fill:#DCD3FF }
+
+.rmap-hero.is-paused .rmap-src, .rmap-hero.is-paused .rmap-out{ animation-play-state:paused }
+
+@media (max-width:760px){
+  .rmap-hero{ aspect-ratio:auto; height:78vh; min-height:460px }
+  .rmap-out em{ display:none }
+}
 @media (prefers-reduced-motion:reduce){
-  .hub-flow path{ animation:none }
+  .rmap-src, .rmap-out{ animation-duration:.01ms !important; animation-delay:0ms !important; opacity:1 !important }
 }
 
 /* ================= ALL WORK — explorer (items F1–F5, G3) ===============
@@ -437,6 +522,10 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
 }
 .fc-body dt:first-child{ margin-top:0 }
 .fc-body dd{ margin:4px 0 0; font-size:14px; line-height:1.6; color:var(--text-2,var(--ink-2)) }
+/* The card's short line, replacing .fc-body's three-part dl on the landing
+   page (tool.js's related-tools card still uses .fc-body, so that rule
+   stays). Same size/leading/colour as the old dd, just one line. */
+.fc-line{ margin:0 0 14px; font-size:14px; line-height:1.6; color:var(--text-2,var(--ink-2)) }
 .fc-hours{
   margin:0 0 14px; padding:9px 12px; border-radius:8px; font-size:12px;
   background:var(--surface-2,#F7F8FB); color:var(--text-2,var(--ink-2));
@@ -462,10 +551,13 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
 .bk-n{ justify-self:end; font-family:var(--f-mono,ui-monospace,monospace);
   font-size:11px; color:var(--muted,var(--ink-3)) }
 .bk-list{ list-style:none; margin:0; padding:0 4px 18px 168px;
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:2px 24px }
-.bk-list a{ display:block; padding:7px 0 }
-.bk-list b{ display:block; font-size:14px; font-weight:600 }
-.bk-list span{ display:block; font-size:12px; color:var(--muted,var(--ink-3));
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:8px 24px }
+/* Row is now a flex line -- thumbnail + text -- not a plain block, since
+   every row can carry a small preview tile (assets/js/tool-previews.js). */
+.bk-list a{ display:flex; align-items:center; gap:12px; padding:7px 0 }
+.bk-txt{ display:flex; flex-direction:column; min-width:0 }
+.bk-txt b{ display:block; font-size:14px; font-weight:600 }
+.bk-txt span{ display:block; font-size:12px; color:var(--muted,var(--ink-3));
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
 .bk-list a:hover b{ color:var(--accent-deep,#5B2FD6) }
 
@@ -473,13 +565,44 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
   .bucket > summary{ grid-template-columns:20px minmax(0,1fr) 40px 16px }
   .bk-b{ display:none }
   .bk-list{ padding-left:34px }
+  .pv-media--row{ width:44px; height:44px }
 }
 
-/* Featured-card art. Abstract illustrations, not screenshots — see
-   assets/visuals/featured/SOURCES.md for provenance. */
-.fc-art{ display:block; margin:-24px -24px 18px; border-radius:14px 14px 0 0; overflow:hidden;
-  background:var(--surface-2,#F7F8FB); border-bottom:1px solid var(--line) }
-.fc-art img{ display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover }
+/* ======================= PREVIEW MEDIA (tool cards) =======================
+   Shared by the six featured cards and every bucket row -- one component,
+   two size variants. Behaviour lives in assets/js/tool-previews.js: poster
+   by default, video attached and played on hover (desktop) or on scroll into
+   view (touch), muted/looped/preload=none always. A card with no preview
+   asset shows the kind-tinted icon tile below, never a blank box -- that is
+   most of the catalogue today, so this is the common case, not an edge case.
+   Replaces the old .fc-art rule (same -24px bleed, same 16/9), which nothing
+   referenced any more.
+   ---------------------------------------------------------------------- */
+.pv-media{
+  position:relative; overflow:hidden; background:var(--surface-2,#F7F8FB);
+}
+.pv-poster,.pv-video{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  opacity:0; transition:opacity .18s cubic-bezier(.22,1,.36,1);
+}
+.pv-media.has-poster .pv-poster{ opacity:1 }
+.pv-media.is-playing .pv-video{ opacity:1 }
+.pv-media.is-playing .pv-poster{ opacity:0 }
+.pv-empty{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background:color-mix(in srgb, var(--kc,#6A3FE0) 10%, var(--surface-2,#F7F8FB));
+  color:var(--kc,#6A3FE0); opacity:.55; transition:opacity .18s cubic-bezier(.22,1,.36,1);
+}
+.pv-media.has-poster:not(.is-empty) .pv-empty{ opacity:0 }
+.pv-empty-ic{ width:24px; height:24px; display:block }
+
+/* Card-top variant -- the six featured cards, full-bleed 16:9. */
+.pv-media--card{ margin:-24px -24px 18px; border-radius:14px 14px 0 0;
+  aspect-ratio:16/9; border-bottom:1px solid var(--line) }
+.pv-media--card .pv-empty-ic{ width:36px; height:36px }
+
+/* Row variant -- a small square thumbnail on the compact bucket rows. */
+.pv-media--row{ flex:0 0 auto; width:56px; height:56px; border-radius:8px }
 
 /* ===================== FAQ (exhibition pass, item B3) ===================
    Disclosure list, same mechanics as the tool buckets so the page teaches
@@ -597,43 +720,6 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
 }
 .fc-top{ align-items:center; gap:12px }
 .fc-logos{ margin-left:auto; display:flex; gap:6px; align-items:center }
-
-/* ==========================================================================
-   PAIN BLOCK  (2026-08-26)
-   Competitor research, lesson 4 + lesson 5: one homepage block, four pains,
-   each phrased as something a person said out loud rather than as a system
-   property, each with its own deep link.
-   ========================================================================== */
-
-.pains{
-  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:clamp(20px,2.4vw,28px);
-}
-.pain{
-  display:flex; flex-direction:column;
-  padding:clamp(22px,2.4vw,28px);
-  border:1px solid var(--line); border-radius:14px;
-  background:var(--surface-2,var(--surface));
-}
-.pn-said{
-  margin:0 0 10px;
-  font-size:var(--t-xl,19px); font-weight:700; line-height:1.35; letter-spacing:-.012em;
-  color:var(--text,var(--ink));
-}
-.pn-fix{
-  margin:0 0 16px;
-  font-size:var(--t-body,14px); line-height:1.6;
-  color:var(--text-2,var(--ink-2));
-}
-.pn-go{
-  margin-top:auto;
-  font-size:var(--t-body,14px); font-weight:600; text-decoration:none;
-  color:var(--accent-deep,#5B2FD6);
-}
-.pain:hover{ border-color:var(--line-2) }
-.pn-go:hover{ text-decoration:underline }
-
-@media (max-width:820px){ .pains{ grid-template-columns:1fr } }
 
 /* UI_10k: every size in the design must exist in the declared scale
    (10 11 12 14 16 19 22 27 38 60 92). These two were the last strays measured
@@ -826,4 +912,131 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
 @media (max-width:820px){
   .tp-how{ grid-template-columns:1fr }
   .tp-arrow{ width:32px; height:32px }
+}
+
+/* ============================================================================
+   INTRO — brand film (2026-08-29, item W1)
+   Two switchable placements for the brand film, chosen by ?intro= and wired
+   in assets/js/intro.js: curtain (default, full-screen on first load) and
+   hero (opt-in framed player inside the hero, ?intro=hero). Both default to
+   hidden in CSS -- JS adds the class that reveals whichever was chosen, so
+   nothing here costs a normal visitor anything unless it is switched on.
+   ========================================================================== */
+
+/* --- Option A: full-screen curtain -------------------------------------- */
+html.intro-curtain-active,
+html.intro-curtain-active body{ overflow:hidden }
+
+.intro-curtain{
+  position:fixed; inset:0; z-index:10000;
+  display:none; align-items:flex-end; justify-content:center;
+  background:#000;
+  opacity:1; transition:opacity .5s ease;
+}
+.intro-curtain.is-active{ display:flex }
+.intro-curtain.is-leaving{ opacity:0; pointer-events:none }
+.intro-curtain-video{
+  position:absolute; inset:0; z-index:0;
+  width:100%; height:100%; object-fit:cover; object-position:center;
+  background:#000;
+}
+.intro-curtain-controls{
+  position:relative; z-index:1; display:flex; gap:10px;
+  margin:0 0 clamp(20px,4vh,48px);
+}
+.intro-btn{
+  padding:10px 20px; border-radius:999px; border:1px solid rgba(255,255,255,.4);
+  background:rgba(10,10,14,.55); color:#fff; font-size:14px; letter-spacing:.02em;
+  cursor:pointer; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  transition:background .2s ease, border-color .2s ease;
+}
+.intro-btn:hover{ background:rgba(255,255,255,.16); border-color:rgba(255,255,255,.8) }
+.intro-btn:focus-visible{ outline:2px solid #fff; outline-offset:2px }
+.intro-btn-primary{ background:#fff; color:#0a0a0e; border-color:#fff }
+.intro-btn-primary:hover{ background:#e7e7ea }
+@media (max-width:600px){
+  .intro-curtain-controls{ width:100%; padding-inline:20px; justify-content:space-between }
+}
+@media (prefers-reduced-motion:reduce){
+  /* Belt and braces -- the inline decision script already skips the curtain
+     for reduced motion, this just guarantees it never paints even if that
+     check somehow did not run (e.g. JS-disabled browsers with the media
+     query still evaluable through a UA stylesheet override). */
+  .intro-curtain{ display:none !important }
+}
+
+/* --- Framed player inside the hero --------------------------------------
+   Surya's note: "where is the placeholder, show it right now." It used to be
+   display:none unless ?intro=hero was in the URL, so the default (curtain)
+   visitor never saw a film slot in the hero at all. It is now always part of
+   the hero, in both intro modes -- the curtain still plays as its own
+   overlay on top and this sits underneath, ready the moment it closes. */
+.hero-film-card{
+  display:block;
+  position:relative; z-index:3; margin-top:28px; width:min(360px, 100%);
+  border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 18px 44px rgba(6,10,20,.28); background:#000;
+  aspect-ratio:16/9;
+}
+.hero-film-card video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block }
+.hero-film-play{
+  position:absolute; inset:0; z-index:1;
+  width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  background:rgba(4,6,12,.28); border:0; cursor:pointer; padding:0;
+}
+.hero-film-play-icon{
+  width:56px; height:56px; border-radius:50%; background:#fff;
+  display:flex; align-items:center; justify-content:center;
+}
+.hero-film-play-icon::before{
+  content:""; width:0; height:0; margin-left:4px;
+  border-style:solid; border-width:11px 0 11px 18px;
+  border-color:transparent transparent transparent #0a0a0e;
+}
+.hero-film-play:focus-visible{ outline:2px solid #fff; outline-offset:-4px }
+.hero-film-card.is-playing .hero-film-play{ display:none }
+@media (max-width:720px){ .hero-film-card{ width:100%; margin-top:22px } }
+
+/* --- dev-only intro switcher, gated behind ?dev=1 in intro.js ----------- */
+.intro-dev-switch{
+  position:fixed; right:14px; bottom:14px; z-index:10050;
+  display:flex; gap:6px; padding:6px; border-radius:10px;
+  background:rgba(10,10,14,.72); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+}
+.intro-dev-switch a{
+  padding:5px 9px; border-radius:6px; font-size:11px; color:#cfd6e2; text-decoration:none;
+  border:1px solid rgba(255,255,255,.14);
+}
+.intro-dev-switch a:hover, .intro-dev-switch a.is-current{ background:rgba(255,255,255,.14); color:#fff }
+
+/* ---------------------------------------------------------------------------
+   Mobile drawer — undo the kit's "sidebar becomes a top strip" pattern.
+
+   asure-ui.css has @media(max-width:900px) rules that turn .a-sidebar into a
+   horizontal scrolling strip: flex-direction:row on both the sidebar and .a-nav,
+   width:100%, and display:none on the footer and section labels. That is the
+   kit's own mobile pattern and it is fine on its own.
+
+   This site does not use it. It uses the off-canvas drawer defined above, which
+   is position:fixed and 300px wide. Under 900px the two collided: the drawer
+   kept its 300px box but laid its items out in a single un-wrapping row about
+   1600px long, so a visitor on a phone saw a sliver of the first two items and
+   nothing else, over the top of the hero.
+
+   site-chrome.css loads last, so restoring the column here wins.
+   --------------------------------------------------------------------------- */
+@media (max-width:900px){
+  body.a-app > .a-sidebar{
+    width:min(300px,86vw); max-width:86vw; min-width:0;
+    flex-direction:column; align-items:stretch;
+    overflow-x:hidden; overflow-y:auto;
+  }
+  body.a-app > .a-sidebar > .a-nav{
+    flex-direction:column; flex:1 1 auto; padding:8px;
+  }
+  body.a-app > .a-sidebar .a-nav-item{ white-space:normal }
+  /* The kit hides these for the strip; the drawer has room for them. */
+  body.a-app > .a-sidebar .a-sidebar-foot,
+  body.a-app > .a-sidebar .a-nav-sect{ display:revert }
+  body.a-app > .a-sidebar .a-sidebar-brand{ flex:none; border-bottom:1px solid var(--line) }
 }

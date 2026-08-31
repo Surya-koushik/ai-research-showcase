@@ -1,0 +1,22 @@
+{
+  "id": "construction-takeoff-ai",
+  "code": "P24",
+  "name": "Construction Takeoff AI",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "docs",
+  "workflowStage": "Documentation & Takeoff",
+  "logo": "asure",
+  "tagline": "Local-AI construction takeoff — reads a drawing set and produces BOQ quantities.",
+  "description": "An MCP-driven construction takeoff and drawings-analyser: it classifies sheets, extracts schedules, counts symbols and runs OCR across a drawing set to produce BOQ quantities. Runs entirely on local models (Ollama tier-2 preprocessors + PaddleOCR), with a benchmark harness behind it that was tuned across dozens of local models.",
+  "tech": [
+    "python",
+    "mcp",
+    "ollama"
+  ],
+  "page": {
+    "objective": "Turn a construction drawing set into reliable BOQ quantities with local AI, no manual measuring.",
+    "problem": "Manual takeoff from drawings is slow, repetitive and error-prone.",
+    "solution": "Sheet classification, schedule extraction, symbol counting and OCR are chained via an MCP server so quantities fall out of the drawings automatically — all on local models."
+  }
+}

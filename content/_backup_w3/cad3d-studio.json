@@ -1,0 +1,31 @@
+{
+  "id": "cad3d-studio",
+  "code": "P04",
+  "name": "CAD3D Studio — CAD Standardize",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Model Setup / Intake",
+  "logo": "autocad",
+  "tagline": "Any DWG → the ADS 10-layer standard → a clean 3D-ready model.",
+  "description": "Inspects every layer of an incoming CAD file visually, maps it to the ADS ten-layer standard, and prepares a 3D-ready model — turning messy drawings into usable geometry automatically.",
+  "tech": [
+    "python",
+    "javascript",
+    "ollama"
+  ],
+  "efficiency": {
+    "manualHrsPerWeek": 5,
+    "aiHrsPerWeek": 1,
+    "draft": true
+  },
+  "page": {
+    "objective": "Remove the manual grind of cleaning and standardizing incoming CAD before modeling.",
+    "problem": "Every incoming DWG has different, non-standard layers that must be sorted by hand before any 3D work.",
+    "solution": "Visual per-layer inspection + automatic mapping to the ADS standard, then a 3D-ready export."
+  },
+  "related": [
+    "phoenix-l1",
+    "revit-toolbox"
+  ]
+}

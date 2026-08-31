@@ -1,0 +1,35 @@
+{
+  "id": "renewable-energy-lab",
+  "code": "P69",
+  "name": "Renewable Energy Lab",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Schematic Design",
+  "logo": "asure",
+  "tagline": "Model solar, wind, and geothermal adoption on a building and see savings, payback, and carbon avoided.",
+  "description": "Simulates adopting solar PV, wind, and geothermal systems on a building for its location, projecting energy savings, payback period, NPV/IRR, and carbon avoided, and exports a campus energy report.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Compare renewable-energy options for a building on financial terms, not just technical ones.",
+    "problem": "Comparing solar, wind, and geothermal adoption for a building normally means separate technical and financial workups per system.",
+    "solution": "One building location and system selection runs cost, performance, payback, and carbon-avoided figures together, and exports them as a campus energy report."
+  },
+  "related": [
+    "sustainability-designer",
+    "twinpulse",
+    "light-studio"
+  ],
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "Solar, wind, and geothermal adoption modelled through to payback and carbon avoided.",
+    "points": [
+      "Runs cost-breakdown and performance simulations separately for solar PV, wind, and geothermal systems.",
+      "Projects payback period, NPV, and IRR against each system's capital cost.",
+      "Frames the roof itself as an energy plant ('Energy Sky') and rolls everything into a campus energy report."
+    ]
+  }
+}

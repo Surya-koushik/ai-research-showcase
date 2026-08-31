@@ -1,0 +1,27 @@
+{
+  "id": "revit-mcp",
+  "code": "P05",
+  "name": "Revit ↔ Claude MCP Bridge",
+  "status": "experimental",
+  "kind": "connector",
+  "domain": "ai",
+  "workflowStage": "Authoring / Automation",
+  "logo": "anthropic",
+  "tagline": "Drive Revit with natural language through the Model Context Protocol.",
+  "description": "A bridge that lets an AI assistant query and modify a live Revit model over MCP — reading model data and executing authoring code from natural-language instructions.",
+  "tech": [
+    "python",
+    "revit",
+    "mcp",
+    "anthropic"
+  ],
+  "page": {
+    "objective": "Explore natural-language, agent-driven Revit authoring.",
+    "problem": "Repetitive Revit tasks still require manual clicks or bespoke scripts.",
+    "solution": "An MCP server exposing safe Revit operations an assistant can call directly."
+  },
+  "related": [
+    "phoenix-l1",
+    "revit-toolbox"
+  ]
+}

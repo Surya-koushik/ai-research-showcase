@@ -1,0 +1,36 @@
+{
+  "id": "masterplan-zoning-agent",
+  "code": "P62",
+  "name": "Masterplan Zoning Agent",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Concept & Visualization",
+  "logo": "asure",
+  "tagline": "Draw a site boundary and get a zoned, code-compliant masterplan with a road network.",
+  "description": "Generates a colour-coded zoning and land-use plan from a drawn site boundary and zone-mix targets, runs a site-intelligence pass (adjacent roads, entry/access, sun, wind, terrain, noise), lays out an internal road network by width hierarchy, and reports per-parcel code compliance against NBC 2016 (FAR, ground coverage, height, parking).",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Turn a raw site boundary into a coded, compliant zoning plan without laying out parcels by hand.",
+    "problem": "Building a zoning plan and checking every parcel against code (FAR, coverage, height, parking) is normally a slow, parcel-by-parcel manual exercise.",
+    "solution": "A drawn boundary and zone-mix target auto-generate a zoning plan and road network, and every parcel carries its own live NBC 2016 compliance check."
+  },
+  "related": [
+    "plotting-agent",
+    "site-gpt",
+    "urban-intelligence"
+  ],
+  "highlights": {
+    "category": "Conceptual & Feasibility",
+    "headline": "Blank site to a coloured, area-quantified, code-checked zoning plan.",
+    "points": [
+      "Draw site, set zone mix — choose a layout strategy (Grid, Organic, Radial, Spine & Branch) against zone-mix targets.",
+      "Live site intelligence — automatic read of adjacent roads, entry/access, sun, wind, terrain, and noise.",
+      "Auto-generated zoning plan — labelled, area-quantified land-use parcels from a blank site.",
+      "Per-parcel code compliance — click any parcel for its FAR, ground coverage, height, and parking check against NBC 2016."
+    ]
+  }
+}

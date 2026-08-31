@@ -1,0 +1,34 @@
+{
+  "id": "vt-designer",
+  "code": "P58",
+  "name": "VT Designer",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Schematic Design",
+  "logo": "asure",
+  "tagline": "Simulate elevator traffic across a high-rise and check car counts against Indian handling-capacity targets.",
+  "description": "Runs an isometric elevator-traffic simulation across a building's low/mid/high-rise zones, verifies car counts against Indian handling-capacity targets, checks fire and monsoon compliance settings, and exports a client report.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Confirm a tower's elevator provisioning is adequate before it becomes a costly retrofit.",
+    "problem": "Verifying elevator car counts against handling-capacity targets, zone by zone, is normally a manual traffic calculation.",
+    "solution": "A building's floor and population program drives a live traffic simulation, and each zone is scored adequate or under-lifted against Indian handling-capacity targets."
+  },
+  "related": [
+    "hvac-designer",
+    "light-studio"
+  ],
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "Isometric elevator-traffic simulation with pass/fail verdicts per zone.",
+    "points": [
+      "Runs a live isometric traffic simulation across low/mid/high-rise zones.",
+      "Flags each zone adequate or under-lifted, with a suggested car count where it fails.",
+      "Checks fire and monsoon compliance settings specific to the Indian context."
+    ]
+  }
+}

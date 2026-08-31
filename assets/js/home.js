@@ -11,6 +11,18 @@
   var $ = function (s) { return document.querySelector(s); };
   var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
 
+  /* The card's one-line summary: the record's own headline where a tool has
+     written one, otherwise the first sentence of its tagline — never the
+     whole tagline, never the longer THE PROBLEM/WHAT IT DOES copy. */
+  function firstSentence(s) {
+    if (!s) return '';
+    var m = /^[^.!?]*[.!?]/.exec(s.trim());
+    return (m ? m[0] : s).trim();
+  }
+  function cardLine(p) {
+    return (p.highlights && p.highlights.headline) || firstSentence(p.tagline);
+  }
+
   /* Each kind owns one accent, shared by its card stripe, its grid label and
      the diagram that explains it. */
   var ACCENT = {
@@ -47,41 +59,89 @@
 
   $('#searchIc').innerHTML = ICON('search');
 
-  /* ---------------------------------------------------------------- stats --- */
+  /* --------------------------------------------------------------- states --- */
+  /* No fixed tool total is derived or printed here -- the catalogue keeps
+     growing, so PROJECTS.length would be stale on arrival. Kind counts and
+     build-state counts are fine: each is a live count of a subset, not a
+     claim about a grand total. */
   var measured = PROJECTS.map(function (p) { return derive(p.efficiency); }).filter(Boolean);
   var savedTotal = Math.round(measured.reduce(function (a, d) { return a + d.saved; }, 0));
-  var shipped = PROJECTS.filter(function (p) { return p.status === 'production'; }).length;
-  var kindsUsed = Object.keys(PROJECTS.reduce(function (a, p) { a[p.kind] = 1; return a; }, {})).length;
 
-  /* Plain statements. Each one says what was counted and nothing more --
-     an investor should not have to decode a claim to reach a number. */
-  var STATS = [
-    { n: PROJECTS.length, icon: 'grid',  l: 'Tools built so far' },
-    { n: shipped,         icon: 'check', l: 'In production' },
-    { n: PROJECTS.length - shipped, icon: 'clock', l: 'In progress or research' },
-    { n: savedTotal, u: 'hrs/wk', icon: 'gauge', l: 'Hours saved each week' }
+  /* Three build states, collapsed from the four status values on the data.
+     "Ready" is exactly status:production, unchanged from what the rest of the
+     site already calls Production. Anything not explicitly production or
+     in-progress -- research, experimental, or a status this build has never
+     seen -- lands in "In progress": the lowest state, never the highest, so
+     an unrecognised value can't accidentally read as more finished than it is. */
+  var toolReady    = PROJECTS.filter(function (p) { return p.status === 'production'; }).length;
+  var toolBuilding = PROJECTS.filter(function (p) { return p.status === 'in-progress'; }).length;
+  var toolEarly    = PROJECTS.length - toolReady - toolBuilding;
+
+  /* Labels run most-finished to least. "In production" was wrong in the middle slot:
+     it reads as shipped, so the half-built bucket claimed more than the finished one. */
+  var TOOL_STATES = [
+    { n: toolReady,    l: 'Live',       c: '#0d8a52' },
+    { n: toolBuilding, l: 'In build',   c: 'var(--accent)' },
+    { n: toolEarly,    l: 'Exploring',  c: 'var(--muted)' }
   ];
-  $('#stats').innerHTML = STATS.map(function (s, i) {
-    return '<div class="stat rv" style="--d:' + (i * 90) + 'ms">' +
-      '<div class="si">' + ICON(s.icon) + '</div>' +
-      '<div class="n">' + s.n + (s.u ? '<span class="u">' + s.u + '</span>' : '') + '</div>' +
-      '<div class="l">' + s.l + '</div>' +
-      (s.src ? '<div class="src">' + s.src + '</div>' : '') + '</div>';
+  var statesEl = $('#toolStates');
+  if (statesEl) statesEl.innerHTML = TOOL_STATES.map(function (s) {
+    return '<div class="tstate">' +
+      '<span class="tstate-dot" style="--sc:' + s.c + '"></span>' +
+      '<span class="tstate-n">' + s.n + '</span>' +
+      '<span class="tstate-l">' + s.l + '</span></div>';
   }).join('');
+
+  /* Hours-saved counter: the number itself is set once here; home.js counts
+     it up from 0 the first time it scrolls into view (see animateHours()
+     below), or paints the final value immediately under reduced motion. */
+  /* Kept short on purpose -- the "measured on N tools" methodology is stated
+     once, in the "About these counts" note right under this card, not here
+     too. Two cards saying the same sentence was exactly the repetition this
+     whole section was rebuilt to remove. */
+  var hoursEl = $('#hoursCounter');
+  if (hoursEl) hoursEl.innerHTML =
+    '<div class="hc-n" id="hcNum">0<span class="u">hrs/wk</span></div>' +
+    '<div class="hc-l">Hours saved each week, across the studio.</div>';
+
+  function animateHours() {
+    var numEl = document.getElementById('hcNum');
+    var hostEl = document.getElementById('hoursCounter');
+    if (!numEl || !hostEl) return;
+    var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function paint(v) { numEl.innerHTML = Math.round(v) + '<span class="u">hrs/wk</span>'; }
+    if (reduced || !('IntersectionObserver' in window)) { paint(savedTotal); return; }
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io2.unobserve(e.target);
+        var start = null, dur = 900;
+        function step(ts) {
+          if (start === null) start = ts;
+          var p = Math.min(1, (ts - start) / dur);
+          paint(savedTotal * (1 - Math.pow(1 - p, 3)));     /* ease-out cubic */
+          if (p < 1) requestAnimationFrame(step); else paint(savedTotal);
+        }
+        requestAnimationFrame(step);
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    io2.observe(hostEl);
+  }
 
   /* ---------------------------------------------------------------- kinds --- */
   function count(kind) {
     return PROJECTS.filter(function (p) { return p.kind === kind; }).length;
   }
-  /* Simplified 2026-08-25: the per-kind diagram was visual noise beside eight
-     cards. An icon chip carries the same signal at a fraction of the weight. */
+  /* Logo grid: one glyph, the kind name, its count. No blurb paragraph here --
+     that lived in the old #kinds section; a logo grid reads by icon, not by
+     sentence. The full descriptions still live on KINDS[].blurb for anywhere
+     else that wants them (e.g. the catalogue buckets further down). */
   $('#kindGrid').innerHTML = KINDS.filter(function (k) { return k.id !== 'all'; }).map(function (k, i) {
     var n = count(k.id);
     return '<a class="kindcard rv" href="#ecosystem" data-jump="' + k.id + '"' +
-      ' style="--kc:' + ACCENT[k.id] + ';--d:' + (i * 70) + 'ms">' +
-      '<div class="ki">' + ICON(k.icon) + '</div>' +
-      '<div class="kh"><h3>' + k.label + '</h3><span class="ct">' + n + '</span></div>' +
-      '<p>' + k.blurb + '</p></a>';
+      ' style="--kc:' + ACCENT[k.id] + ';--d:' + (i * 60) + 'ms" title="' + k.blurb + '">' +
+      '<div class="ki">' + KIND_ICON(k.id) + '</div>' +
+      '<div class="kh"><h3>' + k.label + '</h3><span class="ct">' + n + '</span></div></a>';
   }).join('');
 
   /* The explorer rail filters in place. #exRail is stable -- only its
@@ -116,23 +176,29 @@
     return '<a class="a-nav-item' + (active ? ' is-active' : '') + '"' +
       ' data-axis="' + axis + '" data-id="' + id + '" href="#ecosystem">' +
       '<span class="ic">' + ICON(icon) + '</span>' +
-      '<span>' + label + '</span><span class="n">' + n + '</span></a>';
+      '<span>' + label + '</span>' + (n === '' ? '' : '<span class="n">' + n + '</span>') + '</a>';
   }
 
   function renderNav() {
+    /* "All tools" carries no count -- same reason as the pill and titleblock:
+       PROJECTS.length is not the whole body of work, so it does not get to
+       stand in for it. Each individual kind's count is a real subset, kept. */
     var kindsHTML = KINDS.map(function (k) {
-      var n = k.id === 'all' ? PROJECTS.length : count(k.id);
+      var n = k.id === 'all' ? '' : count(k.id);
       return navItem('kind', k.id, k.label, n, k.icon,
                      state.kind === k.id && state.domain === 'all');
     }).join('');
     /* Jump links first. Without them the only way to reach the tool types was
        to scroll past them to the grid and then filter, which is backwards. */
+    /* #numbers, #kinds and #ecosystem used to be three sections and had a jump each.
+       They are one section now, so three of the five links landed within a screen of
+       each other. Kept #kinds and #ecosystem as anchors for inbound links from the
+       tool pages, but the drawer only offers the places that are actually apart. */
     var JUMPS = [
-      ['#top',       'home',    'Home'],
-      ['#numbers',   'chart',   'The count'],
-      ['#kinds',     'layers',  'Kinds of tool'],
-      ['#ecosystem', 'grid',    'All tools'],
-      ['#roadmap',   'route',   'Roadmap']
+      ['#top',       'home',   'Home'],
+      ['#ecosystem', 'grid',   'The tools we build'],
+      ['#videos',    'layers', 'See them running'],
+      ['#roadmap',   'route',  'Roadmap']
     ];
     var jumpHTML = JUMPS.map(function (j) {
       return '<a class="a-nav-item nav-jump" href="' + j[0] + '">' +
@@ -155,7 +221,9 @@
     renderNav(); renderAndReveal();
   });
 
-  /* The active scope, stated once above the grid with a way out of it. */
+  /* The active scope, stated once above the grid with a way out of it.
+     Never states the catalogue's total -- only the shown count, which is a
+     live subset, not a claim about how big the whole thing is. */
   function renderScope(shown) {
     var bits = [];
     if (state.kind !== 'all')   bits.push(kindMeta(state.kind).label);
@@ -164,9 +232,9 @@
     $('#scope').innerHTML = bits.length
       ? '<span class="a-label">Showing</span>' +
         bits.map(function (b) { return '<span class="a-chip">' + b + '</span>'; }).join('') +
-        '<span class="a-pill">' + shown + ' of ' + PROJECTS.length + '</span>' +
+        '<span class="a-pill">' + shown + ' shown</span>' +
         '<button class="a-btn is-sm is-secondary" id="clearScope">Clear</button>'
-      : '<span class="a-label">Showing</span><span class="a-pill">all ' + PROJECTS.length + '</span>';
+      : '<span class="a-label">Showing</span><span class="a-pill">All tools</span>';
   }
 
   document.addEventListener('click', function (e) {
@@ -239,6 +307,10 @@
     var p = PROJECTS.filter(function (x) { return x.id === f.id; })[0];
     if (!p) return '';
     var km = kindMeta(p.kind);
+    /* highlights.category (content/<id>.json) is the new source of truth for
+       the category label; f.cat and km.label stay as fallbacks so a tool
+       missing the block still renders exactly as before. */
+    var cat = (p.highlights && p.highlights.category) || f.cat || km.label;
     var logos = (p.tech || []).slice(0, 4).map(function (t) { return logoImg(t, 15); }).join('');
     var hrs = f.hours
       ? '<p class="fc-hours"><b>' + f.hours.before + 'h</b> &rarr; <b>' + f.hours.after + 'h</b>' +
@@ -251,16 +323,19 @@
     var mark = f.mark
       ? '<img class="fc-mark" src="' + f.mark + '" alt="" width="56" height="56" loading="lazy" decoding="async">'
       : '';
+    /* Video preview, discovered by slug at runtime (assets/previews/<id>.*) --
+       most tools have none yet, so PREVIEW_MEDIA always renders a deliberate
+       kind-tinted fallback tile rather than an empty box. The long THE
+       PROBLEM / WHAT IT DOES / WHAT IT CHANGES block moved to the tool page;
+       the card keeps one line (cardLine) as Surya asked. */
+    var media = window.PREVIEW_MEDIA ? PREVIEW_MEDIA(p.id, p.kind, 'pv-media--card') : '';
     return '<a class="fcard rv" href="' + href(p) + '" style="--kc:' + ACCENT[p.kind] + '">' +
+      media +
       '<div class="fc-top">' + mark +
         '<span class="fc-id"><b>' + p.name + '</b>' +
-        '<span class="fc-cat">' + (f.cat || km.label) + '</span></span>' +
+        '<span class="fc-cat">' + cat + '</span></span>' +
         '<span class="fc-logos">' + logos + '</span></div>' +
-      '<dl class="fc-body">' +
-        '<dt>The problem</dt><dd>' + f.why + '</dd>' +
-        '<dt>What it does</dt><dd>' + f.what + '</dd>' +
-        '<dt>What it changes</dt><dd>' + f.helps + '</dd>' +
-      '</dl>' + hrs +
+      '<p class="fc-line">' + cardLine(p) + '</p>' + hrs +
       '<span class="fc-go">See ' + (f.short || p.name) + ' &rarr;</span></a>';
   }
 
@@ -284,6 +359,7 @@
     var host = document.getElementById('featured');
     if (!host || !window.FEATURED) return;
     host.innerHTML = FEATURED.map(featuredCard).filter(Boolean).join('');
+    if (window.PREVIEW_INIT) PREVIEW_INIT();
   }
 
   function renderBuckets(list) {
@@ -303,10 +379,13 @@
           '<span class="bk-n">' + items.length + '</span>' +
           '<span class="tr-chev" aria-hidden="true"></span></summary>' +
         '<ul class="bk-list">' + items.map(function (p) {
-          return '<li><a href="' + href(p) + '"><b>' + p.name + '</b>' +
-                 '<span>' + p.tagline + '</span></a></li>';
+          var media = window.PREVIEW_MEDIA ? PREVIEW_MEDIA(p.id, p.kind, 'pv-media--row') : '';
+          return '<li><a href="' + href(p) + '" style="--kc:' + ACCENT[p.kind] + '">' + media +
+                 '<span class="bk-txt"><b>' + p.name + '</b>' +
+                 '<span>' + p.tagline + '</span></span></a></li>';
         }).join('') + '</ul></details>';
     }).join('');
+    if (window.PREVIEW_INIT) PREVIEW_INIT();
   }
 
   function render() {
@@ -317,9 +396,13 @@
     var emptyEl = document.getElementById('empty');
     if (emptyEl) emptyEl.style.display = list.length ? 'none' : 'block';
     renderScope(list.length);
+    /* Unfiltered, this said "52 in catalogue". The catalogue is still being filled --
+       whole folders of tools are not in it yet -- so a total presented as the whole
+       body of work understates it. While filtering, the count is a useful "how many
+       matched", so it stays. */
     $('#pillCount').textContent = list.length === PROJECTS.length
-      ? PROJECTS.length + ' in catalogue'
-      : list.length + ' of ' + PROJECTS.length;
+      ? 'Browse the catalogue'
+      : list.length + ' matching';
     observe();
   }
   /* Only a deliberate filter action moves the page. Typing in the search box
@@ -343,10 +426,14 @@
   /* ---------------------------------------------------------------- boot ---- */
   renderNav();
   render();
+  animateHours();
 
-  /* Titleblock: the sheet's own record of what it is showing. */
-  $('#tbCount').textContent = PROJECTS.length + ' entries';
-  $('#tbMeasured').textContent = measured.length + ' of ' + PROJECTS.length + ' measured';
+  /* Titleblock: the sheet's own record of what it is showing. "Growing" over
+     a count for the same reason as the pill above -- the catalogue file is
+     not the full body of work. "N measured" is the fact worth freezing here:
+     the denominator that must not be presented as fixed. */
+  $('#tbCount').textContent = 'Growing';
+  $('#tbMeasured').textContent = measured.length + ' measured';
   $('#tbRev').textContent = new Date().toISOString().slice(0, 10);
 
   /* content is on screen; take the loader away */

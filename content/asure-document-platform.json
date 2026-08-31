@@ -16,5 +16,14 @@
   "page": {
     "objective": "Self-hosted document generation platform for branded MOU/contract PDFs.",
     "solution": "A self-hosted web application designed to generate branded MOUs and contracts as PDFs from a guided form. It runs on Surya's Windows 11 PC using FastAPI, PostgreSQL, WeasyPrint, Caddy, and Redis."
+  },
+  "highlights": {
+    "category": "Finance & Commercial",
+    "headline": "Self-hosted platform generates branded MOU documents from a guided form.",
+    "points": [
+      "FastAPI backend with Postgres + Alembic migrations for users, sessions, documents.",
+      "Session-based auth with cookies and password hashing, not a bolt-on login.",
+      "app/documents/mou.py + render.py turn structured fields into a finished document."
+    ]
   }
 }

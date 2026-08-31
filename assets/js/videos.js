@@ -1,16 +1,17 @@
 /* ============================================================================
    videos.js — the #videos band.
    ----------------------------------------------------------------------------
-   Twelve screen recordings, cut down to the 30–60 seconds where the thing
+   Ten screen recordings, cut down to the 30–60 seconds where the thing
    actually happens. Everything in `seeing` was written after watching the
    source: frames were pulled every 10–20s with ffmpeg and read, and the clip
    window was chosen from those frames. Where a detail could not be read off
    the screen it is left out or marked, never guessed — see `rec-2026-04-23`,
    whose add-in never names itself on screen.
 
-   Two of the twelve are NOT studio work: they are a vendor webinar the studio
-   sat in on. They carry kind:'reference' and the page labels them, so nobody
-   reads Autodesk's demo or GAMMA AR's product film as something built here.
+   Was twelve. Two vendor-webinar clips (Autodesk's ACC demo, GAMMA AR's
+   product film) were removed 2026-08-30 — other people's footage, not the
+   studio's work. The kind:'reference' handling below is left in place; it is
+   just unused until something else needs it.
 
    Privacy pass (2026-08-26). These are raw desktop captures, so every clip was
    re-read frame by frame before it was allowed on the page:
@@ -166,30 +167,6 @@ window.VIDEOS = [
             'the way — a UI/UX design guide and a Node addon README.',
     why: 'Makes a folder tree searchable and cross-linked instead of only browsable.',
     software: 'Obsidian'
-  },
-  {
-    slug: 'rec-2026-04-28-1650',
-    kind: 'reference',
-    dur: 46,
-    title: 'Clash coordination in Autodesk Construction Cloud',
-    seeing: 'From a Redington and Autodesk webinar the studio attended — the presenter’s ' +
-            'screen, not ours. In ACC Model Coordination a clash between a basic wall and a ' +
-            'data outlet is opened as an issue against the federated model, then the clash ' +
-            'matrix is brought up: MEP against Steel Detailing, cells counting several hundred ' +
-            'clash groups per discipline pair.',
-    why: 'Kept as the commercial baseline the studio’s own checking tools get measured against.',
-    software: 'Autodesk Construction Cloud · GoToWebinar'
-  },
-  {
-    slug: 'rec-2026-04-28-1706',
-    kind: 'reference',
-    dur: 46,
-    title: 'On-site AR model overlay (vendor product film)',
-    seeing: 'Also the webinar, and also not ours: the presenter plays GAMMA AR’s own marketing ' +
-            'film. A bare concrete floor plate, then a worker in hi-vis walking a fitted-out ' +
-            'floor holding a tablet that lays the model over the room in front of them.',
-    why: 'Kept as reference for what site-side AR checking looks like in a product that already ships.',
-    software: 'GAMMA AR · GoToWebinar'
   }
 ];
 

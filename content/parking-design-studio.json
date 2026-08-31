@@ -1,0 +1,34 @@
+{
+  "id": "parking-design-studio",
+  "code": "P60",
+  "name": "Parking Design Studio",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Schematic Design",
+  "logo": "asure",
+  "tagline": "Auto-lay-out multi-level basement parking and see car counts and clearances per level.",
+  "description": "Generates a 2D basement parking layout from a site footprint and level count, and shows it as an exploded 3D stacked-basement view with car counts and clear-height data per level, exportable to DXF/PDF.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Check whether a basement parking count and clearance target is achievable before committing to a scheme.",
+    "problem": "Stacking multiple basement parking levels and confirming car counts and clearances by hand is slow and easy to get wrong across levels.",
+    "solution": "A site footprint and level count auto-generate a 2D layout and an exploded 3D stack showing car counts and clear heights per level together."
+  },
+  "related": [
+    "traffic-design-studio",
+    "plotting-agent"
+  ],
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "An exploded, level-by-level basement stack with live car counts and clearances.",
+    "points": [
+      "Lays out parking bays in 2D from a site footprint and basement level count.",
+      "Shows the stack as an exploded 3D view across multiple basement levels, with car counts and clear heights per level.",
+      "Exports the layout to DXF/PDF with parking-bay dimensions intact."
+    ]
+  }
+}

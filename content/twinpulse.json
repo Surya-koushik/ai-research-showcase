@@ -1,0 +1,35 @@
+{
+  "id": "twinpulse",
+  "code": "P57",
+  "name": "TWINPULSE",
+  "status": "in-progress",
+  "kind": "dashboard",
+  "domain": "design",
+  "workflowStage": "Analytics & Insight",
+  "logo": "asure",
+  "tagline": "A digital-twin dashboard of a building's energy, water, and waste flows across its lifecycle.",
+  "description": "Models a building's energy, water, and waste flows as a live digital twin, scrubbable across its lifecycle timeline, with a Sankey diagram tracing grid/solar/BESS energy through transformers to chillers, IT load, and lifts, plus a whole-life CO2e figure and scenario comparison.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Give a single live view of a building's resource flows across its whole lifecycle, not just at one point in time.",
+    "problem": "Energy, water, and waste performance are usually reported separately and only at a single point in a building's life.",
+    "solution": "A lifecycle timeline scrubber drives a live Sankey diagram of energy flow plus water/waste dashboards, with a whole-life CO2e figure and scenario comparison."
+  },
+  "related": [
+    "hvac-designer",
+    "renewable-energy-lab",
+    "sustainability-designer"
+  ],
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "A lifecycle-scrubbable digital twin of a building's energy, water, and waste flows.",
+    "points": [
+      "Sankey diagram traces energy from Grid/Solar/BESS through transformers to chillers, server IT, and lifts.",
+      "Reports a whole-life CO2e figure alongside the flow diagrams.",
+      "Compares Reactive, Planned, and Best-practice scenarios against each other."
+    ]
+  }
+}

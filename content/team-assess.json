@@ -21,5 +21,14 @@
   "related": [
     "docs-to-md",
     "headroom"
-  ]
+  ],
+  "highlights": {
+    "category": "Infrastructure & R&D",
+    "headline": "Turns a teammate's Claude Code session logs into a coaching report.",
+    "points": [
+      "Reads local .jsonl transcripts and scores prompting quality and concept understanding.",
+      "Flags repeated mistakes and information gaps with concrete recommendations.",
+      "Already run for real teammates — reports exist for Dhanushya and Surya."
+    ]
+  }
 }

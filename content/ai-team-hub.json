@@ -17,5 +17,14 @@
   "page": {
     "objective": "A dashboard for managing AI team projects and resources.",
     "solution": "AI Team Hub is a web-based application designed to streamline the management of AI-related projects within Asure Design Studio. It provides an overview, work priorities, requirements, team information, procedures, tools, settings, and more, all accessible from a single interface."
+  },
+  "highlights": {
+    "category": "Reporting & Leadership",
+    "headline": "One hub for the AI team's dashboard, priorities, and procedures.",
+    "points": [
+      "Seven views: dashboard, priorities, procedures, requirements, settings, team, tools.",
+      "Runs as a static single-page app — seven views, no backend server.",
+      "Each view is its own JS module, so one view failing won't break the rest."
+    ]
   }
 }

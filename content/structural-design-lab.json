@@ -1,0 +1,34 @@
+{
+  "id": "structural-design-lab",
+  "code": "P55",
+  "name": "Structural Design Lab",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Schematic Design",
+  "logo": "asure",
+  "tagline": "Simulate wind and seismic action on a tower and compare 24 structural material/system alternatives.",
+  "description": "Runs a 3D wind and seismic action simulation on a tower — colour-graded stress under load — checks it against serviceability gates (period, drift, peak acceleration, P-delta), and generates a comparison table across 24 material and lateral-system alternatives.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Compare structural material and system choices for a tower against real wind/seismic action, quickly.",
+    "problem": "Comparing structural system alternatives against wind and seismic serviceability limits is normally a slow, scheme-by-scheme engineering exercise.",
+    "solution": "One region/material/system input runs a 3D wind and seismic simulation, checks it against the serviceability gates, and lists the same comparison across 24 alternatives."
+  },
+  "related": [
+    "hvac-designer",
+    "twinpulse"
+  ],
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "Colour-graded stress simulation feeding a 24-scheme structural comparison.",
+    "points": [
+      "Animates wind-load response on the full tower model with live colour-graded axial stress.",
+      "Checks the result against serviceability gates — period, drift, peak acceleration, P-delta.",
+      "Generates a 24-row table comparing structural material and lateral-system alternatives."
+    ]
+  }
+}

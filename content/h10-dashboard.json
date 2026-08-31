@@ -27,5 +27,14 @@
   "related": [
     "phoenix-l1",
     "p25-predictability"
-  ]
+  ],
+  "highlights": {
+    "category": "Reporting & Leadership",
+    "headline": "One dashboard, four roles: BIM Director, Manager, Consultant and Client.",
+    "points": [
+      "Role selector switches the whole view — Director, Manager, MEP consultant, client.",
+      "Tracks every discipline's Pre-GFC and Final GFC gateway dates against target.",
+      "Upcoming-deadlines rail is built from the same gateway data, not a separate feed."
+    ]
+  }
 }

@@ -1,0 +1,36 @@
+{
+  "id": "site-gpt",
+  "code": "P63",
+  "name": "Site GPT",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Concept & Visualization",
+  "logo": "asure",
+  "tagline": "Describe a masterplan in plain language and get a live-editable 3D massing model.",
+  "description": "Draws a site and sets a land-use composition mix from a 17-category palette, lets any individual building be reassigned type with live area/GFA stats, regenerates the whole massing from a typed natural-language instruction (e.g. 'Dense CBD'), and runs a sun-path simulation once the road hierarchy is set.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Let a masterplan be iterated by describing changes in plain language, not by manually re-modelling each option.",
+    "problem": "Testing masterplan alternatives — a different mix, a different road hierarchy — normally means re-modelling by hand for every option.",
+    "solution": "A site and composition mix generate an initial 3D massing; any building can be click-edited, and a typed instruction regenerates the whole plan."
+  },
+  "related": [
+    "masterplan-zoning-agent",
+    "sketch-to-image",
+    "architecture-workbench"
+  ],
+  "highlights": {
+    "category": "Conceptual & Feasibility",
+    "headline": "A typed instruction regenerates the whole masterplan massing live.",
+    "points": [
+      "Draw site, set composition — a 17-category land-use mix on a drawn or freehand site boundary.",
+      "Click-edit any building live — reassign a building's use and watch site-area/GFA stats update per use.",
+      "Type a prompt, regenerate plan — a natural-language instruction rebuilds the whole massing model.",
+      "Edit roads, simulate sun path — road hierarchy widths and a sun-path simulation for a chosen location, date, and hour."
+    ]
+  }
+}

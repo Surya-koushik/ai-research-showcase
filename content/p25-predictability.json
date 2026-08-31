@@ -27,5 +27,14 @@
   "related": [
     "h10-dashboard",
     "phoenix-l1"
-  ]
+  ],
+  "highlights": {
+    "category": "Reporting & Leadership",
+    "headline": "Seven linked views trace H10 delivery from RFI to lessons learned.",
+    "points": [
+      "Seven views: RFI/ACC build, BOQ data, R&R, BIM model, process, savings, lessons.",
+      "One page traces a single project's delivery evidence end to end.",
+      "Includes a dedicated time-saving and financial-accuracy view, not just status."
+    ]
+  }
 }

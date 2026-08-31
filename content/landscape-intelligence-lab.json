@@ -1,0 +1,34 @@
+{
+  "id": "landscape-intelligence-lab",
+  "code": "P70",
+  "name": "Landscape Intelligence Lab",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Schematic Design",
+  "logo": "asure",
+  "tagline": "Model a site's climate and water basis and score a landscape design's sustainability performance.",
+  "description": "Builds a site's climate baseline (a monthly rainfall/ETo chart for the chosen city), runs a water-use analysis, and scores a landscape design's sustainability performance against it — planting and materials choices included — exporting a PDF report.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Score a landscape design against its own site's climate and water reality, not a generic checklist.",
+    "problem": "Landscape sustainability is normally assessed against generic guidance rather than the specific site's climate and water baseline.",
+    "solution": "A city climate pack and site area drive a climate/water baseline, and planting and materials choices are scored against it into an assurance score and report."
+  },
+  "related": [
+    "sustainability-designer",
+    "urban-intelligence"
+  ],
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "A climate-and-water baseline that scores a landscape design's sustainability performance.",
+    "points": [
+      "Builds a city climate baseline — a monthly rainfall/ETo chart with verified stat cards.",
+      "Runs a dedicated Water Lab pass on the site's water use.",
+      "Produces an assurance score and an exportable PDF report from the same model."
+    ]
+  }
+}

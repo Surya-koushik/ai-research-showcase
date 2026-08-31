@@ -1,0 +1,20 @@
+{
+  "id": "ads-bridge",
+  "code": "P14",
+  "name": "ads-bridge",
+  "status": "production",
+  "kind": "connector",
+  "domain": "ai",
+  "workflowStage": "tool",
+  "logo": "asure",
+  "tagline": "Local MCP server for driving Revit from chat using pyRevit ADS_Bridge.",
+  "description": "Drive Revit directly from chat with a local MCP server exposing the pyRevit ADS_Bridge HTTP API. Supports various tools like querying, executing IronPython scripts, setting parameters, running pipelines, and taking screenshots.",
+  "tech": [
+    "python",
+    "mcp"
+  ],
+  "page": {
+    "objective": "Local MCP server for driving Revit from chat using pyRevit ADS_Bridge.",
+    "solution": "Drive Revit directly from chat with a local MCP server exposing the pyRevit ADS_Bridge HTTP API. Supports various tools like querying, executing IronPython scripts, setting parameters, running pipelines, and taking screenshots."
+  }
+}

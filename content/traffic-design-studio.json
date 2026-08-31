@@ -1,0 +1,34 @@
+{
+  "id": "traffic-design-studio",
+  "code": "P61",
+  "name": "Traffic Design Studio",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Schematic Design",
+  "logo": "asure",
+  "tagline": "Check a site's traffic impact — demand, level of service, entry geometry — against IRC standards.",
+  "description": "Runs a traffic-impact check for a site — roadway capacity and level-of-service grading, junction capacity, and an entry/deceleration-lane geometry drawn to scale against the IRC:86-1983 formula — and produces a pass/fail verdict register and report.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Get an early, standards-based read on a site's traffic impact before a formal traffic study is commissioned.",
+    "problem": "Traffic-impact checks — level of service, junction capacity, deceleration-lane geometry — are normally a specialist calculation done late in design.",
+    "solution": "Site location, demand, and modal-split inputs drive a live level-of-service grade, a to-scale entry-geometry drawing against the IRC formula, and a verdict register."
+  },
+  "related": [
+    "parking-design-studio",
+    "pedestrian-wind-analysis"
+  ],
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "Entry geometry and level-of-service, worked out live against IRC formulas.",
+    "points": [
+      "Grades roadway capacity and level of service from demand and modal-split assumptions.",
+      "Draws entry geometry and deceleration-lane length to scale, with the IRC:86-1983 formula annotated live.",
+      "Runs junction capacity analysis and rolls every check into a pass/fail verdict register."
+    ]
+  }
+}

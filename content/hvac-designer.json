@@ -1,0 +1,35 @@
+{
+  "id": "hvac-designer",
+  "code": "P56",
+  "name": "HVAC Designer",
+  "status": "experimental",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Schematic Design",
+  "logo": "asure",
+  "tagline": "Simulate a building's chiller/AHU plant loop and check it against NBC compliance.",
+  "description": "Simulates a building's HVAC plant loop — chillers and AHUs feeding zone banks — for a chosen system type (DX, VRF, or chiller), checks it against an NBC gate checklist, and produces a client report. The tool's own interface still carries an 'uncalibrated' status flag.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Give a quick, visual read on whether an HVAC system choice meets code before detailed design.",
+    "problem": "Comparing HVAC system types (DX, VRF, chiller) against code compliance normally needs a separate calculation pass per option.",
+    "solution": "One building input animates the plant loop for the chosen system and checks it against an NBC gate checklist live. The tool is still marked uncalibrated on its own screen."
+  },
+  "related": [
+    "twinpulse",
+    "vt-designer",
+    "sustainability-designer"
+  ],
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "Animates a chiller/AHU plant loop and scores it against NBC compliance gates.",
+    "points": [
+      "Animates chilled-water flow from chillers through AHUs to zone banks in real time.",
+      "Scores the design against an NBC compliance checklist and compares system types side by side.",
+      "The interface itself is still flagged 'uncalibrated' — treat results as a working simulation, not a certified calculation."
+    ]
+  }
+}

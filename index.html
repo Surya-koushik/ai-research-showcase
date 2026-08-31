@@ -54,6 +54,50 @@
 </div>
 <!-- /evo -->
 
+<!-- Brand-film opening. Two placements, chosen by ?intro= (curtain default,
+     hero, off; force replays the curtain). The show/hide decision runs here,
+     inline and synchronous, so a repeat visitor or ?intro=off/hero never sees
+     a flash of it -- assets/js/intro.js (loaded at the end of body) wires up
+     the controls once the decision has already been made. -->
+<div class="intro-curtain" id="introCurtain" role="dialog" aria-modal="true" aria-label="Asure brand film">
+  <video id="introCurtainVideo" class="intro-curtain-video" muted playsinline preload="metadata"
+         poster="assets/video/brand-film-poster.jpg">
+    <source src="assets/video/brand-film.mp4" type="video/mp4">
+  </video>
+  <div class="intro-curtain-controls">
+    <button type="button" id="introUnmute" class="intro-btn" aria-pressed="false">Unmute</button>
+    <button type="button" id="introSkip" class="intro-btn intro-btn-primary">Skip</button>
+  </div>
+</div>
+<script>
+(function () {
+  try {
+    var qs = new URLSearchParams(location.search);
+    var mode = qs.get('intro');
+    var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var seen = false;
+    try { seen = sessionStorage.getItem('asure.filmSeen') === '1'; } catch (e) {}
+    var wantsCurtain = mode === 'force' || mode === 'curtain' || !mode;
+    if (mode === 'off' || mode === 'hero') wantsCurtain = false;
+    var replay = mode === 'force';
+    if (wantsCurtain && !reduced && (replay || !seen)) {
+      var el = document.getElementById('introCurtain');
+      if (el) {
+        el.classList.add('is-active');
+        document.documentElement.classList.add('intro-curtain-active');
+        /* Mark it seen the moment it is shown, not when it finishes. intro.js also
+           writes this on skip/end, but that only fires if the visitor stays to the
+           end or presses Skip -- anyone who navigated away mid-film got the curtain
+           again on the next page, and every page after that. loader.js already sets
+           its own flag at decision time for the same reason. */
+        try { sessionStorage.setItem('asure.filmSeen', '1'); } catch (e) {}
+      }
+    }
+  } catch (e) { /* URLSearchParams unsupported -- fail open, no curtain */ }
+})();
+</script>
+<!-- /intro curtain -->
+
 <aside class="a-sidebar no-print" id="sidebar" aria-hidden="true" aria-label="Site navigation">
   <div class="a-sidebar-brand">
     <a href="index.html" aria-label="Evolve — home"><img class="wm" src="assets/loader/evolve.png" alt="Evolve"></a>
@@ -80,7 +124,7 @@
     <a class="nl opt" href="#videos">Videos</a>
     <a class="nl opt" href="#faq">FAQ</a>
     <a class="nl opt" href="#contact">Contact</a>
-    <span class="a-pill" id="pillCount" style="min-width:118px">52 in catalogue</span>
+    <span class="a-pill" id="pillCount" style="min-width:118px">Browse the catalogue</span>
   </header>
 
   <main class="a-view">
@@ -108,102 +152,67 @@
       <a class="btn primary hero-cta" href="#ecosystem">See the work</a>
       <a class="btn hero-cta" href="#roadmap">The roadmap</a>
     </div>
+
+    <!-- The brand-film placeholder, always visible in the hero regardless of
+         which ?intro= mode is active (site-chrome.css) -- Surya's note: the
+         film slot has to read as present, not implied. In curtain mode this
+         sits underneath the curtain overlay, ready the moment it closes; in
+         hero mode it is the whole story. Not autoplaying -- sound only
+         starts once someone presses play. -->
+    <div class="hero-film-card" id="heroFilmCard">
+      <video id="heroFilmVideo" preload="none" playsinline poster="assets/video/brand-film-poster.jpg">
+        <source src="assets/video/brand-film.mp4" type="video/mp4">
+      </video>
+      <button type="button" class="hero-film-play" id="heroFilmPlay" aria-label="Play the Asure brand film">
+        <span class="hero-film-play-icon" aria-hidden="true"></span>
+      </button>
+    </div>
   </div>
 </section>
 
 <!-- ============================== THE SIX ============================== -->
 <section class="band uikit family" id="family">
-  <p class="fam-lead rv">Fifty-two tools have been built. Six of them carry the work.</p>
+  <p class="fam-lead rv">Six tools carry the work.</p>
   <div class="markstrip" id="markstrip"><!-- injected: product family --></div>
 </section>
 
-<!-- ============================== PAINS ============================== -->
-<section class="band uikit" id="pains">
-  <div class="rmap-head rv" style="margin-top:0">
-    <h2 class="d2">Familiar. Not any more.</h2>
-    <p class="lede" style="max-width:56ch">Four things that got said in this office most weeks.
-      Each one now has a tool with its name against it.</p>
-  </div>
+<!-- ============================== THE TOOLS WE BUILD ==============================
+     Replaces the old #numbers + #kinds + #ecosystem run — one section instead of
+     three passes at the same catalogue. Kinds lead as a logo grid, build-state
+     counts and the hours-saved counter sit under it, then the same search /
+     scope / featured / bucket browser that used to be #ecosystem.
 
-  <div class="pains">
-    <div class="pain rv" style="--d:0ms">
-      <p class="pn-said">&ldquo;Which model is the one we certified?&rdquo;</p>
-      <p class="pn-fix">Phoenix runs the weekly check inside Revit and writes the result down.
-        The answer becomes a record you can produce, not a memory of last Thursday.</p>
-      <a class="pn-go" href="tool.html?id=phoenix-l1">See Phoenix &rarr;</a>
-    </div>
-    <div class="pain rv" style="--d:60ms">
-      <p class="pn-said">&ldquo;The client wants a status update. Again.&rdquo;</p>
-      <p class="pn-fix">H10 puts the stage timeline and discipline status in front of the client
-        directly, so nobody loses an afternoon writing it out by hand.</p>
-      <a class="pn-go" href="h10.html">See H10 &rarr;</a>
-    </div>
-    <div class="pain rv" style="--d:120ms">
-      <p class="pn-said">&ldquo;These quantities have been typed out three times.&rdquo;</p>
-      <p class="pn-fix">The BOQ engine reads them from the model&rsquo;s own parameters and writes
-        the lines once. Every retype removed is a billable number that can no longer drift.</p>
-      <a class="pn-go" href="tool.html?id=architecture-boq-template">See the BOQ engine &rarr;</a>
-    </div>
-    <div class="pain rv" style="--d:180ms">
-      <p class="pn-said">&ldquo;We have redrawn this site test four times this week.&rdquo;</p>
-      <p class="pn-fix">Massing applies the NBC and Telangana rules and generates the options,
-        so testing another one costs a click instead of an evening.</p>
-      <a class="pn-go" href="tool.html?id=feasibility-massing-tool">See Massing &rarr;</a>
-    </div>
-  </div>
+     #kinds and #numbers survive as in-page anchors (wrapping, not renamed) so
+     the topbar link, the footer and tool.html / h10.html's own nav links keep
+     resolving to the right place without a site-wide link hunt.
 
-  <div class="a-note rv" style="margin-top:38px;max-width:66ch">
-    <span class="lb">Why not just use a chatbot</span>
-    A general assistant cannot open a Revit model, cannot read a drawing set, and does not
-    know NBC from Uniclass &mdash; and it will answer confidently anyway. Everything here runs
-    against the actual model file, inside the software the work is already happening in.
-  </div>
-</section>
-
-<!-- ============================== NUMBERS ============================== -->
-<section class="band uikit" id="numbers">
-  <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
-    <div style="flex:1 1 380px">
-      <h2 class="d2 rv" style="max-width:20ch">What we have built so far.</h2>
-    </div>
-    <div class="illus-lane rv" data-a-illus="ledger" aria-hidden="true"></div>
-  </div>
-  <div class="statrow" id="stats"><!-- injected --></div>
-  <div class="a-note rv" style="margin-top:42px;max-width:64ch">
-    <span class="lb">About the hours figure</span>
-    Measured on 5 of the 52 tools, where we timed the work before and after.
-    The rest are left out rather than estimated, so this is a floor, not a claim.
-  </div>
-</section>
-
-<!-- ============================== THE SYSTEM ============================== -->
-<section class="band uikit" id="kinds">
+     No fixed tool total is printed anywhere in this section — the catalogue is
+     still growing, so "52" would be stale on arrival. Kind and state counts are
+     each derived live from the same PROJECTS data, never hand-typed. -->
+<section class="band uikit" id="ecosystem">
   <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
     <div style="flex:1 1 420px">
-      <h2 class="d2 rv" style="max-width:22ch">The kinds of tool we build.</h2>
-      <p class="lede rv">Pick one to see just those. A plugin is not a pipeline, and almost
-        nothing is an agent — so almost nothing is called one.</p>
+      <h2 class="d2 rv" style="max-width:22ch">The tools we build.</h2>
+      <p class="lede rv" style="max-width:58ch">Pick a kind to see just those. A plugin is not
+        a pipeline, and almost nothing is an agent &mdash; so almost nothing is called one.</p>
     </div>
     <div class="illus-lane rv" data-a-illus="systems" aria-hidden="true"></div>
   </div>
-  <div class="kinds" id="kindGrid"><!-- injected --></div>
-</section>
 
-<!-- ============================== KINDS ============================== -->
+  <div id="kinds"><div class="kinds" id="kindGrid"><!-- injected: kind logo grid --></div></div>
 
-<!-- ============================== ECOSYSTEM ============================== -->
-<section class="band uikit" id="ecosystem">
-  <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
-    <div style="flex:1 1 380px">
-      <h2 class="d2 rv" style="max-width:20ch">Everything we have built.</h2>
-      <p class="lede rv" style="max-width:52ch">Six carry the work and are set out in full.
-        The other forty-six are grouped, so you can see the shape of it without reading
-        fifty-two entries.</p>
+  <div id="numbers">
+    <div class="toolstate-row rv" id="toolStates" style="margin-top:clamp(28px,3.5vw,44px)"><!-- injected --></div>
+    <div class="hourscounter rv" id="hoursCounter"><!-- injected --></div>
+    <div class="a-note rv" style="margin-top:24px;max-width:64ch">
+      <span class="lb">About these counts</span>
+      Kind and build state come straight from each tool&rsquo;s catalogue record. The hours
+      figure is measured on 5 tools where we timed the work before and after &mdash; the rest
+      are left out rather than estimated, so it is a floor, not a claim.
     </div>
-    <div class="illus-lane rv" data-a-illus="skyline" aria-hidden="true"></div>
   </div>
 
-  <label class="searchline rv">
+  <label class="searchline rv" style="margin-top:clamp(48px,6vw,72px)">
     <span id="searchIc"></span>
     <input id="search" type="search" placeholder="Search by name, type or technology…" autocomplete="off">
   </label>
@@ -227,18 +236,17 @@
 </section>
 
 <!-- ============================== VIDEOS ==============================
-     Twelve screen recordings, cut to the 30-60 seconds where the tool does
-     the thing. Captions, clip windows and the two "not our work" tags all
-     live in assets/js/videos.js, which also documents the privacy pass each
-     clip went through. Poster-first: preload="none" means nothing but the
-     JPEG loads until a visitor presses play. -->
+     Ten screen recordings, cut to the 30-60 seconds where the tool does the
+     thing. Captions and clip windows live in assets/js/videos.js, which also
+     documents the privacy pass each clip went through. Poster-first:
+     preload="none" means nothing but the JPEG loads until a visitor presses
+     play. Moved directly after the tools section — this is what sells. -->
 <section class="band uikit" id="videos">
   <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
     <div style="flex:1 1 420px">
       <h2 class="d2 rv" style="max-width:20ch">What it looks like running.</h2>
       <p class="lede rv" style="max-width:62ch">Recordings from the desk, cut down to the part
-        that matters &mdash; the click that runs the tool and the result arriving. Two of the
-        twelve are a vendor&rsquo;s webinar rather than our own work, and are labelled as such.</p>
+        that matters &mdash; the click that runs the tool and the result arriving.</p>
     </div>
     <div class="illus-lane rv" data-a-illus="knowledge" aria-hidden="true"></div>
   </div>
@@ -262,21 +270,45 @@
       <p class="lede rv" style="max-width:62ch">Not a list of promises. A programme with gates you can
         check &mdash; and a knowledge layer underneath that everything else plugs into.</p>
     </div>
-    <div class="illus-lane rv" data-a-illus="tower" aria-hidden="true"></div>
   </div>
 
-  <!-- D3 - heads note. PLACEHOLDER: the words below were NOT written by the
-       heads and must not be published as theirs. Replace wholesale. -->
+  <!-- The convergence animation -- Surya's reference build, retextured to the
+       site's own accent and content. Replaces the earlier static "hub" SVG;
+       same five sources / four outputs, no new claim. assets/js/roadmap-hero.js -->
+  <div class="rmap-hero rv" id="rmapHero" role="img"
+       aria-label="Five sources — Revit models, drawings and specs, standards and details,
+       meetings and RFIs, and project data — converge into one core and resolve into four
+       outputs: one place to ask, answers with sources, scoped by role, decisions on record.">
+    <canvas id="rmapCanvas" aria-hidden="true"></canvas>
+    <div class="rmap-hero-layer" aria-hidden="true">
+      <div class="rmap-src" data-lane="0">Revit models</div>
+      <div class="rmap-src" data-lane="1">Drawings &amp; specs</div>
+      <div class="rmap-src" data-lane="2">Standards &amp; details</div>
+      <div class="rmap-src" data-lane="3">Meetings &amp; RFIs</div>
+      <div class="rmap-src" data-lane="4">Project data</div>
+
+      <div class="rmap-out" data-out="0">One place to ask<em>&ldquo;Ask ADS&rdquo;</em></div>
+      <div class="rmap-out" data-out="1">Answers with sources<em>Every claim traced back</em></div>
+      <div class="rmap-out" data-out="2">Scoped by role<em>Access follows the org chart</em></div>
+      <div class="rmap-out" data-out="3">Decisions on record<em>Nothing decided twice</em></div>
+    </div>
+    <button type="button" class="rmap-transport" id="rmapTransport" aria-label="Pause animation" aria-pressed="false">
+      <svg viewBox="0 0 11 12" aria-hidden="true"><rect x="0" y="0" width="3.4" height="12"/><rect x="7.6" y="0" width="3.4" height="12"/></svg>
+    </button>
+  </div>
+
+  <!-- CEO direction. PLACEHOLDER: the words below were NOT written by the
+       CEO and must not be published as theirs. Replace wholesale. -->
   <figure class="heads-note rv">
     <span class="draft-tag">Draft &middot; not approved &middot; placeholder copy</span>
     <blockquote>
-      <p>Placeholder for the heads&rsquo; direction. This paragraph is a structural stand-in so the
+      <p>Placeholder for the CEO&rsquo;s direction. This paragraph is a structural stand-in so the
         layout can be judged &mdash; it carries no approved position, and it should be replaced with
         their own words before this page is shown to anyone.</p>
     </blockquote>
     <figcaption>
       <span class="hn-name">[Name]</span>
-      <span class="hn-role">[Role] &middot; Asure Design Studio</span>
+      <span class="hn-role">CEO &middot; Asure Design Studio</span>
     </figcaption>
   </figure>
 
@@ -339,65 +371,6 @@
     </li>
   </ol>
 
-  <!-- D2 - integrations converging on one intelligence (reference 2) -->
-  <div class="rmap-head rv" style="margin-top:clamp(56px,7vw,96px)">
-    <p class="eyebrow">The layer underneath</p>
-    <h3 class="rmap-title">Everything the studio knows, in one place you can ask.</h3>
-    <p class="lede" style="max-width:60ch">Scattered sources become one retrievable layer &mdash;
-      scoped by role and project, and every answer carries where it came from.</p>
-  </div>
-
-  <div class="hub rv" role="img"
-       aria-label="Revit models, drawings and specs, standards and details, meetings and RFIs, and project data all converge into one studio knowledge layer, which returns one place to ask, answers with sources, access scoped by role, and decisions kept on record.">
-    <svg viewBox="0 0 1060 440" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <linearGradient id="hubFlow" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#00D4FF" stop-opacity=".14"/>
-          <stop offset="55%" stop-color="#7C5CFF" stop-opacity=".80"/>
-          <stop offset="100%" stop-color="#7C5CFF" stop-opacity=".20"/>
-        </linearGradient>
-        <radialGradient id="hubCore" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#7C5CFF" stop-opacity=".20"/>
-          <stop offset="70%" stop-color="#7C5CFF" stop-opacity=".05"/>
-          <stop offset="100%" stop-color="#7C5CFF" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-
-      <g class="hub-flow" fill="none" stroke="url(#hubFlow)" stroke-width="2" stroke-linecap="round">
-        <path d="M232 64 C 360 64, 396 196, 496 210"/>
-        <path d="M232 140 C 360 140, 400 200, 496 215"/>
-        <path d="M232 216 C 350 216, 420 218, 496 220"/>
-        <path d="M232 292 C 360 292, 400 242, 496 225"/>
-        <path d="M232 368 C 360 368, 396 246, 496 230"/>
-        <path d="M584 212 C 684 198, 704 92, 832 92"/>
-        <path d="M584 217 C 694 211, 714 164, 832 164"/>
-        <path d="M584 223 C 694 229, 714 268, 832 268"/>
-        <path d="M584 228 C 684 242, 704 340, 832 340"/>
-      </g>
-
-      <circle cx="540" cy="220" r="130" fill="url(#hubCore)"/>
-      <circle cx="540" cy="220" r="60" class="hub-ring"/>
-      <circle cx="540" cy="220" r="43" class="hub-core"/>
-      <text x="540" y="215" class="hub-core-t">Ask</text>
-      <text x="540" y="234" class="hub-core-t">ADS</text>
-
-      <g class="hub-src">
-        <g><rect x="24" y="44" width="208" height="40" rx="10"/><text x="44" y="69">Revit models</text></g>
-        <g><rect x="24" y="120" width="208" height="40" rx="10"/><text x="44" y="145">Drawings &amp; specs</text></g>
-        <g><rect x="24" y="196" width="208" height="40" rx="10"/><text x="44" y="221">Standards &amp; details</text></g>
-        <g><rect x="24" y="272" width="208" height="40" rx="10"/><text x="44" y="297">Meetings &amp; RFIs</text></g>
-        <g><rect x="24" y="348" width="208" height="40" rx="10"/><text x="44" y="373">Project data</text></g>
-      </g>
-
-      <g class="hub-out">
-        <g><rect x="832" y="72" width="204" height="40" rx="10"/><text x="852" y="97">One place to ask</text></g>
-        <g><rect x="832" y="144" width="204" height="40" rx="10"/><text x="852" y="169">Answers with sources</text></g>
-        <g><rect x="832" y="248" width="204" height="40" rx="10"/><text x="852" y="273">Scoped by role</text></g>
-        <g><rect x="832" y="320" width="204" height="40" rx="10"/><text x="852" y="345">Decisions on record</text></g>
-      </g>
-    </svg>
-  </div>
-
   <div class="a-note rv" style="margin-top:36px;max-width:70ch">
     <span class="lb">How to read this</span>
     Quarters are gates, not delivery dates &mdash; each is a check that either passes or does not.
@@ -434,17 +407,19 @@
     <details class="faq-q rv" style="--d:60ms">
       <summary><span>Are these real, or are they demos?</span><span class="tr-chev" aria-hidden="true"></span></summary>
       <div class="faq-a"><p>Both, and the site says which is which. Every tool carries a status:
-        <b>36 of the 52 are in production</b>, meaning they run on live projects. The rest are
-        in progress or research. Nothing here is a mock-up made for this page.</p></div>
+        <b>most of the catalogue is live</b>, meaning it runs on real projects. The rest is
+        in build or still being explored. Nothing here is a mock-up made for this page. The
+        counts on the tools section are read from the catalogue itself, so they stay right as
+        it grows.</p></div>
     </details>
 
     <details class="faq-q rv" style="--d:120ms">
       <summary><span>How do you know it actually saves time?</span><span class="tr-chev" aria-hidden="true"></span></summary>
       <div class="faq-a"><p>Mostly we don't yet, and we would rather say so. We timed the work
-        before and after on <b>5 of the 52 tools</b>. Those are the only ones showing hours,
-        and they are still marked as draft figures until a second round of measurement
-        confirms them. The other 47 are left without a number rather than estimated, because
-        an estimate here would just be a guess wearing a decimal point.</p></div>
+        before and after on <b>5 tools</b>. Those are the only ones showing hours, and they are
+        still marked as draft figures until a second round of measurement confirms them.
+        Every other tool is left without a number rather than estimated, because an estimate
+        here would just be a guess wearing a decimal point.</p></div>
     </details>
 
     <details class="faq-q rv" style="--d:180ms">
@@ -552,7 +527,7 @@
     </div>
     <div class="a-tb-cell">
       <span class="a-label">Catalogue</span>
-      <span id="tbCount">52 entries</span>
+      <span id="tbCount">Growing</span>
     </div>
     <div class="a-tb-cell">
       <span class="a-label">Measured</span>
@@ -573,6 +548,8 @@
 <script src="assets/vendor/asure-ui-kit/asure-illustrations.js"></script>
 <script src="assets/vendor/asure-ui-kit/asure-ui.js"></script>
 <script src="assets/js/icons.js"></script>
+<script src="assets/js/kind-icons.js"></script>
+<script src="assets/js/tool-previews.js"></script>
 <script src="assets/js/placeholder.js"></script>
 <script src="assets/js/diagrams.js"></script>
 <script src="assets/js/projects_data.js"></script>
@@ -582,5 +559,7 @@
 <script src="assets/js/home.js"></script>
 <script src="assets/js/videos.js"></script>
 <script src="assets/js/hero.js"></script>
+<script src="assets/js/roadmap-hero.js"></script>
+<script src="assets/js/intro.js"></script>
 </body>
 </html>

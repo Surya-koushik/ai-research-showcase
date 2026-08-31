@@ -1,0 +1,28 @@
+{
+  "id": "architecture-ai",
+  "code": "P20",
+  "name": "Architecture AI",
+  "status": "production",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "integration into design workflow for real-time feedback and visualization",
+  "logo": "revit",
+  "tagline": "AI-driven architecture visualization and analysis tools for designers.",
+  "description": "A suite of AI-powered tools designed to enhance architectural design processes by automating the creation of photorealistic renders, validating Revit models in real-time, and generating fly-through videos. These tools are tailored specifically for architects, visualizers, and BIM staff, integrating seamlessly with existing workflows to improve efficiency.",
+  "tech": [
+    "revit"
+  ],
+  "page": {
+    "objective": "AI-driven architecture visualization and analysis tools for designers.",
+    "solution": "A suite of AI-powered tools designed to enhance architectural design processes by automating the creation of photorealistic renders, validating Revit models in real-time, and generating fly-through videos. These tools are tailored specifically for architects, visualizers, and BIM staff, integrating seamlessly with existing workflows to improve efficiency."
+  },
+  "highlights": {
+    "category": "Conceptual & Feasibility",
+    "headline": "A curated knowledge index for the studio's AI-visualization pipeline.",
+    "points": [
+      "Indexes six topics: sketch-to-render, ControlNet, LoRA, Revit+AI, AI video, failure modes.",
+      "Points to the canonical pipeline doc rather than running any pipeline itself.",
+      "Not a build — a 98-line reference page plus a README index."
+    ]
+  }
+}

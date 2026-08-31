@@ -15,5 +15,14 @@
   "page": {
     "objective": "Converts AutoCAD DWG plans into Revit elements with detailed uncertainty reporting.",
     "solution": "A tool that bridges the gap between AutoCAD and Revit by converting 2D AutoCAD drawings into editable native Revit elements. It uses a plugin registry to detect walls, columns, doors, windows, rooms, slabs, and grids, providing per-element confidence + evidence and topology cleanup (endpoint snap, L/T junction extend/trim). The tool supports the ADS office layer standard as default config and offers an optional IFC4 export."
+  },
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "Converts DWG plans into editable native Revit elements, not dumb imports.",
+    "points": [
+      "Detects walls, columns, doors, windows, rooms, slabs, and grids via a plugin registry.",
+      "Every detection carries a confidence score and evidence, nothing is guessed silently.",
+      "One transaction in Revit — a single Ctrl+Z undoes the whole import."
+    ]
   }
 }

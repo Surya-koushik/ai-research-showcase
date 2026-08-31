@@ -15,5 +15,14 @@
   "page": {
     "objective": "End-to-end browser-based feasibility and massing tool for site development projects.",
     "solution": "A web application that allows users to draw a site, apply NBC + Telangana GO rules, generate massing, export geometry to Rhino/Grasshopper, and download a PPTX deck. It supports project types like highrise, mid-rise, villa township, mixed-use, and more."
+  },
+  "highlights": {
+    "category": "Conceptual & Feasibility",
+    "headline": "Site to massing to PPTX deck — 7 of 7 tests pass.",
+    "points": [
+      "Applies NBC + Telangana GO setback and FAR rules automatically per plot.",
+      "Exports massing straight to Rhino/Grasshopper via a GhPython bridge recipe.",
+      "v1 spine only — shadow, wind, and solar analysis are still v2."
+    ]
   }
 }

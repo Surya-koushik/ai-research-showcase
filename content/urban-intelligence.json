@@ -1,0 +1,35 @@
+{
+  "id": "urban-intelligence",
+  "code": "P53",
+  "name": "Urban Intelligence",
+  "status": "in-progress",
+  "kind": "pipeline",
+  "domain": "design",
+  "workflowStage": "Concept & Visualization",
+  "logo": "asure",
+  "tagline": "Draw a plot, check it against HMDA/NBC zoning, and get a compliant massing with a feasibility report.",
+  "description": "Checks a site plot against zoning regulations (HMDA G.O.168 and NBC), auto-builds a compliant 3D massing, flags rule violations against their exact clause, and produces a feasibility and cost/revenue report as an exported PDF/DWG.",
+  "tech": [
+    "html",
+    "javascript"
+  ],
+  "page": {
+    "objective": "Let a designer check a plot's development potential against zoning rules without a manual regulation lookup.",
+    "problem": "Confirming a plot's buildable envelope against zoning rules (setbacks, height, FAR) and estimating its feasibility is normally a manual cross-check against the regulation text.",
+    "solution": "The plot is drafted against a regulatory overlay, a compliant massing is built from it automatically, and a feasibility/cost report is exported once every rule is checked."
+  },
+  "related": [
+    "masterplanning-studio",
+    "masterplan-zoning-agent",
+    "feasibility-massing-tool"
+  ],
+  "highlights": {
+    "category": "Conceptual & Feasibility",
+    "headline": "Turns a plot boundary and zoning jurisdiction into a compliant massing and feasibility report.",
+    "points": [
+      "Checks setback and height rules against a named jurisdiction (seen against HMDA G.O.168) with a violation-by-violation traceability view.",
+      "Builds a 3D massing model directly from the 2D drafted plot, with live parameter sliders.",
+      "Exports a feasibility and cost report as a PDF alongside a DWG of the massing."
+    ]
+  }
+}

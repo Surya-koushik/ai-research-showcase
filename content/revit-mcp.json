@@ -23,5 +23,14 @@
   "related": [
     "phoenix-l1",
     "revit-toolbox"
-  ]
+  ],
+  "highlights": {
+    "category": "Coordination & Documentation",
+    "headline": "20 MCP tools let Claude query and edit a Revit model.",
+    "points": [
+      "Two-server chain: main.py speaks MCP, pyRevit Routes executes inside Revit.",
+      "Covers document, model, view, family, and status tools, plus code execution.",
+      "execute_revit_code runs arbitrary IronPython against the open model from chat."
+    ]
+  }
 }

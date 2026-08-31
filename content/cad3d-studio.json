@@ -27,5 +27,14 @@
   "related": [
     "phoenix-l1",
     "revit-toolbox"
-  ]
+  ],
+  "highlights": {
+    "category": "Schematic Design",
+    "headline": "Converts CAD drawings to a QA'd 3D model in four export formats.",
+    "points": [
+      "Standardizes every DWG/DXF layer to the ten ADS layers before modeling starts.",
+      "Exports to Revit (ADS Bridge), IFC4, glTF/Collada, and Rhino .3dm + JSON.",
+      "Every export writes an audit manifest.json; source files are never touched."
+    ]
+  }
 }

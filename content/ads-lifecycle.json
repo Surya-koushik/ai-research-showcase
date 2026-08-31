@@ -19,5 +19,14 @@
   "page": {
     "objective": "Runs NBC compliance checks and Revit probes on an open model.",
     "solution": "The `ads-lifecycle` plugin automates the process of running NBC compliance checks, Revit probes, and Forma pulls for Asure Design projects. It requires a one-time setup involving cloning or copying files to your machine, installing the plugin in Claude Code, creating an APS config file, performing OAuth login, and then executing commands within the tool."
+  },
+  "highlights": {
+    "category": "Coordination & Documentation",
+    "headline": "Runs NBC compliance checks and Forma pulls from Claude Code.",
+    "points": [
+      "Installed as a Claude Code plugin: /ads-probe, /ads-model-health, /ads-compliance-check.",
+      "One package bundles four plugins: ads-cad, ads-iso, ads-lifecycle, ads-reports.",
+      "Forma commands need an Autodesk ID in the Asure Design hub."
+    ]
   }
 }

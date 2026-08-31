@@ -1,0 +1,20 @@
+{
+  "id": "cadbridge",
+  "code": "P18",
+  "name": "CADBridge",
+  "status": "production",
+  "kind": "connector",
+  "domain": "design",
+  "workflowStage": "integration",
+  "logo": "autocad",
+  "tagline": "Connects Claude live to AutoCAD for exporting site layouts as lossless JSON.",
+  "description": "Automatically loads a .NET add-in in AutoCAD that listens on port 48810 and exports the current selection of objects into a lossless, scale-preserving JSON file. The same export can be done offline using ZWCAD's `SITEJSON` command without an active listener.",
+  "tech": [
+    "autocad",
+    "dotnet"
+  ],
+  "page": {
+    "objective": "Connects Claude live to AutoCAD for exporting site layouts as lossless JSON.",
+    "solution": "Automatically loads a .NET add-in in AutoCAD that listens on port 48810 and exports the current selection of objects into a lossless, scale-preserving JSON file. The same export can be done offline using ZWCAD's `SITEJSON` command without an active listener."
+  }
+}

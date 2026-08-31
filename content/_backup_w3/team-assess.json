@@ -1,0 +1,25 @@
+{
+  "id": "team-assess",
+  "code": "P09",
+  "name": "Team AI-Usage Assessment",
+  "status": "production",
+  "kind": "pipeline",
+  "domain": "studio",
+  "workflowStage": "Enablement & Ops",
+  "logo": "anthropic",
+  "tagline": "Reads session logs to assess how each teammate uses AI, and where to improve.",
+  "description": "Analyzes local AI session transcripts to assess prompting quality, skill usage and repeated mistakes for each teammate, producing a structured improvement report.",
+  "tech": [
+    "python",
+    "anthropic"
+  ],
+  "page": {
+    "objective": "Raise the whole team's AI effectiveness with concrete, evidence-based feedback.",
+    "problem": "It is hard to know who is using AI well and what to coach without reading everything.",
+    "solution": "Automated analysis of session logs into a per-person assessment."
+  },
+  "related": [
+    "docs-to-md",
+    "headroom"
+  ]
+}

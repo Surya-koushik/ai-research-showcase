@@ -15,5 +15,14 @@
   "page": {
     "objective": "A BIM-driven template for generating quantity-based Building Operations and Maintenance (BOM) documents.",
     "solution": "This tool automates the creation of detailed building operation and maintenance (BOM) documents from a BIM model. It leverages native Revit parameters to extract quantities, classifies them using Uniclass codes, and formats them into structured BOQ lines for fabric, finishes, openings, and joinery."
+  },
+  "highlights": {
+    "category": "Design Development",
+    "headline": "Maps native Revit parameters to Uniclass-coded BOQ line items.",
+    "points": [
+      "Building fabric section already resolves walls, slabs, roofs, and ceilings from model params.",
+      "Finish quantities need the finish modeled first — structure exists, numbers don't yet.",
+      "Cites the source reference BOQ line for every mapped item."
+    ]
   }
 }

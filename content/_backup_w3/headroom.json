@@ -1,0 +1,24 @@
+{
+  "id": "headroom",
+  "code": "P07",
+  "name": "Headroom — Context Compression",
+  "status": "experimental",
+  "kind": "connector",
+  "domain": "ai",
+  "workflowStage": "AI Infrastructure",
+  "logo": "brain",
+  "tagline": "A proxy that compresses LLM context to cut token cost and speed sessions.",
+  "description": "A local proxy sitting in front of the model API that compresses and caches conversation context, reducing tokens per turn while preserving the working state of long sessions.",
+  "tech": [
+    "python",
+    "anthropic"
+  ],
+  "page": {
+    "objective": "Make long AI working sessions cheaper and faster without losing context.",
+    "problem": "Long sessions re-send large context every turn, wasting tokens and time.",
+    "solution": "A transparent proxy that compresses and caches context between turns."
+  },
+  "related": [
+    "team-assess"
+  ]
+}

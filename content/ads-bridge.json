@@ -16,5 +16,14 @@
   "page": {
     "objective": "Local MCP server for driving Revit from chat using pyRevit ADS_Bridge.",
     "solution": "Drive Revit directly from chat with a local MCP server exposing the pyRevit ADS_Bridge HTTP API. Supports various tools like querying, executing IronPython scripts, setting parameters, running pipelines, and taking screenshots."
+  },
+  "highlights": {
+    "category": "Coordination & Documentation",
+    "headline": "Seven MCP tools drive a live Revit model from Claude chat.",
+    "points": [
+      "Query the model, run IronPython, set parameters, run pipelines, take screenshots.",
+      "Runtime copy lives at a stable local path so Z-drive drops don't break it.",
+      "FastMCP server (server.py) talks to the pyRevit ADS_Bridge HTTP API."
+    ]
   }
 }
