@@ -98,6 +98,14 @@ body.a-app.nav-open .nav-toggle span:nth-child(3){ transform:translateY(-7px) ro
    with it, which nothing asked for. */
 .nav-pills{ flex-wrap:nowrap; min-width:0 }
 
+/* Desktop keeps the section map visible. The same component remains an
+   off-canvas drawer below this breakpoint, so tablet/mobile lose no space. */
+@media (min-width:1100px){
+  body.a-app > .a-sidebar{ transform:none; width:272px; box-shadow:none }
+  body.a-app > .a-main{ margin-left:272px; width:calc(100% - 272px) }
+  .nav-toggle,.nav-close,.nav-scrim,.topbar-brand{ display:none !important }
+}
+
 .a-sidebar-brand{ display:flex; align-items:center; justify-content:space-between; gap:12px }
 .a-sidebar .a-nav-item{ min-height:44px }
 .a-sidebar-brand .wm{ height:20px; width:auto }
@@ -452,8 +460,8 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
   opacity:0; animation:rmapRise var(--dur-slow,600ms) cubic-bezier(.22,1,.36,1) forwards;
 }
 .rmap-src{
-  left:clamp(16px,3%,48px); font-size:11px; letter-spacing:.18em; color:#B9AEE0;
-  display:flex; align-items:center; gap:.7em;
+  left:clamp(16px,3%,48px); width:28%; font-size:11px; letter-spacing:.18em; color:#B9AEE0;
+  display:flex; align-items:center; justify-content:center; text-align:center; gap:.7em;
 }
 .rmap-src::before{
   content:""; width:5px; height:5px; border-radius:50%; flex:none;
@@ -1039,6 +1047,15 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
    exact reset for the same reason, reused verbatim rather than re-declared. */
 .pv-card{ text-decoration:none; color:inherit; cursor:pointer }
 .pv-card .fc-line{ min-height:1.6em }
+.media-unavailable{
+  display:grid; place-items:center; min-height:180px; margin:-24px -24px 18px;
+  border-bottom:1px solid var(--line); background:var(--surface-2);
+  color:var(--muted); font:600 11px/1.5 var(--f-mono); letter-spacing:.08em;
+  text-transform:uppercase; text-align:center; padding:24px;
+}
+.dashboard-preview,.plugin-preview{
+  display:block; width:100%; height:100%; object-fit:contain; background:var(--surface-2);
+}
 
 /* ==========================================================================
    TOOL PAGE  (2026-08-26)
@@ -1464,7 +1481,7 @@ body.hero-film-open::after{
   border-radius:50%; pointer-events:none;
   background:radial-gradient(circle at 34% 28%, #D9CDFF 0%, #8B5CF6 44%, #4B2FD6 82%, transparent 100%);
   box-shadow:0 0 60px 12px rgba(139,92,246,.5);
-  animation:rmapOrbPulse 3.4s ease-in-out infinite;
+  animation:rmapOrbPulse 3.4s ease-in-out infinite; opacity:.72;
 }
 .rmap-orb::before{
   content:""; position:absolute; inset:-32%; border-radius:50%;
