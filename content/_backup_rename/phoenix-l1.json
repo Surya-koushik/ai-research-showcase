@@ -1,7 +1,7 @@
 {
   "id": "phoenix-l1",
   "code": "P01",
-  "name": "ADS L1 Self-Certification",
+  "name": "ADS Phoenix — L1 Self-Certification",
   "status": "production",
   "kind": "plugin",
   "domain": "qa",

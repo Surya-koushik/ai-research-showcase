@@ -23,6 +23,7 @@
   if (!root) return;
   var canvas = document.getElementById('rmapCanvas');
   var btn = document.getElementById('rmapTransport');
+  var orbEl = document.getElementById('rmapOrb');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
 
@@ -50,6 +51,14 @@
     orbY = narrow ? H * 0.50 : H * 0.52;
     orbR = narrow ? Math.min(W * 0.20, H * 0.15) : Math.min(W * 0.088, H * 0.235);
     termX = orbX + orbR * 0.26;
+
+    /* Hand the same centre and radius to the CSS core (.rmap-orb) so the DOM
+       circle and the canvas lanes/burst stay lined up on resize. */
+    if (orbEl) {
+      orbEl.style.setProperty('--ox', orbX + 'px');
+      orbEl.style.setProperty('--oy', orbY + 'px');
+      orbEl.style.setProperty('--or', (orbR * 1.62) + 'px');
+    }
 
     buildLanes(narrow);
     buildSpecks();
@@ -168,8 +177,13 @@
     });
   }
 
+  /* The solid pulsing ball this used to paint on the canvas is now the
+     .rmap-orb DOM element (site-chrome.css, ROADMAP -- full bleed, moving
+     core, readable outputs) -- a real HTML/CSS animated circle instead of a
+     shape baked into a static-feeling raster. drawOrb() keeps the atmosphere
+     around it: the soft ambient glow and the drifting specks over the core's
+     left half, which the CSS element does not attempt to reproduce. */
   function drawOrb() {
-    var pulse = 1 + ignition * 0.05;
     var bg = ctx.createRadialGradient(orbX, orbY, orbR * 0.55, orbX, orbY, orbR * 2.35);
     bg.addColorStop(0, 'rgba(150,110,255,' + (0.30 + ignition * 0.22) + ')');
     bg.addColorStop(1, 'rgba(0,0,0,0)');
@@ -178,16 +192,6 @@
 
     ctx.save();
     ctx.beginPath(); ctx.rect(0, 0, termX, H); ctx.clip();
-    var g = ctx.createRadialGradient(
-      orbX - orbR * 0.34, orbY - orbR * 0.20, orbR * 0.05, orbX, orbY, orbR * pulse);
-    g.addColorStop(0, 'rgba(243,238,255,0.98)');
-    g.addColorStop(0.34, 'rgba(210,192,255,0.95)');
-    g.addColorStop(0.72, 'rgba(150,110,235,0.88)');
-    g.addColorStop(0.94, 'rgba(94,58,190,0.72)');
-    g.addColorStop(1, 'rgba(52,32,110,0.30)');
-    ctx.fillStyle = g;
-    ctx.beginPath(); ctx.arc(orbX, orbY, orbR * pulse, 0, 6.2832); ctx.fill();
-
     specks.forEach(function (s) {
       var y = s.y + Math.sin(now * 0.00042 * (1 + s.drift) + s.ph) * orbR * 0.035;
       ctx.beginPath();

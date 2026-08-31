@@ -1,7 +1,7 @@
 {
   "id": "p25-predictability",
   "code": "P03",
-  "name": "Delivery Predictability Dashboard",
+  "name": "P25 Predictability Dashboard",
   "status": "production",
   "kind": "dashboard",
   "domain": "controls",
@@ -30,7 +30,7 @@
   ],
   "highlights": {
     "category": "Reporting & Leadership",
-    "headline": "Seven linked views trace the project delivery from RFI to lessons learned.",
+    "headline": "Seven linked views trace H10 delivery from RFI to lessons learned.",
     "points": [
       "Seven views: RFI/ACC build, BOQ data, R&R, BIM model, process, savings, lessons.",
       "One page traces a single project's delivery evidence end to end.",

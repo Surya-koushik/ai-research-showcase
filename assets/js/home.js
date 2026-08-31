@@ -92,56 +92,96 @@
       '<span class="tstate-l">' + s.l + '</span></div>';
   }).join('');
 
-  /* Hours-saved counter: the number itself is set once here; home.js counts
-     it up from 0 the first time it scrolls into view (see animateHours()
-     below), or paints the final value immediately under reduced motion. */
-  /* Kept short on purpose -- the "measured on N tools" methodology is stated
+  /* Hours-saved counter, rebuilt as a split-flap / departure-board roll-up
+     (item 3): starts at 0, climbs to the measured total one digit at a time,
+     the way an airport board turns over. The number itself is set once here
+     -- animateHours() below only plays it, never invents a bigger one, and
+     under prefers-reduced-motion it paints the final digits straight away,
+     no flapping.
+     Kept short on purpose -- the "measured on N tools" methodology is stated
      once, in the "About these counts" note right under this card, not here
      too. Two cards saying the same sentence was exactly the repetition this
      whole section was rebuilt to remove. */
   var hoursEl = $('#hoursCounter');
+  function flapDigits(n) {
+    var s = String(Math.max(0, Math.round(n)));
+    return (s.length < 2 ? '0' + s : s).split('');
+  }
+  var flapTarget = flapDigits(savedTotal);
   if (hoursEl) hoursEl.innerHTML =
-    '<div class="hc-n" id="hcNum">0<span class="u">hrs/wk</span></div>' +
+    '<div class="flapboard" id="flapBoard" role="img" aria-label="' +
+      Math.round(savedTotal) + ' hours saved a week, across the studio.">' +
+      flapTarget.map(function () { return '<span class="flap-d"><i class="flap-face">0</i></span>'; }).join('') +
+      '<span class="flap-unit">hrs<i>/</i>wk</span>' +
+    '</div>' +
     '<div class="hc-l">Hours saved each week, across the studio.</div>';
 
+  function setFlapDigit(cell, d) {
+    var face = cell.querySelector('.flap-face');
+    if (!face) return;
+    face.textContent = d;
+    cell.classList.remove('is-flip');
+    void cell.offsetWidth;                       /* restart the CSS keyframe */
+    cell.classList.add('is-flip');
+  }
+
   function animateHours() {
-    var numEl = document.getElementById('hcNum');
-    var hostEl = document.getElementById('hoursCounter');
-    if (!numEl || !hostEl) return;
+    var host = document.getElementById('flapBoard');
+    if (!host) return;
+    var cells = Array.prototype.slice.call(host.querySelectorAll('.flap-d'));
     var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function paint(v) { numEl.innerHTML = Math.round(v) + '<span class="u">hrs/wk</span>'; }
-    if (reduced || !('IntersectionObserver' in window)) { paint(savedTotal); return; }
+    function land() {
+      cells.forEach(function (cell, i) {
+        var face = cell.querySelector('.flap-face');
+        if (face) face.textContent = flapTarget[i];
+      });
+    }
+    if (reduced || !('IntersectionObserver' in window)) { land(); return; }
     var io2 = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         io2.unobserve(e.target);
-        var start = null, dur = 900;
-        function step(ts) {
-          if (start === null) start = ts;
-          var p = Math.min(1, (ts - start) / dur);
-          paint(savedTotal * (1 - Math.pow(1 - p, 3)));     /* ease-out cubic */
-          if (p < 1) requestAnimationFrame(step); else paint(savedTotal);
-        }
-        requestAnimationFrame(step);
+        /* Each column starts a little after the one before it and counts up
+           from 0 to its own final digit, never past it -- the roll reads as
+           the board still catching up to a real number, not a random spin. */
+        cells.forEach(function (cell, i) {
+          var final = +flapTarget[i];
+          setTimeout(function () {
+            var step = 0;
+            var timer = setInterval(function () {
+              setFlapDigit(cell, step);
+              if (step >= final) { clearInterval(timer); return; }
+              step++;
+            }, 85);
+          }, i * 90);
+        });
       });
     }, { rootMargin: '0px 0px -10% 0px' });
-    io2.observe(hostEl);
+    io2.observe(host);
   }
 
   /* ---------------------------------------------------------------- kinds --- */
   function count(kind) {
     return PROJECTS.filter(function (p) { return p.kind === kind; }).length;
   }
-  /* Logo grid: one glyph, the kind name, its count. No blurb paragraph here --
-     that lived in the old #kinds section; a logo grid reads by icon, not by
-     sentence. The full descriptions still live on KINDS[].blurb for anywhere
-     else that wants them (e.g. the catalogue buckets further down). */
+  /* Icon grid, the treatment carried over from the removed "six tools" strip
+     (item 2): a solid icon mark, the name on top, one word underneath --
+     same EvolveLab card pattern the featured cards use, applied here to all
+     eight KINDS instead of six chosen tools. No blurb paragraph -- that lived
+     in the old #kinds section; the full descriptions still live on
+     KINDS[].blurb (title attribute) for anywhere else that wants them.
+     One accent, not eight (2026-08-31, Surya): this row is a logo grid, not
+     a legend -- ACCENT's per-kind hues stay reserved for the table rows and
+     explorer tabs further down, where colour actually helps someone scan a
+     list. Here every tile carries the same --kc so the row reads as one
+     system instead of a random palette. */
   $('#kindGrid').innerHTML = KINDS.filter(function (k) { return k.id !== 'all'; }).map(function (k, i) {
     var n = count(k.id);
     return '<a class="kindcard rv" href="#ecosystem" data-jump="' + k.id + '"' +
-      ' style="--kc:' + ACCENT[k.id] + ';--d:' + (i * 60) + 'ms" title="' + k.blurb + '">' +
-      '<div class="ki">' + KIND_ICON(k.id) + '</div>' +
-      '<div class="kh"><h3>' + k.label + '</h3><span class="ct">' + n + '</span></div></a>';
+      ' style="--kc:var(--accent);--d:' + (i * 60) + 'ms" title="' + k.blurb + '">' +
+      '<span class="ki">' + KIND_ICON(k.id) + '</span>' +
+      '<b class="kc-name">' + k.label + '</b>' +
+      '<span class="kc-count">' + n + ' tool' + (n === 1 ? '' : 's') + '</span></a>';
   }).join('');
 
   /* The explorer rail filters in place. #exRail is stable -- only its
@@ -151,7 +191,7 @@
   if (railEl) railEl.addEventListener('click', function (e) {
     var tab = e.target.closest('[data-kind]');
     if (!tab) return;
-    state.kind = tab.dataset.kind; state.domain = 'all';
+    state.kind = tab.dataset.kind; state.domain = 'all'; state.page = 0;
     renderNav(); renderAndReveal();
   });
 
@@ -159,14 +199,17 @@
   $('#kindGrid').addEventListener('click', function (e) {
     var card = e.target.closest('[data-jump]');
     if (!card) return;
-    state.kind = card.dataset.jump; state.domain = 'all';
+    state.kind = card.dataset.jump; state.domain = 'all'; state.page = 0;
     renderNav(); renderAndReveal();
   });
 
   /* ---------------------------------------------------------------- nav ----- */
   /* The kit's hierarchy puts scope in the sidebar registry, not in a wrapping
-     row of chips above the grid (spec section 4). Two sections, one active. */
-  var state = { kind: 'all', domain: 'all', q: '' };
+     row of chips above the grid (spec section 4). Two sections, one active.
+     `tech` is the software-logo quick filter (item 5b); `page` is which set
+     of six the pager (item 5c) is showing -- reset to 0 by every filter
+     change further down, so a new scope always opens on its first page. */
+  var state = { kind: 'all', domain: 'all', q: '', tech: 'all', page: 0 };
 
   function domCount(id) {
     return PROJECTS.filter(function (p) { return p.domain === id; }).length;
@@ -218,6 +261,7 @@
     e.preventDefault();
     if (item.dataset.axis === 'kind') { state.kind = item.dataset.id; state.domain = 'all'; }
     else { state.domain = state.domain === item.dataset.id ? 'all' : item.dataset.id; state.kind = 'all'; }
+    state.page = 0;
     renderNav(); renderAndReveal();
   });
 
@@ -228,6 +272,7 @@
     var bits = [];
     if (state.kind !== 'all')   bits.push(kindMeta(state.kind).label);
     if (state.domain !== 'all') bits.push(domainMeta(state.domain).label);
+    if (state.tech !== 'all')   bits.push(logoLabel(state.tech));
     if (state.q)                bits.push('“' + state.q + '”');
     $('#scope').innerHTML = bits.length
       ? '<span class="a-label">Showing</span>' +
@@ -239,19 +284,32 @@
 
   document.addEventListener('click', function (e) {
     if (!e.target.closest('#clearScope')) return;
-    state.kind = 'all'; state.domain = 'all'; state.q = ''; search.value = '';
-    renderNav(); render();
+    state.kind = 'all'; state.domain = 'all'; state.tech = 'all'; state.q = ''; state.page = 0;
+    search.value = '';
+    renderNav(); renderTechFilter(); render();
   });
 
   var search = $('#search');
   search.addEventListener('input', function () {
-    state.q = search.value.trim().toLowerCase(); render();
+    state.q = search.value.trim().toLowerCase(); state.page = 0; render();
+  });
+  /* "/" focuses the search field from anywhere on the page, same convention
+     as most catalogue/search-first sites -- one more way the field reads as
+     the thing you search with, not a stray input. Ignored while typing
+     somewhere else that also wants the key (another input, a textarea). */
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+    var tag = (document.activeElement || {}).tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    e.preventDefault();
+    search.focus();
   });
 
   /* ---------------------------------------------------------------- grid ---- */
   function match(p) {
     if (state.kind !== 'all' && p.kind !== state.kind) return false;
     if (state.domain !== 'all' && p.domain !== state.domain) return false;
+    if (state.tech !== 'all' && (p.tech || []).indexOf(state.tech) === -1) return false;
     if (state.q) {
       var hay = [p.name, p.code, p.tagline, p.description, kindMeta(p.kind).label,
                  domainMeta(p.domain).label, (p.tech || []).map(logoLabel).join(' '), p.status]
@@ -300,109 +358,155 @@
     }).join('');
   }
 
-  /* Featured tools carry the story; everything else is bucketed by kind.
-     Copy comes from window.FEATURED, which derives every line from the
-     tool's own content record — see assets/js/featured.js. */
-  function featuredCard(f) {
-    var p = PROJECTS.filter(function (x) { return x.id === f.id; })[0];
-    if (!p) return '';
-    var km = kindMeta(p.kind);
-    /* highlights.category (content/<id>.json) is the new source of truth for
-       the category label; f.cat and km.label stay as fallbacks so a tool
-       missing the block still renders exactly as before. */
-    var cat = (p.highlights && p.highlights.category) || f.cat || km.label;
-    var logos = (p.tech || []).slice(0, 4).map(function (t) { return logoImg(t, 15); }).join('');
-    var hrs = f.hours
-      ? '<p class="fc-hours"><b>' + f.hours.before + 'h</b> &rarr; <b>' + f.hours.after + 'h</b>' +
-        ' a week' + (f.hours.draft ? ' <em>&middot; draft figure, still being confirmed</em>' : '') + '</p>'
-      : '';
-    /* One strong mark per tool, after the product-family strip Surya sent as
-       reference (evolvelab.io). It replaces the six generated illustrations,
-       which each carried three or four competing ideas at once; those files
-       stay on disk, unreferenced, recorded in visuals/featured/SOURCES.md. */
-    var mark = f.mark
-      ? '<img class="fc-mark" src="' + f.mark + '" alt="" width="56" height="56" loading="lazy" decoding="async">'
-      : '';
-    /* Video preview, discovered by slug at runtime (assets/previews/<id>.*) --
-       most tools have none yet, so PREVIEW_MEDIA always renders a deliberate
-       kind-tinted fallback tile rather than an empty box. The long THE
-       PROBLEM / WHAT IT DOES / WHAT IT CHANGES block moved to the tool page;
-       the card keeps one line (cardLine) as Surya asked. */
+  /* ------------------------------------------------------- tech filter (5b) --
+     Small logo buttons for fast filtering by host software -- "click a Revit
+     mark, see the Revit plugins". Built from the data, not a hand-typed list:
+     counted across every tool's `tech` array, generic web-stack chips that
+     every record carries (and so distinguish nothing) left out, sorted most
+     common first, capped so the row stays scannable at a glance. */
+  var TECH_EXCLUDE = { html: 1, css: 1, javascript: 1, typescript: 1 };
+  var TECH_MAX = 9;
+  function techCounts() {
+    var counts = {};
+    PROJECTS.forEach(function (p) {
+      (p.tech || []).forEach(function (t) {
+        if (TECH_EXCLUDE[t]) return;
+        counts[t] = (counts[t] || 0) + 1;
+      });
+    });
+    return counts;
+  }
+  function renderTechFilter() {
+    var host = document.getElementById('techFilter');
+    if (!host) return;
+    var counts = techCounts();
+    var keys = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; }).slice(0, TECH_MAX);
+    host.innerHTML = keys.map(function (t) {
+      var active = state.tech === t;
+      return '<button type="button" class="techchip' + (active ? ' is-on' : '') + '"' +
+        ' data-tech="' + t + '" aria-pressed="' + active + '"' +
+        ' title="' + logoLabel(t) + ' — ' + counts[t] + ' tool' + (counts[t] === 1 ? '' : 's') + '">' +
+        logoImg(t, 18) + '<span>' + logoLabel(t) + '</span></button>';
+    }).join('');
+  }
+  document.getElementById('techFilter').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-tech]');
+    if (!btn) return;
+    var t = btn.dataset.tech;
+    state.tech = state.tech === t ? 'all' : t;
+    state.page = 0;
+    renderTechFilter();
+    renderAndReveal();
+  });
+
+  /* ------------------------------------------------------ the browser (5) ----
+     One card shape, used for every tool: the preview, the name and category
+     (the EvolveLab pattern the rest of the site already keeps to), one short
+     line. No separate "featured six" any more and no long accordion of the
+     rest of the catalogue underneath it -- everything in the current scope
+     is paged six at a time (5c), so the same cards carry the whole browser
+     instead of two different treatments competing for attention.
+
+     Three-tier media (Surya's Fix 1, 2026-08-31): PREVIEW_MEDIA returns a
+     video block, a still-image block, or '' -- never the old tinted icon
+     panel. On '' the card gets the 'fcard--text' modifier and simply has no
+     top-media element: no bleed margin to fight, no empty box to explain.
+     .pgrid uses align-items:start (site-chrome.css) so a short text card
+     sitting next to a tall media card in the same row does not get
+     stretched to match it -- ragged row heights are the honest result of
+     mixed content, not a bug. */
+  var PAGE_SIZE = 6;
+  function browseCard(p) {
+    var f = (window.FEATURED || []).filter(function (x) { return x.id === p.id; })[0];
+    var cat = (p.highlights && p.highlights.category) || (f && f.cat) || kindMeta(p.kind).label;
+    /* A handful of tools carry a bespoke product mark (assets/visuals/marks/);
+       everything else falls back to its kind glyph on the kind's own solid
+       square, the same treatment the kind grid above uses. */
+    var mark = (f && f.mark)
+      ? '<img class="fc-mark" src="' + f.mark + '" alt="" width="44" height="44" loading="lazy" decoding="async">'
+      : '<span class="fc-mark fc-mark--kind" style="--kc:' + ACCENT[p.kind] + '">' + KIND_ICON(p.kind) + '</span>';
     var media = window.PREVIEW_MEDIA ? PREVIEW_MEDIA(p.id, p.kind, 'pv-media--card') : '';
-    return '<a class="fcard rv" href="' + href(p) + '" style="--kc:' + ACCENT[p.kind] + '">' +
+    var cardCls = 'fcard rv' + (media ? '' : ' fcard--text');
+    return '<a class="' + cardCls + '" href="' + href(p) + '" style="--kc:' + ACCENT[p.kind] + '">' +
       media +
       '<div class="fc-top">' + mark +
         '<span class="fc-id"><b>' + p.name + '</b>' +
-        '<span class="fc-cat">' + cat + '</span></span>' +
-        '<span class="fc-logos">' + logos + '</span></div>' +
-      '<p class="fc-line">' + cardLine(p) + '</p>' + hrs +
-      '<span class="fc-go">See ' + (f.short || p.name) + ' &rarr;</span></a>';
+        '<span class="fc-cat">' + cat + '</span></span></div>' +
+      '<p class="fc-line">' + cardLine(p) + '</p>' +
+    '</a>';
   }
 
-  /* The product-family strip. Same six tools as the cards, same source array,
-     so the strip and the cards cannot drift. One mark, one name, one category
-     word each - the reference pattern, and nothing more per tile. */
-  function renderMarkStrip() {
-    var host = document.getElementById('markstrip');
-    if (!host || !window.FEATURED) return;
-    host.innerHTML = FEATURED.map(function (f) {
-      var p = PROJECTS.filter(function (x) { return x.id === f.id; })[0];
-      if (!p || !f.mark) return '';
-      return '<a class="mk" href="' + href(p) + '">' +
-        '<img src="' + f.mark + '" alt="" width="64" height="64" decoding="async">' +
-        '<b>' + (f.short || p.name) + '</b>' +
-        '<span>' + (f.cat || '') + '</span></a>';
-    }).filter(Boolean).join('');
-  }
+  /* Six at a time, arrows to page -- never the full list at once (item 5c).
+     Returns the number of tools in the current scope so render() can drive
+     the empty state and the pill off the same figure. */
+  function renderPager() {
+    var list = PROJECTS.filter(match);
+    var total = list.length;
+    var pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+    if (state.page > pages - 1) state.page = pages - 1;
+    if (state.page < 0) state.page = 0;
+    var start = state.page * PAGE_SIZE;
+    var items = list.slice(start, start + PAGE_SIZE);
 
-  function renderFeatured() {
-    var host = document.getElementById('featured');
-    if (!host || !window.FEATURED) return;
-    host.innerHTML = FEATURED.map(featuredCard).filter(Boolean).join('');
+    var gridEl = document.getElementById('pageGrid');
+    if (gridEl) {
+      gridEl.innerHTML = items.map(browseCard).join('');
+      /* The pager itself is only ever on screen after a deliberate click on
+         it, so its cards reveal immediately rather than waiting on the
+         scroll-in observer below -- that observer needs a fresh intersection
+         event to fire, which never happens for a page swap the visitor is
+         already looking at (and won't happen at all in a background/inactive
+         tab). Paging in a fade would just be a delay here, not a reveal. */
+      gridEl.querySelectorAll('.rv').forEach(function (el) { el.classList.add('in'); });
+    }
+
+    var prevBtn = document.getElementById('pagerPrev');
+    var nextBtn = document.getElementById('pagerNext');
+    if (prevBtn) prevBtn.disabled = state.page <= 0;
+    if (nextBtn) nextBtn.disabled = state.page >= pages - 1;
+
+    var pagerEl = document.getElementById('pager');
+    if (pagerEl) pagerEl.style.display = total ? '' : 'none';
+
+    var statusEl = document.getElementById('pagerStatus');
+    if (statusEl) statusEl.textContent = total
+      ? 'Set ' + (state.page + 1) + ' of ' + pages + ' — ' + total + ' tool' + (total === 1 ? '' : 's') + ' in this scope'
+      : '';
+
     if (window.PREVIEW_INIT) PREVIEW_INIT();
+    /* Paging replaces .pageGrid's contents with fresh .rv nodes that start
+       at opacity 0 (js-reveal) -- the prev/next handlers call renderPager()
+       directly, not render(), so without this they would never be observed
+       and the new page would render permanently invisible. Already on
+       screen when a visitor pages, so the observer fires straight away. */
+    observe();
+    return total;
   }
-
-  function renderBuckets(list) {
-    var host = document.getElementById('buckets');
-    if (!host) return;
-    var featuredIds = (window.FEATURED || []).map(function (f) { return f.id; });
-    var rest = list.filter(function (p) { return featuredIds.indexOf(p.id) === -1; });
-    var open = !!state.q || state.kind !== 'all';
-    host.innerHTML = KINDS.filter(function (k) { return k.id !== 'all'; }).map(function (k) {
-      var items = rest.filter(function (p) { return p.kind === k.id; });
-      if (!items.length) return '';
-      return '<details class="bucket rv"' + (open ? ' open' : '') +
-        ' style="--kc:' + ACCENT[k.id] + '">' +
-        '<summary><span class="bk-ic">' + ICON(k.icon || 'grid') + '</span>' +
-          '<span class="bk-l">' + k.label + '</span>' +
-          '<span class="bk-b">' + k.blurb + '</span>' +
-          '<span class="bk-n">' + items.length + '</span>' +
-          '<span class="tr-chev" aria-hidden="true"></span></summary>' +
-        '<ul class="bk-list">' + items.map(function (p) {
-          var media = window.PREVIEW_MEDIA ? PREVIEW_MEDIA(p.id, p.kind, 'pv-media--row') : '';
-          return '<li><a href="' + href(p) + '" style="--kc:' + ACCENT[p.kind] + '">' + media +
-                 '<span class="bk-txt"><b>' + p.name + '</b>' +
-                 '<span>' + p.tagline + '</span></span></a></li>';
-        }).join('') + '</ul></details>';
-    }).join('');
-    if (window.PREVIEW_INIT) PREVIEW_INIT();
-  }
+  document.getElementById('pagerPrev').addEventListener('click', function () {
+    state.page--; renderPager();
+  });
+  document.getElementById('pagerNext').addEventListener('click', function () {
+    state.page++; renderPager();
+  });
+  /* Keyboard accessible beyond plain tab+enter on the two buttons -- left and
+     right arrow page the set while focus is anywhere inside the pager. */
+  document.getElementById('pager').addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); document.getElementById('pagerPrev').click(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); document.getElementById('pagerNext').click(); }
+  });
 
   function render() {
-    var list = PROJECTS.filter(match);
-    renderMarkStrip();
-    renderFeatured();
-    renderBuckets(list);
+    var shown = renderPager();
     var emptyEl = document.getElementById('empty');
-    if (emptyEl) emptyEl.style.display = list.length ? 'none' : 'block';
-    renderScope(list.length);
+    if (emptyEl) emptyEl.style.display = shown ? 'none' : 'block';
+    renderScope(shown);
     /* Unfiltered, this said "52 in catalogue". The catalogue is still being filled --
        whole folders of tools are not in it yet -- so a total presented as the whole
        body of work understates it. While filtering, the count is a useful "how many
        matched", so it stays. */
-    $('#pillCount').textContent = list.length === PROJECTS.length
+    $('#pillCount').textContent = shown === PROJECTS.length
       ? 'Browse the catalogue'
-      : list.length + ' matching';
+      : shown + ' matching';
     observe();
   }
   /* Only a deliberate filter action moves the page. Typing in the search box
@@ -425,6 +529,7 @@
 
   /* ---------------------------------------------------------------- boot ---- */
   renderNav();
+  renderTechFilter();
   render();
   animateHours();
 

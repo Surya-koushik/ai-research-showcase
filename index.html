@@ -121,7 +121,7 @@
     <a class="nl opt" href="#kinds">What&nbsp;we&nbsp;build</a>
     <a class="nl opt" href="#roadmap">Roadmap</a>
     <a class="nl" href="#ecosystem">All&nbsp;work</a>
-    <a class="nl opt" href="#videos">Videos</a>
+    <a class="nl opt" href="#videos">Running</a>
     <a class="nl opt" href="#faq">FAQ</a>
     <a class="nl opt" href="#contact">Contact</a>
     <span class="a-pill" id="pillCount" style="min-width:118px">Browse the catalogue</span>
@@ -170,25 +170,23 @@
   </div>
 </section>
 
-<!-- ============================== THE SIX ============================== -->
-<section class="band uikit family" id="family">
-  <p class="fam-lead rv">Six tools carry the work.</p>
-  <div class="markstrip" id="markstrip"><!-- injected: product family --></div>
-</section>
-
 <!-- ============================== THE TOOLS WE BUILD ==============================
-     Replaces the old #numbers + #kinds + #ecosystem run — one section instead of
-     three passes at the same catalogue. Kinds lead as a logo grid, build-state
-     counts and the hours-saved counter sit under it, then the same search /
-     scope / featured / bucket browser that used to be #ecosystem.
+     Section 2. Used to sit behind a "six tools carry the work" strip that
+     showcased individual tools directly on the landing page — cut on Surya's
+     repeated instruction ("this is the place I am constantly asking you to
+     not showcase the tools directly here"). What survives from that strip is
+     its icon treatment: a solid tinted square, a name, a category word under
+     it — now applied to all eight KINDS instead of six chosen tools, so the
+     landing page teaches the shape of the catalogue before it shows a single
+     product.
 
      #kinds and #numbers survive as in-page anchors (wrapping, not renamed) so
      the topbar link, the footer and tool.html / h10.html's own nav links keep
      resolving to the right place without a site-wide link hunt.
 
      No fixed tool total is printed anywhere in this section — the catalogue is
-     still growing, so "52" would be stale on arrival. Kind and state counts are
-     each derived live from the same PROJECTS data, never hand-typed. -->
+     still growing, so a hand-typed count would be stale on arrival. Kind and
+     state counts are each derived live from the same PROJECTS data. -->
 <section class="band uikit" id="ecosystem">
   <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
     <div style="flex:1 1 420px">
@@ -199,10 +197,12 @@
     <div class="illus-lane rv" data-a-illus="systems" aria-hidden="true"></div>
   </div>
 
-  <div id="kinds"><div class="kinds" id="kindGrid"><!-- injected: kind logo grid --></div></div>
+  <div id="kinds"><div class="kinds" id="kindGrid"><!-- injected: kind icon grid --></div></div>
 
   <div id="numbers">
     <div class="toolstate-row rv" id="toolStates" style="margin-top:clamp(28px,3.5vw,44px)"><!-- injected --></div>
+    <!-- Split-flap board (item 3): starts at 0, rolls digit by digit to the
+         measured total. assets/js/home.js builds and animates it. -->
     <div class="hourscounter rv" id="hoursCounter"><!-- injected --></div>
     <div class="a-note rv" style="margin-top:24px;max-width:64ch">
       <span class="lb">About these counts</span>
@@ -212,22 +212,33 @@
     </div>
   </div>
 
-  <label class="searchline rv" style="margin-top:clamp(48px,6vw,72px)">
-    <span id="searchIc"></span>
-    <input id="search" type="search" placeholder="Search by name, type or technology…" autocomplete="off">
+  <!-- ===================== THE TOOL BROWSER (item 5) =====================
+       a. search, unmistakable                b. logo filters, click to scope
+       c. six cards at a time, arrows page     d. preview + name + one line
+       assets/js/home.js owns all of it — render, filter state, and paging. -->
+  <label class="searchline searchline-lg rv" for="search" style="margin-top:clamp(48px,6vw,72px)">
+    <span class="search-ic" id="searchIc"></span>
+    <input id="search" type="search" placeholder="Search the catalogue by name, kind or technology…" autocomplete="off">
+    <span class="search-kbd" aria-hidden="true">/</span>
   </label>
 
-  <!-- Filtering moved to the sidebar registry, per the kit's navigation
-       hierarchy (spec §4). What stays here is the active scope and a way out. -->
+  <div class="techfilter rv" id="techFilter" role="group" aria-label="Filter by technology"><!-- injected --></div>
+
+  <!-- Filtering by kind/domain also lives in the sidebar registry, per the
+       kit's navigation hierarchy (spec §4). What stays here is the active
+       scope and a way out of it. -->
   <div class="scoperow rv" id="scope"><!-- injected --></div>
 
-  <div class="feat" id="featured"><!-- injected: featured tools --></div>
-
-  <div class="rmap-head rv" style="margin-top:clamp(56px,7vw,88px)">
-    <h3 class="rmap-title">The rest of the catalogue, by kind.</h3>
-    </div>
-
-  <div class="buckets" id="buckets"><!-- injected: kind buckets --></div>
+  <div class="pager rv" id="pager">
+    <button type="button" class="pager-arrow prev" id="pagerPrev" aria-label="Previous 6 tools">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <div class="pgrid" id="pageGrid"><!-- injected: 6 tool cards --></div>
+    <button type="button" class="pager-arrow next" id="pagerNext" aria-label="Next 6 tools">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+  <p class="pager-status" id="pagerStatus" aria-live="polite"></p>
 
   <div class="a-empty" id="empty" style="display:none;margin-top:36px">
     <div class="a-title">Nothing matches that scope</div>
@@ -235,21 +246,19 @@
   </div>
 </section>
 
-<!-- ============================== VIDEOS ==============================
-     Ten screen recordings, cut to the 30-60 seconds where the tool does the
-     thing. Captions and clip windows live in assets/js/videos.js, which also
+<!-- ============================== RUNNING ==============================
+     Continuation of the tools section above, not a separate gallery — one
+     video per tool lives on that tool's own page; this is the same catalogue
+     shown running, cut to the 30-60 seconds where the thing actually happens.
+     Captions and clip windows live in assets/js/videos.js, which also
      documents the privacy pass each clip went through. Poster-first:
      preload="none" means nothing but the JPEG loads until a visitor presses
-     play. Moved directly after the tools section — this is what sells. -->
-<section class="band uikit" id="videos">
-  <div style="display:flex;align-items:flex-end;gap:clamp(24px,5vw,72px);flex-wrap:wrap">
-    <div style="flex:1 1 420px">
-      <h2 class="d2 rv" style="max-width:20ch">What it looks like running.</h2>
-      <p class="lede rv" style="max-width:62ch">Recordings from the desk, cut down to the part
-        that matters &mdash; the click that runs the tool and the result arriving.</p>
-    </div>
-    <div class="illus-lane rv" data-a-illus="knowledge" aria-hidden="true"></div>
-  </div>
+     play. The #videos id stays (inbound anchors), the framing does not. -->
+<section class="band uikit band-continue" id="videos">
+  <p class="eyebrow">The tools we build, continued</p>
+  <h3 class="rmap-title" style="max-width:26ch">Now watch them run.</h3>
+  <p class="lede rv" style="max-width:62ch;margin-top:10px">Recordings from the desk, cut down to
+    the part that matters &mdash; the click that runs the tool and the result arriving.</p>
 
   <div class="vgrid" id="videoGrid"><!-- injected: assets/js/videos.js --></div>
 
@@ -280,6 +289,12 @@
        meetings and RFIs, and project data — converge into one core and resolve into four
        outputs: one place to ask, answers with sources, scoped by role, decisions on record.">
     <canvas id="rmapCanvas" aria-hidden="true"></canvas>
+    <!-- The core, as a real HTML/CSS element -- not drawn onto the canvas.
+         assets/js/roadmap-hero.js tracks it to the canvas geometry (--ox/--oy/
+         --or custom properties); the pulse and the turning ring are CSS
+         animation, so it keeps moving even on a frame the canvas skips, and
+         reduced-motion turns it off exactly like every other .rv/animation. -->
+    <div class="rmap-orb" id="rmapOrb" aria-hidden="true"></div>
     <div class="rmap-hero-layer" aria-hidden="true">
       <div class="rmap-src" data-lane="0">Revit models</div>
       <div class="rmap-src" data-lane="1">Drawings &amp; specs</div>
@@ -312,15 +327,29 @@
     </figcaption>
   </figure>
 
-  <!-- D1 - programme spine, from ADS_AI_Roadmap_Output/04_Draft_Roadmap.md section 2 -->
+  <!-- D1 - the gates, from ADS_AI_Roadmap_Output/04_Draft_Roadmap.md section 2.
+       Rewritten to drop the Q1-Q4 / quarter framing on Surya's instruction
+       ("please don't use this kind of wording, procedures, I really hate it")
+       -- what is shown now is the gates themselves, in the order they are
+       pursued, with a marker on where the programme actually stands. That
+       position is the one thing the evidence supports without inventing a
+       status: nothing here is recorded as passed yet, so "now" sits at the
+       first gate, not partway through one. -->
   <div class="rmap-head rv">
-    <p class="eyebrow">The programme</p>
-    <h3 class="rmap-title">Four quarters, each with a gate you can check.</h3>
+    <p class="eyebrow">What we&rsquo;re pursuing, and what comes next</p>
+    <h3 class="rmap-title">The gates ahead.</h3>
+    <p class="lede" style="max-width:62ch;margin-top:10px">Not a calendar. Each gate is a check
+      that either passes or it doesn&rsquo;t &mdash; this is the order we are pursuing them in,
+      and where the line below sits is where we are right now.</p>
   </div>
 
   <ol class="spine">
-    <li class="spine-step rv" style="--d:0ms">
-      <div class="ss-mark"><span class="ss-q">Q1</span><span class="ss-win">M1&ndash;3</span></div>
+    <li class="spine-step is-now rv" style="--d:0ms">
+      <div class="ss-mark">
+        <span class="ss-dot" aria-hidden="true"></span>
+        <span class="ss-idx">Gate 1</span>
+        <span class="ss-now-tag">Now</span>
+      </div>
       <div class="ss-body">
         <h4>Foundation</h4>
         <p>Standards pack approved, meeting capture live, AI policy signed, and two pilots
@@ -330,7 +359,7 @@
       </div>
     </li>
     <li class="spine-step rv" style="--d:90ms">
-      <div class="ss-mark"><span class="ss-q">Q2</span><span class="ss-win">M4&ndash;6</span></div>
+      <div class="ss-mark"><span class="ss-dot" aria-hidden="true"></span><span class="ss-idx">Gate 2</span></div>
       <div class="ss-body">
         <h4>Workflows</h4>
         <p>The mapped ways of working move from documented to actually used, with context files
@@ -340,7 +369,7 @@
       </div>
     </li>
     <li class="spine-step rv" style="--d:180ms">
-      <div class="ss-mark"><span class="ss-q">Q3</span><span class="ss-win">M7&ndash;9</span></div>
+      <div class="ss-mark"><span class="ss-dot" aria-hidden="true"></span><span class="ss-idx">Gate 3</span></div>
       <div class="ss-body">
         <h4>Agents</h4>
         <p>Agents carry daily production work with a named human verifier on anything generative,
@@ -350,7 +379,7 @@
       </div>
     </li>
     <li class="spine-step rv" style="--d:270ms">
-      <div class="ss-mark"><span class="ss-q">Q4</span><span class="ss-win">M10&ndash;12</span></div>
+      <div class="ss-mark"><span class="ss-dot" aria-hidden="true"></span><span class="ss-idx">Gate 4</span></div>
       <div class="ss-body">
         <h4>The Loop</h4>
         <p>The studio can ask its own knowledge a question and get an answer with its source
@@ -360,7 +389,7 @@
       </div>
     </li>
     <li class="spine-step is-later rv" style="--d:360ms">
-      <div class="ss-mark"><span class="ss-q">Y2</span><span class="ss-win">M12+</span></div>
+      <div class="ss-mark"><span class="ss-dot" aria-hidden="true"></span><span class="ss-idx">Later</span></div>
       <div class="ss-body">
         <h4>Year-two decisions</h4>
         <p>Deliberately undecided. A fine-tuned studio model, surrogate simulation and
@@ -373,8 +402,8 @@
 
   <div class="a-note rv" style="margin-top:36px;max-width:70ch">
     <span class="lb">How to read this</span>
-    Quarters are gates, not delivery dates &mdash; each is a check that either passes or does not.
-    Year-two items are listed precisely because they are undecided.
+    Gates, not delivery dates &mdash; each is a check that either passes or does not, and none is
+    marked passed here yet. Year-two items are listed precisely because they are undecided.
   </div>
 </section>
 
@@ -549,6 +578,8 @@
 <script src="assets/vendor/asure-ui-kit/asure-ui.js"></script>
 <script src="assets/js/icons.js"></script>
 <script src="assets/js/kind-icons.js"></script>
+<script src="assets/js/preview_manifest.js"></script>
+<script src="assets/js/still_manifest.js"></script>
 <script src="assets/js/tool-previews.js"></script>
 <script src="assets/js/placeholder.js"></script>
 <script src="assets/js/diagrams.js"></script>

@@ -1,7 +1,7 @@
 {
   "id": "h10-dashboard",
   "code": "P02",
-  "name": "BIM Progress Dashboard",
+  "name": "H10 BIM Progress Dashboard",
   "status": "production",
   "kind": "dashboard",
   "domain": "controls",

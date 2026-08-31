@@ -5,7 +5,7 @@ window.CONTENT_PROJECTS = [
   {
     "id": "phoenix-l1",
     "code": "P01",
-    "name": "ADS Phoenix \u2014 L1 Self-Certification",
+    "name": "ADS L1 Self-Certification",
     "status": "production",
     "kind": "plugin",
     "domain": "qa",
@@ -102,7 +102,7 @@ window.CONTENT_PROJECTS = [
   {
     "id": "h10-dashboard",
     "code": "P02",
-    "name": "H10 BIM Progress Dashboard",
+    "name": "BIM Progress Dashboard",
     "status": "production",
     "kind": "dashboard",
     "domain": "controls",
@@ -142,7 +142,7 @@ window.CONTENT_PROJECTS = [
   {
     "id": "p25-predictability",
     "code": "P03",
-    "name": "P25 Predictability Dashboard",
+    "name": "Delivery Predictability Dashboard",
     "status": "production",
     "kind": "dashboard",
     "domain": "controls",
@@ -171,7 +171,7 @@ window.CONTENT_PROJECTS = [
     ],
     "highlights": {
       "category": "Reporting & Leadership",
-      "headline": "Seven linked views trace H10 delivery from RFI to lessons learned.",
+      "headline": "Seven linked views trace the project delivery from RFI to lessons learned.",
       "points": [
         "Seven views: RFI/ACC build, BOQ data, R&R, BIM model, process, savings, lessons.",
         "One page traces a single project's delivery evidence end to end.",
@@ -1375,7 +1375,7 @@ window.CONTENT_PROJECTS = [
   {
     "id": "deck-phoenix-client",
     "code": "P48",
-    "name": "Phoenix Client Presentation",
+    "name": "Self-Certification Client Deck",
     "status": "production",
     "kind": "deck",
     "domain": "qa",
