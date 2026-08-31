@@ -118,12 +118,14 @@
             aria-expanded="false" aria-controls="sidebar"><span></span><span></span><span></span></button>
     <a class="topbar-brand" href="index.html" aria-label="Evolve — home"><img src="assets/loader/evolve.png" alt="Evolve"></a>
     <div class="a-topbar-spacer"></div>
-    <a class="nl opt" href="#kinds">What&nbsp;we&nbsp;build</a>
-    <a class="nl opt" href="#roadmap">Roadmap</a>
-    <a class="nl" href="#ecosystem">All&nbsp;work</a>
-    <a class="nl opt" href="#videos">Running</a>
-    <a class="nl opt" href="#faq">FAQ</a>
-    <a class="nl opt" href="#contact">Contact</a>
+    <nav class="nav-pills" id="navPills" aria-label="Page sections">
+      <a class="nl opt" href="#kinds">What&nbsp;we&nbsp;build</a>
+      <a class="nl opt" href="#roadmap">Roadmap</a>
+      <a class="nl" href="#ecosystem">All&nbsp;work</a>
+      <a class="nl opt" href="#videos">Running</a>
+      <a class="nl opt" href="#faq">FAQ</a>
+      <a class="nl opt" href="#contact">Contact</a>
+    </nav>
     <span class="a-pill" id="pillCount" style="min-width:118px">Browse the catalogue</span>
   </header>
 
@@ -231,21 +233,44 @@
        moved to that tool's own page, rendered by tool.js's "Seeing it run").
        The #videos id stays on this wrapper (inbound anchors, the topbar's
        own "Running" link) though the framing around it does not; it is no
-       longer a second .band, just where this section's lead cards live. -->
+       longer a second .band, just where this section's lead cards live.
+
+       Item 4, 2026-08-31 (round two): Surya — "this section should have all
+       the video bytes you have from all the tools ... searchable." Was 10
+       (assets/videos/, the long-form desk recordings). assets/previews/ held
+       21 more silent per-tool loops that nothing on the site ever rendered
+       -- assets/js/videos.js now merges both into one set of 31, grouped by
+       each tool's own `kind` (window.KINDS/kindMeta, the same taxonomy
+       #kinds and the tool browser already use -- no second one invented),
+       led by the flow/masterplanning tools Surya named. The preview cards
+       reuse assets/js/tool-previews.js's existing PREVIEW_MEDIA/PREVIEW_INIT
+       machinery (built 2026-08-31, never wired to any live markup until
+       now) rather than a second lazy-video implementation. -->
   <div id="videos" style="position:relative;margin-top:clamp(48px,6vw,72px)">
     <span class="ghost-word depth-glow" data-depth="0.03" aria-hidden="true" style="left:-6px;top:-18px">RUNNING</span>
     <p class="eyebrow rv">The tools we build</p>
     <h3 class="rmap-title rv" style="max-width:26ch">Now watch them run.</h3>
     <p class="lede rv" style="max-width:62ch;margin-top:10px">Recordings from the desk, cut down to
-      the part that matters &mdash; the click that runs the tool and the result arriving.</p>
+      the part that matters &mdash; the click that runs the tool and the result arriving &mdash;
+      alongside a silent loop for every tool that has one.</p>
 
-    <div class="vgrid" id="videoGrid" style="margin-top:clamp(24px,3vw,34px)"><!-- injected: assets/js/videos.js --></div>
+    <label class="searchline searchline-lg rv" for="clipSearch" style="margin-top:clamp(22px,3vw,30px)">
+      <span class="search-ic" id="clipSearchIc"></span>
+      <input id="clipSearch" type="search" placeholder="Search the clips by tool, kind or category…" autocomplete="off">
+    </label>
+    <p class="pager-status" id="clipStatus" aria-live="polite" style="margin-top:12px"></p>
+
+    <div id="videoGroups" style="margin-top:clamp(20px,2.4vw,28px)"><!-- injected: assets/js/videos.js --></div>
+    <div class="a-empty" id="clipEmpty" style="display:none;margin-top:24px">
+      <div class="a-title">No clips match that search</div>
+      <p style="margin-top:6px;font-size:var(--t-sm)">Clear the search to see all of them.</p>
+    </div>
 
     <noscript>
       <p class="a-note" style="margin-top:34px;max-width:64ch">
         <span class="lb">Scripts off</span>
         The clips are rendered from a data file, so this needs JavaScript. The
-        files themselves sit in <code>assets/videos/</code>.
+        files themselves sit in <code>assets/videos/</code> and <code>assets/previews/</code>.
       </p>
     </noscript>
   </div>
@@ -384,8 +409,11 @@
         <h4>Foundation</h4>
         <p>Standards pack approved, meeting capture live, AI policy signed, and two pilots
           measured against real baselines.</p>
-        <p class="ss-gate"><span class="lb">Gate</span> Flagship BIM pilot run against P285
-          Tower&nbsp;3 GFC&nbsp;+&nbsp;BOQ &mdash; BOQ drafter and Uniclass matcher in assisted mode.</p>
+        <div class="ss-criteria">
+          <div class="ss-criteria-head">Gate</div>
+          <p>Flagship BIM pilot run against P285 Tower&nbsp;3 GFC&nbsp;+&nbsp;BOQ &mdash;
+            BOQ drafter and Uniclass matcher in assisted mode.</p>
+        </div>
       </div>
     </li>
     <li class="spine-step rv" style="--d:90ms">
@@ -394,8 +422,10 @@
         <h4>Workflows</h4>
         <p>The mapped ways of working move from documented to actually used, with context files
           live across teams and the first small agents appearing.</p>
-        <p class="ss-gate"><span class="lb">Gate</span> At least 70% of the 72 mapped ways used
-          once per team; first ten agents running.</p>
+        <div class="ss-criteria">
+          <div class="ss-criteria-head">Gate</div>
+          <p>At least 70% of the 72 mapped ways used once per team; first ten agents running.</p>
+        </div>
       </div>
     </li>
     <li class="spine-step rv" style="--d:180ms">
@@ -404,8 +434,11 @@
         <h4>Agents</h4>
         <p>Agents carry daily production work with a named human verifier on anything generative,
           and confidential work routes to models running on our own hardware.</p>
-        <p class="ss-gate"><span class="lb">Gate</span> Five or more agents in daily use, first-pass
-          acceptance at 60% or better, spend inside budget, local route live.</p>
+        <div class="ss-criteria">
+          <div class="ss-criteria-head">Gate</div>
+          <p>Five or more agents in daily use, first-pass acceptance at 60% or better,
+            spend inside budget, local route live.</p>
+        </div>
       </div>
     </li>
     <li class="spine-step rv" style="--d:270ms">
@@ -414,8 +447,11 @@
         <h4>The Loop</h4>
         <p>The studio can ask its own knowledge a question and get an answer with its source
           attached &mdash; and the numbers come back to the people steering.</p>
-        <p class="ss-gate"><span class="lb">Gate</span> Principal dashboards live,
-          &ldquo;Ask ADS&rdquo; v1 on the knowledge server, KPI review against goals.</p>
+        <div class="ss-criteria">
+          <div class="ss-criteria-head">Gate</div>
+          <p>Principal dashboards live, &ldquo;Ask ADS&rdquo; v1 on the knowledge server,
+            KPI review against goals.</p>
+        </div>
       </div>
     </li>
     <li class="spine-step is-later rv" style="--d:360ms">
@@ -424,8 +460,11 @@
         <h4>Year-two decisions</h4>
         <p>Deliberately undecided. A fine-tuned studio model, surrogate simulation and
           productisation are all go/no-go calls that need a year of evidence first.</p>
-        <p class="ss-gate"><span class="lb">Held back</span> Nothing here is committed &mdash; each
-          needs the first year&rsquo;s corpus and a hardware check before it is even scoped.</p>
+        <div class="ss-criteria">
+          <div class="ss-criteria-head">Held back</div>
+          <p>Nothing here is committed &mdash; each needs the first year&rsquo;s corpus and
+            a hardware check before it is even scoped.</p>
+        </div>
       </div>
     </li>
   </ol>
@@ -645,6 +684,9 @@
 <script src="assets/js/hero.js"></script>
 <script src="assets/js/roadmap-hero.js"></script>
 <script src="assets/js/depth.js"></script>
+<!-- Spotlight (react-bits pass, 2026-08-31): cursor-follow glow on .fcard --
+     the tool/video cards this page builds throughout #ecosystem. -->
+<script src="assets/js/spotlight.js"></script>
 <script src="assets/js/intro.js"></script>
 </body>
 </html>

@@ -59,6 +59,41 @@ body.a-app.nav-open .nav-toggle span:nth-child(3){ transform:translateY(-7px) ro
 .topbar-brand{ display:flex; align-items:center; flex:none }
 .topbar-brand img{ height:19px; width:auto; display:block }
 
+/* ============================================================================
+   NAV PILLS  (item 3, 2026-08-31)
+   Surya: "please have a background for these [the topbar links] -- these
+   are not in sync." Before this the six .nl links (uikit-bridge.css: mono,
+   11px, uppercase, --text-3) floated directly on the topbar's own glass
+   background with no container of their own -- every other control in the
+   bar (the logo, the "Browse the catalogue" pill) has one. One segmented
+   group, kit tokens only: --surface-2 for the resting well, --line for its
+   border, a full 999px radius matching every other pill on the site
+   (.techchip, .pager-arrow, .a-pill). The .nl rules
+   themselves (font, size, tracking, colour) are untouched -- this only gives
+   them a shared home and a real active state, driven by IntersectionObserver
+   in home.js so it tracks scroll position rather than sitting static. */
+.nav-pills{
+  display:flex; align-items:center; gap:2px;
+  padding:4px; margin-inline:4px;
+  border:1px solid var(--line); border-radius:999px;
+  background:var(--surface-2,#F7F8FB);
+}
+.nav-pills .nl{
+  padding:7px 13px; border-radius:999px; line-height:1;
+  transition:background .18s ease, color .18s ease;
+}
+.nav-pills .nl:hover{ background:var(--surface,#fff) }
+.nav-pills .nl.is-active{
+  background:var(--surface,#fff); color:var(--text,var(--ink)) !important;
+  box-shadow:0 1px 2px rgba(16,45,70,.08);
+}
+/* Below 1180px the .opt links already drop out (uikit-bridge.css,
+   ".a-topbar .nl.opt") -- .nav-pills just needs to keep shrinking to fit
+   whatever's left (down to the one non-opt link, "All work") rather than
+   disappearing itself; a full-hide rule here would take that last link out
+   with it, which nothing asked for. */
+.nav-pills{ flex-wrap:nowrap; min-width:0 }
+
 .a-sidebar-brand{ display:flex; align-items:center; justify-content:space-between; gap:12px }
 .a-sidebar-brand .wm{ height:20px; width:auto }
 .nav-close{
@@ -196,6 +231,20 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
 /* Staggered scroll-in: each card carries its own --d, so a row assembles
    left to right as it enters rather than snapping in as one block. */
 .rv{ transition-delay:var(--d,0ms) }
+/* Two-tier motion budget (DESIGN-aiveloft.md §6, TAKE pass, 2026-08-31). Every
+   .rv on the site -- hundreds of cards, headings, timeline steps, FAQ rows --
+   shared ONE 800ms transition (deck.css, ":root.js-reveal .rv"), slower than
+   even MOTION-IDENTITY's --dur-slow ceiling for a plain card reveal. The
+   reference's own discipline: one bespoke, slower, custom-eased moment
+   (rmapRise below, the roadmap convergence labels) and a fast, cheap fade for
+   everything else. This is "everything else" -- MOTION-IDENTITY's
+   --dur-standard, its own --ease-entrance, matching the exact selector
+   specificity of the deck.css rule so it overrides on source order, not on a
+   specificity fight. */
+:root.js-reveal .rv{
+  transition:opacity var(--dur-standard,380ms) var(--ease-entrance,cubic-bezier(.05,.7,.1,1)),
+             transform var(--dur-standard,380ms) var(--ease-entrance,cubic-bezier(.05,.7,.1,1));
+}
 @media (prefers-reduced-motion:reduce){ .rv{ transition-delay:0ms } }
 
 /* deck.css draws a 3px accent bar via .kindcard::before; now that the card has
@@ -266,7 +315,11 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
   background:var(--surface,#fff);
 }
 .tstate-dot{ width:10px; height:10px; border-radius:50%; flex:none; background:var(--sc,var(--accent)) }
-.tstate-n{ font-size:var(--t-xl,19px); font-weight:800; letter-spacing:-.01em; color:var(--text,var(--ink)) }
+/* line-height:1 -- DESIGN-aiveloft.md §4.3's stat-block shape: a tight
+   numeral, no slack, so a two-digit count doesn't inherit body text's own
+   1.5x leading. .statrow .stat .n (deck.css) already does this; .tstate-n
+   was the one numeral on the page that hadn't. */
+.tstate-n{ font-size:var(--t-xl,19px); font-weight:800; letter-spacing:-.01em; line-height:1; color:var(--text,var(--ink)) }
 .tstate-l{ font-size:var(--t-sm,12px); color:var(--muted,var(--ink-3)) }
 
 /* Hours-saved counter. Shell only here -- the split-flap board itself
@@ -325,16 +378,39 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
    TIMELINE section further down, next to the keyframe they use. */
 .ss-body h4{ margin:0 0 8px; font-size:19px; font-weight:800; letter-spacing:-.015em }
 .ss-body p{ margin:0; font-size:14px; line-height:1.62; color:var(--text-2,var(--ink-2)); max-width:62ch }
-.ss-gate{ margin-top:12px !important; font-size:14px !important }
-.ss-gate .lb{
-  display:inline-block; margin-right:8px; padding:3px 7px; border-radius:5px;
-  background:var(--accent-soft,rgba(124,92,255,.10)); color:var(--accent-deep,#4b2fd6);
-  font-family:var(--f-mono,ui-monospace,monospace); font-size:10px;
-  letter-spacing:.08em; text-transform:uppercase;
+
+/* ============================================================================
+   GATE CRITERIA — nested panel, DESIGN-aiveloft.md §4.2/§3 (TAKE pass,
+   2026-08-31)
+   ----------------------------------------------------------------------------
+   Was a plain paragraph with an inline "Gate" chip run into the sentence.
+   The reference's "example automation" panel gets its sense of depth from a
+   second, slightly-tinted surface floating INSIDE the card with its own
+   header row and its own hairline — never a drop shadow. Reused here for
+   exactly the same job: separating "what Foundation means" (the .ss-body
+   paragraph above) from "what has to be true for Foundation to pass" (this
+   panel) without adding a box that competes with the card itself.
+
+   Hairline discipline (§3): aiveloft grades dark hairlines (.035 inside .07
+   inside solid) but on light backgrounds uses ONE value everywhere — this
+   site is light-only (data-theme forced, see home.js), so the graded system
+   doesn't apply; matching the reference's own light-mode practice means
+   reusing --line for both the panel's outer border and its inner divider,
+   not inventing a second lighter value that doesn't exist elsewhere on the
+   site. */
+.ss-criteria{
+  margin-top:14px; padding:14px 16px;
+  background:var(--surface-2,#F7F8FB); border:1px solid var(--line); border-radius:12px;
 }
+.ss-criteria-head{
+  padding-bottom:8px; margin-bottom:8px; border-bottom:1px solid var(--line);
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:10px; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--accent-deep,#4b2fd6);
+}
+.ss-criteria p{ margin:0; font-size:14px; line-height:1.55; color:var(--text-2,var(--ink-2)) }
 /* Year two is not committed work, so it does not read like the four that are. */
 .spine-step.is-later .ss-mark::before{ background:var(--line-2) }
-.spine-step.is-later .ss-gate .lb{ background:var(--surface-3,#eef0f5); color:var(--muted,var(--ink-3)) }
+.spine-step.is-later .ss-criteria-head{ color:var(--muted,var(--ink-3)) }
 
 @media (max-width:760px){
   .spine-step{ grid-template-columns:1fr; gap:10px }
@@ -362,7 +438,13 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
   position:absolute; transform:translateY(-50%);
   font-family:var(--f-mono,ui-monospace,monospace);
   text-transform:uppercase; white-space:nowrap;
-  opacity:0; animation:rmapRise .9s cubic-bezier(.22,1,.36,1) forwards;
+  /* was .9s (900ms) -- MOTION-IDENTITY.md reserves 900ms for the FILM only
+     ("a theatrical beat, never in the UI"); this is the site's one genuinely
+     bespoke slower entrance (DESIGN-aiveloft.md §6's "one bespoke moment"),
+     so it keeps its own custom easing and stays slower than --dur-standard,
+     just capped at --dur-slow, the actual UI ceiling. JS-set animationDelay
+     (roadmap-hero.js) is untouched -- only the per-label duration changes. */
+  opacity:0; animation:rmapRise var(--dur-slow,600ms) cubic-bezier(.22,1,.36,1) forwards;
 }
 .rmap-src{
   left:clamp(16px,3%,48px); font-size:11px; letter-spacing:.18em; color:#B9AEE0;
@@ -372,9 +454,21 @@ body.a-app > .a-sidebar > .a-sidebar-foot{ flex:none; margin-top:auto }
   content:""; width:5px; height:5px; border-radius:50%; flex:none;
   background:#8B5CF6; box-shadow:0 0 9px #8B5CF6;
 }
+/* Responsive fix, 2026-08-31 (item 2): xs positions labels by `left` only
+   (roadmap-hero.js), so a nowrap string just grew rightward past the
+   canvas's own edge with nothing to stop it -- measured up to 35.7px past
+   .rmap-hero's right edge at a real 896px render (iframe test, own
+   getBoundingClientRect, not guessed). Full bleed and fully visible are not
+   in conflict: adding `right` alongside the JS-set `left`, with width left
+   auto, makes the box exactly (container width - left - right) at every
+   size -- the browser computes the box, not a guessed max-width -- and
+   `white-space:normal` lets the label wrap inside that box instead of
+   spilling past it. Same fix works at every breakpoint the canvas can be,
+   including the mobile xs=0.06 set, with no separate override needed. */
 .rmap-out{
   font-size:11px; letter-spacing:.14em; color:#F1EEFF;
   text-shadow:0 0 16px rgba(0,0,0,.9), 0 0 40px rgba(0,0,0,.75);
+  right:clamp(10px,2vw,28px); white-space:normal; line-height:1.4;
 }
 .rmap-out em{
   display:block; margin-top:.5em; font-style:normal; text-transform:none;
@@ -528,12 +622,45 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
   gap:clamp(16px,1.6vw,22px); margin-top:34px;
 }
 .fcard{
+  position:relative; isolation:isolate;
   display:flex; flex-direction:column; padding:24px; border-radius:14px;
   border:1px solid var(--line); background:var(--surface,#fff);
   box-shadow:0 1px 2px rgba(16,45,70,.05);
   transition:transform .22s ease, border-color .22s ease;
 }
 .fcard:hover{ transform:translateY(-2px); border-color:var(--line-2) }
+
+/* ============================================================================
+   SPOTLIGHT — cursor-follow glow, the card family's secondary layer
+   (react-bits pass, 2026-08-31: components/spotlight-card, reimplemented in
+   plain CSS custom properties + a delegated listener, assets/js/spotlight.js)
+   ----------------------------------------------------------------------------
+   ::before, not a background on .fcard itself: the pseudo owns its own
+   border-radius (inherits the card's 14px so the glow never squares off past
+   the rounded corner). z-index:-1, not 0 — a positioned z-index:0 box still
+   paints AFTER ordinary non-positioned in-flow children in stacking order
+   (position alone moves a box later in paint order; 0 is not "behind
+   everything"), so at 0 the glow would sit on top of the card's real
+   content. -1 paints first within the card's own stacking context
+   (`isolation:isolate` above scopes that -1 to this card, not the page),
+   which is what "behind every real child" actually requires — without
+   touching z-index on any child individually.
+
+   opacity is the only property with a transition — the actual position
+   (--mx/--my) is written straight by JS, matching the reference component
+   and fixing-motion-performance's rule against transitioning custom
+   properties. 160ms is --dur-quick on the MOTION-IDENTITY scale: this is
+   feedback (the glow arriving/leaving), not a scene-level reveal. */
+@media (hover:hover) and (pointer:fine){
+  .fcard::before{
+    content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+    border-radius:inherit;
+    background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),
+      color-mix(in srgb, var(--accent,#6A3FE0) 13%, transparent), transparent 72%);
+    opacity:0; transition:opacity .16s var(--ease-ambient,cubic-bezier(.4,0,.2,1));
+  }
+  .fcard:hover::before{ opacity:1 }
+}
 .fc-top{ display:flex; align-items:center; gap:10px; margin-bottom:12px }
 .fc-kind{
   padding:3px 8px; border-radius:5px; font-family:var(--f-mono,ui-monospace,monospace);
@@ -871,6 +998,32 @@ body.a-app .a-content{ max-width:1280px; margin-inline:auto; width:100% }
 /* .fc-go's margin-top:auto (defined with .fcard above) is kept as-is here on
    purpose -- it pins the go-link to the card floor, so a row of clips with
    and without a resolved toolId still lines up along the same bottom edge. */
+
+/* ======================= FIELD CLIPS, GROUPED (item 4) ====================
+   assets/js/videos.js now renders one .vgroup per kind instead of one flat
+   .vgrid -- the EvolveLab pattern (product name on top, category label
+   underneath) already lives on every card via .fc-mark/.fc-id/.fc-cat
+   (defined above, under "PRODUCT MARKS"); this is the same pattern one
+   level up, naming the group instead of the card.
+   ---------------------------------------------------------------------- */
+.vgroup + .vgroup{ margin-top:clamp(40px,4.5vw,60px) }
+.vgroup-title{
+  display:flex; align-items:baseline; gap:10px;
+  margin:0; font-size:var(--t-lg,16px); font-weight:800; letter-spacing:-.01em;
+  color:var(--text,var(--ink));
+  padding-bottom:10px; border-bottom:1px solid var(--line);
+}
+.vgroup-count{
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:var(--t-cap,11px);
+  font-weight:600; color:var(--muted,var(--ink-3));
+}
+.vgroup .vgrid{ margin-top:18px }
+
+/* The 21 silent loops are whole-card links (no <video controls> to conflict
+   with), unlike the 10 gallery clips above -- .tcard already carries this
+   exact reset for the same reason, reused verbatim rather than re-declared. */
+.pv-card{ text-decoration:none; color:inherit; cursor:pointer }
+.pv-card .fc-line{ min-height:1.6em }
 
 /* ==========================================================================
    TOOL PAGE  (2026-08-26)
@@ -1291,9 +1444,16 @@ html.intro-curtain-active body{ overflow:hidden }
   width:11px; height:11px; flex:none; border-radius:50%;
   border:2px solid var(--accent,#7C5CFF); background:var(--paper,#fff);
 }
+/* Chip, not bare text — DESIGN-aiveloft.md §4.1's numbered chip (accent-soft
+   fill, accent text) reused at this component's own compact scale rather
+   than the reference's 38x38 square, since the dot + rail already carries
+   the "this is a sequence, here is where we are" read; the chip just needs
+   to look like a chip, not compete with it. */
 .ss-idx{
-  font-family:var(--f-mono,ui-monospace,monospace); font-size:12px; font-weight:700;
-  letter-spacing:.04em; color:var(--muted,var(--ink-3));
+  padding:3px 10px; border-radius:999px;
+  background:var(--accent-soft,rgba(124,92,255,.10)); color:var(--accent-deep,#4b2fd6);
+  font-family:var(--f-mono,ui-monospace,monospace); font-size:11px; font-weight:700;
+  letter-spacing:.05em;
 }
 .ss-now-tag{
   padding:3px 8px; border-radius:999px; background:var(--accent,#7C5CFF); color:#fff;
@@ -1309,7 +1469,7 @@ html.intro-curtain-active body{ overflow:hidden }
   0%,100%{ box-shadow:0 0 0 4px var(--accent-soft,rgba(124,92,255,.16)) }
   50%{ box-shadow:0 0 0 7px rgba(124,92,255,.06) }
 }
-.spine-step.is-later .ss-idx{ color:var(--muted,var(--ink-3)) }
+.spine-step.is-later .ss-idx{ background:var(--surface-3,#eef0f5); color:var(--muted,var(--ink-3)) }
 .spine-step.is-later .ss-dot{ border-color:var(--line-2) }
 @media (prefers-reduced-motion:reduce){ .spine-step.is-now .ss-dot{ animation:none } }
 @media (max-width:760px){ .ss-mark::before{ display:none } }
@@ -1372,11 +1532,55 @@ html.intro-curtain-active body{ overflow:hidden }
    to read as intentional.
    ============================================================================ */
 
-#ecosystem, #faq{ background:var(--bg-2,#F7F8FB) }
+/* Bleed fix, 2026-08-31 (Surya: "the background should always bleed" --
+   measured 80px insets at 1440, 320px at 1920 before this). The ground tint
+   and the seam shadow were painted straight onto the .band element, but
+   .band is a child of .a-content, which is capped at 1280px and centred
+   (site-chrome.css, "body.a-app .a-content{ max-width:1280px }"). A flat
+   background on a 1280-wide box centred in a wider viewport is exactly a
+   floating slab with white gutters, no matter how deliberate the tint looks
+   in isolation.
 
-#ecosystem, #roadmap, #close, #faq, #contact{
-  box-shadow:inset 0 30px 40px -38px rgba(14,17,22,.10);
+   .rmap-hero already carries a negative-margin formula meant to do the same
+   thing (clamp(20px,5vw,64px) plus a >=1281px calc), but it was never
+   actually reaching the viewport edge either -- deck.css's base .band rule
+   sets `overflow:hidden` on every band, .rmap-hero's own container among
+   them, so its bleed was clipped at the 1280 line same as everything else.
+   Confirmed with elementFromPoint() at the section's own edge: the canvas
+   was not there. box-shadow spread does not escape an element's own
+   overflow:hidden either (checked the same way) -- overflow itself has to
+   go for a section that wants true edge-to-edge paint.
+
+   Fix: these five sections get `overflow:visible`, an ID selector so it
+   beats deck.css's `.band{overflow:hidden}` on specificity alone, no
+   !important needed. html/body already carry `overflow-x:hidden`
+   (visuals-scroll.css) as the page-level backstop, so nothing here can open
+   a real horizontal scrollbar. The ground tint and seam shadow move onto a
+   ::before pinned to 50vw off the section's own centre line, which lands it
+   at the viewport edge at any width, any content cap -- the section keeps
+   its normal 1280-capped content; only the paint layer behind it bleeds. */
+/* Seam, simplified (DESIGN-aiveloft.md §5, TAKE pass, 2026-08-31). Measured
+   directly across 24 section boundaries on the reference: "a hard flat
+   colour cut with zero gap, zero border, zero gradient fade" -- no shadow at
+   any seam, and the band feeling comes entirely from full-bleed colour
+   alternation, not from decorating the join. The 30px inset bevel this
+   section used to carry (a soft drop-shadow just under the seam, meant to
+   read as one sheet sitting slightly forward of the next) is exactly the
+   kind of seam decoration that finding argues against -- dropped.
+
+   Not a blind copy, though: aiveloft's sections flip between full-strength
+   #111318 and #F7F8FA, a stark jump that reads clearly with nothing else
+   marking it. Ours alternate --bg and --bg-2, a few RGB units apart --
+   measurably subtler, confirmed by the fact these sections needed a fix for
+   "does this even bleed" in the first place. A jump that quiet still wants
+   SOME edge, so the existing 1px hairline (deck.css, `.band + .band`) stays;
+   only the heavier bevel goes. */
+#ecosystem, #roadmap, #close, #faq, #contact{ position:relative; overflow:visible }
+#ecosystem::before, #roadmap::before, #close::before, #faq::before, #contact::before{
+  content:""; position:absolute; z-index:0; pointer-events:none;
+  top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw;
 }
+#ecosystem::before, #faq::before{ background:var(--bg-2,#F7F8FB) }
 /* #videos used to be its own .band section, so it carried both rules above
    in its own right. Folded into #ecosystem 2026-08-31 (the video-led cards
    are now that section's lead, not a second chapter repeating it) -- #videos
@@ -1387,6 +1591,74 @@ html.intro-curtain-active body{ overflow:hidden }
 
 .depth-glow{ will-change:transform }
 @media (prefers-reduced-motion:reduce){ .depth-glow{ transform:none !important } }
+
+/* ============================================================================
+   AMBIENT LAYER — the glows breathe, not just drift on scroll  (react-bits
+   pass, item 2026-08-31)
+   ----------------------------------------------------------------------------
+   MOTION-IDENTITY.md: "The ambient layer never stops. If a frame has nothing
+   moving in the background, a layer is missing." Before this, every .glow's
+   only motion was depth.js's scroll-tied parallax (assets/js/depth.js) --
+   stop scrolling and the whole background goes static, which is the "cheap /
+   flat" symptom the doc names directly.
+
+   Evaluated react-bits' Aurora (backgrounds/aurora) for this: a continuously
+   drifting, blurred colour field is exactly the right IDEA, but its actual
+   implementation is a WebGL/canvas shader shipped as a React component --
+   porting that would mean a canvas layer and either a build step or an npm
+   dependency at runtime, neither of which this site has. Adopted the DESIGN
+   INTENT only (soft ambient life that never stops) and reimplemented it as a
+   plain CSS keyframe breathing the five existing .glow blobs already on the
+   page, in the site's own colours -- no new element, no new hue, nothing
+   "bolted on" (PRODUCT.md, "depth, not decoration").
+
+   Runs on a ::after, not the .glow element itself: depth.js sets
+   `.glow.style.transform` directly on scroll, and a CSS animation on the
+   same property on the same element would fight that inline write every
+   frame (animations win the cascade over inline styles for the duration
+   they're active, so the parallax drift would be clobbered). The pseudo has
+   its own independent transform stack -- animating scale on ::after never
+   touches the parent's transform, so the two motions compose instead of
+   fighting. `background-color:inherit` / `border-radius:inherit` pick up
+   each glow's own inline colour and 50% radius without repeating them.
+
+   transform (scale) + opacity only -- fixing-motion-performance's compositor
+   rule -- and no blur here at all: .glow's blur(90px) is set once, statically,
+   by the existing rule above; this animation never touches it (the perf
+   skill is explicit that blur must never be animated continuously, or on a
+   large surface). --ease-ambient is MOTION-IDENTITY.md's own ambient curve,
+   introduced here as a real custom property since nothing on the site had
+   defined it as one yet. --dur-standard/--dur-slow/--ease-entrance join it
+   below for the same reason -- the TAKE pass (DESIGN-aiveloft.md §6, "two-
+   tier motion budget") needs real values for "the workhorse tier" and "the
+   one bespoke slower moment", and MOTION-IDENTITY.md's own palette is what
+   wins on reconciliation, not the reference's raw 220ms/820ms. theme.css's
+   older --t-fast/--t-med/--t-slow (160/220/320ms) predate MOTION-IDENTITY
+   and are a different, smaller set -- left alone rather than migrated
+   wholesale, which is a bigger job than this pass. */
+:root{
+  --ease-ambient: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-standard: 380ms;   /* MOTION-IDENTITY.md: "cards, panels, nav, tool tiles -- the workhorse" */
+  --dur-slow: 600ms;       /* MOTION-IDENTITY.md: "section reveals, modals, band transitions" -- the UI ceiling; 900ms is film-only */
+  --ease-entrance: cubic-bezier(0.05, 0.7, 0.1, 1); /* MOTION-IDENTITY.md: MD3 emphasized, arrivals */
+}
+
+.glow::after{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  border-radius:inherit; background-color:inherit;
+  animation:glowBreathe 12s var(--ease-ambient) infinite;
+}
+@keyframes glowBreathe{
+  0%, 100%{ transform:scale(1);     opacity:.82 }
+  50%     { transform:scale(1.09);  opacity:1 }
+}
+/* depth.js: IntersectionObserver on the same [data-depth] glows, pausing the
+   loop while off-screen (fixing-motion-performance: looping animations burn
+   GPU even when invisible). */
+.glow.is-off::after{ animation-play-state:paused }
+@media (prefers-reduced-motion:reduce){
+  .glow::after{ animation:none; content:none }
+}
 
 /* ============================================================================
    STRUCTURAL DEPTH II — the film's vocabulary, in the site's own tokens

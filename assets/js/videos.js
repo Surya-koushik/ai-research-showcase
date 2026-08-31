@@ -219,36 +219,111 @@ window.VIDEOS = [
   }
 ];
 
+/* ============================================================================
+   RENDER — grouped, searchable, all 31 clips (item 4, 2026-08-31 round two)
+   ----------------------------------------------------------------------------
+   Surya: "this section should have all the video bytes you have from all the
+   tools... their videos should be segregated based on the sub categories of
+   each tool, and these should be searchable." Two footage sources, merged:
+
+     - window.VIDEOS above: 10 long-form desk recordings, assets/videos/.
+     - window.PREVIEW_MANIFEST (assets/js/preview_manifest.js): 21 silent
+       per-tool loops, assets/previews/ — built 2026-08-30/31 and never
+       rendered anywhere on the live site until now.
+
+   Grouped by each clip's own `kind` (window.KINDS/kindMeta) — the tool
+   browser's own taxonomy, not a new one. A gallery clip's kind comes from
+   its resolved `toolId` (window.PROJECTS); the three with no confident
+   match (see the header note above) get no kind and sit in their own
+   "Not yet catalogued" bucket rather than a guessed label. Pipeline leads,
+   with the flow/masterplanning tools Surya named first inside it; every
+   other kind follows in the order window.KINDS already declares them.
+
+   Preview cards reuse assets/js/tool-previews.js's PREVIEW_MEDIA/
+   PREVIEW_INIT wholesale (poster-first, hover-to-play on desktop,
+   scroll-to-play on touch, a global PLAY_MAX, prefers-reduced-motion
+   respected) instead of a second lazy-video path next to the one that
+   already existed for this. ============================================================================ */
 (function () {
   'use strict';
 
-  var host = document.getElementById('videoGrid');
-  if (!host || !window.VIDEOS) return;
+  var groupHost = document.getElementById('videoGroups');
+  if (!groupHost || !window.VIDEOS) return;
 
   function esc(s) {
     return String(s).replace(/[&<>"]/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
     });
   }
-
   function clock(sec) {
     return Math.floor(sec / 60) + ':' + ('0' + (sec % 60)).slice(-2);
   }
+  function findProject(id) {
+    return (window.PROJECTS || []).filter(function (p) { return p.id === id; })[0] || null;
+  }
 
-  /* Short form (Surya, 2026-08-31: "this should be short like the tool card").
-     video, title, one line — nothing else on the card. Not wrapped in <a>:
-     the <video> already carries its own controls, and nesting a native
-     control surface inside a link is the thing that breaks click-to-play.
-     Where the clip traces to a catalogue entry (`toolId`), a small go-link
-     under the line opens it — the same "Open X" wording tool.js's own
-     related-tools card uses, so the affordance reads as one convention. A
-     clip with no confident match gets no link: an honest gap, not a filler
-     pointer. */
-  host.innerHTML = window.VIDEOS.map(function (v, i) {
+  /* --------------------------------------------------------- build the list */
+  var UNCAT = { id: 'uncatalogued', label: 'Not yet catalogued' };
+
+  var items = [];
+
+  window.VIDEOS.forEach(function (v) {
+    var tool = v.toolId ? findProject(v.toolId) : null;
+    items.push({
+      type: 'gallery', v: v, tool: tool,
+      groupId: tool ? tool.kind : UNCAT.id,
+      hay: [v.title, v.line, v.why, v.software, tool && tool.name,
+            tool && window.kindMeta(tool.kind).label, tool && window.domainMeta(tool.domain).label]
+            .filter(Boolean).join(' ').toLowerCase()
+    });
+  });
+
+  (window.PREVIEW_MANIFEST || []).forEach(function (slug) {
+    var p = findProject(slug);
+    if (!p) return;   /* manifest lists it, catalogue does not (yet) -- skip, don't guess */
+    items.push({
+      type: 'preview', slug: slug, p: p,
+      groupId: p.kind || UNCAT.id,
+      hay: [p.name, p.tagline, window.kindMeta(p.kind).label, window.domainMeta(p.domain).label]
+            .filter(Boolean).join(' ').toLowerCase()
+    });
+  });
+
+  /* Pipeline leads; the four Surya named lead pipeline itself. Everything
+     else follows window.KINDS' own declared order, so the sequence is a
+     restatement of the existing taxonomy, not a new decision. */
+  var LEAD = ['plotting-agent', 'masterplan-zoning-agent', 'masterplanning-studio', 'site-gpt'];
+  var kindOrder = ['pipeline'].concat(
+    (window.KINDS || []).map(function (k) { return k.id; })
+      .filter(function (id) { return id !== 'all' && id !== 'pipeline'; })
+  ).concat([UNCAT.id]);
+
+  var byGroup = {};
+  items.forEach(function (it) {
+    (byGroup[it.groupId] = byGroup[it.groupId] || []).push(it);
+  });
+  byGroup.pipeline && byGroup.pipeline.sort(function (a, b) {
+    var ai = LEAD.indexOf(a.type === 'preview' ? a.slug : (a.tool && a.tool.id));
+    var bi = LEAD.indexOf(b.type === 'preview' ? b.slug : (b.tool && b.tool.id));
+    if (ai === -1) ai = LEAD.length;
+    if (bi === -1) bi = LEAD.length;
+    return ai - bi;
+  });
+
+  /* --------------------------------------------------------------- markup -- */
+  function accentOf(kindId) { return (window.KIND_ACCENT || {})[kindId] || 'var(--accent)'; }
+
+  function markHTML(kindId) {
+    if (kindId === UNCAT.id) return '';
+    return '<span class="fc-mark fc-mark--kind" style="--kc:' + accentOf(kindId) + '">' +
+      KIND_ICON(kindId) + '</span>';
+  }
+
+  function galleryCard(it, delay) {
+    var v = it.v, tool = it.tool;
     var base = 'assets/videos/' + v.slug + '-clip';
-    var tool = v.toolId && window.PROJECTS
-      ? window.PROJECTS.filter(function (p) { return p.id === v.toolId; })[0] : null;
-    return '<article class="fcard vclip-card rv" style="--d:' + Math.min(i * 60, 360) + 'ms">' +
+    var catLabel = tool ? window.kindMeta(tool.kind).label : UNCAT.label;
+    return '<article class="fcard vclip-card rv" data-hay="' + esc(it.hay) + '" style="--d:' + delay + 'ms">' +
       '<div class="vclip-media">' +
         '<video controls preload="none" playsinline ' +
                'poster="' + base + '.jpg" ' +
@@ -260,14 +335,50 @@ window.VIDEOS = [
         (v.kind === 'reference'
           ? '<span class="vclip-tag">Not our work &middot; reference</span>' : '') +
       '</div>' +
-      '<h3 class="fc-id" style="margin-bottom:6px"><b>' + esc(v.title) + '</b></h3>' +
+      '<div class="fc-top">' + markHTML(it.groupId) +
+        '<div class="fc-id"><b>' + esc(v.title) + '</b><span class="fc-cat">' + esc(catLabel) + '</span></div>' +
+      '</div>' +
       '<p class="fc-line">' + esc(v.line || v.why) + '</p>' +
       (tool
         ? '<a class="fc-go" href="tool.html?id=' + encodeURIComponent(tool.id) + '">' +
             'Open ' + esc(tool.name) + ' &rarr;</a>'
         : '') +
     '</article>';
-  }).join('');
+  }
+
+  /* The preview loop reuses PREVIEW_MEDIA (tool-previews.js) for the media
+     block itself; the whole card is the link (no <video controls> here to
+     conflict with nesting an anchor, unlike the gallery cards above). */
+  function previewCard(it, delay) {
+    var p = it.p;
+    var catLabel = window.kindMeta(it.groupId).label;
+    var media = window.PREVIEW_MEDIA ? window.PREVIEW_MEDIA(it.slug, it.groupId, 'pv-media--card') : '';
+    return '<a class="fcard vclip-card pv-card rv" data-hay="' + esc(it.hay) + '" ' +
+        'href="tool.html?id=' + encodeURIComponent(p.id) + '" style="--d:' + delay + 'ms">' +
+      media +
+      '<div class="fc-top">' + markHTML(it.groupId) +
+        '<div class="fc-id"><b>' + esc(p.name) + '</b><span class="fc-cat">' + esc(catLabel) + '</span></div>' +
+      '</div>' +
+      '<p class="fc-line">' + esc(p.tagline || '') + '</p>' +
+      '<span class="fc-go">Open ' + esc(p.name) + ' &rarr;</span>' +
+    '</a>';
+  }
+
+  var delayCounter = 0;
+  var groupsHTML = kindOrder.filter(function (id) { return byGroup[id] && byGroup[id].length; })
+    .map(function (id) {
+      var label = id === UNCAT.id ? UNCAT.label : window.kindMeta(id).label;
+      var cards = byGroup[id].map(function (it) {
+        var d = Math.min(delayCounter * 45, 360); delayCounter++;
+        return it.type === 'preview' ? previewCard(it, d) : galleryCard(it, d);
+      }).join('');
+      return '<div class="vgroup" data-group="' + id + '">' +
+        '<h4 class="vgroup-title">' + esc(label) + '<span class="vgroup-count">' + byGroup[id].length + '</span></h4>' +
+        '<div class="vgrid">' + cards + '</div>' +
+      '</div>';
+    }).join('');
+
+  groupHost.innerHTML = groupsHTML;
 
   /* home.js observes .rv once, before these cards exist, so this band brings
      its own observer rather than relying on that pass. Without it the cards
@@ -278,18 +389,63 @@ window.VIDEOS = [
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
     }, { rootMargin: '0px 0px -8% 0px' });
-    Array.prototype.forEach.call(host.querySelectorAll('.rv'), function (el) { io.observe(el); });
+    Array.prototype.forEach.call(groupHost.querySelectorAll('.rv'), function (el) { io.observe(el); });
   } else {
-    Array.prototype.forEach.call(host.querySelectorAll('.rv'), function (el) { el.classList.add('in'); });
+    Array.prototype.forEach.call(groupHost.querySelectorAll('.rv'), function (el) { el.classList.add('in'); });
   }
 
-  /* One at a time. Twelve clips that can all play at once is twelve audio
-     tracks over each other. */
-  Array.prototype.forEach.call(host.querySelectorAll('video'), function (v) {
+  /* One at a time, gallery clips only. The 21 preview loops carry no audio
+     (tool-previews.js's own PLAY_MAX already caps how many of those run at
+     once) so they are not part of this. */
+  Array.prototype.forEach.call(groupHost.querySelectorAll('.vclip-media video'), function (v) {
     v.addEventListener('play', function () {
-      Array.prototype.forEach.call(host.querySelectorAll('video'), function (o) {
+      Array.prototype.forEach.call(groupHost.querySelectorAll('.vclip-media video'), function (o) {
         if (o !== v && !o.paused) { o.pause(); }
       });
     });
   });
+
+  /* PREVIEW_INIT wires the .pv-media[data-preview-slug] nodes just added --
+     it is idempotent per-node (getState guards against double-wiring), so
+     calling it again after DOMContentLoaded's own call is safe. */
+  if (window.PREVIEW_INIT) window.PREVIEW_INIT();
+
+  /* ------------------------------------------------------------- search ---
+     Same interaction language as the catalogue search above it (#search,
+     home.js): plain `input` filtering, lowercase substring match, no "/"
+     shortcut here since that one already focuses #search — two global
+     bindings on the same key would be ambiguous about which field wins. */
+  var searchIc = document.getElementById('clipSearchIc');
+  if (searchIc && window.ICON) searchIc.innerHTML = ICON('search');
+
+  var totalCount = items.length;
+  var searchEl = document.getElementById('clipSearch');
+  var statusEl = document.getElementById('clipStatus');
+  var emptyEl = document.getElementById('clipEmpty');
+
+  function applyFilter() {
+    var q = (searchEl.value || '').trim().toLowerCase();
+    var visible = 0;
+    Array.prototype.forEach.call(groupHost.querySelectorAll('.vgroup'), function (group) {
+      var groupVisible = 0;
+      Array.prototype.forEach.call(group.querySelectorAll('[data-hay]'), function (card) {
+        var match = !q || card.getAttribute('data-hay').indexOf(q) !== -1;
+        card.style.display = match ? '' : 'none';
+        if (match) { groupVisible++; visible++; }
+      });
+      group.style.display = groupVisible ? '' : 'none';
+      /* Count next to the group name tracks the search too -- "Pipeline 16"
+         staying put while only 3 cards show read as a stale number. */
+      group.querySelector('.vgroup-count').textContent = groupVisible;
+    });
+    statusEl.textContent = q
+      ? visible + ' of ' + totalCount + ' clip' + (totalCount === 1 ? '' : 's') + ' match “' + q + '”'
+      : totalCount + ' clips, grouped by kind';
+    emptyEl.style.display = visible ? 'none' : '';
+    groupHost.style.display = visible ? '' : 'none';
+  }
+  if (searchEl) {
+    searchEl.addEventListener('input', applyFilter);
+    applyFilter();
+  }
 }());

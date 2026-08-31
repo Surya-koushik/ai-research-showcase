@@ -52,4 +52,19 @@
   window.addEventListener('resize', onScroll, { passive: true });
 
   update();
+
+  /* Pause the ambient breathing animation (site-chrome.css, ".glow::after",
+     react-bits pass) while its glow is off-screen — fixing-motion-performance:
+     "pause looping animations off-screen; they burn GPU even when invisible."
+     Five elements, so this is a small win, but the rule is explicit and the
+     IO is nearly free once depth.js already has the element list. `.is-off`
+     just sets animation-play-state:paused on the pseudo (site-chrome.css). */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        e.target.classList.toggle('is-off', !e.isIntersecting);
+      });
+    }, { rootMargin: '200px 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  }
 })();

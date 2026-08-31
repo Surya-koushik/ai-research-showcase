@@ -108,9 +108,12 @@
 <script src="assets/js/projects.js"></script>
 <!-- Field clips (assets/js/videos.js) carry the "Seeing it run" copy for any
      tool a screen recording traces to (its `toolId`) -- see that file's own
-     header. Its render pass is a no-op here (no #videoGrid on this page); it
-     is loaded only so tool.js can read window.VIDEOS. -->
+     header. Its render pass is a no-op here (no #videoGroups on this page);
+     it is loaded only so tool.js can read window.VIDEOS. -->
 <script src="assets/js/videos.js"></script>
 <script src="assets/js/tool.js"></script>
+<!-- Spotlight (react-bits pass, 2026-08-31): the cursor-follow glow on
+     .fcard, which this page's own related-tools cards use (tool.js). -->
+<script src="assets/js/spotlight.js"></script>
 </body>
 </html>

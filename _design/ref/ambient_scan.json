@@ -1,0 +1,26 @@
+[
+ {
+  "tag": "SPAN",
+  "cls": " avh-live-dot ",
+  "animName": "avhPulse",
+  "animDuration": "1.8s",
+  "animTiming": "ease-in-out",
+  "animDelay": "0s",
+  "visible": true,
+  "rectTop": 254,
+  "rectLeft": 1256,
+  "opacity": "0.356921"
+ },
+ {
+  "tag": "path",
+  "cls": "",
+  "animName": "avintDash",
+  "animDuration": "7s",
+  "animTiming": "linear",
+  "animDelay": "0s",
+  "visible": true,
+  "rectTop": 13550,
+  "rectLeft": 376,
+  "opacity": "1"
+ }
+]

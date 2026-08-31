@@ -35,6 +35,10 @@
     evaluation:'var(--text-3)',
     deck:      'var(--rose-400)'
   };
+  /* Exposed so assets/js/videos.js (loaded after this file) can tint its
+     kind marks with the same per-kind accent, rather than a second colour
+     map drifting out of sync with this one. */
+  window.KIND_ACCENT = ACCENT;
 
   /* ---------------------------------------------------------------- chrome -- */
   /* One theme, no toggle. Removed 2026-08-25 on Surya's instruction: light.css
@@ -56,6 +60,40 @@
   if (navClose) navClose.onclick = function () { setNav(false); };
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") setNav(false); });
   $("#nav").addEventListener("click", function (e) { if (e.target.closest("a")) setNav(false); });
+
+  /* --- nav pills: active state tracks scroll position -------------------
+     Item 3, 2026-08-31: the six .nl links got a shared pill container
+     (site-chrome.css, "NAV PILLS"), which meant they needed a real active
+     state to read as one component rather than six bare links.
+
+     The six sections are contiguous top to bottom (.band+.band, no gaps),
+     so a thin trigger LINE near the top of the viewport is always inside
+     exactly one of them -- far more reliable than comparing
+     intersectionRatio across sections of wildly different heights (a
+     12,000px section and a 400px one can't be compared on ratio; the tall
+     one always loses even while it fills the whole screen). rootMargin
+     collapses the root to that one line; IO reports which section's box
+     currently contains it. `#top` (the hero, not one of the six pill
+     targets) sits above the line at page load, so nothing is marked active
+     until the visitor actually reaches a target -- correct, not a bug. */
+  var navPills = $$('.nav-pills .nl');
+  if (navPills.length && 'IntersectionObserver' in window) {
+    var pillTargets = navPills.map(function (a) {
+      var id = a.getAttribute('href');
+      return id && id.charAt(0) === '#' ? document.getElementById(id.slice(1)) : null;
+    });
+    var setActive = function (id) {
+      navPills.forEach(function (a) {
+        a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+      });
+    };
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) setActive(e.target.id);
+      });
+    }, { rootMargin: '-22% 0px -77% 0px', threshold: 0 });
+    pillTargets.forEach(function (el) { if (el) spy.observe(el); });
+  }
 
   $('#searchIc').innerHTML = ICON('search');
 

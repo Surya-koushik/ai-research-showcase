@@ -1,0 +1,118 @@
+{
+ "pseudoAmbient": [
+  {
+   "tag": "DIV",
+   "cls": "avint-hub",
+   "pe": "::before",
+   "animName": "avintOrbit",
+   "dur": "24s",
+   "timing": "linear"
+  }
+ ],
+ "glows": [
+  {
+   "sel": ".avh-glow",
+   "found": true,
+   "animationName": "none",
+   "transition": "all",
+   "transform": "none",
+   "opacity": "1"
+  },
+  {
+   "sel": ".avcs-glow",
+   "found": true,
+   "animationName": "none",
+   "transition": "all",
+   "transform": "none",
+   "opacity": "1"
+  },
+  {
+   "sel": ".avfooter-glow",
+   "found": true,
+   "animationName": "none",
+   "transition": "all",
+   "transform": "none",
+   "opacity": "1"
+  },
+  {
+   "sel": ".avcmp-glow",
+   "found": true,
+   "animationName": "none",
+   "transition": "all",
+   "transform": "none",
+   "opacity": "1"
+  }
+ ],
+ "articleAnimSample": [
+  {
+   "cls": "avp-card",
+   "animName": "none",
+   "animDelay": "0s",
+   "animDuration": "0s",
+   "text": "01Workflow-firstMap the proces"
+  },
+  {
+   "cls": "avp-card",
+   "animName": "none",
+   "animDelay": "0s",
+   "animDuration": "0s",
+   "text": "02Human checkpointsKeep review"
+  },
+  {
+   "cls": "avp-card",
+   "animName": "none",
+   "animDelay": "0s",
+   "animDuration": "0s",
+   "text": "03Observable by designMake imp"
+  },
+  {
+   "cls": "avp-card",
+   "animName": "none",
+   "animDelay": "0s",
+   "animDuration": "0s",
+   "text": "04Baseline before outcomesDefi"
+  },
+  {
+   "cls": "avp-reliability-item",
+   "animName": "none",
+   "animDelay": "0s",
+   "animDuration": "0s",
+   "text": "OBSERVABLEKnow what the workfl"
+  },
+  {
+   "cls": "avp-reliability-item",
+   "animName": "none",
+   "animDelay": "0s",
+   "animDuration": "0s",
+   "text": "CONTROLLEDKeep people in the r"
+  },
+  {
+   "cls": "avp-reliability-item",
+   "animName": "none",
+   "animDelay": "0s",
+   "animDuration": "0s",
+   "text": "MEASURABLECompare against a re"
+  },
+  {
+   "cls": "",
+   "animName": "none",
+   "animDelay": "0s",
+   "animDuration": "0s",
+   "text": "01Slow responseRequests wait u"
+  },
+  {
+   "cls": "",
+   "animName": "none",
+   "animDelay": "0s",
+   "animDuration": "0s",
+   "text": "02Manual handoffsContext gets "
+  },
+  {
+   "cls": "",
+   "animName": "none",
+   "animDelay": "0s",
+   "animDuration": "0s",
+   "text": "03Fragmented dataTeams work fr"
+  }
+ ]
+}

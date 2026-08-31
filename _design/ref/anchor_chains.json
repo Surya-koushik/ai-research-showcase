@@ -1,0 +1,160 @@
+{
+ "Workflow Automation": [
+  [
+   "SPAN.avn-mega-title",
+   "A.avn-mega-item",
+   "DIV.avn-mega-grid",
+   "DIV.avn-mega",
+   "DIV.avn-group",
+   "DIV.avn-desktop",
+   "NAV.avn-bar"
+  ],
+  [
+   "A.avn-mobile-child",
+   "DIV.avn-mobile-children",
+   "DIV.avn-mobile-group",
+   "DIV.avn-mobile-content",
+   "DIV.avn-mobile-frame",
+   "DIV.avn-mobile-overlay",
+   "DIV.avn-shell"
+  ],
+  [
+   "H3",
+   "DIV",
+   "DIV",
+   "ARTICLE",
+   "DIV",
+   "SECTION",
+   "DIV.framer-19aewp7-container"
+  ]
+ ],
+ "AI Agents": [
+  [
+   "SPAN.avn-mega-title",
+   "A.avn-mega-item",
+   "DIV.avn-mega-grid",
+   "DIV.avn-mega",
+   "DIV.avn-group",
+   "DIV.avn-desktop",
+   "NAV.avn-bar"
+  ],
+  [
+   "A.avn-mobile-child",
+   "DIV.avn-mobile-children",
+   "DIV.avn-mobile-group",
+   "DIV.avn-mobile-content",
+   "DIV.avn-mobile-frame",
+   "DIV.avn-mobile-overlay",
+   "DIV.avn-shell"
+  ],
+  [
+   "H3",
+   "DIV",
+   "ARTICLE",
+   "DIV",
+   "DIV",
+   "SECTION",
+   "DIV.framer-19aewp7-container"
+  ]
+ ],
+ "CORE SYSTEM": [
+  [
+   "DIV",
+   "DIV",
+   "DIV",
+   "ARTICLE",
+   "DIV",
+   "SECTION",
+   "DIV.framer-19aewp7-container"
+  ]
+ ],
+ "01": [
+  [
+   "DIV.avh-icon",
+   "DIV.avh-node",
+   "DIV.avh-workflow",
+   "DIV.avh-panel",
+   "DIV..avh-visual-wrap.",
+   "DIV.avh-wrap",
+   "SECTION.avh-root"
+  ],
+  [
+   "DIV.avp-index",
+   "ARTICLE.avp-card",
+   "DIV.avp-grid",
+   "DIV.avp-wrap",
+   "SECTION.avp-root",
+   "DIV.framer-1r75o5x-container",
+   "MAIN.framer-fehmm9"
+  ],
+  [
+   "SPAN",
+   "ARTICLE",
+   "DIV",
+   "DIV",
+   "DIV",
+   "SECTION",
+   "DIV.framer-13tbywf-container"
+  ]
+ ],
+ "Example automation": [
+  [
+   "SPAN",
+   "DIV",
+   "DIV",
+   "ARTICLE",
+   "DIV",
+   "SECTION",
+   "DIV.framer-19aewp7-container"
+  ]
+ ],
+ "ORCHESTRATED": [],
+ "Agencies": [
+  [
+   "SPAN.avn-mega-title",
+   "A.avn-mega-item",
+   "DIV.avn-mega-grid",
+   "DIV.avn-mega",
+   "DIV.avn-group",
+   "DIV.avn-desktop",
+   "NAV.avn-bar"
+  ],
+  [
+   "A.avn-mobile-child",
+   "DIV.avn-mobile-children",
+   "DIV.avn-mobile-group",
+   "DIV.avn-mobile-content",
+   "DIV.avn-mobile-frame",
+   "DIV.avn-mobile-overlay",
+   "DIV.avn-shell"
+  ],
+  [
+   "H3",
+   "DIV.aiv-industry-top",
+   "ARTICLE.aiv-industry-card",
+   "DIV.aiv-industries-grid",
+   "DIV",
+   "SECTION.aiv-industries",
+   "DIV.framer-yzek6m-container"
+  ]
+ ],
+ "TARGET OUTCOME": [],
+ "EXAMPLE FLOW": [],
+ "Workflow-first systems": [],
+ "38h": [
+  [
+   "DIV.avh-metric-value",
+   "DIV.avh-metric",
+   "DIV.avh-metrics",
+   "DIV.avh-panel",
+   "DIV..avh-visual-wrap.",
+   "DIV.avh-wrap",
+   "SECTION.avh-root"
+  ]
+ ],
+ "SAVED / WEEK": [],
+ "BASELINE": [],
+ "ESTIMATE": [],
+ "VALIDATE": [],
+ "Manual hours": []
+}

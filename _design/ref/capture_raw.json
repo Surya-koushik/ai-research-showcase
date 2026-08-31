@@ -1,0 +1,1894 @@
+{
+ "colors": [
+  [
+   "rgb(255, 255, 255)",
+   719
+  ],
+  [
+   "rgb(17, 19, 24)",
+   637
+  ],
+  [
+   "rgb(155, 151, 255)",
+   212
+  ],
+  [
+   "rgb(18, 19, 24)",
+   206
+  ],
+  [
+   "rgba(255, 255, 255, 0.68)",
+   191
+  ],
+  [
+   "rgb(95, 100, 114)",
+   156
+  ],
+  [
+   "rgb(94, 99, 232)",
+   104
+  ],
+  [
+   "rgb(102, 92, 255)",
+   91
+  ],
+  [
+   "rgb(86, 84, 216)",
+   90
+  ],
+  [
+   "rgb(101, 107, 120)",
+   86
+  ],
+  [
+   "rgb(0, 0, 0)",
+   85
+  ],
+  [
+   "rgb(79, 70, 229)",
+   67
+  ],
+  [
+   "rgb(157, 163, 176)",
+   58
+  ],
+  [
+   "rgba(255, 255, 255, 0.035)",
+   50
+  ],
+  [
+   "rgba(255, 255, 255, 0.78)",
+   50
+  ],
+  [
+   "rgba(255, 255, 255, 0.7)",
+   48
+  ],
+  [
+   "rgb(207, 203, 255)",
+   48
+  ],
+  [
+   "rgb(213, 216, 224)",
+   45
+  ],
+  [
+   "rgb(32, 36, 45)",
+   42
+  ],
+  [
+   "rgb(0, 0, 238)",
+   35
+  ],
+  [
+   "rgb(247, 248, 250)",
+   32
+  ],
+  [
+   "rgba(94, 99, 232, 0.13)",
+   32
+  ],
+  [
+   "rgba(255, 255, 255, 0.9)",
+   30
+  ],
+  [
+   "rgba(255, 255, 255, 0.72)",
+   29
+  ],
+  [
+   "rgba(94, 99, 232, 0.1)",
+   29
+  ],
+  [
+   "rgba(255, 255, 255, 0.04)",
+   27
+  ],
+  [
+   "rgb(241, 243, 247)",
+   27
+  ],
+  [
+   "rgba(255, 255, 255, 0.48)",
+   27
+  ],
+  [
+   "rgba(255, 255, 255, 0.82)",
+   24
+  ],
+  [
+   "rgba(255, 255, 255, 0.92)",
+   19
+  ],
+  [
+   "rgb(24, 27, 34)",
+   17
+  ],
+  [
+   "rgba(94, 99, 232, 0.12)",
+   16
+  ],
+  [
+   "rgba(255, 255, 255, 0.94)",
+   16
+  ],
+  [
+   "rgba(255, 255, 255, 0.8)",
+   16
+  ],
+  [
+   "rgba(255, 255, 255, 0.03)",
+   15
+  ],
+  [
+   "rgb(208, 204, 255)",
+   15
+  ],
+  [
+   "rgba(255, 255, 255, 0.043)",
+   14
+  ],
+  [
+   "rgb(170, 165, 255)",
+   14
+  ],
+  [
+   "rgba(255, 255, 255, 0.86)",
+   12
+  ],
+  [
+   "rgb(245, 245, 247)",
+   12
+  ]
+ ],
+ "borders": [
+  [
+   "1px solid rgb(232, 234, 240)",
+   130
+  ],
+  [
+   "1px solid rgb(42, 46, 56)",
+   53
+  ],
+  [
+   "1px solid rgba(255, 255, 255, 0.07)",
+   43
+  ],
+  [
+   "1px solid rgba(18, 19, 24, 0.08)",
+   25
+  ],
+  [
+   "1px solid rgba(255, 255, 255, 0.06)",
+   22
+  ],
+  [
+   "1px solid rgba(255, 255, 255, 0.043)",
+   22
+  ],
+  [
+   "1px solid rgba(255, 255, 255, 0.067)",
+   17
+  ],
+  [
+   "1px solid rgba(255, 255, 255, 0.08)",
+   16
+  ],
+  [
+   "1px solid rgba(130, 120, 255, 0.13)",
+   14
+  ],
+  [
+   "1px solid rgb(231, 233, 239)",
+   14
+  ],
+  [
+   "1px solid rgba(130, 120, 255, 0.16)",
+   10
+  ],
+  [
+   "1px solid rgba(18, 19, 24, 0.06)",
+   10
+  ],
+  [
+   "1px solid rgba(255, 255, 255, 0.055)",
+   9
+  ],
+  [
+   "1px solid rgba(255, 255, 255, 0.05)",
+   8
+  ],
+  [
+   "1px solid rgba(18, 19, 24, 0.075)",
+   7
+  ],
+  [
+   "1px solid rgba(130, 120, 255, 0.12)",
+   6
+  ],
+  [
+   "1px solid rgb(43, 47, 57)",
+   6
+  ],
+  [
+   "1px solid rgba(18, 19, 24, 0.07)",
+   5
+  ],
+  [
+   "1px solid rgb(34, 38, 48)",
+   5
+  ],
+  [
+   "1px solid rgba(17, 19, 24, 0.075)",
+   4
+  ],
+  [
+   "1px solid rgba(130, 120, 255, 0.14)",
+   4
+  ],
+  [
+   "1px solid rgba(0, 0, 0, 0)",
+   3
+  ],
+  [
+   "1px solid rgba(17, 19, 24, 0.07)",
+   3
+  ],
+  [
+   "1px solid rgba(130, 120, 255, 0.18)",
+   3
+  ],
+  [
+   "1px solid rgba(102, 92, 255, 0.1)",
+   3
+  ],
+  [
+   "1px solid rgb(94, 99, 232)",
+   3
+  ],
+  [
+   "3px solid rgb(23, 24, 29)",
+   3
+  ],
+  [
+   "1px solid rgba(130, 120, 255, 0.22)",
+   2
+  ],
+  [
+   "1px solid rgba(255, 255, 255, 0.09)",
+   2
+  ],
+  [
+   "1px solid rgba(130, 120, 255, 0.09)",
+   2
+  ]
+ ],
+ "shadows": [
+  [
+   "rgba(102, 92, 255, 0.1) 0px 0px 0px 4px",
+   7
+  ],
+  [
+   "rgba(94, 99, 232, 0.1) 0px 0px 0px 5px",
+   6
+  ],
+  [
+   "rgba(102, 92, 255, 0.08) 0px 0px 0px 4px",
+   6
+  ],
+  [
+   "rgba(17, 18, 22, 0.85) 0px 0px 0px 5px",
+   5
+  ],
+  [
+   "rgba(0, 0, 0, 0.16) 0px 14px 34px 0px",
+   5
+  ],
+  [
+   "rgba(18, 23, 38, 0.12) 0px 22px 60px 0px",
+   4
+  ],
+  [
+   "rgba(20, 28, 52, 0.04) 0px 5px 18px 0px",
+   4
+  ],
+  [
+   "rgba(17, 19, 24, 0.024) 0px 1px 2px 0px",
+   4
+  ],
+  [
+   "rgba(94, 99, 232, 0.22) 0px 12px 30px 0px",
+   4
+  ],
+  [
+   "rgba(17, 19, 24, 0.035) 0px 10px 30px 0px",
+   4
+  ],
+  [
+   "rgba(0, 0, 0, 0.12) 0px 20px 60px 0px",
+   4
+  ],
+  [
+   "color(srgb 0.321569 0.403922 0.909804 / 0.12) 0px 0px 0px 5px",
+   3
+  ],
+  [
+   "rgba(94, 99, 232, 0.14) 0px 0px 0px 5px",
+   3
+  ],
+  [
+   "rgba(110, 231, 167, 0.08) 0px 0px 0px 4px",
+   3
+  ],
+  [
+   "rgba(18, 19, 24, 0.1) 0px 24px 70px 0px",
+   3
+  ],
+  [
+   "rgba(102, 92, 255, 0.2) 0px 7px 22px 0px",
+   3
+  ],
+  [
+   "rgba(94, 99, 232, 0.22) 0px 12px 28px 0px",
+   3
+  ],
+  [
+   "rgba(130, 120, 255, 0.24) 0px 0px 0px 1px",
+   3
+  ],
+  [
+   "rgba(102, 92, 255, 0.12) 0px 0px 0px 4px",
+   2
+  ],
+  [
+   "rgba(0, 0, 0, 0.22) 0px 30px 80px 0px",
+   2
+  ]
+ ],
+ "radii": [
+  [
+   "999px",
+   273
+  ],
+  [
+   "11px",
+   82
+  ],
+  [
+   "12px",
+   76
+  ],
+  [
+   "50%",
+   72
+  ],
+  [
+   "14px",
+   42
+  ],
+  [
+   "16px",
+   41
+  ],
+  [
+   "10px",
+   35
+  ],
+  [
+   "15px",
+   25
+  ],
+  [
+   "18px",
+   24
+  ],
+  [
+   "9px",
+   22
+  ],
+  [
+   "20px",
+   21
+  ],
+  [
+   "7px",
+   21
+  ],
+  [
+   "13px",
+   20
+  ],
+  [
+   "22px",
+   17
+  ],
+  [
+   "8px",
+   15
+  ],
+  [
+   "24px",
+   10
+  ],
+  [
+   "17px",
+   4
+  ],
+  [
+   "99px",
+   3
+  ],
+  [
+   "19px",
+   1
+  ]
+ ],
+ "fonts": [
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 800 | 10px | normal | normal | none",
+   55
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 800 | 10px | 10px | normal | none",
+   37
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 600 | 10px | 10px | normal | none",
+   34
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 650 | 10px | 13px | normal | none",
+   32
+  ],
+  [
+   "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 12px | normal | normal | none",
+   27
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 700 | 10px | 10px | 0.9px | uppercase",
+   25
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 700 | 10px | normal | 0.9px | uppercase",
+   23
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 590 | 11px | 13.75px | normal | none",
+   21
+  ],
+  [
+   "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 690 | 13px | 16.25px | normal | none",
+   17
+  ],
+  [
+   "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 11.5px | 16.675px | normal | none",
+   17
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 700 | 10px | normal | 0.8px | none",
+   17
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 560 | 10px | 13px | normal | none",
+   17
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 800 | 10px | 13px | normal | none",
+   16
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 800 | 10px | 13.5px | normal | none",
+   16
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 800 | 11px | normal | normal | none",
+   15
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 800 | 10px | 10px | 0.9px | uppercase",
+   15
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 14px | 22.68px | normal | none",
+   14
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 10px | 15.5px | normal | none",
+   14
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 800 | 10px | 12px | 1.2px | uppercase",
+   13
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 800 | 10px | 10px | 0.8px | uppercase",
+   12
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 800 | 10px | 10px | 1px | uppercase",
+   11
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 680 | 18px | 23.04px | -0.324px | none",
+   11
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 13px | 21.45px | normal | none",
+   11
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 550 | 10px | 10px | normal | none",
+   10
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 700 | 10px | 10px | 0.8px | uppercase",
+   10
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 700 | 10px | 13.5px | -0.12px | none",
+   9
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 520 | 12px | 16.2px | -0.12px | none",
+   9
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 13px | 21.06px | normal | none",
+   9
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 800 | 10px | 12px | 0.9px | uppercase",
+   9
+  ],
+  [
+   "sans-serif | 400 | 12px | normal | normal | none",
+   8
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 12px | normal | normal | none",
+   8
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 560 | 12px | 12px | normal | none",
+   8
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 650 | 10px | 12.5px | normal | none",
+   8
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 730 | 34px | 36.04px | -1.36px | none",
+   8
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 750 | 10px | 12px | 0.9px | uppercase",
+   8
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 720 | 13px | 16.25px | normal | none",
+   8
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 780 | 10px | 12px | 0.9px | uppercase",
+   8
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 12px | normal | normal | none",
+   8
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 650 | 68px | 67.32px | -3.74px | none",
+   8
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 450 | 15px | 24.75px | -0.18px | none",
+   8
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 700 | 10px | 13px | normal | none",
+   8
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 10px | 14.5px | normal | none",
+   8
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 670 | 11px | 14.3px | normal | none",
+   8
+  ],
+  [
+   "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 590 | 12.5px | 15px | normal | none",
+   7
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 13px | 20.54px | normal | none",
+   7
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 10px | 15px | normal | none",
+   7
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 10px | 14.5px | normal | none",
+   7
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 750 | 10px | normal | normal | none",
+   7
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 17px | 28.56px | normal | none",
+   6
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 720 | 28px | 30.24px | -0.98px | none",
+   6
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 620 | 13px | 15.6px | -0.234px | none",
+   6
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 10px | 14px | normal | none",
+   6
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 650 | 11px | 14.3px | -0.132px | none",
+   6
+  ],
+  [
+   "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 600 | 12px | 17.04px | -0.18px | none",
+   6
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 700 | 11px | 11px | normal | none",
+   6
+  ],
+  [
+   "\"Times New Roman\" | 400 | 16px | normal | normal | none",
+   5
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 400 | 13px | 20.15px | normal | none",
+   5
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 760 | 68px | 66.64px | -3.74px | none",
+   5
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 800 | 11px | normal | 0.44px | none",
+   5
+  ],
+  [
+   "\"Instrument Sans\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif | 620 | 10px | 12px | normal | none",
+   5
+  ]
+ ],
+ "scaleSamples": [
+  {
+   "computedFontSize": "13px",
+   "computedLineHeight": "13px",
+   "fontWeight": "780",
+   "text": "AIVELOFT",
+   "elementBBox": {
+    "w": 72.046875,
+    "h": 13
+   },
+   "rangeBBox": {
+    "w": 72.046875,
+    "h": 17
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "SPAN",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "12.5px",
+   "computedLineHeight": "15px",
+   "fontWeight": "590",
+   "text": "Services",
+   "elementBBox": {
+    "w": 46.09375,
+    "h": 15
+   },
+   "rangeBBox": {
+    "w": 46.09375,
+    "h": 16
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "SPAN",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "11.5px",
+   "computedLineHeight": "16.675px",
+   "fontWeight": "400",
+   "text": "Connect tools, remove repetitive work, a",
+   "elementBBox": {
+    "w": 237,
+    "h": 33.34375
+   },
+   "rangeBBox": {
+    "w": 217.625,
+    "h": 31.671875
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "SPAN",
+   "cls": "avn-mega-desc"
+  },
+  {
+   "computedFontSize": "72px",
+   "computedLineHeight": "72px",
+   "fontWeight": "600",
+   "text": "slows your business down.",
+   "elementBBox": {
+    "w": 445.1875,
+    "h": 168
+   },
+   "rangeBBox": {
+    "w": 445.1875,
+    "h": 168
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "SPAN",
+   "cls": "avh-highlight"
+  },
+  {
+   "computedFontSize": "21px",
+   "computedLineHeight": "33.18px",
+   "fontWeight": "400",
+   "text": "AIVELOFT automates lead qualification, C",
+   "elementBBox": {
+    "w": 537.5,
+    "h": 99.515625
+   },
+   "rangeBBox": {
+    "w": 533.84375,
+    "h": 94.34375
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "P",
+   "cls": "avh-description"
+  },
+  {
+   "computedFontSize": "14px",
+   "computedLineHeight": "19.6px",
+   "fontWeight": "600",
+   "text": "Estimate Your Opportunity",
+   "elementBBox": {
+    "w": 215,
+    "h": 48
+   },
+   "rangeBBox": {
+    "w": 169,
+    "h": 19
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "A",
+   "cls": " avh-btn avh-btn-secondary "
+  },
+  {
+   "computedFontSize": "11px",
+   "computedLineHeight": "14.85px",
+   "fontWeight": "400",
+   "text": "Website \u00b7 Instagram \u00b7 Ads",
+   "elementBBox": {
+    "w": 268.40625,
+    "h": 14.84375
+   },
+   "rangeBBox": {
+    "w": 122.46875,
+    "h": 15
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "DIV",
+   "cls": "avh-node-sub"
+  },
+  {
+   "computedFontSize": "10px",
+   "computedLineHeight": "10px",
+   "fontWeight": "600",
+   "text": "Trigger",
+   "elementBBox": {
+    "w": 48.09375,
+    "h": 22
+   },
+   "rangeBBox": {
+    "w": 32.09375,
+    "h": 14
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "DIV",
+   "cls": "avh-status"
+  },
+  {
+   "computedFontSize": "23px",
+   "computedLineHeight": "23px",
+   "fontWeight": "650",
+   "text": "38h",
+   "elementBBox": {
+    "w": 189.25,
+    "h": 23
+   },
+   "rangeBBox": {
+    "w": 37.546875,
+    "h": 31
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "DIV",
+   "cls": "avh-metric-value"
+  },
+  {
+   "computedFontSize": "48px",
+   "computedLineHeight": "51.84px",
+   "fontWeight": "600",
+   "text": "Reliable automation should be observable",
+   "elementBBox": {
+    "w": 549.5,
+    "h": 155.484375
+   },
+   "rangeBBox": {
+    "w": 541.125,
+    "h": 167.65625
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H2",
+   "cls": "avp-title"
+  },
+  {
+   "computedFontSize": "18px",
+   "computedLineHeight": "29.7px",
+   "fontWeight": "400",
+   "text": "AIVELOFT starts with the workflow, keeps",
+   "elementBBox": {
+    "w": 482.5,
+    "h": 118.75
+   },
+   "rangeBBox": {
+    "w": 475.609375,
+    "h": 113.0625
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "P",
+   "cls": "avp-description"
+  },
+  {
+   "computedFontSize": "20px",
+   "computedLineHeight": "24px",
+   "fontWeight": "620",
+   "text": "Workflow-first",
+   "elementBBox": {
+    "w": 217,
+    "h": 24
+   },
+   "rangeBBox": {
+    "w": 124.390625,
+    "h": 27
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": "avp-card-title"
+  },
+  {
+   "computedFontSize": "9px",
+   "computedLineHeight": "11.7px",
+   "fontWeight": "600",
+   "text": "OBSERVABLE",
+   "elementBBox": {
+    "w": 310,
+    "h": 11.6875
+   },
+   "rangeBBox": {
+    "w": 56.6875,
+    "h": 10
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "DIV",
+   "cls": "avp-reliability-kicker"
+  },
+  {
+   "computedFontSize": "15px",
+   "computedLineHeight": "19.5px",
+   "fontWeight": "620",
+   "text": "Know what the workflow is doing.",
+   "elementBBox": {
+    "w": 310,
+    "h": 19.5
+   },
+   "rangeBBox": {
+    "w": 222.421875,
+    "h": 20
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": "avp-reliability-title"
+  },
+  {
+   "computedFontSize": "12px",
+   "computedLineHeight": "18.24px",
+   "fontWeight": "400",
+   "text": "Critical states and exceptions should be",
+   "elementBBox": {
+    "w": 310,
+    "h": 36.46875
+   },
+   "rangeBBox": {
+    "w": 303.28125,
+    "h": 34.234375
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "P",
+   "cls": "avp-reliability-body"
+  },
+  {
+   "computedFontSize": "66px",
+   "computedLineHeight": "64.68px",
+   "fontWeight": "760",
+   "text": "taxes every customer journey.",
+   "elementBBox": {
+    "w": 514.90625,
+    "h": 152.671875
+   },
+   "rangeBBox": {
+    "w": 514.90625,
+    "h": 152.671875
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "SPAN",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "17px",
+   "computedLineHeight": "28.56px",
+   "fontWeight": "400",
+   "text": "Small delays, repeated handoffs, and dis",
+   "elementBBox": {
+    "w": 460,
+    "h": 85.640625
+   },
+   "rangeBBox": {
+    "w": 450.59375,
+    "h": 79.09375
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "P",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "38px",
+   "computedLineHeight": "39.52px",
+   "fontWeight": "720",
+   "text": "The workflow should move before someone ",
+   "elementBBox": {
+    "w": 484,
+    "h": 118.546875
+   },
+   "rangeBBox": {
+    "w": 448.4375,
+    "h": 130.03125
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "68px",
+   "computedLineHeight": "66.64px",
+   "fontWeight": "760",
+   "text": "the work that actually needs to move.",
+   "elementBBox": {
+    "w": 532.3125,
+    "h": 223.25
+   },
+   "rangeBBox": {
+    "w": 532.3125,
+    "h": 223.25
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "SPAN",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "34px",
+   "computedLineHeight": "36.04px",
+   "fontWeight": "730",
+   "text": "Workflow Automation",
+   "elementBBox": {
+    "w": 501,
+    "h": 36.03125
+   },
+   "rangeBBox": {
+    "w": 336.15625,
+    "h": 46
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "22px",
+   "computedLineHeight": "23.76px",
+   "fontWeight": "720",
+   "text": "AI Agents",
+   "elementBBox": {
+    "w": 211.5,
+    "h": 23.75
+   },
+   "rangeBBox": {
+    "w": 95.125,
+    "h": 30
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "28px",
+   "computedLineHeight": "30.24px",
+   "fontWeight": "720",
+   "text": "Start with the bottleneck, not the tool.",
+   "elementBBox": {
+    "w": 798.125,
+    "h": 30.234375
+   },
+   "rangeBBox": {
+    "w": 469.59375,
+    "h": 37
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "16px",
+   "computedLineHeight": "15.36px",
+   "fontWeight": "620",
+   "text": "hours",
+   "elementBBox": {
+    "w": 39.53125,
+    "h": 15.359375
+   },
+   "rangeBBox": {
+    "w": 39.53125,
+    "h": 21
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "SPAN",
+   "cls": "avroi-primarySuffix"
+  },
+  {
+   "computedFontSize": "25px",
+   "computedLineHeight": "25px",
+   "fontWeight": "620",
+   "text": "$5,674",
+   "elementBBox": {
+    "w": 252.84375,
+    "h": 25
+   },
+   "rangeBBox": {
+    "w": 68.953125,
+    "h": 33
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "DIV",
+   "cls": "avroi-metricValue"
+  },
+  {
+   "computedFontSize": "44px",
+   "computedLineHeight": "45.76px",
+   "fontWeight": "640",
+   "text": "From manual lead handling to a connected",
+   "elementBBox": {
+    "w": 564.828125,
+    "h": 137.25
+   },
+   "rangeBBox": {
+    "w": 439.484375,
+    "h": 149.5
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": "avcs-caseTitle"
+  },
+  {
+   "computedFontSize": "29px",
+   "computedLineHeight": "29px",
+   "fontWeight": "650",
+   "text": "48h",
+   "elementBBox": {
+    "w": 100,
+    "h": 29
+   },
+   "rangeBBox": {
+    "w": 46.90625,
+    "h": 38
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "DIV",
+   "cls": "avcs-metricValue"
+  },
+  {
+   "computedFontSize": "40px",
+   "computedLineHeight": "41.6px",
+   "fontWeight": "730",
+   "text": "One workflow. Four controlled stages.",
+   "elementBBox": {
+    "w": 499,
+    "h": 83.1875
+   },
+   "rangeBBox": {
+    "w": 338.140625,
+    "h": 94.59375
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "42px",
+   "computedLineHeight": "43.68px",
+   "fontWeight": "730",
+   "text": "Automation needs guardrails, not just in",
+   "elementBBox": {
+    "w": 520,
+    "h": 131.015625
+   },
+   "rangeBBox": {
+    "w": 334.59375,
+    "h": 143.34375
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "76px",
+   "computedLineHeight": "72.96px",
+   "fontWeight": "760",
+   "text": "evidence, not just activity.",
+   "elementBBox": {
+    "w": 421.9375,
+    "h": 173.953125
+   },
+   "rangeBBox": {
+    "w": 421.9375,
+    "h": 173.953125
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "SPAN",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "30px",
+   "computedLineHeight": "31.5px",
+   "fontWeight": "730",
+   "text": "Response Time",
+   "elementBBox": {
+    "w": 194.5,
+    "h": 31.5
+   },
+   "rangeBBox": {
+    "w": 194.5,
+    "h": 40
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": "avr-metric-title"
+  },
+  {
+   "computedFontSize": "46px",
+   "computedLineHeight": "46.92px",
+   "fontWeight": "740",
+   "text": "Baseline first. Evidence after.",
+   "elementBBox": {
+    "w": 442.6875,
+    "h": 93.8125
+   },
+   "rangeBBox": {
+    "w": 441.15625,
+    "h": 108.90625
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": "avr-model-title"
+  },
+  {
+   "computedFontSize": "56px",
+   "computedLineHeight": "56px",
+   "fontWeight": "745",
+   "text": "Results become useful when they can be t",
+   "elementBBox": {
+    "w": 511,
+    "h": 224
+   },
+   "rangeBBox": {
+    "w": 497.5625,
+    "h": 242
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": "avr-measure-title"
+  },
+  {
+   "computedFontSize": "31px",
+   "computedLineHeight": "32.55px",
+   "fontWeight": "730",
+   "text": "You cannot prove improvement without kno",
+   "elementBBox": {
+    "w": 650,
+    "h": 65.09375
+   },
+   "rangeBBox": {
+    "w": 537.9375,
+    "h": 73.546875
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": "avr-cta-title"
+  },
+  {
+   "computedFontSize": "43px",
+   "computedLineHeight": "48.59px",
+   "fontWeight": "560",
+   "text": "\u201cThe biggest change was not adding more ",
+   "elementBBox": {
+    "w": 717.046875,
+    "h": 194.3125
+   },
+   "rangeBBox": {
+    "w": 18.25,
+    "h": 57
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "BLOCKQUOTE",
+   "cls": "avtest-quote"
+  },
+  {
+   "computedFontSize": "35px",
+   "computedLineHeight": "36.4px",
+   "fontWeight": "740",
+   "text": "Automation Audit",
+   "elementBBox": {
+    "w": 300.65625,
+    "h": 36.390625
+   },
+   "rangeBBox": {
+    "w": 273.171875,
+    "h": 47
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "27px",
+   "computedLineHeight": "29.16px",
+   "fontWeight": "720",
+   "text": "Need a number? First define what we are ",
+   "elementBBox": {
+    "w": 824.4375,
+    "h": 29.15625
+   },
+   "rangeBBox": {
+    "w": 691.15625,
+    "h": 36
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "64px",
+   "computedLineHeight": "63.36px",
+   "fontWeight": "700",
+   "text": "the important questions come first.",
+   "elementBBox": {
+    "w": 643.375,
+    "h": 148.359375
+   },
+   "rangeBBox": {
+    "w": 643.375,
+    "h": 148.359375
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "SPAN",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "74px",
+   "computedLineHeight": "71.04px",
+   "fontWeight": "760",
+   "text": "Leave with a clearer system.",
+   "elementBBox": {
+    "w": 539.078125,
+    "h": 241.0625
+   },
+   "rangeBBox": {
+    "w": 539.078125,
+    "h": 241.0625
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "SPAN",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "24px",
+   "computedLineHeight": "25.92px",
+   "fontWeight": "710",
+   "text": "The workflow",
+   "elementBBox": {
+    "w": 340.65625,
+    "h": 25.90625
+   },
+   "rangeBBox": {
+    "w": 144.65625,
+    "h": 32
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H3",
+   "cls": ""
+  },
+  {
+   "computedFontSize": "32px",
+   "computedLineHeight": "33.92px",
+   "fontWeight": "700",
+   "text": "Find the operational problem worth solvi",
+   "elementBBox": {
+    "w": 335.203125,
+    "h": 101.71875
+   },
+   "rangeBBox": {
+    "w": 317,
+    "h": 110.8125
+   },
+   "transformChainScale": {
+    "x": 1,
+    "y": 1
+   },
+   "tag": "H2",
+   "cls": "avfooter-ctaTitle"
+  }
+ ],
+ "navHTML": "<nav class=\"avn-bar\" aria-label=\"Primary navigation\"><a class=\"avn-logo\" href=\"#\" aria-label=\"AIVELOFT home\"><span class=\"avn-logo-dot\" aria-hidden=\"true\"></span><span>AIVELOFT</span></a><div class=\"avn-desktop\"><div class=\"avn-group\"><a class=\"avn-toplink\" href=\"#services\"><span>Services</span><span class=\"avn-chevron\" aria-hidden=\"true\">\u2304</span></a><div class=\"avn-mega\"><div class=\"avn-mega-grid\"><a class=\"avn-mega-item\" href=\"#service-workflow-automation\"><span class=\"avn-mega-title\">Workflow Automation</span><span class=\"avn-mega-desc\">Connect tools, remove repetitive work, and automate handoffs.</span></a><a class=\"avn-mega-item\" href=\"#service-ai-agents\"><span class=\"avn-mega-title\">AI Agents</span><span class=\"avn-mega-desc\">Deploy controlled agents for multi-step business workflows.</span></a><a class=\"avn-mega-item\" href=\"#service-crm-sales\"><span class=\"avn-mega-title\">CRM &amp; Sales Automation</span><span class=\"avn-mega-desc\">Qualify, route, enrich, and follow up with leads automatically.</span></a><a class=\"avn-mega-item\" href=\"#service-customer-support\"><span class=\"avn-mega-title\">Customer Support Automation</span><span class=\"avn-mega-desc\">Handle routine support while keeping humans in control.</span></a><a class=\"avn-mega-item\" href=\"#service-ai-integrations\"><span class=\"avn-mega-title\">AI Integrations</span><span class=\"avn-mega-desc\">Connect AI with your CRM, data, communications, and operations stack.</span></a></div></div></div><div class=\"avn-group\"><a class=\"avn-toplink\" href=\"#solutions\"><span>Solutions</span><span class=\"avn-chevron\" aria-hidden=\"true\">\u2304</span></a><div class=\"avn-mega\"><div class=\"avn-mega-grid\"><a class=\"avn-mega-item\" href=\"#solution-lead-capture\"><span class=\"avn-mega-title\">Lead Capture &amp; Qualification</span><span class=\"avn-mega-desc\">Respond faster and route qualified opportunities to the right team.</span></a><a class=\"avn-mega-item\" href=\"#solution-customer-operations\"><span class=\"avn-mega-title\">Customer Operations</span><span class=\"avn-mega-desc\">Automate service requests, updates, reminders, and escalations.</span></a><a class=\"avn-mega-item\" href=\"#solution-back-office\"><span class=\"avn-mega-title\">Back-Office Operations</span><span class=\"avn-mega-desc\">Reduce manual admin across records, documents, and internal workflows.</span></a><a class=\"avn-mega-item\" href=\"#solution-reporting\"><span class=\"avn-mega-title\">Reporting &amp; Insights</span><span class=\"avn-mega-desc\">Turn fragmented data into scheduled reports and actionable signals.</span></a></div></div></div><div class=\"avn-group\"><a class=\"avn-toplink\" href=\"#industries\"><span>Industries</span><span class=\"avn-chevron\" aria-hidden=\"true\">\u2304</span></a><div class=\"avn-mega\"><div class=\"avn-mega-grid\"><a class=\"avn-mega-item\" href=\"#industry-agencies\"><span class=\"avn-mega-title\">Agencies</span><span class=\"avn-mega-desc\">Automate onboarding, lead handling, reporting, and delivery operations.</span></a><a class=\"avn-mega-item\" href=\"#industry-ecommerce\"><span class=\"avn-mega-title\">E-commerce</span><span class=\"avn-mega-desc\">Connect orders, support, inventory, follow-up, and customer data.</span></a><a class=\"avn-mega-item\" href=\"#industry-professional-services\"><span class=\"avn-mega-title\">Professional Services</span><span class=\"avn-mega-desc\">Streamline enquiries, scheduling, documents, and client communication.</span></a><a class=\"avn-mega-item\" href=\"#industry-healthcare\"><span class=\"avn-mega-title\">Healthcare</span><span class=\"avn-mega-desc\">Improve intake, scheduling, reminders, and admin with human oversight.</span></a></div></div></div><div class=\"avn-group\"><a class=\"avn-toplink\" href=\"#case-studies\"><span>Case Studies</span></a></div><div class=\"avn-group\"><a class=\"avn-toplink\" href=\"#resources\"><span>Resources</span><span class=\"avn-chevron\" aria-hidden=\"true\">\u2304</span></a><div class=\"avn-mega\"><div class=\"avn-mega-grid\"><a class=\"avn-mega-item\" href=\"#integrations\"><span class=\"avn-mega-title\">I",
+ "textSample": [
+  ":root body { background: rgb(255, 255, 255); }",
+  "html body { background: rgb(17, 19, 24); } html { font-size: 100%; }",
+  ".avn-shell,\n                .avn-shell * {\n                    box-sizing: border-box;\n                }\n\n                .avn-shell {\n                    container-type: inline-size;\n                    position: relative;\n                    z-index: 1000;\n                    width: 100%;\n                    min-width: 0;\n                    overflow: visible;\n\n                    font-family:\n                        Inter,\n                        ui-sans-serif,\n                        system-ui,\n                        -apple-system,\n                        BlinkMacSystemFont,\n                        \"Segoe UI\",\n                        sans-serif;\n\n                    color: rgb(17, 19, 24);\n                }\n\n                /* ========================================\n                   MAIN NAV\n                ======================================== */\n\n                .avn-bar {\n                    position: relative;\n                    z-index: 2;\n\n                    width: 100%;\n                    min-height: 76px;\n\n                    display: flex;\n                    align-items: center;\n\n                    gap: 20px;\n\n                    padding: 0 48px;\n\n                    background: rgba(255, 255, 255, 0.96);\n\n                    border-bottom:\n                        1px solid rgb(232, 234, 240);\n\n                    backdrop-filter:\n                        blur(18px);\n\n                    -webkit-backdrop-filter:\n                        blur(18px);\n                }\n\n                /* ========================================\n                   LOGO\n                ======================================== */\n\n                .avn-logo,\n                .avn-overlay-logo {\n                    display: inline-flex;\n                    align-items: center;\n\n                    gap: 10px;\n\n                    flex: 0 0 auto;\n\n                    color: rgb(17, 19, 24);\n\n                    text-decoration: none;\n\n                    font-size: 13px;\n                    line-height: 1;\n\n                    font-weight: 780;\n                    letter-spacing: 0.12em;\n\n                    white-space: nowrap;\n                }\n\n                .avn-logo-dot {\n                    width: 9px;\n                    height: 9px;\n\n                    flex: 0 0 auto;\n\n                    border-radius: 999px;\n\n                    background: rgb(94, 99, 232);\n\n                    box-shadow:\n                        0 0 0 5px\n                        rgba(\n                            94,\n                            99,\n                            232,\n                            0.10\n                        );\n                }\n\n                /* ========================================\n                   DESKTOP NAV\n                ======================================== */\n\n                .avn-desktop {\n                    flex: 1 1 auto;\n\n                    min-width: 0;\n\n                    align-self: stretch;\n\n                    display: flex;\n\n                    align-items: stretch;\n                    justify-content: center;\n\n                    gap: 2px;\n                }\n\n                .avn-group {\n                    position: relative;\n\n                    display: flex;\n                    align-items: center;\n                }\n\n                .avn-toplink {\n                    min-height: 76px;\n\n                    display: inline-flex;\n\n                    align-items: center;\n\n                    gap: 5px;\n\n                    padding: 0 8px;\n\n                    color: rgb(101, 107, 120);\n\n                    text-decoration: none;\n\n                    font-size: 12.5px;\n                    line-height: 1.2;\n\n                    font-weight: 590;\n\n                    white-space: nowrap;\n\n                    transition:\n                        color 160ms ease;\n                }\n\n                .avn-toplink:hover,\n                .avn-toplink:focus-visible,\n                .avn-group:hover > .avn-toplink,\n                .avn-group:focus-within > .avn-toplink {\n                    color: rgb(17, 19, 24);\n\n                    outline: none;\n                }\n\n                .avn-chevron {\n                    font-size: 10px;\n\n                    opacity: 0.55;\n\n                    transform:\n                        translateY(-1px);\n\n                    transition:\n                        transform 160ms ease;\n                }\n\n                .avn-group:hover\n                .avn-chevron,\n\n                .avn-group:focus-within\n                .avn-chevron {\n                    transform:\n                        translateY(-1px)\n                        rotate(180deg);\n                }\n\n                /* ========================================\n                   DESKTOP MEGA MENUS\n                ======================================== */\n\n                .avn-mega {\n                    position: absolute;\n\n                    top: calc(100% - 4px);\n                    left: 50%;\n\n                    width: 560px;\n\n                    max-width:\n                        calc(\n                            100vw - 48px\n                        );\n\n                    padding: 12px;\n\n                    border:\n                        1px solid\n                        rgb(232, 234, 240);\n\n                    border-radius: 18px;\n\n                    background:\n                        rgba(\n                            255,\n                            255,\n                            255,\n                            0.99\n                        );\n\n                    box-shadow:\n                        0 22px 60px\n                        rgba(\n                            18,\n                            23,\n                            38,\n                            0.12\n                        );\n\n                    opacity: 0;\n\n                    visibility: hidden;\n\n                    pointer-events: none;\n\n                    transform:\n                        translate(\n                            -50%,\n                            -6px\n                        );\n\n                    transition:\n                        opacity\n                            150ms ease,\n                        transform\n                            170ms ease;\n                }\n\n                /*\n                    Left-align early\n                    menus so they\n                    do not overflow.\n                */\n\n                .avn-group:nth-child(1)\n                > .avn-mega,\n\n                .avn-group:nth-child(2)\n                > .avn-mega {\n                    left: 0;\n\n                    transform:\n                        translate(\n                            0,\n                            -6px\n                        );\n                }\n\n                .avn-group:nth-child(1):hover\n                > .avn-mega,\n\n                .avn-group:nth-child(1):focus-within\n                > .avn-mega,\n\n                .avn-group:nth-child(2):hover\n                > .avn-mega,\n\n                .avn-group:nth-child(2):focus-within\n                > .avn-mega {\n                    transform:\n                        translate(\n                            0,\n                            0\n                        );\n                }\n\n                /*\n                    Resources opens\n                    toward the left.\n                */\n\n                .avn-group:nth-child(5)\n                > .avn-mega {\n                    left: auto;\n                    right: 0;\n\n                    transform:\n                        translate(\n                            0,\n                            -6px\n                        );\n                }\n\n                .avn-group:nth-child(5):hover\n                > .avn-mega,\n\n                .avn-group:nth-child(5):focus-within\n                > .avn-mega {\n                    transform:\n                        translate(\n                            0,\n                            0\n                        );\n                }\n\n                .avn-group:hover\n                > .avn-mega,\n\n                .avn-group:focus-within\n                > .avn-mega {\n                    opacity: 1;\n\n                    visibility: visible;\n\n                    pointer-events: auto;\n\n                    transform:\n                        translate(\n                            -50%,\n                            0\n                        );\n\n                    transition-delay: 0s;\n                }\n\n                .avn-mega-grid {\n                    display: grid;\n\n                    grid-template-columns:\n                        repeat(\n                            2,\n                            minmax(\n                                0,\n                                1fr\n                            )\n                        );\n\n                    gap: 4px;\n                }\n\n                .avn-mega-item {\n                    display: block;\n\n                    min-width: 0;\n\n                    padding:\n                        13px 14px;\n\n                    border-radius: 12px;\n\n                    color: rgb(17, 19, 24);\n\n                    text-decoration: none;\n\n                    transition:\n                        background\n                            150ms ease,\n                        transform\n                            150ms ease;\n                }\n\n                .avn-mega-item:hover,\n                .avn-mega-item:focus-visible {\n                    background:\n                        #F5F6FF;\n\n                    transform:\n                        translateY(-1px);\n\n                    outline: none;\n                }\n\n                .avn-mega-title {\n                    display: block;\n\n                    margin-bottom: 4px;\n\n                    font-size: 13px;\n                    line-height: 1.25;\n\n                    font-weight: 690;\n                }\n\n                .avn-mega-desc {\n                    display: block;\n\n                    color: rgb(101, 107, 120);\n\n                    font-size: 11.5px;\n                    line-height: 1.45;\n                }\n\n                /* ========================================\n                   PRIMARY CTA\n                ======================================== */\n\n                .avn-cta {\n                    min-height: 42px;\n\n                    flex: 0 0 auto;\n\n                    display: inline-flex;\n\n                    align-items: center;\n                    justify-content: center;\n\n                    gap: 8px;\n\n                    padding: 0 15px;\n\n                    border-radius: 12px;\n\n                    background: rgb(94, 99, 232);\n\n                    border:\n                        1px solid\n                        transparent;\n\n                    color: #FFFFFF;\n\n                    text-decoration: none;\n\n                    font-size: 12.5px;\n                    line-height: 1;\n\n                    font-weight: 670;\n\n                    white-space: nowrap;\n\n                    box-shadow:\n                        0 8px 22px\n                        rgba(\n                            58,\n                            64,\n                            180,\n                            0.18\n                        );\n\n                    transition:\n                        transform\n                            160ms ease,\n                        box-shadow\n                            160ms ease,\n                        filter\n                            160ms ease;\n                }\n\n                .avn-cta:hover,\n                .avn-cta:focus-visible {\n                    transform:\n                        translateY(-1px);\n\n                    filter:\n                        brightness(0.97);\n\n                    box-shadow:\n                        0 10px 28px\n                        rgba(\n                            58,\n                            64,\n                            180,\n                            0.23\n                        );\n\n                    outline: none;\n                }\n\n                /* ========================================\n                   MOBILE BUTTONS\n                ======================================== */\n\n                .avn-menu-btn,\n                .avn-overlay-close {\n                    display: none;\n\n                    width: 42px;\n                    height: 42px;\n\n                    flex: 0 0 auto;\n\n                    padding: 0;\n\n                    border:\n                        1px solid\n                        rgb(232, 234, 240);\n\n                    border-radius: 12px;\n\n                    background: #FFFFFF;\n\n                    align-items: center;\n                    justify-content: center;\n\n                    cursor: pointer;\n                }\n\n                .avn-menu-btn:focus-visible,\n                .avn-overlay-close:focus-visible {\n                    outline:\n                        2px solid\n                        rgb(94, 99, 232);\n\n                    outline-offset: 2px;\n                }\n\n                .avn-menu-icon {\n                    width: 18px;\n                    height: 14px;\n\n                    position: relative;\n\n                    display: block;\n                }\n\n                .avn-menu-icon span {\n                    position: absolute;\n\n                    left: 0;\n\n                    width: 18px;\n                    height: 1.5px;\n\n                    border-radius: 99px;\n\n                    background: rgb(17, 19, 24);\n                }\n\n                .avn-menu-icon\n                span:nth-child(1) {\n                    top: 1px;\n                }\n\n                .avn-menu-icon\n                span:nth-child(2) {\n                    top: 6px;\n                }\n\n                .avn-menu-icon\n                span:nth-child(3) {\n                    top: 11px;\n                }\n\n                /*\n                    Hidden until\n                    responsive breakpoint.\n                */\n\n                .avn-mobile-overlay {\n                    display: none;\n                }\n\n                /* ========================================\n                   COMPACT DESKTOP\n                ======================================== */\n\n                @container\n                (max-width: 1120px) {\n\n                    .avn-bar {\n                        padding:\n                            0 40px;\n\n                        gap: 14px;\n                    }\n\n                    .avn-toplink {\n                        padding:\n                            0 6px;\n\n                        font-size: 12px;\n                    }\n\n                    .avn-cta {\n                        padding:\n                            0 13px;\n\n                        font-size: 12px;\n                    }\n                }\n\n                /* ========================================\n                   TABLET + MOBILE\n                ======================================== */\n\n                @container\n                (max-width: 940px) {\n\n                    .avn-bar {\n                        min-height: 72px;\n\n                        padding:\n                            0 32px;\n                    }\n\n                    .avn-desktop,\n                    .avn-cta {\n                        display: none;\n                    }\n\n                    .avn-logo {\n                        margin-right: auto;\n                    }\n\n                    .avn-menu-btn {\n                        display: inline-flex;\n                    }\n\n                    /*\n                        Full-screen fixed\n                        overlay.\n                    */\n\n                    .avn-mobile-overlay {\n                        position: fixed;\n\n                        inset: 0;\n\n                        z-index: 2147483000;\n\n                        display: block;\n\n                        width: 100vw;\n\n                        height: 100vh;\n                        height: 100dvh;\n\n                        overflow-x: hidden;\n                        overflow-y: auto;\n\n                        overscroll-behavior:\n                            contain;\n\n                        background:\n                            rgba(\n                                255,\n                                255,\n                                255,\n                                0.995\n                            );\n\n                        color: rgb(17, 19, 24);\n\n                        opacity:\n                            0;\n\n                        visibility:\n                            hidden;\n\n                        pointer-events:\n                            none;\n\n                        transform:\n                            translateY(-10px);\n\n                        transition:\n                            opacity\n                                160ms ease,\n                            transform\n                                180ms ease,\n                            visibility\n                                0s linear\n                                180ms;\n                    }\n\n                    .avn-mobile-frame {\n                        width: 100%;\n\n                        min-height: 100%;\n\n                        display: flex;\n\n                        flex-direction:\n                            column;\n                    }\n\n                    /*\n                        Overlay header\n                    */\n\n                    .avn-mobile-top {\n                        position: sticky;\n\n                        top: 0;\n\n                        z-index: 2;\n\n                        width: 100%;\n\n                        min-height: 72px;\n\n                        display: flex;\n\n                        align-items: center;\n\n                        gap: 16px;\n\n                        padding:\n                            0 32px;\n\n                        background:\n                            rgba(\n                                255,\n                                255,\n                                255,\n                                0.97\n                            );\n\n                        border-bottom:\n                            1px solid\n                            rgb(232, 234, 240);\n\n                        backdrop-filter:\n                            blur(18px);\n\n                        -webkit-backdrop-filter:\n                            blur(18px);\n                    }\n\n                    .avn-overlay-logo {\n                        margin-right: auto;\n                    }\n\n                    .avn-overlay-close {\n                        display: inline-flex;\n\n                        font-size: 26px;\n\n                        line-height: 1;\n\n                        font-weight: 300;\n                    }\n\n                    /*\n                        Menu content\n                    */\n\n                    .avn-mobile-content {\n                        width:\n                            min(\n                                760px,\n                                100%\n                            );\n\n                        margin:\n                            0 auto;\n\n                        padding:\n                            24px\n                            32px\n                            34px;\n                    }\n\n                    .avn-mobile-group {\n                        padding:\n                            15px\n                            0\n                            17px;\n\n                        border-bottom:\n                            1px solid\n                            rgb(232, 234, 240);\n                    }\n\n                    .avn-mobile-parent {\n                        display:\n                            inline-flex;\n\n                        align-items:\n                            center;\n\n                        min-height:\n                            34px;\n\n                        color:\n                            rgb(17, 19, 24);\n\n                        text-decoration:\n                            none;\n\n                        font-size:\n                            17px;\n\n                        line-height:\n                            1.2;\n\n                        font-weight:\n                            740;\n                    }\n\n                    .avn-mobile-children {\n                        display: grid;\n\n                        grid-template-columns:\n                            repeat(\n                                2,\n                                minmax(\n                                    0,\n                                    1fr\n                                )\n                            );\n\n                        gap:\n                            4px\n                            20px;\n\n                        padding-top:\n                            8px;\n                    }\n\n                    .avn-mobile-child {\n                        min-width: 0;\n\n                        padding:\n                            9px 0;\n\n                        color:\n                            rgb(101, 107, 120);\n\n                        text-decoration:\n                            none;\n\n                        font-size:\n                            13px;\n\n                        line-height:\n                            1.35;\n\n                        font-weight:\n                            570;\n                    }\n\n                    .avn-mobile-child:hover,\n                    .avn-mobile-child:focus-visible,\n                    .avn-mobile-parent:hover,\n                    .avn-mobile-parent:focus-visible {\n                        color:\n                            rgb(94, 99, 232);\n\n                        outline: none;\n                    }\n\n                    /*\n                        Mobile CTA\n                    */\n\n                    .avn-mobile-actions {\n                        display: grid;\n\n                        grid-template-columns:\n                            1fr 1fr;\n\n                        gap: 10px;\n\n                        padding-top:\n                            22px;\n                    }\n\n                    .avn-mobile-ghost,\n                    .avn-mobile-primary {\n                        min-height:\n                            48px;\n\n                        display:\n                            inline-flex;\n\n                        align-items:\n                            center;\n\n                        justify-content:\n                            center;\n\n                        padding:\n                            0 16px;\n\n                        border-radius:\n                            12px;\n\n                        text-decoration:\n                            none;\n\n                        font-size:\n                            13px;\n\n                        line-height:\n                            1.2;\n\n                        font-weight:\n                            680;\n\n                        text-align:\n                            center;\n                    }\n\n                    .avn-mobile-ghost {\n                        color:\n                            rgb(17, 19, 24);\n\n                        border:\n                            1px solid\n                            rgb(232, 234, 240);\n\n                        background:\n                            #FFFFFF;\n                    }\n\n                    .avn-mobile-primary {\n                        color:\n                            #FFFFFF;\n\n                        background:\n                            rgb(94, 99, 232);\n                    }\n                }\n\n                /* ========================================\n                   PHONE\n                ======================================== */\n\n                @container\n                (max-width: 520px) {\n\n                    .avn-bar {\n                        min-height:\n                            68px;\n\n                        padding:\n                            0 24px;\n                    }\n\n                    .avn-mobile-top {\n                        min-height:\n                            68px;\n\n                        padding:\n                            0 24px;\n                    }\n\n                    .avn-mobile-content {\n                        padding:\n                            18px\n                            24px\n                            28px;\n                    }\n\n                    .avn-mobile-group {\n                        padding:\n                            13px\n                            0\n                            15px;\n                    }\n\n                    .avn-mobile-parent {\n                        font-size:\n                            16px;\n                    }\n\n                    .avn-mobile-children {\n                        grid-template-columns:\n                            1fr;\n\n                        gap: 0;\n                    }\n\n                    .avn-mobile-child {\n                        padding:\n                            7px 0;\n\n                        font-size:\n                            13px;\n                    }\n\n                    .avn-mobile-actions {\n                        grid-template-columns:\n                            1fr;\n                    }\n                }\n\n                /* ========================================\n                   ACCESSIBILITY\n                ======================================== */\n\n                @media\n                (prefers-reduced-motion: reduce) {\n\n                    .avn-mega,\n                    .avn-mega-item,\n                    .avn-cta,\n                    .avn-mobile-overlay {\n                        transition:\n                            none !important;\n                    }\n                }",
+  "AIVELOFT",
+  "Services",
+  "\u2304",
+  "Workflow Automation",
+  "Connect tools, remove repetitive work, and automate handoffs.",
+  "AI Agents",
+  "Deploy controlled agents for multi-step business workflows.",
+  "CRM & Sales Automation",
+  "Qualify, route, enrich, and follow up with leads automatically.",
+  "Customer Support Automation",
+  "Handle routine support while keeping humans in control.",
+  "AI Integrations",
+  "Connect AI with your CRM, data, communications, and operations stack.",
+  "Solutions",
+  "\u2304",
+  "Lead Capture & Qualification",
+  "Respond faster and route qualified opportunities to the right team.",
+  "Customer Operations",
+  "Automate service requests, updates, reminders, and escalations.",
+  "Back-Office Operations",
+  "Reduce manual admin across records, documents, and internal workflows.",
+  "Reporting & Insights",
+  "Turn fragmented data into scheduled reports and actionable signals.",
+  "Industries",
+  "\u2304",
+  "Agencies",
+  "Automate onboarding, lead handling, reporting, and delivery operations.",
+  "E-commerce",
+  "Connect orders, support, inventory, follow-up, and customer data.",
+  "Professional Services",
+  "Streamline enquiries, scheduling, documents, and client communication.",
+  "Healthcare",
+  "Improve intake, scheduling, reminders, and admin with human oversight.",
+  "Case Studies",
+  "Resources",
+  "\u2304",
+  "Integrations",
+  "See the tools and systems AIVELOFT can connect.",
+  "Insights",
+  "Practical automation strategy, implementation, and use-case guides.",
+  "Automation Audit",
+  "Map high-value workflows and prioritize the best automation opportunities.",
+  "Contact",
+  "Talk through your workflow, stack, and goals.",
+  "Pricing",
+  "About",
+  "Book an Automation Audit",
+  "\u2197",
+  "AIVELOFT",
+  "\u00d7",
+  "Services",
+  "Workflow Automation",
+  "AI Agents",
+  "CRM & Sales Automation",
+  "Customer Support Automation",
+  "AI Integrations",
+  "Solutions",
+  "Lead Capture & Qualification",
+  "Customer Operations",
+  "Back-Office Operations",
+  "Reporting & Insights",
+  "Industries",
+  "Agencies",
+  "E-commerce",
+  "Professional Services",
+  "Healthcare",
+  "Case Studies",
+  "Resources",
+  "Integrations",
+  "Insights",
+  "Automation Audit",
+  "Contact",
+  "Pricing",
+  "About",
+  "Contact",
+  "Book an Automation Audit \u2197",
+  ".avh-root {\n                    position: relative;\n                    isolation: isolate;\n                    z-index: 0;\n                }\n\n                .avh-root,\n                .avh-root * {\n                    box-sizing: border-box;\n                }\n\n                .avh-root a {\n                    -webkit-tap-highlight-color: transparent;\n                }\n\n                .avh-wrap {\n                    position: relative;\n                    z-index: 2;\n\n                    width: 100%;\n                    max-width: 1200px;\n                    margin: 0 auto;\n\n                    padding:\n                        104px\n                        48px\n                        112px;\n\n                    display: grid;\n\n                    grid-template-columns:\n                        minmax(0, 1fr)\n                        minmax(420px, .92fr);\n\n                    align-items: center;\n\n                    gap: 72px;\n                }\n\n                .avh-content,\n                .avh-visual-wrap,\n                .avh-panel,\n                .avh-node > div {\n                    min-width: 0;\n                }\n\n                .avh-content {\n                    max-width: 640px;\n                }\n\n                .avh-eyebrow {\n                    display: inline-flex;\n\n                    align-items: center;\n\n                    gap: 9px;\n\n                    margin-bottom: 26px;\n\n                    color: var(--avh-text);\n\n                    font-family:\n                        \"IBM Plex Mono\",\n                        ui-monospace,\n                        SFMono-Regular,\n                        Menlo,\n                        Consolas,\n                        monospace;\n\n                    font-size: 12px;\n\n                    line-height: 1.4;\n\n                    letter-spacing: .08em;\n\n                    text-transform: uppercase;\n\n                    font-weight: 500;\n                }\n\n                .avh-dot {\n                    width: 8px;\n                    height: 8px;\n\n                    flex: 0 0 auto;\n\n                    border-radius: 999px;\n\n                    background:\n                        var(--avh-accent);\n\n                    box-shadow:\n                        0 0 0 5px\n                        rgba(82,103,232,.10);\n\n                    box-shadow:\n                        0 0 0 5px\n                        color-mix(\n                            in srgb,\n                            var(--avh-accent) 12%,\n                            transparent\n                        );\n                }\n\n                .avh-title {\n                    margin: 0;\n\n                    max-width: 690px;\n\n                    color:\n                        var(--avh-text);\n\n                    font-size: 72px;\n\n                    line-height: 1;\n\n                    letter-spacing: -.052em;\n\n                    font-weight: 600;\n\n                    text-wrap: balance;\n\n                    overflow-wrap: anywhere;\n                }\n\n                .avh-highlight {\n                    color:\n                        var(--avh-accent-text);\n                }\n\n                .avh-description {\n                    max-width: 580px;\n\n                    margin:\n                        30px\n                        0\n                        0;\n\n                    color:\n                        var(--avh-muted);\n\n                    font-size: 21px;\n\n                    line-height: 1.58;\n\n                    letter-spacing: -.015em;\n\n                    overflow-wrap: anywhere;\n                }\n\n                .avh-actions {\n                    display: flex;\n\n                    align-items: center;\n\n                    flex-wrap: wrap;\n\n                    gap: 12px;\n\n                    margin-top: 38px;\n                }\n\n                .avh-btn {\n                    min-height: 48px;\n\n                    padding:\n                        0\n                        22px;\n\n                    border-radius: 12px;\n\n                    display: inline-flex;\n\n                    align-items: center;\n\n                    justify-content: center;\n\n                    gap: 9px;\n\n                    text-decoration: none;\n\n                    font-size: 14px;\n\n                    line-height: 1.4;\n\n                    font-weight: 600;\n\n                    cursor: pointer;\n\n                    user-select: none;\n\n                    transition:\n                        transform .2s ease,\n                        box-shadow .2s ease,\n                        background-color .2s ease,\n                        border-color .2s ease;\n                }\n\n                .avh-btn:focus-visible {\n                    outline:\n                        3px solid\n                        rgba(82,103,232,.25);\n\n                    outline:\n                        3px solid\n                        color-mix(\n                            in srgb,\n                            var(--avh-accent) 28%,\n                            transparent\n                        );\n\n                    outline-offset: 3px;\n                }\n\n                .avh-btn-primary {\n                    background:\n                        var(--avh-accent);\n\n                    color: #FFFFFF;\n\n                    box-shadow:\n                        0 8px 24px\n                        rgba(82,103,232,.18);\n\n                    box-shadow:\n                        0 8px 24px\n                        color-mix(\n                            in srgb,\n                            var(--avh-accent) 22%,\n                            transparent\n                        );\n                }\n\n                .avh-btn-primary:hover {\n                    transform:\n                        translateY(-2px);\n\n                    box-shadow:\n                        0 12px 30px\n                        rgba(82,103,232,.23);\n\n                    box-shadow:\n                        0 12px 30px\n                        color-mix(\n                            in srgb,\n                            var(--avh-accent) 28%,\n                            transparent\n                        );\n                }\n\n                .avh-btn-secondary {\n                    color:\n                        var(--avh-text);\n\n                    border:\n                        1px solid\n                        rgba(17,19,24,.12);\n\n                    background:\n                        rgba(255,255,255,.72);\n                }\n\n                .avh-btn-secondary:hover {\n                    transform:\n                        translateY(-2px);\n\n                    background:\n                        #FFFFFF;\n\n                    border-color:\n                        rgba(17,19,24,.18);\n                }\n\n                .avh-arrow {\n                    font-size: 17px;\n\n                    line-height: 1;\n\n                    transform:\n                        translateY(-1px);\n                }\n\n                .avh-trust {\n                    display: flex;\n\n                    flex-wrap: wrap;\n\n                    gap:\n                        12px\n                        20px;\n\n                    margin-top: 42px;\n\n                    color:\n                        var(--avh-muted);\n\n                    font-size: 13px;\n\n                    line-height: 1.4;\n                }\n\n                .avh-trust-item {\n                    display: flex;\n\n                    align-items: center;\n\n                    gap: 7px;\n                }\n\n                .avh-check {\n                    color:\n                        var(--avh-accent-text);\n\n                    font-weight: 700;\n                }\n\n                .avh-visual-wrap {\n                    position: relative;\n\n                    width: 100%;\n\n                    min-height: 520px;\n\n                    display: flex;\n\n                    align-items: center;\n\n                    justify-content: center;\n                }\n\n                .avh-glow {\n                    position: absolute;\n\n                    width:\n                        min(\n                            400px,\n                            88%\n                        );\n\n                    aspect-ratio: 1;\n\n                    border-radius: 50%;\n\n                    background:\n                        radial-gradient(\n                            circle,\n                            rgba(82,103,232,.14)\n                            0%,\n                            transparent\n                            68%\n                        );\n\n                    background:\n                        radial-gradient(\n                            circle,\n                            color-mix(\n                                in srgb,\n                                var(--avh-accent) 17%,\n                                transparent\n                            )\n                            0%,\n                            transparent\n                            68%\n                        );\n\n                    filter:\n                        blur(5px);\n\n                    pointer-events: none;\n                }\n\n                .avh-panel {\n                    position: relative;\n\n                    width:\n                        min(\n                            100%,\n                            500px\n                        );\n\n                    padding: 18px;\n\n                    border-radius: 24px;\n\n                    background:\n                        rgba(\n                            255,\n                            255,\n                            255,\n                            .90\n                        );\n\n                    border:\n                        1px solid\n                        rgba(\n                            17,\n                            19,\n                            24,\n                            .09\n                        );\n\n                    box-shadow:\n                        0 34px 90px\n                        rgba(20,28,52,.12),\n\n                        0 4px 14px\n                        rgba(20,28,52,.04);\n\n                    -webkit-backdrop-filter:\n                        blur(16px);\n\n                    backdrop-filter:\n                        blur(16px);\n\n                    animation:\n                        avhPanelEnter\n                        .82s\n                        .08s\n                        cubic-bezier(.2,.8,.2,1)\n                        both;\n                }\n\n                .avh-panel-top {\n                    display: flex;\n\n                    align-items: center;\n\n                    justify-content:\n                        space-between;\n\n                    gap: 16px;\n\n                    padding:\n                        2px\n                        2px\n                        16px;\n                }\n\n                .avh-panel-title {\n                    color:\n                        var(--avh-text);\n\n                    font-size: 13px;\n\n                    line-height: 1.35;\n\n                    font-weight: 600;\n                }\n\n                .avh-live {\n                    display:\n                        inline-flex;\n\n                    align-items: center;\n\n                    gap: 7px;\n\n                    flex:\n                        0 0 auto;\n\n                    padding:\n                        7px\n                        10px;\n\n                    border-radius:\n                        999px;\n\n                    background:\n                        #F2FAF5;\n\n                    color:\n                        #287A4B;\n\n                    font-size:\n                        11px;\n\n                    line-height:\n                        1;\n\n                    font-weight:\n                        600;\n                }\n\n                .avh-live-dot {\n                    width: 6px;\n                    height: 6px;\n\n                    border-radius:\n                        999px;\n\n                    background:\n                        #34A567;\n\n                    animation:\n                        avhPulse\n                        1.8s\n                        ease-in-out\n                        infinite;\n                }\n\n                .avh-workflow {\n                    position: relative;\n\n                    padding: 22px;\n\n                    border-radius: 18px;\n\n                    background:\n                        linear-gradient(\n                            rgba(255,255,255,.93),\n                            rgba(255,255,255,.93)\n                        ),\n\n                        radial-gradient(\n                            circle at 50% 0%,\n                            rgba(82,103,232,.20),\n                            transparent 60%\n                        );\n\n                    background:\n                        linear-gradient(\n                            rgba(255,255,255,.93),\n                            rgba(255,255,255,.93)\n                        ),\n\n                        radial-gradient(\n                            circle at 50% 0%,\n                            var(--avh-accent),\n                            transparent 60%\n                        );\n\n                    border:\n                        1px solid\n                        rgba(17,19,24,.07);\n                }\n\n                .avh-line {\n                    position: absolute;\n\n                    left: 43px;\n\n                    top: 54px;\n\n                    bottom: 54px;\n\n                    width: 1px;\n\n                    background:\n                        linear-gradient(\n                            to bottom,\n                            rgba(82,103,232,.28),\n                            rgba(17,19,24,.08)\n                        );\n\n                    background:\n                        linear-gradient(\n                            to bottom,\n\n                            color-mix(\n                                in srgb,\n                                var(--avh-accent) 35%,\n                                transparent\n                            ),\n\n                            rgba(17,19,24,.08)\n                        );\n                }\n\n                .avh-node {\n                    position: relative;\n\n                    display: grid;\n\n                    grid-template-columns:\n                        42px\n                        minmax(0, 1fr)\n                        auto;\n\n                    align-items: center;\n\n                    gap: 13px;\n\n                    padding:\n                        14px\n                        12px;\n\n                    margin:\n                        0\n                        0\n                        12px;\n\n                    border-radius:\n                        14px;\n\n                    background:\n                        #FFFFFF;\n\n                    border:\n                        1px solid\n                        rgba(\n                            17,\n                            19,\n                            24,\n                            .075\n                        );\n\n                    box-shadow:\n                        0\n                        5px\n                        18px\n                        rgba(\n                            20,\n                            28,\n                            52,\n                            .04\n                        );\n                }\n\n                .avh-node:last-child {\n                    margin-bottom: 0;\n                }\n\n                .avh-icon {\n                    position: relative;\n\n                    z-index: 2;\n\n                    width: 38px;\n                    height: 38px;\n\n                    border-radius:\n                        11px;\n\n                    background:\n                        #EEF0FD;\n\n                    background:\n                        color-mix(\n                            in srgb,\n                            var(--avh-accent) 10%,\n                            white\n                        );\n\n                    color:\n                        var(--avh-accent-text);\n\n                    display: flex;\n\n                    align-items: center;\n\n                    justify-content:\n                        center;\n\n                    font-size: 14px;\n\n                    line-height: 1;\n\n                    font-weight: 700;\n                }\n\n                .avh-node-title {\n                    color:\n                        var(--avh-text);\n\n                    font-size: 13px;\n\n                    line-height: 1.25;\n\n                    font-weight: 600;\n\n                    overflow-wrap:\n                        anywhere;\n                }\n\n                .avh-node-sub {\n                    margin-top: 3px;\n\n                    color:\n                        var(--avh-muted);\n\n                    font-size: 11px;\n\n                    line-height: 1.35;\n\n                    overflow-wrap:\n                        anywhere;\n                }\n\n                .avh-status {\n                    font-size: 10px;\n\n                    line-height: 1;\n\n                    font-weight: 600;\n\n                    color:\n                        var(--avh-accent-text);\n\n                    background:\n                        #F0F2FE;\n\n                    background:\n                        color-mix(\n                            in srgb,\n                            var(--avh-accent) 8%,\n                            white\n                        );\n\n                    padding:\n                        6px\n                        8px;\n\n                    border-radius:\n                        999px;\n\n                    white-space:\n                        nowrap;\n                }\n\n                .avh-metrics {\n                    display: grid;\n\n                    grid-template-columns:\n                        repeat(\n                            2,\n                            minmax(0, 1fr)\n                        );\n\n                    gap: 10px;\n\n                    margin-top: 12px;\n                }\n\n                .avh-metric {\n                    min-width: 0;\n\n                    padding:\n                        15px\n                        16px;\n\n                    border-radius:\n                        15px;\n\n                    border:\n                        1px solid\n                        rgba(\n                            17,\n                            19,\n                            24,\n                            .07\n                        );\n\n                    background:\n                        rgba(\n                            248,\n                            249,\n                            252,\n                            .92\n                        );\n                }\n\n                .avh-metric-value {\n                    color:\n                        var(--avh-text);\n\n                    font-size:\n                        23px;\n\n                    line-height:\n                        1;\n\n                    letter-spacing:\n                        -.04em;\n\n                    font-weight:\n                        650;\n\n                    overflow-wrap:\n                        anywhere;\n                }\n\n                .avh-metric-label {\n                    margin-top: 7px;\n\n                    color:\n                        var(--avh-muted);\n\n                    font-size: 10px;\n\n                    line-height:\n                        1.3;\n\n                    text-transform:\n                        uppercase;\n\n                    letter-spacing:\n                        .07em;\n                }\n\n                .avh-static .avh-content,\n                .avh-static .avh-panel,\n                .avh-static .avh-live-dot {\n                    animation: none;\n                }\n\n                @keyframes avhEnter {\n                    from {\n                        opacity: 0;\n\n                        transform:\n                            translateY(16px);\n                    }\n\n                    to {\n                        opacity: 1;\n\n                        transform:\n                            translateY(0);\n                    }\n                }\n\n                @keyframes avhPanelEnter {\n                    from {\n                        opacity: 0;\n\n                        transform:\n                            translateY(18px)\n                            scale(.985);\n                    }\n\n                    to {\n                        opacity: 1;\n\n                        transform:\n                            translateY(0)\n                            scale(1);\n                    }\n                }\n\n                @keyframes avhPulse {\n                    0%,\n                    100% {\n                        opacity: .35;\n\n                        transform:\n                            scale(.85);\n                    }\n\n                    50% {\n                        opacity: 1;\n\n                        transform:\n                            scale(1);\n                    }\n                }\n\n                @container aiveloftHero (max-width: 900px) {\n\n                    .avh-wrap {\n                        grid-template-columns:\n                            1fr;\n\n                        gap:\n                            58px;\n\n                        padding:\n                            88px\n                            40px\n                            96px;\n                    }\n\n                    .avh-content {\n                        max-width:\n                            720px;\n                    }\n\n                    .avh-title {\n                        font-size:\n                            56px;\n                    }\n\n                    .avh-description {\n                        font-size:\n                            20px;\n                    }\n\n                    .avh-visual-wrap {\n                        min-height:\n                            auto;\n                    }\n\n                    .avh-panel {\n                        width:\n                            min(\n                                100%,\n                                680px\n                            );\n                    }\n                }\n\n                @container aiveloftHero (max-width: 520px) {\n\n                    .avh-wrap {\n                        padding:\n                            72px\n                            24px\n                            76px;\n\n                        gap:\n                            44px;\n                    }\n\n                    .avh-eyebrow {\n                        margin-bottom:\n                            21px;\n\n                        font-size:\n                            11px;\n\n                        letter-spacing:\n                            .07em;\n                    }\n\n                    .avh-title {\n                        font-size:\n                            44px;\n\n                        letter-spacing:\n                            -.045em;\n                    }\n\n                    .avh-description {\n                        margin-top:\n                            24px;\n\n                        font-size:\n                            19px;\n                    }\n\n                    .avh-actions {\n                        align-items:\n                            stretch;\n\n                        flex-direction:\n                            column;\n\n                        margin-top:\n                            30px;\n                    }\n\n                    .avh-btn {\n                        width:\n                            100%;\n                    }\n\n                    .avh-trust {\n                        margin-top:\n                            30px;\n\n                        gap:\n                            12px\n                            18px;\n                    }\n\n                    .avh-panel {\n                        padding:\n                            12px;\n\n                        border-radius:\n                            20px;\n                    }\n\n                    .avh-workflow {\n                        padding:\n                            14px;\n                    }\n\n                    .avh-node {\n                        grid-template-columns:\n                            38px\n                            minmax(0, 1fr);\n                    }\n\n                    .avh-status {\n                        display:\n                            none;\n                    }\n\n                    .avh-line {\n                        left:\n                            33px;\n                    }\n\n                    .avh-metric-value {\n                        font-size:\n                            20px;\n                    }\n                }\n\n                @container aiveloftHero (max-width: 360px) {\n\n                    .avh-wrap {\n                        padding-left:\n                            18px;\n\n                        padding-right:\n                            18px;\n                    }\n\n                    .avh-title {\n                        font-size:\n                            38px;\n                    }\n\n                    .avh-metrics {\n                        grid-template-columns:\n                            1fr;\n                    }\n                }\n\n                @media (\n                    prefers-reduced-motion: reduce\n                ) {\n\n                    .avh-content,\n                    .avh-panel,\n                    .avh-live-dot,\n                    .avh-btn {\n                        animation: none;\n\n                        transition: none;\n                    }\n                }",
+  "slows your business down.",
+  "AIVELOFT automates lead qualification, CRM updates, customer support, reporting, and repetitive back-office workflows, then connects them into one observable system.",
+  "\u2197",
+  "Estimate Your Opportunity",
+  "\u2713",
+  "\u2713",
+  "\u2713",
+  "Automation Flow",
+  "01",
+  "Lead captured",
+  "Website \u00b7 Instagram \u00b7 Ads",
+  "Trigger",
+  "AI",
+  "AI qualifies request",
+  "Intent, priority and context",
+  "0.8 sec",
+  "03",
+  "CRM updated",
+  "Contact + deal automatically created",
+  "Synced",
+  "04",
+  "Follow-up sent",
+  "Personalized response delivered",
+  "Done",
+  "38h",
+  "Saved / week",
+  "24/7",
+  "Workflow active",
+  ".avp-root,\n                .avp-root * {\n                    box-sizing: border-box;\n                }\n\n                .avp-root {\n                    font-family:\n                        \"Instrument Sans\",\n                        Inter,\n                        ui-sans-serif,\n                        system-ui,\n                        -apple-system,\n                        BlinkMacSystemFont,\n                        \"Segoe UI\",\n                        sans-serif;\n                }\n\n                .avp-wrap {\n                    width: 100%;\n                    max-width: 1200px;\n                    margin: 0 auto;\n                    padding: 96px 48px 104px;\n                }\n\n                .avp-heading {\n                    display: grid;\n                    grid-template-columns: minmax(0, .82fr) minmax(340px, .72fr);\n                    align-items: end;\n                    gap: 72px;\n                    padding-bottom: 46px;\n                    border-bottom: 1px solid var(--avp-border);\n                }\n\n                .avp-eyebrow {\n                    display: inline-flex;\n                    align-items: center;\n                    gap: 9px;\n                    margin-bottom: 20px;\n                    color: var(--avp-text);\n                    font-family:\n                        \"IBM Plex Mono\",\n                        ui-monospace,\n                        SFMono-Regular,\n                        Menlo,\n                        Consolas,\n                        monospace;\n                    font-size: 12px;\n                    line-height: 1.4;\n                    letter-spacing: .08em;\n                    text-transform: uppercase;\n                    font-weight: 500;\n                }\n\n                .avp-dot {\n                    width: 8px;\n                    height: 8px;\n                    flex: 0 0 auto;\n                    border-radius: 999px;\n                    background: var(--avp-accent);\n                    box-shadow: 0 0 0 5px color-mix(in srgb, var(--avp-accent) 12%, transparent);\n                }\n\n                .avp-title {\n                    margin: 0;\n                    max-width: 760px;\n                    color: var(--avp-text);\n                    font-size: 48px;\n                    line-height: 1.08;\n                    letter-spacing: -.045em;\n                    font-weight: 600;\n                    text-wrap: balance;\n                }\n\n                .avp-description {\n                    margin: 0;\n                    max-width: 520px;\n                    color: var(--avp-muted);\n                    font-size: 18px;\n                    line-height: 1.65;\n                    letter-spacing: -.012em;\n                }\n\n                .avp-grid {\n                    display: grid;\n                    grid-template-columns: repeat(4, minmax(0, 1fr));\n                    gap: 12px;\n                    margin-top: 18px;\n                }\n\n                .avp-card {\n                    min-width: 0;\n                    min-height: 264px;\n                    display: flex;\n                    flex-direction: column;\n                    padding: 24px;\n                    border: 1px solid var(--avp-border);\n                    border-radius: 18px;\n                    background: var(--avp-surface);\n                    transition:\n                        transform .18s ease,\n                        border-color .18s ease,\n                        box-shadow .18s ease,\n                        background-color .18s ease;\n                }\n\n                .avp-card:hover {\n                    transform: translateY(-3px);\n                    border-color: color-mix(in srgb, var(--avp-accent) 22%, var(--avp-border));\n                    background: #FFFFFF;\n                    box-shadow: 0 18px 42px rgba(18, 23, 38, .07);\n                }\n\n                .avp-index {\n                    width: 38px;\n                    height: 38px;\n                    display: inline-flex;\n                    align-items: center;\n                    justify-content: center;\n                    border-radius: 11px;\n                    background: color-mix(in srgb, var(--avp-accent) 9%, white);\n                    color: var(--avp-accent-text);\n                    font-family:\n                        \"IBM Plex Mono\",\n                        ui-monospace,\n                        SFMono-Regular,\n                        Menlo,\n                        Consolas,\n                        monospace;\n                    font-size: 11px;\n                    line-height: 1;\n                    font-weight: 600;\n                }\n\n                .avp-card-copy {\n                    margin-top: 60px;\n                    padding-top: 0;\n                }\n\n                .avp-card-title {\n                    margin: 0;\n                    color: var(--avp-text);\n                    font-size: 20px;\n                    line-height: 1.2;\n                    letter-spacing: -.025em;\n                    font-weight: 620;\n                }\n\n                .avp-card-body {\n                    margin: 10px 0 0;\n                    color: var(--avp-muted);\n                    font-size: 14px;\n                    line-height: 1.55;\n                }\n\n                .avp-reliability {\n                    margin-top: 18px;\n                    padding: 22px;\n                    border: 1px solid var(--avp-border);\n                    border-radius: 18px;\n                    background:\n                        linear-gradient(\n                            180deg,\n                            color-mix(in srgb, var(--avp-accent) 4%, white),\n                            #FFFFFF\n                        );\n                }\n\n                .avp-reliability-top {\n                    display: flex;\n                    align-items: center;\n                    justify-content: space-between;\n                    gap: 16px;\n                    margin-bottom: 16px;\n                }\n\n                .avp-reliability-label {\n                    display: inline-flex;\n                    align-items: center;\n                    gap: 8px;\n                    color: var(--avp-text);\n                    font-family:\n                        \"IBM Plex Mono\",\n                        ui-monospace,\n                        SFMono-Regular,\n                        Menlo,\n                        Consolas,\n                        monospace;\n                    font-size: 10px;\n                    line-height: 1.3;\n                    letter-spacing: .08em;\n                    text-transform: uppercase;\n                    font-weight: 600;\n                }\n\n                .avp-reliability-note {\n                    color: var(--avp-muted);\n                    font-size: 11px;\n                    line-height: 1.4;\n                    text-align: right;\n                }\n\n                .avp-reliability-grid {\n                    display: grid;\n                    grid-template-columns: repeat(3, minmax(0, 1fr));\n                    gap: 10px;\n                }\n\n                .avp-reliability-item {\n                    min-width: 0;\n                    padding: 17px;\n                    border: 1px solid var(--avp-border);\n                    border-radius: 14px;\n                    background: rgba(255,255,255,.84);\n                }\n\n                .avp-reliability-kicker {\n                    color: var(--avp-accent-text);\n                    font-family:\n                        \"IBM Plex Mono\",\n                        ui-monospace,\n                        SFMono-Regular,\n                        Menlo,\n                        Consolas,\n                        monospace;\n                    font-size: 9px;\n                    line-height: 1.3;\n                    letter-spacing: .08em;\n                    font-weight: 600;\n                }\n\n                .avp-reliability-title {\n                    margin: 8px 0 0;\n                    color: var(--avp-text);\n                    font-size: 15px;\n                    line-height: 1.3;\n                    letter-spacing: -.018em;\n                    font-weight: 620;\n                }\n\n                .avp-reliability-body {\n                    margin: 7px 0 0;\n                    color: var(--avp-muted);\n                    font-size: 12px;\n                    line-height: 1.52;\n                }\n\n                .avp-stack {\n                    margin-top: 18px;\n                    padding: 18px 20px;\n                    display: grid;\n                    grid-template-columns: auto minmax(0, 1fr);\n                    align-items: center;\n                    gap: 22px;\n                    border: 1px solid var(--avp-border);\n                    border-radius: 16px;\n                    background: #FFFFFF;\n                }\n\n                .avp-stack-label {\n                    color: var(--avp-muted);\n                    font-family:\n                        \"IBM Plex Mono\",\n                        ui-monospace,\n                        SFMono-Regular,\n                        Menlo,\n                        Consolas,\n                        monospace;\n                    font-size: 10px;\n                    line-height: 1.3;\n                    letter-spacing: .08em;\n                    text-transform: uppercase;\n                    white-space: nowrap;\n                }\n\n                .avp-stack-items {\n                    min-width: 0;\n                    display: flex;\n                    flex-wrap: wrap;\n                    justify-content: flex-end;\n                    gap: 8px;\n                }\n\n                .avp-pill {\n                    display: inline-flex;\n                    align-items: center;\n                    min-height: 32px;\n                    padding: 0 11px;\n                    border-radius: 999px;\n                    border: 1px solid var(--avp-border);\n                    background: var(--avp-surface);\n                    color: var(--avp-text);\n                    font-size: 12px;\n                    line-height: 1;\n                    font-weight: 560;\n                    white-space: nowrap;\n                }\n\n                .avp-note {\n                    margin: 12px 0 0;\n                    color: var(--avp-muted);\n                    font-size: 11px;\n                    line-height: 1.45;\n                }\n\n                @container aiveloftProof (max-width: 900px) {\n                    .avp-wrap {\n                        padding: 82px 40px 90px;\n                    }\n\n                    .avp-heading {\n                        grid-template-columns: 1fr;\n                        align-items: start;\n                        gap: 26px;\n                    }\n\n                    .avp-title {\n                        font-size: 42px;\n                    }\n\n                    .avp-description {\n                        max-width: 680px;\n                    }\n\n                    .avp-grid {\n                        grid-template-columns: repeat(2, minmax(0, 1fr));\n                    }\n\n                    .avp-card {\n                        min-height: 236px;\n                    }\n\n                    .avp-reliability-grid {\n                        grid-template-columns: 1fr;\n                    }\n\n                    .avp-reliability-top {\n                        align-items: flex-start;\n                        flex-direction: column;\n                        gap: 8px;\n                    }\n\n                    .avp-reliability-note {\n                        text-align: left;\n                    }\n\n                    .avp-stack {\n                        grid-template-columns: 1fr;\n                        gap: 12px;\n                    }\n\n                    .avp-stack-items {\n                        justify-content: flex-start;\n                    }\n                }\n\n                @container aiveloftProof (max-width: 520px) {\n                    .avp-wrap {\n                        padding: 68px 24px 74px;\n                    }\n\n                    .avp-heading {\n                        padding-bottom: 34px;\n                    }\n\n                    .avp-eyebrow {\n                        margin-bottom: 17px;\n                        font-size: 11px;\n                        letter-spacing: .07em;\n                    }\n\n                    .avp-title {\n                        font-size: 34px;\n                        line-height: 1.08;\n                        letter-spacing: -.04em;\n                    }\n\n                    .avp-description {\n                        font-size: 17px;\n                        line-height: 1.62;\n                    }\n\n                    .avp-grid {\n                        grid-template-columns: 1fr;\n                        gap: 10px;\n                        margin-top: 14px;\n                    }\n\n                    .avp-card {\n                        min-height: auto;\n                        padding: 20px;\n                    }\n\n                    .avp-card-copy {\n                        margin-top: 32px;\n                        padding-top: 0;\n                    }\n\n                    .avp-card-title {\n                        font-size: 19px;\n                    }\n\n                    .avp-reliability {\n                        margin-top: 14px;\n                        padding: 16px;\n                    }\n\n                    .avp-reliability-item {\n                        padding: 15px;\n                    }\n\n                    .avp-stack {\n                        margin-top: 14px;\n                        padding: 16px;\n                    }\n\n                    .avp-stack-items {\n                        gap: 7px;\n                    }\n                }\n\n                @media (prefers-reduced-motion: reduce) {\n                    .avp-card {\n                        transition: none;\n                    }\n\n                    .avp-card:hover {\n                        transform: none;\n                    }\n                }",
+  "Reliable automation should be observable, measurable, and easy to control.",
+  "AIVELOFT starts with the workflow, keeps human checkpoints where judgment matters, and defines what will be measured before implementation. The goal is not more automation. It is a system your team can understand, monitor, and improve.",
+  "01",
+  "Workflow-first",
+  "Map the process, handoffs, exceptions, and bottlenecks before choosing the automation.",
+  "02",
+  "Human checkpoints",
+  "Keep review, approval, and escalation points wherever confidence, risk, or business judgment requires them.",
+  "03",
+  "Observable by design",
+  "Make important states, handoffs, exceptions, and failures visible enough to investigate and improve.",
+  "04",
+  "Baseline before outcomes",
+  "Define the starting point and success metric before claiming that the workflow has improved.",
+  "Control first. Evidence after.",
+  "OBSERVABLE",
+  "Know what the workflow is doing.",
+  "Critical states and exceptions should be visible enough to trace what happened and where intervention is needed.",
+  "CONTROLLED",
+  "Keep people in the right decisions.",
+  "Automation handles repetition while review and escalation remain available for decisions that need judgment.",
+  "MEASURABLE",
+  "Compare against a real baseline.",
+  "Measure the operating condition before launch, then compare the same metric after the workflow changes.",
+  "Example stack",
+  "OpenAI",
+  "Claude",
+  "n8n",
+  "Make",
+  "Zapier",
+  "HubSpot",
+  "Slack",
+  "Google Workspace",
+  "Tool names are illustrative examples of common workflow integrations. Availability depends on the workflow and does not imply partnership, certification, or endorsement.",
+  "taxes every customer journey.",
+  "Small delays, repeated handoffs, and disconnected updates compound into slower response, more admin work, and less visibility across the business.",
+  "01",
+  "Slow response",
+  "Requests wait until someone notices, reads, decides, and acts.",
+  "02",
+  "Manual handoffs",
+  "Context gets copied between inboxes, CRM records, sheets, and chat.",
+  "03",
+  "Fragmented data",
+  "Teams work from partial information because systems do not stay in sync.",
+  "04",
+  "Status chasing",
+  "People ask what happened instead of seeing workflow state instantly.",
+  "The workflow should move before someone has to remember it.",
+  "AIVELOFT identifies repeatable friction, connects the tools already in place, and automates predictable steps while people keep control where judgment matters.",
+  "STEP 01",
+  "Request arrives",
+  "STEP 02",
+  "Someone notices",
+  "STEP 03",
+  "Context is copied",
+  "STEP 04",
+  "Status is chased",
+  "the work that actually needs to move.",
+  "We design automation around real operational bottlenecks, then connect AI, business rules, data, and human oversight into one reliable workflow.",
+  "01",
+  "CORE SYSTEM",
+  "Workflow Automation",
+  "Connect repetitive multi-step work across the tools your team already uses, with approvals and human checkpoints where they matter.",
+  "Lead routing",
+  "Order operations",
+  "Approvals",
+  "Onboarding",
+  "Reporting",
+  "Example automation",
+  "01",
+  "CAPTURE",
+  "Request enters",
+  "02",
+  "DECIDE",
+  "Rules + AI",
+  "03",
+  "ACT",
+  "Tools update",
+  "04",
+  "VERIFY",
+  "Human if needed",
+  "02",
+  "INTELLIGENCE",
+  "AI Agents",
+  "Task-focused agents that can interpret context, use tools, complete defined actions, and escalate when judgment or permission is required.",
+  "\u2713",
+  "\u2713",
+  "\u2713",
+  "\u2713",
+  "03",
+  "REVENUE",
+  "CRM & Sales Automation",
+  "Automate lead capture, enrichment, qualification, follow-up, pipeline updates, routing, and sales handoffs without losing context.",
+  "\u2713",
+  "\u2713",
+  "\u2713",
+  "\u2713",
+  "04",
+  "CUSTOMER OPS",
+  "Customer Support Automation",
+  "Handle triage, common questions, routing, follow-ups, internal context gathering, and escalation while keeping humans available for sensitive cases.",
+  "\u2713",
+  "\u2713",
+  "\u2713",
+  "\u2713",
+  "05",
+  "INFRASTRUCTURE",
+  "AI Integrations",
+  "Connect models, APIs, CRMs, inboxes, forms, calendars, databases, and internal tools so information moves without manual copying.",
+  "\u2713",
+  "\u2713",
+  "\u2713",
+  "\u2713",
+  "Not sure what should be automated first?",
+  "Start with the workflow that creates the most repeated work, delay, or operational risk. We map it before choosing the technology.",
+  "\u2197",
+  ".aiv-solutions,\n.aiv-solutions * {\n    box-sizing: border-box;\n}\n\n/* =============================\n   DESKTOP\n============================= */\n\n.aiv-solutions-header {\n    grid-template-columns:\n        minmax(0, 1.06fr)\n        minmax(320px, 0.94fr);\n}\n\n.aiv-solutions-grid {\n    grid-template-columns:\n        repeat(2, minmax(0, 1fr));\n}\n\n.aiv-solution-card {\n    min-height: 520px;\n}\n\n.aiv-solution-top {\n    min-height: 252px;\n\n    display: flex;\n    flex-direction: column;\n}\n\n.aiv-solution-flow {\n    margin-top: 22px;\n}\n\n.aiv-solution-chips {\n    min-height: 67px;\n}\n\n.aiv-solutions-footer {\n    grid-template-columns:\n        minmax(0, 1fr)\n        auto;\n}\n\n/* =============================\n   TABLET\n============================= */\n\n@media (max-width: 900px) {\n\n    .aiv-solutions-header {\n        grid-template-columns: 1fr;\n    }\n\n    .aiv-solutions-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .aiv-solution-card {\n        min-height: auto;\n    }\n\n    .aiv-solution-top {\n        min-height: 0;\n    }\n\n    .aiv-solution-chips {\n        min-height: 0;\n    }\n\n    .aiv-solutions-footer {\n        grid-template-columns: 1fr;\n    }\n}\n\n/* =============================\n   PHONE\n============================= */\n\n@media (max-width: 560px) {\n\n    .aiv-flow-grid {\n        grid-template-columns:\n            repeat(2, minmax(0, 1fr)) !important;\n    }\n\n    .aiv-solutions-button {\n        width: 100%;\n    }\n}",
+  "the metrics that matter.",
+  "We start with the operational outcome, map the workflow behind it, and build the automation around the systems your team already uses.",
+  "01",
+  "REVENUE",
+  "Lead Capture & Qualification",
+  "Turn incoming interest into structured, qualified opportunities without waiting for someone to manually review every request.",
+  "Target outcome",
+  "Faster first response",
+  "Example flow",
+  "01",
+  "Lead arrives",
+  "02",
+  "Context enriched",
+  "03",
+  "AI qualifies",
+  "04",
+  "Right owner notified",
+  "02",
+  "CUSTOMER EXPERIENCE",
+  "Customer Operations",
+  "Keep customer requests moving across booking, support, order updates, follow-ups, and internal handoffs while preserving human escalation.",
+  "Target outcome",
+  "Less response friction",
+  "Example flow",
+  "01",
+  "Request received",
+  "02",
+  "Intent understood",
+  "03",
+  "Action completed",
+  "04",
+  "Human if needed",
+  "03",
+  "OPERATIONS",
+  "Back-Office Operations",
+  "Remove repetitive coordination work from internal processes by connecting records, approvals, documents, and operational systems.",
+  "Target outcome",
+  "Fewer manual handoffs",
+  "Example flow",
+  "01",
+  "Trigger detected",
+  "02",
+  "Data validated",
+  "03",
+  "Systems updated",
+  "04",
+  "Team informed",
+  "04",
+  "VISIBILITY",
+  "Reporting & Insights",
+  "Bring operational data together automatically so teams receive useful summaries, alerts, and business signals without spreadsheet chasing.",
+  "Target outcome",
+  "Clearer decisions",
+  "Example flow",
+  "01",
+  "Data collected",
+  "02",
+  "Sources combined",
+  "03",
+  "AI summarizes",
+  "04",
+  "Insight delivered",
+  "Start with the bottleneck, not the tool.",
+  "We map the workflow, identify the highest-value automation point, and choose the technology only after the business logic is clear.",
+  "\u2197",
+  ".aiv-industries,\n.aiv-industries * {\n    box-sizing: border-box;\n}\n\n/* =============================\n   DESKTOP\n============================= */\n\n.aiv-industries-header {\n    grid-template-columns:\n        minmax(0, 1.05fr)\n        minmax(320px, 0.95fr);\n}\n\n.aiv-industries-grid {\n    grid-template-columns:\n        repeat(2, minmax(0, 1fr));\n}\n\n.aiv-industry-card {\n    min-height: 520px;\n}\n\n/*\n    Keeps TARGET OUTCOME and everything\n    below it vertically aligned between\n    the left and right cards.\n*/\n.aiv-industry-top {\n    min-height: 276px;\n\n    display: flex;\n    flex-direction: column;\n}\n\n.aiv-industries-footer {\n    grid-template-columns:\n        minmax(0, 1fr)\n        auto;\n}\n\n/* =============================\n   TABLET\n============================= */\n\n@media (max-width: 900px) {\n\n    .aiv-industries-header {\n        grid-template-columns: 1fr;\n    }\n\n    .aiv-industries-grid {\n        grid-template-columns: 1fr;\n    }\n\n    .aiv-industry-card {\n        min-height: auto;\n    }\n\n    .aiv-industry-top {\n        min-height: 0;\n    }\n\n    .aiv-industries-footer {\n        grid-template-columns: 1fr;\n    }\n}\n\n/* =============================\n   PHONE\n============================= */\n\n@media (max-width: 560px) {\n\n    .aiv-industry-flow-grid {\n        grid-template-columns:\n            repeat(2, minmax(0, 1fr)) !important;\n    }\n\n    .aiv-industries-button {\n        width: 100%;\n    }\n}",
+  "Same need for reliable flow.",
+  "We adapt the automation to the way each business actually works, including its systems, approvals, customer expectations, and operational constraints.",
+  "01",
+  "SERVICE DELIVERY",
+  "Agencies",
+  "Reduce coordination overhead across lead intake, onboarding, approvals, reporting, and recurring client delivery without forcing the team into another rigid system.",
+  "Target outcome",
+  "More capacity for client work",
+  "Example flow",
+  "01",
+  "Lead arrives",
+  "02",
+  "Scope captured",
+  "03",
+  "Work routed",
+  "04",
+  "Client updated",
+  "02",
+  "COMMERCE OPS",
+  "E-commerce",
+  "Connect orders, support, inventory signals, payment status, shipping updates, and customer communication so repetitive operational work moves automatically.",
+  "Target outcome",
+  "Faster order and support flow",
+  "Example flow",
+  "01",
+  "Order placed",
+  "02",
+  "Data checked",
+  "03",
+  "Action triggered",
+  "04",
+  "Customer notified",
+  "03",
+  "CLIENT OPERATIONS",
+  "Professional Services",
+  "Streamline enquiries, scheduling, documents, follow-ups, internal ownership, and client communication while keeping expert judgment where it belongs.",
+  "Target outcome",
+  "Less admin around expert work",
+  "Example flow",
+  "01",
+  "Enquiry received",
+  "02",
+  "Context collected",
+  "03",
+  "Owner assigned",
+  "04",
+  "Next step sent",
+  "04",
+  "CARE OPERATIONS",
+  "Healthcare",
+  "Improve intake, scheduling, reminders, administrative coordination, and non-clinical communication with clear escalation and human oversight built into the workflow.",
+  "Target outcome",
+  "More reliable admin coordination",
+  "Example flow",
+  "01",
+  "Request received",
+  "02",
+  "Priority checked",
+  "03",
+  "Action coordinated",
+  "04",
+  "Human reviews",
+  "The industry changes. The workflow logic still has to be clear.",
+  "We map the operating reality first, then design the automation around the people, systems, permissions, and exceptions that actually exist.",
+  "\u2197",
+  ".avba-root,\n                .avba-root * {\n                    box-sizing: border-box;\n                }\n\n                .avba-root {\n                    position: relative;\n                    font-family:\n                        Inter,\n                        system-ui,\n                        -apple-system,\n                        BlinkMacSystemFont,\n                        \"Segoe UI\",\n                        sans-serif;\n                }\n\n                .avba-root button {\n                    font: inherit;\n                }\n\n                .avba-wrap {\n                    position: relative;\n                    width: 100%;\n                    margin: 0 auto;\n                    padding: 116px 48px 120px;\n                }\n\n                .avba-wrap::before {\n                    content: \"\";\n                    position: absolute;\n                    top: 0;\n                    left: 48px;\n                    right: 48px;\n                    height: 1px;\n                    background: rgba(18, 19, 24, 0.08);\n                }\n\n                .avba-header {\n                    display: grid;\n                    grid-template-columns:\n                        minmax(0, 1.22fr)\n                        minmax(280px, 0.78fr);\n                    gap: 64px;\n                    align-items: end;\n                    margin-bottom: 52px;\n                }\n\n                .avba-eyebrow {\n                    display: inline-flex;\n                    align-items: center;\n                    gap: 9px;\n                    margin-bottom: 20px;\n                    color: var(--avba-accent-text);\n                    font-size: 11px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.13em;\n                    text-transform: uppercase;\n                }\n\n                .avba-eyebrowDot {\n                    width: 6px;\n                    height: 6px;\n                    flex: 0 0 6px;\n                    border-radius: 50%;\n                    background: var(--avba-accent);\n                    box-shadow: 0 0 0 4px rgba(102, 92, 255, 0.10);\n                }\n\n                .avba-heading {\n                    max-width: 760px;\n                    margin: 0;\n                    color: var(--avba-text);\n                    font-size: clamp(42px, 4.35vw, 68px);\n                    font-weight: 650;\n                    line-height: 0.99;\n                    letter-spacing: -0.055em;\n                    text-wrap: balance;\n                }\n\n                .avba-headingAccent {\n                    color: var(--avba-accent-text);\n                }\n\n                .avba-descriptionWrap {\n                    max-width: 460px;\n                    justify-self: end;\n                    padding-bottom: 4px;\n                }\n\n                .avba-description {\n                    margin: 0;\n                    color: var(--avba-muted);\n                    font-size: 15px;\n                    font-weight: 450;\n                    line-height: 1.65;\n                    letter-spacing: -0.012em;\n                }\n\n                .avba-principle {\n                    display: flex;\n                    align-items: center;\n                    gap: 10px;\n                    margin-top: 22px;\n                    color: var(--avba-text);\n                    font-size: 11px;\n                    font-weight: 700;\n                    letter-spacing: 0.09em;\n                    text-transform: uppercase;\n                }\n\n                .avba-principleLine {\n                    width: 32px;\n                    height: 1px;\n                    background: rgba(18, 19, 24, 0.18);\n                }\n\n                .avba-console {\n                    position: relative;\n                    overflow: hidden;\n                    border: 1px solid rgba(18, 19, 24, 0.08);\n                    border-radius: 24px;\n                    background: var(--avba-dark);\n                    box-shadow:\n                        0 1px 0 rgba(255, 255, 255, 0.9) inset,\n                        0 22px 60px rgba(18, 19, 24, 0.10);\n                }\n\n                .avba-console::after {\n                    content: \"\";\n                    position: absolute;\n                    width: 420px;\n                    height: 420px;\n                    top: -260px;\n                    right: -110px;\n                    border-radius: 50%;\n                    pointer-events: none;\n                    background:\n                        radial-gradient(\n                            circle,\n                            rgba(102, 92, 255, 0.18) 0%,\n                            rgba(102, 92, 255, 0.045) 42%,\n                            transparent 72%\n                        );\n                }\n\n                .avba-consoleTop {\n                    position: relative;\n                    z-index: 1;\n                    min-height: 58px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: space-between;\n                    gap: 24px;\n                    padding: 0 22px;\n                    border-bottom: 1px solid rgba(255, 255, 255, 0.07);\n                }\n\n                .avba-consoleIdentity {\n                    display: flex;\n                    align-items: center;\n                    gap: 11px;\n                    min-width: 0;\n                }\n\n                .avba-dots {\n                    display: flex;\n                    gap: 5px;\n                    flex: 0 0 auto;\n                }\n\n                .avba-dot {\n                    width: 6px;\n                    height: 6px;\n                    border-radius: 50%;\n                    background: rgba(255, 255, 255, 0.22);\n                }\n\n                .avba-dot:nth-child(1) {\n                    background: rgba(255, 255, 255, 0.38);\n                }\n\n                .avba-consoleTitle {\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    font-weight: 700;\n                    letter-spacing: 0.11em;\n                    text-transform: uppercase;\n                    white-space: nowrap;\n                    overflow: hidden;\n                    text-overflow: ellipsis;\n                }\n\n                .avba-consoleStatus {\n                    display: flex;\n                    align-items: center;\n                    gap: 7px;\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    font-weight: 600;\n                    letter-spacing: 0.04em;\n                    white-space: nowrap;\n                }\n\n                .avba-statusDot {\n                    width: 6px;\n                    height: 6px;\n                    border-radius: 50%;\n                    background: #6EE7A7;\n                    box-shadow: 0 0 0 4px rgba(110, 231, 167, 0.08);\n                }\n\n                .avba-main {\n                    position: relative;\n                    z-index: 1;\n                    display: grid;\n                    grid-template-columns:\n                        minmax(0, 1fr)\n                        108px\n                        minmax(0, 1fr);\n                    align-items: stretch;\n                    padding: 28px;\n                }\n\n                .avba-side {\n                    min-width: 0;\n                    padding: 26px;\n                    border-radius: 18px;\n                }\n\n                .avba-before {\n                    background: rgba(255, 255, 255, 0.045);\n                    border: 1px solid rgba(255, 255, 255, 0.065);\n                }\n\n                .avba-after {\n                    position: relative;\n                    overflow: hidden;\n                    background:\n                        linear-gradient(\n                            145deg,\n                            rgba(102, 92, 255, 0.16),\n                            rgba(102, 92, 255, 0.055) 55%,\n                            rgba(255, 255, 255, 0.035)\n                        );\n                    border: 1px solid rgba(130, 120, 255, 0.22);\n                }\n\n                .avba-after::before {\n                    content: \"\";\n                    position: absolute;\n                    top: 0;\n                    left: 18px;\n                    right: 18px;\n                    height: 1px;\n                    background:\n                        linear-gradient(\n                            90deg,\n                            transparent,\n                            rgba(150, 142, 255, 0.85),\n                            transparent\n                        );\n                }\n\n                .avba-sideHead {\n                    display: flex;\n                    align-items: center;\n                    justify-content: space-between;\n                    gap: 16px;\n                    margin-bottom: 26px;\n                }\n\n                .avba-sideLabel {\n                    display: flex;\n                    align-items: center;\n                    gap: 8px;\n                    color: rgba(255, 255, 255, 0.70);\n                    font-size: 11px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.075em;\n                    text-transform: uppercase;\n                }\n\n                .avba-after .avba-sideLabel {\n                    color: var(--avba-accent-text-dark);\n                }\n\n                .avba-sideNumber {\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    font-weight: 650;\n                    letter-spacing: 0.08em;\n                }\n\n                .avba-flow {\n                    display: flex;\n                    flex-direction: column;\n                    gap: 9px;\n                }\n\n                .avba-step {\n                    position: relative;\n                    min-height: 47px;\n                    display: flex;\n                    align-items: center;\n                    gap: 11px;\n                    padding: 11px 13px;\n                    border-radius: 11px;\n                    color: rgba(255, 255, 255, 0.70);\n                    font-size: 12px;\n                    font-weight: 520;\n                    line-height: 1.35;\n                    letter-spacing: -0.01em;\n                    background: rgba(255, 255, 255, 0.038);\n                    border: 1px solid rgba(255, 255, 255, 0.05);\n                    transition:\n                        transform 180ms ease,\n                        border-color 180ms ease,\n                        background 180ms ease;\n                }\n\n                .avba-step:hover {\n                    transform: translateX(2px);\n                    background: rgba(255, 255, 255, 0.055);\n                    border-color: rgba(255, 255, 255, 0.09);\n                }\n\n                .avba-stepIndex {\n                    width: 23px;\n                    height: 23px;\n                    flex: 0 0 23px;\n                    display: grid;\n                    place-items: center;\n                    border-radius: 7px;\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    font-weight: 700;\n                    background: rgba(255, 255, 255, 0.055);\n                }\n\n                .avba-after .avba-step {\n                    color: rgba(255, 255, 255, 0.86);\n                    border-color: rgba(130, 120, 255, 0.12);\n                    background: rgba(102, 92, 255, 0.07);\n                }\n\n                .avba-after .avba-stepIndex {\n                    color: #D3CFFF;\n                    background: rgba(102, 92, 255, 0.18);\n                }\n\n                .avba-automation {\n                    position: relative;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    padding: 0 14px;\n                }\n\n                .avba-automationLine {\n                    position: absolute;\n                    top: 52px;\n                    bottom: 52px;\n                    left: 50%;\n                    width: 1px;\n                    transform: translateX(-50%);\n                    background:\n                        linear-gradient(\n                            180deg,\n                            transparent,\n                            rgba(132, 123, 255, 0.48) 20%,\n                            rgba(132, 123, 255, 0.48) 80%,\n                            transparent\n                        );\n                }\n\n                .avba-engine {\n                    position: relative;\n                    z-index: 2;\n                    width: 74px;\n                    min-height: 94px;\n                    display: flex;\n                    flex-direction: column;\n                    align-items: center;\n                    justify-content: center;\n                    gap: 9px;\n                    padding: 12px 8px;\n                    border-radius: 16px;\n                    color: var(--avba-accent-text-dark);\n                    text-align: center;\n                    background: #17181E;\n                    border: 1px solid rgba(130, 120, 255, 0.22);\n                    box-shadow:\n                        0 0 0 5px rgba(102, 92, 255, 0.045),\n                        0 12px 28px rgba(0, 0, 0, 0.22);\n                }\n\n                .avba-engineIcon {\n                    width: 34px;\n                    height: 34px;\n                    display: grid;\n                    place-items: center;\n                    border-radius: 10px;\n                    color: var(--avba-accent-text-dark);\n                    background: rgba(102, 92, 255, 0.16);\n                    border: 1px solid rgba(130, 120, 255, 0.17);\n                }\n\n                .avba-engineText {\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    font-weight: 700;\n                    line-height: 1.25;\n                    letter-spacing: 0.08em;\n                    text-transform: uppercase;\n                }\n\n                .avba-result {\n                    position: relative;\n                    z-index: 1;\n                    display: flex;\n                    align-items: center;\n                    justify-content: space-between;\n                    gap: 24px;\n                    margin: 0 28px 28px;\n                    padding: 18px 20px;\n                    border-radius: 14px;\n                    background: rgba(255, 255, 255, 0.045);\n                    border: 1px solid rgba(255, 255, 255, 0.065);\n                }\n\n                .avba-resultLeft {\n                    display: flex;\n                    align-items: center;\n                    gap: 12px;\n                    min-width: 0;\n                }\n\n                .avba-resultIcon {\n                    width: 34px;\n                    height: 34px;\n                    flex: 0 0 34px;\n                    display: grid;\n                    place-items: center;\n                    border-radius: 10px;\n                    color: var(--avba-accent-text-dark);\n                    background: rgba(102, 92, 255, 0.14);\n                    border: 1px solid rgba(130, 120, 255, 0.16);\n                }\n\n                .avba-resultMeta {\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.09em;\n                    text-transform: uppercase;\n                    margin-bottom: 6px;\n                }\n\n                .avba-resultValue {\n                    color: rgba(255, 255, 255, 0.92);\n                    font-size: 15px;\n                    font-weight: 610;\n                    line-height: 1.3;\n                    letter-spacing: -0.025em;\n                }\n\n                .avba-resultTag {\n                    flex: 0 0 auto;\n                    padding: 8px 10px;\n                    border-radius: 999px;\n                    color: var(--avba-accent-text-dark);\n                    font-size: 10px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.065em;\n                    text-transform: uppercase;\n                    background: rgba(102, 92, 255, 0.12);\n                    border: 1px solid rgba(130, 120, 255, 0.18);\n                }\n\n                .avba-tabs {\n                    position: relative;\n                    z-index: 1;\n                    display: grid;\n                    grid-template-columns: repeat(4, minmax(0, 1fr));\n                    border-top: 1px solid rgba(255, 255, 255, 0.07);\n                }\n\n                .avba-tab {\n                    position: relative;\n                    min-width: 0;\n                    min-height: 76px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: space-between;\n                    gap: 14px;\n                    padding: 17px 18px;\n                    border: 0;\n                    border-right: 1px solid rgba(255, 255, 255, 0.06);\n                    outline: none;\n                    cursor: pointer;\n                    color: rgba(255, 255, 255, 0.68);\n                    text-align: left;\n                    background: transparent;\n                    transition:\n                        color 180ms ease,\n                        background 180ms ease;\n                }\n\n                .avba-tab:last-child {\n                    border-right: 0;\n                }\n\n                .avba-tab:hover {\n                    color: rgba(255, 255, 255, 0.82);\n                    background: rgba(255, 255, 255, 0.025);\n                }\n\n                .avba-tab[data-active=\"true\"] {\n                    color: rgba(255, 255, 255, 0.94);\n                    background: rgba(102, 92, 255, 0.055);\n                }\n\n                .avba-tab[data-active=\"true\"]::before {\n                    content: \"\";\n                    position: absolute;\n                    top: -1px;\n                    left: 16px;\n                    right: 16px;\n                    height: 2px;\n                    border-radius: 999px;\n                    background: var(--avba-accent);\n                    box-shadow: 0 0 18px rgba(102, 92, 255, 0.4);\n                }\n\n                .avba-tab:focus-visible {\n                    z-index: 3;\n                    box-shadow:\n                        inset 0 0 0 2px rgba(133, 125, 255, 0.85);\n                }\n\n                .avba-tabText {\n                    min-width: 0;\n                }\n\n                .avba-tabIndex {\n                    display: block;\n                    margin-bottom: 6px;\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    font-weight: 700;\n                    letter-spacing: 0.08em;\n                }\n\n                .avba-tabLabel {\n                    display: block;\n                    overflow: hidden;\n                    color: inherit;\n                    font-size: 11px;\n                    font-weight: 620;\n                    line-height: 1.25;\n                    letter-spacing: -0.01em;\n                    white-space: nowrap;\n                    text-overflow: ellipsis;\n                }\n\n                .avba-tabArrow {\n                    flex: 0 0 auto;\n                    opacity: 0;\n                    color: var(--avba-accent-text-dark);\n                    transform: translateX(-4px);\n                    transition:\n                        opacity 180ms ease,\n                        transform 180ms ease;\n                }\n\n                .avba-tab[data-active=\"true\"] .avba-tabArrow {\n                    opacity: 1;\n                    transform: translateX(0);\n                }\n\n                .avba-bottom {\n                    display: grid;\n                    grid-template-columns: repeat(3, minmax(0, 1fr));\n                    margin-top: 24px;\n                    border: 1px solid rgba(18, 19, 24, 0.08);\n                    border-radius: 16px;\n                    overflow: hidden;\n                    background: var(--avba-surface);\n                }\n\n                .avba-bottomItem {\n                    min-height: 91px;\n                    padding: 20px 22px;\n                    border-right: 1px solid rgba(18, 19, 24, 0.07);\n                }\n\n                .avba-bottomItem:last-child {\n                    border-right: 0;\n                }\n\n                .avba-bottomLabel {\n                    margin-bottom: 7px;\n                    color: var(--avba-muted);\n                    font-size: 10px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.09em;\n                    text-transform: uppercase;\n                }\n\n                .avba-bottomValue {\n                    color: var(--avba-text);\n                    font-size: 13px;\n                    font-weight: 610;\n                    line-height: 1.35;\n                    letter-spacing: -0.018em;\n                }\n\n                @keyframes avbaFade {\n                    from {\n                        opacity: 0;\n                        transform: translateY(5px);\n                    }\n                    to {\n                        opacity: 1;\n                        transform: translateY(0);\n                    }\n                }\n\n                .avba-flow,\n                .avba-resultValue {\n                    animation: avbaFade 240ms ease both;\n                }\n\n                @media (max-width: 1199px) {\n                    .avba-wrap {\n                        padding: 96px 36px 100px;\n                    }\n\n                    .avba-wrap::before {\n                        left: 36px;\n                        right: 36px;\n                    }\n\n                    .avba-header {\n                        gap: 44px;\n                        margin-bottom: 42px;\n                    }\n\n                    .avba-heading {\n                        font-size: clamp(40px, 5.3vw, 58px);\n                    }\n\n                    .avba-main {\n                        grid-template-columns:\n                            minmax(0, 1fr)\n                            88px\n                            minmax(0, 1fr);\n                        padding: 22px;\n                    }\n\n                    .avba-side {\n                        padding: 22px;\n                    }\n\n                    .avba-engine {\n                        width: 66px;\n                    }\n\n                    .avba-tabs {\n                        grid-template-columns: repeat(2, minmax(0, 1fr));\n                    }\n\n                    .avba-tab:nth-child(2) {\n                        border-right: 0;\n                    }\n\n                    .avba-tab:nth-child(-n + 2) {\n                        border-bottom: 1px solid rgba(255, 255, 255, 0.06);\n                    }\n                }\n\n                @media (max-width: 809px) {\n                    .avba-wrap {\n                        padding: 76px 20px 80px;\n                    }\n\n                    .avba-wrap::before {\n                        left: 20px;\n                        right: 20px;\n                    }\n\n                    .avba-header {\n                        grid-template-columns: 1fr;\n                        gap: 24px;\n                        margin-bottom: 34px;\n                    }\n\n                    .avba-descriptionWrap {\n                        max-width: 600px;\n                        justify-self: start;\n                    }\n\n                    .avba-heading {\n                        max-width: 620px;\n                        font-size: clamp(36px, 10vw, 49px);\n                        line-height: 1.01;\n                        letter-spacing: -0.05em;\n                    }\n\n                    .avba-description {\n                        font-size: 14px;\n                    }\n\n                    .avba-console {\n                        border-radius: 19px;\n                    }\n\n                    .avba-consoleTop {\n                        min-height: 54px;\n                        padding: 0 16px;\n                    }\n\n                    .avba-consoleStatus {\n                        display: none;\n                    }\n\n                    .avba-main {\n                        grid-template-columns: 1fr;\n                        gap: 14px;\n                        padding: 16px;\n                    }\n\n                    .avba-side {\n                        padding: 19px;\n                        border-radius: 15px;\n                    }\n\n                    .avba-sideHead {\n                        margin-bottom: 18px;\n                    }\n\n                    .avba-automation {\n                        min-height: 66px;\n                        padding: 0;\n                    }\n\n                    .avba-automationLine {\n                        top: 50%;\n                        bottom: auto;\n                        left: 30px;\n                        right: 30px;\n                        width: auto;\n                        height: 1px;\n                        transform: translateY(-50%);\n                        background:\n                            linear-gradient(\n                                90deg,\n                                transparent,\n                                rgba(132, 123, 255, 0.52) 22%,\n                                rgba(132, 123, 255, 0.52) 78%,\n                                transparent\n                            );\n                    }\n\n                    .avba-engine {\n                        width: auto;\n                        min-height: 46px;\n                        flex-direction: row;\n                        gap: 9px;\n                        padding: 7px 11px 7px 8px;\n                        border-radius: 12px;\n                    }\n\n                    .avba-engineIcon {\n                        width: 31px;\n                        height: 31px;\n                        border-radius: 9px;\n                    }\n\n                    .avba-engineText {\n                        max-width: none;\n                        text-align: left;\n                    }\n\n                    .avba-result {\n                        align-items: flex-start;\n                        flex-direction: column;\n                        gap: 14px;\n                        margin: 0 16px 16px;\n                        padding: 16px;\n                    }\n\n                    .avba-resultTag {\n                        margin-left: 46px;\n                    }\n\n                    .avba-tabs {\n                        grid-template-columns: 1fr 1fr;\n                    }\n\n                    .avba-tab {\n                        min-height: 72px;\n                        padding: 15px 14px;\n                    }\n\n                    .avba-tab:nth-child(odd) {\n                        border-right: 1px solid rgba(255, 255, 255, 0.06);\n                    }\n\n                    .avba-tab:nth-child(even) {\n                        border-right: 0;\n                    }\n\n                    .avba-tab:nth-child(-n + 2) {\n                        border-bottom: 1px solid rgba(255, 255, 255, 0.06);\n                    }\n\n                    .avba-tabLabel {\n                        white-space: normal;\n                    }\n\n                    .avba-bottom {\n                        grid-template-columns: 1fr;\n                        border-radius: 14px;\n                    }\n\n                    .avba-bottomItem {\n                        min-height: 0;\n                        padding: 17px 18px;\n                        border-right: 0;\n                        border-bottom: 1px solid rgba(18, 19, 24, 0.07);\n                    }\n\n                    .avba-bottomItem:last-child {\n                        border-bottom: 0;\n                    }\n                }\n\n                @media (max-width: 479px) {\n                    .avba-heading {\n                        font-size: 38px;\n                    }\n\n                    .avba-step {\n                        font-size: 11px;\n                    }\n\n                    .avba-tabs {\n                        grid-template-columns: 1fr;\n                    }\n\n                    .avba-tab {\n                        min-height: 64px;\n                        border-right: 0 !important;\n                        border-bottom: 1px solid rgba(255, 255, 255, 0.06);\n                    }\n\n                    .avba-tab:last-child {\n                        border-bottom: 0;\n                    }\n\n                    .avba-resultTag {\n                        margin-left: 0;\n                    }\n                }\n\n                @media (prefers-reduced-motion: reduce) {\n                    .avba-root *,\n                    .avba-root *::before,\n                    .avba-root *::after {\n                        scroll-behavior: auto !important;\n                        animation-duration: 0.001ms !important;\n                        animation-iteration-count: 1 !important;\n                        transition-duration: 0.001ms !important;\n                    }\n                }",
+  "a workflow that keeps moving.",
+  "Automation becomes valuable when it removes waiting, copying, chasing, and unnecessary handoffs from everyday operations.",
+  "Workflow transformation",
+  "MANUAL",
+  "01",
+  "New lead",
+  "02",
+  "Manual review",
+  "03",
+  "CRM entry",
+  "04",
+  "Owner assignment",
+  "05",
+  "Follow-up",
+  "CONNECTED",
+  "01",
+  "New lead",
+  "02",
+  "Enrich + score",
+  "03",
+  "Route owner",
+  "04",
+  "Trigger follow-up",
+  "Operational result",
+  "Response starts immediately",
+  "Less operational drag",
+  "01",
+  "Lead routing",
+  "02",
+  "Customer support",
+  "03",
+  "Reporting",
+  "04",
+  "Operations",
+  "Remove",
+  "Waiting, copying, chasing",
+  "Connect",
+  "Data, decisions, next actions",
+  "Improve",
+  "Speed, visibility, consistency",
+  ".avroi-root,\n                .avroi-root * {\n                    box-sizing: border-box;\n                }\n\n                .avroi-root {\n                    position: relative;\n                    font-family:\n                        Inter,\n                        system-ui,\n                        -apple-system,\n                        BlinkMacSystemFont,\n                        \"Segoe UI\",\n                        sans-serif;\n                }\n\n                .avroi-wrap {\n                    position: relative;\n                    width: 100%;\n                    margin: 0 auto;\n                    padding: 116px 48px 120px;\n                }\n\n                .avroi-wrap::before {\n                    content: \"\";\n                    position: absolute;\n                    top: 0;\n                    left: 48px;\n                    right: 48px;\n                    height: 1px;\n                    background: rgba(18, 19, 24, 0.08);\n                }\n\n                .avroi-header {\n                    display: grid;\n                    grid-template-columns:\n                        minmax(0, 1.16fr)\n                        minmax(300px, 0.84fr);\n                    gap: 72px;\n                    align-items: end;\n                    margin-bottom: 52px;\n                }\n\n                .avroi-eyebrow {\n                    display: inline-flex;\n                    align-items: center;\n                    gap: 9px;\n                    margin-bottom: 20px;\n                    color: var(--avroi-accent-text);\n                    font-size: 11px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.13em;\n                    text-transform: uppercase;\n                }\n\n                .avroi-eyebrowDot {\n                    width: 6px;\n                    height: 6px;\n                    flex: 0 0 6px;\n                    border-radius: 50%;\n                    background: var(--avroi-accent);\n                    box-shadow:\n                        0 0 0 4px rgba(102, 92, 255, 0.10);\n                }\n\n                .avroi-heading {\n                    max-width: 760px;\n                    margin: 0;\n                    color: var(--avroi-text);\n                    font-size: clamp(42px, 4.35vw, 68px);\n                    font-weight: 650;\n                    line-height: 0.99;\n                    letter-spacing: -0.055em;\n                    text-wrap: balance;\n                }\n\n                .avroi-headingAccent {\n                    color: var(--avroi-accent-text);\n                }\n\n                .avroi-copy {\n                    max-width: 455px;\n                    justify-self: end;\n                    padding-bottom: 4px;\n                }\n\n                .avroi-description {\n                    margin: 0;\n                    color: var(--avroi-muted);\n                    font-size: 15px;\n                    font-weight: 450;\n                    line-height: 1.65;\n                    letter-spacing: -0.012em;\n                }\n\n                .avroi-note {\n                    display: flex;\n                    align-items: center;\n                    gap: 10px;\n                    margin-top: 21px;\n                    color: var(--avroi-text);\n                    font-size: 10px;\n                    font-weight: 700;\n                    letter-spacing: 0.09em;\n                    text-transform: uppercase;\n                }\n\n                .avroi-noteLine {\n                    width: 32px;\n                    height: 1px;\n                    background: rgba(18, 19, 24, 0.18);\n                }\n\n                .avroi-calculator {\n                    display: grid;\n                    grid-template-columns:\n                        minmax(330px, 0.88fr)\n                        minmax(0, 1.12fr);\n                    min-height: 590px;\n                    overflow: hidden;\n                    border-radius: 24px;\n                    border: 1px solid rgba(18, 19, 24, 0.08);\n                    background: var(--avroi-surface);\n                    box-shadow:\n                        0 24px 70px rgba(18, 19, 24, 0.08);\n                }\n\n                .avroi-inputPanel {\n                    position: relative;\n                    z-index: 2;\n                    padding: 32px 32px 34px;\n                    background: var(--avroi-surface);\n                }\n\n                .avroi-panelTop {\n                    display: flex;\n                    align-items: flex-start;\n                    justify-content: space-between;\n                    gap: 18px;\n                    margin-bottom: 30px;\n                }\n\n                .avroi-panelEyebrow {\n                    margin-bottom: 7px;\n                    color: var(--avroi-muted);\n                    font-size: 10px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.10em;\n                    text-transform: uppercase;\n                }\n\n                .avroi-panelTitle {\n                    margin: 0;\n                    color: var(--avroi-text);\n                    font-size: 22px;\n                    font-weight: 650;\n                    line-height: 1.12;\n                    letter-spacing: -0.04em;\n                }\n\n                .avroi-liveBadge {\n                    display: inline-flex;\n                    align-items: center;\n                    gap: 7px;\n                    flex: 0 0 auto;\n                    padding: 8px 10px;\n                    border-radius: 999px;\n                    color: var(--avroi-accent-text);\n                    font-size: 10px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.07em;\n                    text-transform: uppercase;\n                    background: rgba(102, 92, 255, 0.07);\n                    border: 1px solid rgba(102, 92, 255, 0.12);\n                }\n\n                .avroi-liveDot {\n                    width: 6px;\n                    height: 6px;\n                    border-radius: 50%;\n                    background: var(--avroi-accent);\n                    box-shadow:\n                        0 0 0 4px rgba(102, 92, 255, 0.08);\n                }\n\n                .avroi-controls {\n                    display: flex;\n                    flex-direction: column;\n                }\n\n                .avroi-control {\n                    padding: 22px 0 24px;\n                    border-top: 1px solid rgba(18, 19, 24, 0.075);\n                }\n\n                .avroi-control:last-child {\n                    padding-bottom: 10px;\n                }\n\n                .avroi-controlTop {\n                    display: flex;\n                    align-items: flex-start;\n                    justify-content: space-between;\n                    gap: 20px;\n                    margin-bottom: 18px;\n                }\n\n                .avroi-controlLabel {\n                    margin-bottom: 5px;\n                    color: var(--avroi-text);\n                    font-size: 13px;\n                    font-weight: 620;\n                    line-height: 1.3;\n                    letter-spacing: -0.018em;\n                }\n\n                .avroi-controlHint {\n                    max-width: 240px;\n                    color: var(--avroi-muted);\n                    font-size: 10px;\n                    font-weight: 450;\n                    line-height: 1.4;\n                }\n\n                .avroi-controlValue {\n                    flex: 0 0 auto;\n                    min-width: 58px;\n                    padding: 8px 10px;\n                    border-radius: 9px;\n                    color: var(--avroi-text);\n                    text-align: center;\n                    font-size: 12px;\n                    font-weight: 700;\n                    line-height: 1;\n                    font-variant-numeric: tabular-nums;\n                    background: #F5F5F7;\n                    border: 1px solid rgba(18, 19, 24, 0.07);\n                }\n\n                .avroi-rangeWrap {\n                    width: 100%;\n                }\n\n                .avroi-range {\n                    width: 100%;\n                    height: 24px;\n                    min-height: 24px;\n                    margin: 0;\n                    appearance: none;\n                    -webkit-appearance: none;\n                    background: transparent;\n                    cursor: pointer;\n                    outline: none;\n                }\n\n                .avroi-range::-webkit-slider-runnable-track {\n                    width: 100%;\n                    height: 4px;\n                    border-radius: 999px;\n                    background:\n                        linear-gradient(\n                            90deg,\n                            var(--avroi-accent) 0%,\n                            var(--avroi-accent) var(--avroi-progress),\n                            #E7E7EC var(--avroi-progress),\n                            #E7E7EC 100%\n                        );\n                }\n\n                .avroi-range::-webkit-slider-thumb {\n                    width: 18px;\n                    height: 18px;\n                    margin-top: -7px;\n                    appearance: none;\n                    -webkit-appearance: none;\n                    border-radius: 50%;\n                    border: 4px solid var(--avroi-surface);\n                    background: var(--avroi-accent);\n                    box-shadow:\n                        0 0 0 1px rgba(102, 92, 255, 0.18),\n                        0 4px 10px rgba(18, 19, 24, 0.14);\n                    transition:\n                        transform 160ms ease,\n                        box-shadow 160ms ease;\n                }\n\n                .avroi-range:hover::-webkit-slider-thumb {\n                    transform: scale(1.08);\n                    box-shadow:\n                        0 0 0 4px rgba(102, 92, 255, 0.08),\n                        0 4px 12px rgba(18, 19, 24, 0.16);\n                }\n\n                .avroi-range:focus-visible::-webkit-slider-thumb {\n                    box-shadow:\n                        0 0 0 4px rgba(102, 92, 255, 0.18),\n                        0 4px 12px rgba(18, 19, 24, 0.16);\n                }\n\n                .avroi-range::-moz-range-track {\n                    width: 100%;\n                    height: 4px;\n                    border-radius: 999px;\n                    background: #E7E7EC;\n                }\n\n                .avroi-range::-moz-range-progress {\n                    height: 4px;\n                    border-radius: 999px;\n                    background: var(--avroi-accent);\n                }\n\n                .avroi-range::-moz-range-thumb {\n                    width: 12px;\n                    height: 12px;\n                    border-radius: 50%;\n                    border: 4px solid var(--avroi-surface);\n                    background: var(--avroi-accent);\n                    box-shadow:\n                        0 0 0 1px rgba(102, 92, 255, 0.18);\n                }\n\n                .avroi-rangeLabels {\n                    display: flex;\n                    justify-content: space-between;\n                    margin-top: 2px;\n                    color: #5F6472;\n                    font-size: 10px;\n                    font-weight: 550;\n                    line-height: 1;\n                }\n\n                .avroi-outputPanel {\n                    position: relative;\n                    isolation: isolate;\n                    display: flex;\n                    flex-direction: column;\n                    padding: 32px;\n                    overflow: hidden;\n                    color: white;\n                    background: var(--avroi-dark);\n                }\n\n                .avroi-outputPanel::before {\n                    content: \"\";\n                    position: absolute;\n                    z-index: -2;\n                    width: 520px;\n                    height: 520px;\n                    top: -320px;\n                    right: -170px;\n                    border-radius: 50%;\n                    background:\n                        radial-gradient(\n                            circle,\n                            rgba(102, 92, 255, 0.26) 0%,\n                            rgba(102, 92, 255, 0.08) 38%,\n                            transparent 70%\n                        );\n                    pointer-events: none;\n                }\n\n                .avroi-outputPanel::after {\n                    content: \"\";\n                    position: absolute;\n                    z-index: -2;\n                    inset: 0;\n                    opacity: 0.22;\n                    pointer-events: none;\n                    background-image:\n                        linear-gradient(\n                            rgba(255, 255, 255, 0.022) 1px,\n                            transparent 1px\n                        ),\n                        linear-gradient(\n                            90deg,\n                            rgba(255, 255, 255, 0.022) 1px,\n                            transparent 1px\n                        );\n                    background-size: 28px 28px;\n                    mask-image:\n                        linear-gradient(\n                            to bottom,\n                            black,\n                            transparent 80%\n                        );\n                }\n\n                .avroi-outputTop {\n                    display: flex;\n                    align-items: flex-start;\n                    justify-content: space-between;\n                    gap: 22px;\n                    margin-bottom: 26px;\n                }\n\n                .avroi-outputEyebrow {\n                    display: flex;\n                    align-items: center;\n                    gap: 8px;\n                    margin-bottom: 8px;\n                    color: var(--avroi-accent-text-dark);\n                    font-size: 10px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.10em;\n                    text-transform: uppercase;\n                }\n\n                .avroi-outputTitle {\n                    margin: 0;\n                    max-width: 330px;\n                    color: rgba(255, 255, 255, 0.94);\n                    font-size: 23px;\n                    font-weight: 620;\n                    line-height: 1.12;\n                    letter-spacing: -0.038em;\n                }\n\n                .avroi-estimateTag {\n                    flex: 0 0 auto;\n                    padding: 8px 10px;\n                    border-radius: 999px;\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.08em;\n                    text-transform: uppercase;\n                    background: rgba(255, 255, 255, 0.04);\n                    border: 1px solid rgba(255, 255, 255, 0.07);\n                }\n\n                .avroi-primaryMetric {\n                    position: relative;\n                    padding: 28px;\n                    margin-bottom: 14px;\n                    overflow: hidden;\n                    border-radius: 18px;\n                    background:\n                        linear-gradient(\n                            140deg,\n                            rgba(102, 92, 255, 0.18),\n                            rgba(102, 92, 255, 0.055) 55%,\n                            rgba(255, 255, 255, 0.035)\n                        );\n                    border: 1px solid rgba(130, 120, 255, 0.20);\n                }\n\n                .avroi-primaryMetric::before {\n                    content: \"\";\n                    position: absolute;\n                    top: 0;\n                    left: 20px;\n                    right: 20px;\n                    height: 1px;\n                    background:\n                        linear-gradient(\n                            90deg,\n                            transparent,\n                            rgba(151, 143, 255, 0.90),\n                            transparent\n                        );\n                }\n\n                .avroi-primaryLabel {\n                    margin-bottom: 11px;\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.10em;\n                    text-transform: uppercase;\n                }\n\n                .avroi-primaryValue {\n                    display: flex;\n                    align-items: baseline;\n                    gap: 8px;\n                    color: white;\n                    font-size: clamp(46px, 5vw, 66px);\n                    font-weight: 650;\n                    line-height: 0.96;\n                    letter-spacing: -0.06em;\n                    font-variant-numeric: tabular-nums;\n                }\n\n                .avroi-primarySuffix {\n                    color: var(--avroi-accent-text-dark);\n                    font-size: 16px;\n                    font-weight: 620;\n                    letter-spacing: -0.02em;\n                }\n\n                .avroi-primarySub {\n                    margin-top: 13px;\n                    max-width: 390px;\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    line-height: 1.5;\n                }\n\n                .avroi-metricGrid {\n                    display: grid;\n                    grid-template-columns:\n                        repeat(2, minmax(0, 1fr));\n                    gap: 14px;\n                    margin-bottom: 14px;\n                }\n\n                .avroi-metric {\n                    min-width: 0;\n                    min-height: 125px;\n                    display: flex;\n                    flex-direction: column;\n                    justify-content: space-between;\n                    padding: 18px;\n                    border-radius: 15px;\n                    background: rgba(255, 255, 255, 0.038);\n                    border: 1px solid rgba(255, 255, 255, 0.06);\n                }\n\n                .avroi-metricHead {\n                    display: flex;\n                    align-items: center;\n                    justify-content: space-between;\n                    gap: 14px;\n                }\n\n                .avroi-metricIcon {\n                    width: 32px;\n                    height: 32px;\n                    flex: 0 0 32px;\n                    display: grid;\n                    place-items: center;\n                    border-radius: 9px;\n                    color: var(--avroi-accent-text-dark);\n                    background: rgba(102, 92, 255, 0.13);\n                    border: 1px solid rgba(130, 120, 255, 0.13);\n                }\n\n                .avroi-metricLabel {\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    font-weight: 700;\n                    line-height: 1.15;\n                    letter-spacing: 0.09em;\n                    text-align: right;\n                    text-transform: uppercase;\n                }\n\n                .avroi-metricValue {\n                    margin-top: 18px;\n                    overflow: hidden;\n                    color: rgba(255, 255, 255, 0.94);\n                    font-size: 25px;\n                    font-weight: 620;\n                    line-height: 1;\n                    letter-spacing: -0.04em;\n                    font-variant-numeric: tabular-nums;\n                    text-overflow: ellipsis;\n                    white-space: nowrap;\n                }\n\n                .avroi-metricUnit {\n                    margin-left: 4px;\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    font-weight: 550;\n                    letter-spacing: 0;\n                }\n\n                .avroi-opportunity {\n                    margin-top: auto;\n                    padding: 19px 20px 18px;\n                    border-radius: 15px;\n                    background: rgba(255, 255, 255, 0.038);\n                    border: 1px solid rgba(255, 255, 255, 0.06);\n                }\n\n                .avroi-opportunityTop {\n                    display: flex;\n                    align-items: flex-start;\n                    justify-content: space-between;\n                    gap: 20px;\n                    margin-bottom: 16px;\n                }\n\n                .avroi-opportunityLabel {\n                    margin-bottom: 5px;\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.09em;\n                    text-transform: uppercase;\n                }\n\n                .avroi-opportunityValue {\n                    color: rgba(255, 255, 255, 0.92);\n                    font-size: 14px;\n                    font-weight: 620;\n                    letter-spacing: -0.018em;\n                }\n\n                .avroi-opportunityStatus {\n                    display: flex;\n                    align-items: center;\n                    gap: 7px;\n                    color: var(--avroi-accent-text-dark);\n                    font-size: 10px;\n                    font-weight: 700;\n                    letter-spacing: 0.075em;\n                    text-transform: uppercase;\n                    white-space: nowrap;\n                }\n\n                .avroi-opportunityDot {\n                    width: 6px;\n                    height: 6px;\n                    border-radius: 50%;\n                    background: #7770FF;\n                    box-shadow:\n                        0 0 0 4px rgba(102, 92, 255, 0.08);\n                }\n\n                .avroi-meter {\n                    width: 100%;\n                    height: 5px;\n                    overflow: hidden;\n                    border-radius: 999px;\n                    background: rgba(255, 255, 255, 0.07);\n                }\n\n                .avroi-meterFill {\n                    height: 100%;\n                    border-radius: inherit;\n                    background:\n                        linear-gradient(\n                            90deg,\n                            #665CFF,\n                            #9B95FF\n                        );\n                    transition: width 260ms ease;\n                    box-shadow:\n                        0 0 18px rgba(102, 92, 255, 0.28);\n                }\n\n                .avroi-opportunityCopy {\n                    margin: 11px 0 0;\n                    color: rgba(255, 255, 255, 0.68);\n                    font-size: 10px;\n                    line-height: 1.5;\n                }\n\n                .avroi-evidence {\n                    display: grid;\n                    grid-template-columns: repeat(3, minmax(0, 1fr));\n                    gap: 10px;\n                    margin-top: 24px;\n                }\n\n                .avroi-evidenceStep {\n                    min-width: 0;\n                    padding: 17px 18px;\n                    border-radius: 14px;\n                    border: 1px solid rgba(18, 19, 24, 0.08);\n                    background: rgba(255, 255, 255, 0.72);\n                }\n\n                .avroi-evidenceKicker {\n                    margin-bottom: 7px;\n                    color: var(--avroi-accent-text);\n                    font-size: 10px;\n                    font-weight: 750;\n                    line-height: 1;\n                    letter-spacing: 0.10em;\n                    text-transform: uppercase;\n                }\n\n                .avroi-evidenceTitle {\n                    margin: 0;\n                    color: var(--avroi-text);\n                    font-size: 13px;\n                    font-weight: 650;\n                    line-height: 1.3;\n                    letter-spacing: -0.018em;\n                }\n\n                .avroi-evidenceCopy {\n                    margin: 6px 0 0;\n                    color: var(--avroi-muted);\n                    font-size: 10px;\n                    line-height: 1.5;\n                }\n\n                .avroi-bottom {\n                    display: grid;\n                    grid-template-columns:\n                        1.05fr\n                        0.95fr;\n                    margin-top: 24px;\n                    overflow: hidden;\n                    border-radius: 16px;\n                    border: 1px solid rgba(18, 19, 24, 0.08);\n                    background: var(--avroi-surface);\n                }\n\n                .avroi-bottomBlock {\n                    min-height: 96px;\n                    display: flex;\n                    align-items: center;\n                    gap: 15px;\n                    padding: 20px 22px;\n                }\n\n                .avroi-bottomBlock:first-child {\n                    border-right: 1px solid rgba(18, 19, 24, 0.07);\n                }\n\n                .avroi-bottomIcon {\n                    width: 38px;\n                    height: 38px;\n                    flex: 0 0 38px;\n                    display: grid;\n                    place-items: center;\n                    border-radius: 11px;\n                    color: var(--avroi-accent-text);\n                    background: rgba(102, 92, 255, 0.07);\n                    border: 1px solid rgba(102, 92, 255, 0.10);\n                }\n\n                .avroi-bottomLabel {\n                    margin-bottom: 5px;\n                    color: var(--avroi-muted);\n                    font-size: 10px;\n                    font-weight: 700;\n                    line-height: 1;\n                    letter-spacing: 0.09em;\n                    text-transform: uppercase;\n                }\n\n                .avroi-bottomValue {\n                    color: var(--avroi-text);\n                    font-size: 12px;\n                    font-weight: 600;\n                    line-height: 1.4;\n                    letter-spacing: -0.015em;\n                }\n\n                .avroi-bottomAction {\n                    justify-content: space-between;\n                }\n\n                .avroi-arrow {\n                    width: 34px;\n                    height: 34px;\n                    flex: 0 0 34px;\n                    display: grid;\n                    place-items: center;\n                    border-radius: 50%;\n                    color: var(--avroi-text);\n                    background: #F5F5F7;\n                    border: 1px solid rgba(18, 19, 24, 0.07);\n                }\n\n                @media (max-width: 1199px) {\n                    .avroi-wrap {\n                        padding: 96px 36px 100px;\n                    }\n\n                    .avroi-wrap::before {\n                        left: 36px;\n                        right: 36px;\n                    }\n\n                    .avroi-header {\n                        gap: 44px;\n                        margin-bottom: 42px;\n                    }\n\n                    .avroi-heading {\n                        font-size: clamp(40px, 5.3vw, 58px);\n                    }\n\n                    .avroi-calculator {\n                        grid-template-columns:\n                            minmax(310px, 0.9fr)\n                            minmax(0, 1.1fr);\n                    }\n\n                    .avroi-inputPanel,\n                    .avroi-outputPanel {\n                        padding: 26px;\n                    }\n\n                    .avroi-primaryMetric {\n                        padding: 23px;\n                    }\n\n                    .avroi-primaryValue {\n                        font-size: 54px;\n                    }\n                }\n\n                @media (max-width: 809px) {\n                    .avroi-wrap {\n                        padding: 76px 20px 80px;\n                    }\n\n                    .avroi-wrap::before {\n                        left: 20px;\n                        right: 20px;\n                    }\n\n                    .avroi-header {\n                        grid-template-columns: 1fr;\n                        gap: 24px;\n                        margin-bottom: 34px;\n                    }\n\n                    .avroi-copy {\n                        max-width: 600px;\n                        justify-self: start;\n                    }\n\n                    .avroi-heading {\n                        max-width: 650px;\n                        font-size: clamp(36px, 10vw, 49px);\n                        line-height: 1.01;\n                        letter-spacing: -0.05em;\n                    }\n\n                    .avroi-description {\n                        font-size: 14px;\n                    }\n\n                    .avroi-calculator {\n                        grid-template-columns: 1fr;\n                        border-radius: 19px;\n                    }\n\n                    .avroi-inputPanel,\n                    .avroi-outputPanel {\n                        padding: 24px 20px;\n                    }\n\n                    .avroi-inputPanel {\n                        border-bottom: 1px solid rgba(255, 255, 255, 0.05);\n                    }\n\n                    .avroi-controlHint {\n                        max-width: 220px;\n                    }\n\n                    .avroi-outputPanel {\n                        min-height: 560px;\n                    }\n\n                    .avroi-primaryMetric {\n                        padding: 22px;\n                    }\n\n                    .avroi-primaryValue {\n                        font-size: clamp(48px, 14vw, 62px);\n                    }\n\n                    .avroi-evidence {\n                        grid-template-columns: 1fr;\n                        gap: 8px;\n                    }\n\n                    .avroi-bottom {\n                        grid-template-columns: 1fr;\n                        border-radius: 14px;\n                    }\n\n                    .avroi-bottomBlock {\n                        min-height: 88px;\n                    }\n\n                    .avroi-bottomBlock:first-child {\n                        border-right: 0;\n                        border-bottom: 1px solid rgba(18, 19, 24, 0.07);\n                    }\n                }\n\n                @media (max-width: 479px) {\n                    .avroi-heading {\n                        font-size: 38px;\n                    }\n\n                    .avroi-panelTop,\n                    .avroi-outputTop {\n                        flex-direction: column;\n                        align-items: flex-start;\n                    }\n\n                    .avroi-controlTop {\n                        gap: 12px;\n                    }\n\n                    .avroi-controlHint {\n                        max-width: 185px;\n                    }\n\n                    .avroi-metricGrid {\n                        grid-template-columns: 1fr;\n                    }\n\n                    .avroi-metric {\n                        min-height: 112px;\n                    }\n\n                    .avroi-opportunityTop {\n                        flex-direction: column;\n                        gap: 10px;\n                    }\n                }\n\n                @media (prefers-reduced-motion: reduce) {\n                    .avroi-root *,\n                    .avroi-root *::before,\n                    .avroi-root *::after {\n                        scroll-behavior: auto !important;\n                        transition-duration: 0.001ms !important;\n                        animation-duration: 0.001ms !important;\n                        animation-iteration-count: 1 !important;\n                    }\n                }"
+ ],
+ "namedSections": []
+}
