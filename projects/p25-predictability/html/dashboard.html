@@ -221,6 +221,30 @@ ul.tight li{margin:4px 0;}
 .rung .rtitle{font-weight:700;font-size:13px;}
 .rung .rsub{font-size:11.5px;color:var(--text-3);margin-top:1px;}
 
+@media (max-width:900px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .sidebar{position:relative;top:auto;height:auto;max-width:100vw;padding:12px;gap:10px;border-right:0;border-bottom:1px solid var(--line);overflow:hidden}
+  .brand{padding-inline:4px}
+  .proj-switch{display:none}
+  .nav{display:flex;overflow-x:auto;gap:6px;margin:0;padding:2px 0 7px;scrollbar-width:thin}
+  .nav-group,.sidebar-foot{display:none}
+  .nav-item{width:auto;min-width:max-content;min-height:44px;padding:10px 12px;border:1px solid transparent}
+  .nav-item.active::before{display:none}
+  .topbar{top:0;padding:10px 14px}
+  .crumbs>span:first-child,.crumbs .sep,.chip-100{display:none}
+  .icon-btn{width:44px;height:44px}
+  .view{width:100%;max-width:100vw;padding:20px 16px}
+  .view-head{align-items:flex-start;flex-direction:column}
+  .bar-row{grid-template-columns:minmax(110px,1fr) minmax(90px,2fr) auto}
+  .table-wrap,.table-scroll{max-width:100%;overflow-x:auto}
+  table{min-width:680px}
+}
+@media (max-width:560px){
+  .hero-title{font-size:clamp(28px,9vw,38px)}
+  .hero-card,.card{padding:16px}
+  .bar-row{grid-template-columns:1fr auto}
+  .bar-row .bar{grid-column:1/-1;grid-row:2}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;}}
 :focus-visible{outline:2px solid var(--violet-400);outline-offset:2px;border-radius:6px;}
 </style>
