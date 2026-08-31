@@ -1210,7 +1210,51 @@ html.intro-curtain-active body{ overflow:hidden }
 }
 .hero-film-play:focus-visible{ outline:2px solid #fff; outline-offset:-4px }
 .hero-film-card.is-playing .hero-film-play{ display:none }
-@media (max-width:720px){ .hero-film-card{ width:100%; margin-top:22px } }
+.hero-film-controls{
+  position:absolute; z-index:3; left:16px; right:16px; bottom:16px;
+  display:flex; align-items:center; gap:8px; opacity:0; pointer-events:none;
+  transform:translateY(6px); transition:opacity .18s ease,transform .18s ease;
+}
+.hero-film-card.is-expanded .hero-film-controls,
+.hero-film-card.is-expanded:hover .hero-film-controls,
+.hero-film-card.is-expanded:focus-within .hero-film-controls{
+  opacity:1; pointer-events:auto; transform:none;
+}
+.hero-film-control{
+  width:44px; height:44px; border:1px solid rgba(255,255,255,.3); border-radius:50%;
+  display:grid; place-items:center; color:#fff; background:rgba(8,12,20,.72);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); cursor:pointer;
+}
+.hero-film-control:focus-visible{ outline:2px solid #fff; outline-offset:2px }
+.hero-film-pause span{ width:13px; height:16px; border-left:4px solid currentColor; border-right:4px solid currentColor }
+.hero-film-pause[aria-label="Play film"] span{
+  width:0; height:0; margin-left:3px; border:0; border-top:8px solid transparent;
+  border-bottom:8px solid transparent; border-left:13px solid currentColor;
+}
+.hero-film-maximize{ margin-left:auto }
+.hero-film-maximize span{ width:17px; height:17px; border:2px solid currentColor; border-radius:2px }
+.hero-film-close span{ position:relative; width:18px; height:18px }
+.hero-film-close span::before,.hero-film-close span::after{
+  content:""; position:absolute; left:8px; top:0; width:2px; height:18px; background:currentColor;
+}
+.hero-film-close span::before{ transform:rotate(45deg) }
+.hero-film-close span::after{ transform:rotate(-45deg) }
+.hero-film-card.is-expanded{
+  position:fixed; z-index:10020; inset:50% auto auto 50%; margin:0;
+  width:min(1120px,calc(100vw - 48px)); max-height:calc(100svh - 48px);
+  transform:translate(-50%,-50%); border-radius:18px;
+  box-shadow:0 32px 100px rgba(0,0,0,.58);
+}
+body.hero-film-open{ overflow:hidden }
+body.hero-film-open::after{
+  content:""; position:fixed; z-index:10010; inset:0; background:rgba(4,8,15,.84);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+@media (max-width:720px){
+  .hero-film-card{ width:100%; margin-top:22px }
+  .hero-film-card.is-expanded{ width:calc(100vw - 24px); max-height:calc(100svh - 24px) }
+  .hero-film-controls{ left:10px; right:10px; bottom:10px }
+}
 
 /* --- dev-only intro switcher, gated behind ?dev=1 in intro.js ----------- */
 .intro-dev-switch{
