@@ -325,7 +325,7 @@
           '<div class="tp-stage">' +
             (multi ? '<button class="tp-arrow prev" type="button" aria-label="Previous image">&lsaquo;</button>' : '') +
             '<iframe id="galleryEmbed" title="' + esc(p.name) + '" loading="lazy" hidden></iframe>' +
-            '<video id="galleryVideo" muted loop playsinline hidden></video>' +
+            '<video id="galleryVideo" controls muted loop playsinline preload="metadata" hidden></video>' +
             '<img id="galleryMain" src="" alt="">' +
             (multi ? '<button class="tp-arrow next" type="button" aria-label="Next image">&rsaquo;</button>' : '') +
           '</div>' +
@@ -419,7 +419,7 @@
         '<div class="vgrid">' + clips.map(function (v, i) {
           var base = 'assets/videos/' + v.slug + '-clip';
           return '<article class="vcard rv" style="--d:' + (i * 90) + 'ms">' +
-            '<video class="vplayer" controls preload="none" playsinline ' +
+            '<video class="vplayer" controls preload="metadata" playsinline ' +
                    'poster="' + base + '.jpg" aria-label="' + esc(v.title) + '">' +
               '<source src="' + base + '.mp4" type="video/mp4">This browser cannot play the clip.' +
             '</video>' +

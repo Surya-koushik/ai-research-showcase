@@ -382,7 +382,7 @@ window.VIDEOS = [
     var catLabel = window.kindMeta(it.groupId).label;
     var base = 'assets/previews/' + it.slug;
     return '<article class="fcard vclip-card pv-card rv" data-hay="' + esc(it.hay) + '" style="--d:' + delay + 'ms">' +
-      '<div class="vclip-media"><video controls muted loop preload="none" playsinline ' +
+      '<div class="vclip-media"><video controls muted loop preload="metadata" playsinline ' +
         'poster="' + base + '.jpg" aria-label="' + esc(p.name) + ' preview">' +
         '<source src="' + base + '.mp4" type="video/mp4">This browser cannot play the preview.</video></div>' +
       '<div class="fc-top">' + markHTML(it.groupId) +
