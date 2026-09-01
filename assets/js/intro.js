@@ -65,12 +65,51 @@
   var card = document.getElementById('heroFilmCard');
   var heroVideo = document.getElementById('heroFilmVideo');
   var playBtn = document.getElementById('heroFilmPlay');
+  var pauseBtn = document.getElementById('heroFilmPause');
+  var maximizeBtn = document.getElementById('heroFilmMaximize');
+  var closeBtn = document.getElementById('heroFilmClose');
   if (card && heroVideo && playBtn) {
+    function syncPlaybackControl() {
+      if (!pauseBtn) return;
+      pauseBtn.setAttribute('aria-label', heroVideo.paused ? 'Play film' : 'Pause film');
+    }
+    function openFilm() {
+      card.classList.add('is-playing', 'is-expanded');
+      document.body.classList.add('hero-film-open');
+      if (closeBtn) closeBtn.focus();
+    }
+    function closeFilm() {
+      heroVideo.pause();
+      card.classList.remove('is-playing', 'is-expanded');
+      document.body.classList.remove('hero-film-open');
+      syncPlaybackControl();
+      playBtn.focus();
+    }
     playBtn.addEventListener('click', function () {
       heroVideo.muted = false;
+      openFilm();
       var p = heroVideo.play();
       if (p && p.catch) p.catch(function () {});
-      card.classList.add('is-playing');
+    });
+    if (pauseBtn) pauseBtn.addEventListener('click', function () {
+      if (heroVideo.paused) {
+        var p = heroVideo.play();
+        if (p && p.catch) p.catch(function () {});
+      } else heroVideo.pause();
+    });
+    if (maximizeBtn) maximizeBtn.addEventListener('click', function () {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (card.requestFullscreen) card.requestFullscreen();
+    });
+    if (closeBtn) closeBtn.addEventListener('click', closeFilm);
+    heroVideo.addEventListener('play', syncPlaybackControl);
+    heroVideo.addEventListener('pause', syncPlaybackControl);
+    heroVideo.addEventListener('ended', closeFilm);
+    document.addEventListener('fullscreenchange', function () {
+      if (maximizeBtn) maximizeBtn.setAttribute('aria-label', document.fullscreenElement ? 'Exit fullscreen' : 'Enter fullscreen');
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && card.classList.contains('is-expanded') && !document.fullscreenElement) closeFilm();
     });
   }
 

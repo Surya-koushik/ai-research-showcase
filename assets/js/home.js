@@ -54,45 +54,52 @@
     document.body.classList.toggle("nav-open", open);
     navToggle.setAttribute("aria-expanded", open ? "true" : "false");
     sidebar.setAttribute("aria-hidden", open ? "false" : "true");
+    sidebar.inert = !open;
+    if (open && navClose) navClose.focus();
+    else if (!open && sidebar.contains(document.activeElement)) navToggle.focus();
   }
+  sidebar.inert = true;
   navToggle.onclick = function () { setNav(!document.body.classList.contains("nav-open")); };
   navScrim.onclick  = function () { setNav(false); };
   if (navClose) navClose.onclick = function () { setNav(false); };
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") setNav(false); });
   $("#nav").addEventListener("click", function (e) { if (e.target.closest("a")) setNav(false); });
 
-  /* --- nav pills: active state tracks scroll position -------------------
-     Item 3, 2026-08-31: the six .nl links got a shared pill container
-     (site-chrome.css, "NAV PILLS"), which meant they needed a real active
-     state to read as one component rather than six bare links.
-
-     The six sections are contiguous top to bottom (.band+.band, no gaps),
-     so a thin trigger LINE near the top of the viewport is always inside
-     exactly one of them -- far more reliable than comparing
-     intersectionRatio across sections of wildly different heights (a
-     12,000px section and a 400px one can't be compared on ratio; the tall
-     one always loses even while it fills the whole screen). rootMargin
-     collapses the root to that one line; IO reports which section's box
-     currently contains it. `#top` (the hero, not one of the six pill
-     targets) sits above the line at page load, so nothing is marked active
-     until the visitor actually reaches a target -- correct, not a bug. */
+  /* --- nav pills: active state follows document order -------------------
+     Some destinations are nested inside a long parent section, so an
+     IntersectionObserver can report several of them at once and make the
+     pill jump backwards. Instead, select the last destination that has
+     crossed a stable line below the sticky header. */
   var navPills = $$('.nav-pills .nl');
-  if (navPills.length && 'IntersectionObserver' in window) {
+  if (navPills.length) {
     var pillTargets = navPills.map(function (a) {
       var id = a.getAttribute('href');
       return id && id.charAt(0) === '#' ? document.getElementById(id.slice(1)) : null;
-    });
+    }).filter(Boolean);
     var setActive = function (id) {
       navPills.forEach(function (a) {
         a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
       });
     };
-    var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) setActive(e.target.id);
+    var pillTicking = false;
+    var updatePill = function () {
+      var line = window.scrollY + Math.max(88, window.innerHeight * 0.18);
+      var current = pillTargets[0];
+      pillTargets.forEach(function (el) {
+        if (el.offsetTop <= line) current = el;
       });
-    }, { rootMargin: '-22% 0px -77% 0px', threshold: 0 });
-    pillTargets.forEach(function (el) { if (el) spy.observe(el); });
+      if (current) setActive(current.id);
+      pillTicking = false;
+    };
+    var requestPillUpdate = function () {
+      if (!pillTicking) {
+        pillTicking = true;
+        window.requestAnimationFrame(updatePill);
+      }
+    };
+    window.addEventListener('scroll', requestPillUpdate, { passive: true });
+    window.addEventListener('resize', requestPillUpdate);
+    updatePill();
   }
 
   $('#searchIc').innerHTML = ICON('search');
@@ -279,7 +286,10 @@
       ['#top',       'home',   'Home'],
       ['#ecosystem', 'grid',   'The tools we build'],
       ['#videos',    'layers', 'See them running'],
-      ['#roadmap',   'route',  'Roadmap']
+      ['#catalogue', 'search', 'Every tool, findable'],
+      ['#roadmap',   'route',  'Roadmap'],
+      ['#faq',       'help',   'FAQ'],
+      ['#contact',   'link',   'Contact']
     ];
     var jumpHTML = JUMPS.map(function (j) {
       return '<a class="a-nav-item nav-jump" href="' + j[0] + '">' +
@@ -524,6 +534,13 @@
       : shown + ' matching';
     observe();
   }
+  var resetFilters = document.getElementById('resetFilters');
+  if (resetFilters) resetFilters.addEventListener('click', function () {
+    state.kind = 'all'; state.domain = 'all'; state.tech = 'all'; state.q = ''; state.page = 0;
+    search.value = '';
+    renderRail(); renderTechFilter(); render();
+    search.focus();
+  });
   /* Only a deliberate filter action moves the page. Typing in the search box
      must never yank it, which is what calling this from render() did. */
   function renderAndReveal() {

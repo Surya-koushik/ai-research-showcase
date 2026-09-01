@@ -119,10 +119,11 @@
     <a class="topbar-brand" href="index.html" aria-label="Evolve — home"><img src="assets/loader/evolve.png" alt="Evolve"></a>
     <div class="a-topbar-spacer"></div>
     <nav class="nav-pills" id="navPills" aria-label="Page sections">
+      <a class="nl opt" href="#top">Home</a>
       <a class="nl opt" href="#kinds">What&nbsp;we&nbsp;build</a>
-      <a class="nl opt" href="#roadmap">Roadmap</a>
-      <a class="nl" href="#ecosystem">All&nbsp;work</a>
       <a class="nl opt" href="#videos">Running</a>
+      <a class="nl" href="#catalogue">Catalogue</a>
+      <a class="nl opt" href="#roadmap">Roadmap</a>
       <a class="nl opt" href="#faq">FAQ</a>
       <a class="nl opt" href="#contact">Contact</a>
     </nav>
@@ -168,6 +169,17 @@
       <button type="button" class="hero-film-play" id="heroFilmPlay" aria-label="Play the Asure brand film">
         <span class="hero-film-play-icon" aria-hidden="true"></span>
       </button>
+      <div class="hero-film-controls" id="heroFilmControls" aria-label="Brand film controls">
+        <button type="button" class="hero-film-control hero-film-pause" id="heroFilmPause" aria-label="Pause film">
+          <span aria-hidden="true"></span>
+        </button>
+        <button type="button" class="hero-film-control hero-film-maximize" id="heroFilmMaximize" aria-label="Enter fullscreen">
+          <span aria-hidden="true"></span>
+        </button>
+        <button type="button" class="hero-film-control hero-film-close" id="heroFilmClose" aria-label="Close film">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -287,7 +299,7 @@
        the shape this component already had, unused, since the exhibition
        pass (row(), assets/js/home.js). assets/js/home.js owns all of it —
        render, filter state, and paging. -->
-  <div class="rmap-head rv" style="margin-top:clamp(52px,6vw,80px)">
+  <div class="rmap-head rv" id="catalogue" style="margin-top:clamp(52px,6vw,80px)">
     <p class="eyebrow">The rest of the catalogue</p>
     <h3 class="rmap-title">Every tool, findable.</h3>
     <p class="lede" style="max-width:60ch;margin-top:10px">Search by name, kind or the software it
@@ -321,6 +333,7 @@
   <div class="a-empty" id="empty" style="display:none;margin-top:36px">
     <div class="a-title">Nothing matches that scope</div>
     <p style="margin-top:6px;font-size:var(--t-sm)">Clear the filter or widen the search.</p>
+    <button class="btn empty-action" id="resetFilters" type="button">Clear filters</button>
   </div>
 </section>
 

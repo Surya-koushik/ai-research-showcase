@@ -1,0 +1,950 @@
+{
+  "generatedAt": "2026-08-31T16:25:29.912Z",
+  "base": "http://127.0.0.1:8099",
+  "routes": [
+    [
+      "home",
+      "/index.html?intro=off"
+    ]
+  ],
+  "widths": [
+    390,
+    1440
+  ],
+  "reducedMotion": {
+    "matches": true,
+    "animations": []
+  },
+  "results": [
+    {
+      "name": "home",
+      "route": "/index.html?intro=off",
+      "width": 390,
+      "status": 200,
+      "consoleErrors": [],
+      "screenshot": "Y:\\CLAUDE DIRECT ACCESS FOLDER\\AI_Research_Showcase\\_design\\audit-2026-08-31\\final-media\\home-390.png",
+      "title": "AI Research & Innovation — Asure",
+      "h1": "AIAsure Intelligence",
+      "documentHidden": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": 0,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "AIAsure Intelligence",
+          "size": "40.56px",
+          "weight": "400"
+        },
+        {
+          "tag": "H2",
+          "text": "The tools we build.",
+          "size": "28px",
+          "weight": "400"
+        },
+        {
+          "tag": "H3",
+          "text": "Now watch them run.",
+          "size": "24px",
+          "weight": "700"
+        },
+        {
+          "tag": "H4",
+          "text": "Pipeline16",
+          "size": "16px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Plugin3",
+          "size": "16px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Dashboard6",
+          "size": "16px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Connector2",
+          "size": "16px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Platform3",
+          "size": "16px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Not yet catalogued3",
+          "size": "16px",
+          "weight": "800"
+        },
+        {
+          "tag": "H3",
+          "text": "Every tool, findable.",
+          "size": "24px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Where Asure Intelligence goes next.",
+          "size": "28px",
+          "weight": "400"
+        },
+        {
+          "tag": "H3",
+          "text": "The gates ahead.",
+          "size": "24px",
+          "weight": "700"
+        },
+        {
+          "tag": "H4",
+          "text": "Foundation",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Workflows",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Agents",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "The Loop",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Year-two decisions",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H2",
+          "text": "One tool at a time.",
+          "size": "38px",
+          "weight": "400"
+        },
+        {
+          "tag": "H2",
+          "text": "Questions we get asked.",
+          "size": "28px",
+          "weight": "400"
+        },
+        {
+          "tag": "H2",
+          "text": "Talk to the studio.",
+          "size": "28px",
+          "weight": "400"
+        },
+        {
+          "tag": "H4",
+          "text": "The site",
+          "size": "11px",
+          "weight": "600"
+        },
+        {
+          "tag": "H4",
+          "text": "Studio",
+          "size": "11px",
+          "weight": "600"
+        }
+      ],
+      "fonts": [
+        "\"Times New Roman\"",
+        "Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "Inter, \"Segoe UI\", system-ui, sans-serif",
+        "",
+        "\"JetBrains Mono\", ui-monospace, monospace"
+      ],
+      "colors": [
+        "rgb(14, 17, 22)",
+        "rgb(255, 255, 255)",
+        "rgb(16, 47, 76)",
+        "rgb(0, 0, 0)",
+        "",
+        "rgba(10, 10, 14, 0.55)",
+        "rgb(10, 10, 14)",
+        "rgb(107, 114, 128)",
+        "rgb(90, 100, 114)",
+        "rgb(91, 47, 214)",
+        "rgb(241, 236, 254)",
+        "rgb(47, 109, 181)",
+        "rgba(16, 24, 32, 0.42)",
+        "rgba(255, 255, 255, 0.86)",
+        "rgb(247, 248, 251)",
+        "rgb(154, 107, 0)",
+        "rgb(106, 63, 224)",
+        "rgba(4, 6, 12, 0.28)",
+        "rgba(8, 12, 20, 0.72)",
+        "rgb(124, 92, 255)",
+        "rgb(13, 138, 82)",
+        "rgb(20, 22, 28)",
+        "rgb(243, 241, 255)",
+        "rgb(12, 41, 64)",
+        "rgb(34, 230, 168)",
+        "rgba(12, 41, 64, 0.72)",
+        "rgb(128, 82, 255)",
+        "rgb(255, 195, 77)"
+      ],
+      "interactiveCount": 102,
+      "undersized": [
+        {
+          "tag": "A",
+          "label": "Skip to tools",
+          "width": 113,
+          "height": 34
+        },
+        {
+          "tag": "A",
+          "label": "Evolve — home",
+          "width": 84,
+          "height": 20
+        },
+        {
+          "tag": "A",
+          "label": "Catalogue",
+          "width": 97,
+          "height": 25
+        },
+        {
+          "tag": "INPUT",
+          "label": "Search the clips by tool, kind or category…",
+          "width": 278,
+          "height": 20
+        },
+        {
+          "tag": "A",
+          "label": "Open Plotting Agent →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Masterplan Zoning Agent →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Masterplanning Studio →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Site GPT →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open HVAC Designer →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Landscape Intelligence Lab →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Light Studio →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Parking Design Studio →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Pedestrian Wind Analysis →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Renewable Energy Lab →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Sketch to Image →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Structural Design Lab →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Sustainability Designer →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Traffic Design Studio →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Urban Intelligence →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open VT Designer →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open ADS L1 Self-Certification →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open ads-lifecycle →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open AsureBimQc →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open TWINPULSE →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open BIM Progress Dashboard →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Delivery Predictability Dashboard →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open TEP Dashboard →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open ADS AI BIM Build Tracker →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Team Organisation Navigator →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open ads-bridge →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Revit ↔ Claude MCP Bridge →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open AI Team Hub →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Architecture Workbench →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Interior Simulation Library →",
+          "width": 300,
+          "height": 21
+        },
+        {
+          "tag": "INPUT",
+          "label": "Search the catalogue by name, kind or technology…",
+          "width": 278,
+          "height": 22
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Pause animation",
+          "width": 34,
+          "height": 34
+        },
+        {
+          "tag": "A",
+          "label": "See the roadmap",
+          "width": 113,
+          "height": 17
+        },
+        {
+          "tag": "A",
+          "label": "studio@asure.in",
+          "width": 104,
+          "height": 17
+        },
+        {
+          "tag": "A",
+          "label": "asure.in",
+          "width": 51,
+          "height": 17
+        },
+        {
+          "tag": "A",
+          "label": "All tools",
+          "width": 51,
+          "height": 17
+        },
+        {
+          "tag": "A",
+          "label": "Kinds of tool",
+          "width": 82,
+          "height": 17
+        },
+        {
+          "tag": "A",
+          "label": "The count",
+          "width": 66,
+          "height": 17
+        },
+        {
+          "tag": "A",
+          "label": "studio@asure.in",
+          "width": 104,
+          "height": 17
+        }
+      ],
+      "animatedLayoutProperties": []
+    },
+    {
+      "name": "home",
+      "route": "/index.html?intro=off",
+      "width": 1440,
+      "status": 200,
+      "consoleErrors": [],
+      "screenshot": "Y:\\CLAUDE DIRECT ACCESS FOLDER\\AI_Research_Showcase\\_design\\audit-2026-08-31\\final-media\\home-1440.png",
+      "title": "AI Research & Innovation — Asure",
+      "h1": "AIAsure Intelligence",
+      "documentHidden": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": 0,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "AIAsure Intelligence",
+          "size": "92px",
+          "weight": "400"
+        },
+        {
+          "tag": "H2",
+          "text": "The tools we build.",
+          "size": "60.48px",
+          "weight": "400"
+        },
+        {
+          "tag": "H3",
+          "text": "Now watch them run.",
+          "size": "38px",
+          "weight": "700"
+        },
+        {
+          "tag": "H4",
+          "text": "Pipeline16",
+          "size": "16px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Plugin3",
+          "size": "16px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Dashboard6",
+          "size": "16px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Connector2",
+          "size": "16px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Platform3",
+          "size": "16px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Not yet catalogued3",
+          "size": "16px",
+          "weight": "800"
+        },
+        {
+          "tag": "H3",
+          "text": "Every tool, findable.",
+          "size": "38px",
+          "weight": "700"
+        },
+        {
+          "tag": "H2",
+          "text": "Where Asure Intelligence goes next.",
+          "size": "60.48px",
+          "weight": "400"
+        },
+        {
+          "tag": "H3",
+          "text": "The gates ahead.",
+          "size": "38px",
+          "weight": "700"
+        },
+        {
+          "tag": "H4",
+          "text": "Foundation",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Workflows",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Agents",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "The Loop",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Year-two decisions",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H2",
+          "text": "One tool at a time.",
+          "size": "92.16px",
+          "weight": "400"
+        },
+        {
+          "tag": "H2",
+          "text": "Questions we get asked.",
+          "size": "60.48px",
+          "weight": "400"
+        },
+        {
+          "tag": "H2",
+          "text": "Talk to the studio.",
+          "size": "60.48px",
+          "weight": "400"
+        },
+        {
+          "tag": "H4",
+          "text": "The site",
+          "size": "11px",
+          "weight": "600"
+        },
+        {
+          "tag": "H4",
+          "text": "Studio",
+          "size": "11px",
+          "weight": "600"
+        }
+      ],
+      "fonts": [
+        "\"Times New Roman\"",
+        "Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "Inter, \"Segoe UI\", system-ui, sans-serif",
+        "",
+        "\"JetBrains Mono\", ui-monospace, monospace"
+      ],
+      "colors": [
+        "rgb(14, 17, 22)",
+        "rgb(255, 255, 255)",
+        "rgb(16, 47, 76)",
+        "rgb(0, 0, 0)",
+        "",
+        "rgba(10, 10, 14, 0.55)",
+        "rgb(10, 10, 14)",
+        "rgb(107, 114, 128)",
+        "rgb(90, 100, 114)",
+        "rgb(91, 47, 214)",
+        "rgb(241, 236, 254)",
+        "rgb(47, 109, 181)",
+        "rgba(16, 24, 32, 0.42)",
+        "rgba(255, 255, 255, 0.86)",
+        "rgb(247, 248, 251)",
+        "rgb(154, 107, 0)",
+        "rgb(106, 63, 224)",
+        "rgba(4, 6, 12, 0.28)",
+        "rgba(8, 12, 20, 0.72)",
+        "rgb(124, 92, 255)",
+        "rgb(13, 138, 82)",
+        "rgb(20, 22, 28)",
+        "rgb(243, 241, 255)",
+        "rgb(12, 41, 64)",
+        "rgb(34, 230, 168)",
+        "rgba(12, 41, 64, 0.72)",
+        "rgb(128, 82, 255)",
+        "rgb(255, 195, 77)"
+      ],
+      "interactiveCount": 105,
+      "undersized": [
+        {
+          "tag": "A",
+          "label": "Skip to tools",
+          "width": 113,
+          "height": 34
+        },
+        {
+          "tag": "A",
+          "label": "Evolve — home",
+          "width": 84,
+          "height": 20
+        },
+        {
+          "tag": "A",
+          "label": "Home",
+          "width": 58,
+          "height": 25
+        },
+        {
+          "tag": "A",
+          "label": "What we build",
+          "width": 129,
+          "height": 25
+        },
+        {
+          "tag": "A",
+          "label": "Running",
+          "width": 81,
+          "height": 25
+        },
+        {
+          "tag": "A",
+          "label": "Catalogue",
+          "width": 97,
+          "height": 25
+        },
+        {
+          "tag": "A",
+          "label": "Roadmap",
+          "width": 81,
+          "height": 25
+        },
+        {
+          "tag": "A",
+          "label": "FAQ",
+          "width": 50,
+          "height": 25
+        },
+        {
+          "tag": "A",
+          "label": "Contact",
+          "width": 81,
+          "height": 25
+        },
+        {
+          "tag": "INPUT",
+          "label": "Search the clips by tool, kind or category…",
+          "width": 568,
+          "height": 20
+        },
+        {
+          "tag": "A",
+          "label": "Open Plotting Agent →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Masterplan Zoning Agent →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Masterplanning Studio →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Site GPT →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open HVAC Designer →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Landscape Intelligence Lab →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Light Studio →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Parking Design Studio →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Pedestrian Wind Analysis →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Renewable Energy Lab →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Sketch to Image →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Structural Design Lab →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Sustainability Designer →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Traffic Design Studio →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Urban Intelligence →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open VT Designer →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open ADS L1 Self-Certification →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open ads-lifecycle →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open AsureBimQc →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open TWINPULSE →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open BIM Progress Dashboard →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Delivery Predictability Dashboard →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open TEP Dashboard →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open ADS AI BIM Build Tracker →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Team Organisation Navigator →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open ads-bridge →",
+          "width": 457,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Revit ↔ Claude MCP Bridge →",
+          "width": 457,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open AI Team Hub →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Architecture Workbench →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "A",
+          "label": "Open Interior Simulation Library →",
+          "width": 279,
+          "height": 21
+        },
+        {
+          "tag": "INPUT",
+          "label": "Search the catalogue by name, kind or technology…",
+          "width": 530,
+          "height": 22
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Pause animation",
+          "width": 34,
+          "height": 34
+        },
+        {
+          "tag": "A",
+          "label": "See the roadmap",
+          "width": 113,
+          "height": 17
+        },
+        {
+          "tag": "A",
+          "label": "studio@asure.in",
+          "width": 104,
+          "height": 17
+        },
+        {
+          "tag": "A",
+          "label": "asure.in",
+          "width": 51,
+          "height": 17
+        },
+        {
+          "tag": "A",
+          "label": "All tools",
+          "width": 51,
+          "height": 17
+        },
+        {
+          "tag": "A",
+          "label": "Kinds of tool",
+          "width": 82,
+          "height": 17
+        },
+        {
+          "tag": "A",
+          "label": "The count",
+          "width": 66,
+          "height": 17
+        },
+        {
+          "tag": "A",
+          "label": "studio@asure.in",
+          "width": 104,
+          "height": 17
+        }
+      ],
+      "animatedLayoutProperties": []
+    }
+  ]
+}

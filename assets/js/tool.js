@@ -55,7 +55,11 @@
       document.body.classList.toggle('nav-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       side.setAttribute('aria-hidden', open ? 'false' : 'true');
+      side.inert = !open;
+      if (open && close) close.focus();
+      else if (!open && side.contains(document.activeElement)) toggle.focus();
     }
+    side.inert = true;
     toggle.addEventListener('click', function () {
       setNav(!document.body.classList.contains('nav-open'));
     });

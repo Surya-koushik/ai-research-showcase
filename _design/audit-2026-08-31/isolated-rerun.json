@@ -1,0 +1,147 @@
+{
+  "generatedAt": "2026-08-31T15:34:07.596Z",
+  "base": "http://127.0.0.1:8099",
+  "routes": [
+    [
+      "tool-template",
+      "/tool_template.html"
+    ]
+  ],
+  "widths": [
+    768
+  ],
+  "reducedMotion": {
+    "matches": true,
+    "animations": []
+  },
+  "results": [
+    {
+      "name": "tool-template",
+      "route": "/tool_template.html",
+      "width": 768,
+      "status": 200,
+      "consoleErrors": [],
+      "screenshot": "Y:\\CLAUDE DIRECT ACCESS FOLDER\\AI_Research_Showcase\\_design\\audit-2026-08-31\\isolated-rerun\\tool-template-768.png",
+      "title": "Tool page template — Asure Intelligence",
+      "h1": "ADS Phoenix\n        L1 Self-Certification",
+      "documentHidden": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": 0,
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "ADS Phoenix\n        L1 Self-Certification",
+          "size": "39.936px",
+          "weight": "400"
+        },
+        {
+          "tag": "H2",
+          "text": "What it changes.",
+          "size": "32.256px",
+          "weight": "400"
+        },
+        {
+          "tag": "H3",
+          "text": "Inside the tool.",
+          "size": "24px",
+          "weight": "700"
+        },
+        {
+          "tag": "H3",
+          "text": "From a documented standard to a verified record.",
+          "size": "24px",
+          "weight": "700"
+        },
+        {
+          "tag": "H3",
+          "text": "How it was built.",
+          "size": "24px",
+          "weight": "700"
+        },
+        {
+          "tag": "H4",
+          "text": "Prototype",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Native add-in",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Licensing and records",
+          "size": "19px",
+          "weight": "800"
+        },
+        {
+          "tag": "H4",
+          "text": "Rollout",
+          "size": "19px",
+          "weight": "800"
+        }
+      ],
+      "fonts": [
+        "\"Times New Roman\"",
+        "Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "Inter, \"Segoe UI\", system-ui, sans-serif",
+        "\"JetBrains Mono\", ui-monospace, monospace",
+        "monospace"
+      ],
+      "colors": [
+        "rgb(14, 17, 22)",
+        "rgb(255, 255, 255)",
+        "rgb(16, 47, 76)",
+        "rgb(90, 100, 114)",
+        "rgb(91, 47, 214)",
+        "rgb(241, 236, 254)",
+        "rgb(107, 114, 128)",
+        "rgba(16, 24, 32, 0.42)",
+        "rgba(255, 255, 255, 0.86)",
+        "rgb(154, 107, 0)",
+        "rgb(106, 63, 224)",
+        "rgb(15, 107, 87)",
+        "rgb(40, 117, 199)",
+        "color(srgb 0.156863 0.458824 0.780392 / 0.14)",
+        "rgb(247, 248, 251)"
+      ],
+      "interactiveCount": 22,
+      "undersized": [
+        {
+          "tag": "A",
+          "label": "Skip to content",
+          "width": 132,
+          "height": 34
+        },
+        {
+          "tag": "A",
+          "label": "Evolve — home",
+          "width": 84,
+          "height": 20
+        },
+        {
+          "tag": "A",
+          "label": "← All work",
+          "width": 79,
+          "height": 17
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Previous image",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "tag": "BUTTON",
+          "label": "Next image",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "animatedLayoutProperties": []
+    }
+  ]
+}

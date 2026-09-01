@@ -289,6 +289,34 @@ window.VIDEOS = [
     });
   });
 
+  /* A tool can have both a desk recording and a silent preview loop. Keep one
+     card per tool—the richer desk recording is inserted first and wins. */
+  var representedTools = {};
+  items = items.filter(function (it) {
+    var id = (it.tool && it.tool.id) || (it.p && it.p.id);
+    if (!id) return true;
+    if (representedTools[id]) return false;
+    representedTools[id] = true;
+    return true;
+  });
+
+  /* Keep the complete dashboard and plugin families present even where a
+     recording has not been made. Use real repository media when available;
+     absence stays explicit instead of being filled with invented UI. */
+  ['dashboard', 'plugin'].forEach(function (kindId) {
+    (window.PROJECTS || []).filter(function (p) { return p.kind === kindId; }).forEach(function (p) {
+      var represented = items.some(function (it) {
+        return (it.tool && it.tool.id === p.id) || (it.p && it.p.id === p.id);
+      });
+      if (!represented) items.push({
+        type: 'catalogue', p: p, groupId: kindId,
+        media: (window.MEDIA_MANIFEST || {})[p.id] || {},
+        hay: [p.name, p.tagline, window.kindMeta(p.kind).label, window.domainMeta(p.domain).label]
+          .filter(Boolean).join(' ').toLowerCase()
+      });
+    });
+  });
+
   /* Pipeline leads; the four Surya named lead pipeline itself. Everything
      else follows window.KINDS' own declared order, so the sequence is a
      restatement of the existing taxonomy, not a new decision. */
@@ -352,16 +380,33 @@ window.VIDEOS = [
   function previewCard(it, delay) {
     var p = it.p;
     var catLabel = window.kindMeta(it.groupId).label;
-    var media = window.PREVIEW_MEDIA ? window.PREVIEW_MEDIA(it.slug, it.groupId, 'pv-media--card') : '';
-    return '<a class="fcard vclip-card pv-card rv" data-hay="' + esc(it.hay) + '" ' +
-        'href="tool.html?id=' + encodeURIComponent(p.id) + '" style="--d:' + delay + 'ms">' +
-      media +
+    var base = 'assets/previews/' + it.slug;
+    return '<article class="fcard vclip-card pv-card rv" data-hay="' + esc(it.hay) + '" style="--d:' + delay + 'ms">' +
+      '<div class="vclip-media"><video controls muted loop preload="none" playsinline ' +
+        'poster="' + base + '.jpg" aria-label="' + esc(p.name) + ' preview">' +
+        '<source src="' + base + '.mp4" type="video/mp4">This browser cannot play the preview.</video></div>' +
       '<div class="fc-top">' + markHTML(it.groupId) +
         '<div class="fc-id"><b>' + esc(p.name) + '</b><span class="fc-cat">' + esc(catLabel) + '</span></div>' +
       '</div>' +
       '<p class="fc-line">' + esc(p.tagline || '') + '</p>' +
-      '<span class="fc-go">Open ' + esc(p.name) + ' &rarr;</span>' +
-    '</a>';
+      '<a class="fc-go" href="tool.html?id=' + encodeURIComponent(p.id) + '">Open ' + esc(p.name) + ' &rarr;</a>' +
+    '</article>';
+  }
+
+  function catalogueCard(it, delay) {
+    var p = it.p, media = it.media || {}, visual;
+    if (p.kind === 'dashboard' && media.html && media.html.length) {
+      visual = '<div class="vclip-media"><img class="dashboard-preview" loading="lazy" decoding="async" ' +
+        'src="assets/dashboard-previews/' + encodeURIComponent(p.id) + '.jpg" alt="' + esc(p.name) + ' dashboard preview"></div>';
+    } else if (p.kind === 'plugin' && media.workflow) {
+      visual = '<div class="vclip-media"><img class="plugin-preview" loading="lazy" decoding="async" src="' +
+        esc(media.workflow) + '" alt="' + esc(p.name) + ' workflow preview"></div>';
+    } else visual = '<div class="media-unavailable">Preview not recorded yet</div>';
+    return '<article class="fcard vclip-card rv" data-hay="' + esc(it.hay) + '" style="--d:' + delay + 'ms">' +
+      visual + '<div class="fc-top">' + markHTML(it.groupId) +
+      '<div class="fc-id"><b>' + esc(p.name) + '</b><span class="fc-cat">' + esc(window.kindMeta(p.kind).label) + '</span></div></div>' +
+      '<p class="fc-line">' + esc(p.tagline || '') + '</p>' +
+      '<a class="fc-go" href="tool.html?id=' + encodeURIComponent(p.id) + '">Open ' + esc(p.name) + ' &rarr;</a></article>';
   }
 
   var delayCounter = 0;
@@ -370,7 +415,7 @@ window.VIDEOS = [
       var label = id === UNCAT.id ? UNCAT.label : window.kindMeta(id).label;
       var cards = byGroup[id].map(function (it) {
         var d = Math.min(delayCounter * 45, 360); delayCounter++;
-        return it.type === 'preview' ? previewCard(it, d) : galleryCard(it, d);
+        return it.type === 'preview' ? previewCard(it, d) : it.type === 'catalogue' ? catalogueCard(it, d) : galleryCard(it, d);
       }).join('');
       return '<div class="vgroup" data-group="' + id + '">' +
         '<h4 class="vgroup-title">' + esc(label) + '<span class="vgroup-count">' + byGroup[id].length + '</span></h4>' +
@@ -404,11 +449,6 @@ window.VIDEOS = [
       });
     });
   });
-
-  /* PREVIEW_INIT wires the .pv-media[data-preview-slug] nodes just added --
-     it is idempotent per-node (getState guards against double-wiring), so
-     calling it again after DOMContentLoaded's own call is safe. */
-  if (window.PREVIEW_INIT) window.PREVIEW_INIT();
 
   /* ------------------------------------------------------------- search ---
      Same interaction language as the catalogue search above it (#search,
