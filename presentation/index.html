@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f8fb">
+  <title>Evolve — AI Research &amp; Innovation</title>
+  <style>
+    :root{--ink:#10121a;--muted:#5e6879;--line:#dce2eb;--paper:#f7f8fb;--violet:#6938ef;--cyan:#22b8f0;--navy:#0d1120;--ease:cubic-bezier(.22,1,.36,1)}
+    *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#dfe4ec;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    button,a{font:inherit}.deck{position:relative;width:100%;height:100%;display:grid;place-items:center;padding:16px}.stage{position:relative;width:min(calc(100vw - 32px),calc((100vh - 32px)*16/9));aspect-ratio:16/9;overflow:hidden;background:var(--paper);box-shadow:0 24px 80px rgba(20,28,45,.18)}
+    .scene{position:absolute;inset:0;padding:7.2% 8%;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(10px);transition:opacity .35s var(--ease),transform .55s var(--ease);background:var(--paper);overflow:hidden}
+    .scene.is-active{opacity:1;visibility:visible;pointer-events:auto;transform:none}.scene.dark{background:var(--navy);color:#fff}.scene-grid{background-image:linear-gradient(rgba(71,84,104,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(71,84,104,.055) 1px,transparent 1px);background-size:5.2% 9.25%}
+    .brand{position:absolute;left:3.2%;top:3.4%;width:7.2%;height:auto}.brand.light{filter:invert(1)}.num{position:absolute;right:3.2%;top:3.5%;font:600 clamp(9px,1vw,16px)/1 ui-monospace,monospace;letter-spacing:.16em;color:#7f8998}.dark .num{color:#7c8499}
+    .eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 2.2%;font:650 clamp(9px,1vw,17px)/1 ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:#8f5b00}.eyebrow:before{content:"";width:36px;height:2px;background:#ffb018}.dark .eyebrow{color:#bbb2dc}.dark .eyebrow:before{background:#9c72ff}
+    h1,h2,p{margin:0}h1{max-width:88%;font-size:clamp(42px,6.7vw,108px);line-height:.95;letter-spacing:-.055em;font-weight:530}h2{max-width:84%;font-size:clamp(34px,5.1vw,82px);line-height:1;letter-spacing:-.045em;font-weight:520}.accent{color:var(--violet)}
+    .lede{max-width:63%;margin-top:2.8%;font-size:clamp(15px,1.8vw,30px);line-height:1.45;color:var(--muted)}.dark .lede{color:#b8bfd0}.footerline{position:absolute;left:8%;right:8%;bottom:5%;display:flex;justify-content:space-between;align-items:center;color:#717b8d;font:600 clamp(8px,.8vw,13px)/1 ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
+    .orb{position:absolute;width:46%;aspect-ratio:1;right:-6%;top:10%;border-radius:50%;opacity:.72;background:radial-gradient(circle at 34% 28%,#d9cdff 0,#8b5cf6 44%,#4b2fd6 72%,rgba(75,47,214,0) 73%);filter:drop-shadow(0 0 44px rgba(105,56,239,.28))}.wave{position:absolute;right:-8%;bottom:-8%;width:68%;opacity:.42}
+    .metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2.2%;margin-top:5.5%}.metric{border-top:2px solid var(--line);padding-top:9%}.metric b{display:block;font-size:clamp(30px,4.8vw,78px);line-height:1;color:var(--violet);letter-spacing:-.04em}.metric span{display:block;margin-top:10%;font:600 clamp(9px,1vw,16px)/1.35 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .types{display:grid;grid-template-columns:repeat(4,1fr);gap:2%;margin-top:4.5%}.type{padding:9% 8%;border:1px solid var(--line);background:rgba(255,255,255,.72)}.type b{display:block;font-size:clamp(20px,3vw,48px);color:var(--violet)}.type span{font:650 clamp(8px,.85vw,14px)/1.3 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .browser{position:absolute;left:8%;right:8%;top:23%;bottom:9%;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 22px 55px rgba(33,42,62,.13)}.browserbar{height:8%;min-height:26px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:0 14px}.browserbar i{width:7px;height:7px;border-radius:50%;background:#d5dae3}.browser img{width:100%;height:92%;object-fit:cover;object-position:top}
+    .video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2%;margin-top:4.2%}.video-card{border:1px solid #272d3e;background:#111725;padding:1.3%;border-radius:10px}.video-card video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#080b13;border-radius:6px}.video-card b{display:block;margin:4% 2% 1%;font-size:clamp(12px,1.25vw,20px)}.video-card span{display:block;margin:0 2% 3%;font:600 clamp(7px,.7vw,12px)/1.3 ui-monospace,monospace;letter-spacing:.11em;text-transform:uppercase;color:#929bb0}
+    .dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2%;margin-top:3.2%}.dash-grid figure{margin:0;border:1px solid var(--line);background:#fff;padding:1.5%;border-radius:8px}.dash-grid img{display:block;width:100%;aspect-ratio:16/7;object-fit:cover;object-position:top;border:1px solid #edf0f5}.dash-grid figcaption{padding:2% 1% 1%;font:650 clamp(8px,.8vw,14px)/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#566174}
+    .film{position:absolute;left:8%;right:8%;top:20%;bottom:10%;display:grid;grid-template-columns:1.55fr .75fr;gap:3%}.film video{width:100%;height:100%;object-fit:contain;background:#050812;border-radius:10px}.film-copy{align-self:center}.film-copy b{display:block;font-size:clamp(26px,3.4vw,54px);line-height:1.05}.film-copy p{margin-top:8%;font-size:clamp(13px,1.35vw,22px);line-height:1.48;color:#afb7c8}.film-copy small{display:block;margin-top:10%;font:600 clamp(8px,.8vw,13px)/1.5 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#8e98ac}
+    .share{display:grid;grid-template-columns:1.15fr .85fr;gap:8%;align-items:center;height:100%}.checks{display:grid;gap:4%}.check{display:grid;grid-template-columns:auto 1fr;gap:4%;align-items:start;padding-bottom:4%;border-bottom:1px solid var(--line)}.check i{display:grid;place-items:center;width:34px;aspect-ratio:1;border-radius:50%;background:#e8fff5;color:#087755;font-style:normal;font-weight:800}.check b{display:block;font-size:clamp(14px,1.45vw,24px)}.check span{font-size:clamp(10px,1vw,16px);color:var(--muted)}.qr-card{padding:10%;border:1px solid var(--line);background:#fff;text-align:center}.qr-card .url{overflow-wrap:anywhere;font:650 clamp(9px,.9vw,15px)/1.45 ui-monospace,monospace;color:var(--violet)}.qr-card a{display:inline-flex;margin-top:10%;padding:4% 8%;border-radius:999px;background:var(--violet);color:#fff;text-decoration:none;font-weight:750}
+    .controls{position:fixed;z-index:20;left:50%;bottom:max(22px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:7px;background:rgba(14,18,29,.92);border:1px solid rgba(255,255,255,.12);border-radius:999px;box-shadow:0 12px 34px rgba(0,0,0,.25);backdrop-filter:blur(16px)}.controls button{display:grid;place-items:center;min-width:42px;height:38px;border:0;border-radius:999px;background:transparent;color:#fff;cursor:pointer}.controls button:hover,.controls button:focus-visible{background:rgba(255,255,255,.13);outline:none}.counter{min-width:76px;text-align:center;color:#c9cede;font:650 12px/1 ui-monospace,monospace;letter-spacing:.08em}.progress{position:fixed;z-index:21;left:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--violet),var(--cyan));transition:width .45s var(--ease)}
+    .notes{position:fixed;z-index:30;right:18px;top:18px;width:min(360px,calc(100vw - 36px));padding:18px;border-radius:12px;background:rgba(13,17,32,.96);color:#fff;box-shadow:0 20px 65px rgba(0,0,0,.3);transform:translateX(calc(100% + 32px));transition:transform .35s var(--ease)}.notes.is-open{transform:none}.notes b{display:block;margin-bottom:10px}.notes p{color:#bfc6d5;font-size:14px;line-height:1.5}
+    @media(max-width:700px){.deck{padding:0}.stage{width:100vw;max-height:100vh}.scene{padding:8%}.lede{max-width:80%}.types{grid-template-columns:repeat(2,1fr)}.metric-row{grid-template-columns:repeat(2,1fr)}.metric{padding-top:4%}.video-grid{gap:1.4%}.video-card span{display:none}.dash-grid{gap:1%}.film{left:7%;right:7%;grid-template-columns:1.4fr .6fr}.controls{bottom:10px}.controls button{min-width:38px;height:34px}}
+    @media(prefers-reduced-motion:reduce){.scene,.notes,.progress{transition:none}}
+  </style>
+</head>
+<body>
+  <script type="application/hyperframes-slideshow+json" id="slideshow-manifest">
+  {"slides":[
+    {"sceneId":"premise","notes":"Open with the operating premise: this is not a speculative AI lab; it is software built inside an architecture practice for its own work."},
+    {"sceneId":"shift","notes":"The point is not headcount reduction. Mechanical delivery moves to software so expert attention returns to judgment."},
+    {"sceneId":"system","notes":"Explain the portfolio as one system with different delivery forms—not a bag of disconnected experiments."},
+    {"sceneId":"findable","notes":"Every tool remains discoverable. The website is both catalogue and evidence base."},
+    {"sceneId":"running","notes":"Play one or two clips. All players retain native pause, seek, volume and fullscreen controls."},
+    {"sceneId":"dashboards","notes":"These are real dashboard surfaces, shown together rather than represented by a single generic image."},
+    {"sceneId":"film","notes":"The updated 77-second film preserves the soundtrack while fixing the opening collision, rushed title, working-practice handoff and closing logo deformation."},
+    {"sceneId":"share","notes":"Close on verification: public HTTPS link, all media live, and the presentation itself shareable."}
+  ],"slideSequences":[]}
+  </script>
+
+  <main class="deck" aria-label="Evolve presentation">
+    <div class="stage" id="stage">
+      <section class="scene scene-grid is-active" data-composition-id="premise" data-start="0" data-duration="8" data-width="1920" data-height="1080" data-label="The premise">
+        <img class="brand" src="../assets/loader/evolve.png" alt="Evolve"><span class="num">01 / 08</span><div class="orb"></div>
+        <p class="eyebrow">Asure Design Studio</p><h1>AI software built <span class="accent">inside the practice</span> that uses it.</h1>
+        <p class="lede">A growing operating system for architecture delivery—running in Revit, on our own hardware, and measured against real work.</p>
+        <div class="footerline"><span>AI Research &amp; Innovation</span><span>2026</span></div>
+      </section>
+
+      <section class="scene dark" data-composition-id="shift" data-start="8" data-duration="8" data-width="1920" data-height="1080" data-label="The shift">
+        <img class="brand light" src="../assets/loader/evolve.png" alt=""><span class="num">02 / 08</span>
+        <p class="eyebrow">The operating shift</p><h2>The mechanical half moves off people’s desks. <span class="accent">Judgment stays human.</span></h2>
+        <p class="lede">Automation handles repeatable production, checking and transfer. The hours returned go to design decisions, coordination and risk.</p>
+        <div class="metric-row"><div class="metric"><b>5</b><span>Measured workflows</span></div><div class="metric"><b>48</b><span>Hosted media assets</span></div><div class="metric"><b>26</b><span>Controlled video previews</span></div><div class="metric"><b>1</b><span>Shared system</span></div></div>
+      </section>
+
+      <section class="scene scene-grid" data-composition-id="system" data-start="16" data-duration="8" data-width="1920" data-height="1080" data-label="The system">
+        <img class="brand" src="../assets/loader/evolve.png" alt=""><span class="num">03 / 08</span><p class="eyebrow">One product language</p><h2>Different delivery forms belong to <span class="accent">one system.</span></h2>
+        <div class="types"><div class="type"><b>03</b><span>Revit plugins</span></div><div class="type"><b>06</b><span>Dashboards</span></div><div class="type"><b>25</b><span>Pipelines</span></div><div class="type"><b>07</b><span>Connectors</span></div><div class="type"><b>07</b><span>Platforms</span></div><div class="type"><b>03</b><span>Agents</span></div><div class="type"><b>08</b><span>Evaluations</span></div><div class="type"><b>11</b><span>Decks</span></div></div>
+      </section>
+
+      <section class="scene" data-composition-id="findable" data-start="24" data-duration="8" data-width="1920" data-height="1080" data-label="Findability">
+        <img class="brand" src="../assets/loader/evolve.png" alt=""><span class="num">04 / 08</span><p class="eyebrow">Every tool, findable</p><h2>The catalogue is now the <span class="accent">single front door.</span></h2>
+        <div class="browser"><div class="browserbar"><i></i><i></i><i></i></div><img src="../_design/audit-2026-08-31/final-media/home-1440.png" alt="Public Evolve website catalogue"></div>
+      </section>
+
+      <section class="scene dark" data-composition-id="running" data-start="32" data-duration="8" data-width="1920" data-height="1080" data-label="Tools running">
+        <img class="brand light" src="../assets/loader/evolve.png" alt=""><span class="num">05 / 08</span><p class="eyebrow">Working software</p><h2>Watch the click—and the result arrive.</h2>
+        <div class="video-grid">
+          <article class="video-card"><video id="deck-light" controls muted loop playsinline preload="metadata" poster="../assets/previews/light-studio.jpg" src="../assets/previews/light-studio.mp4" data-start="32" data-duration="8"></video><b>Light Studio</b><span>Environmental workflow</span></article>
+          <article class="video-card"><video id="deck-plotting" controls muted loop playsinline preload="metadata" poster="../assets/previews/plotting-agent.jpg" src="../assets/previews/plotting-agent.mp4" data-start="32" data-duration="8"></video><b>Plotting Agent</b><span>Site planning pipeline</span></article>
+          <article class="video-card"><video id="deck-masterplan" controls muted loop playsinline preload="metadata" poster="../assets/previews/masterplan-zoning-agent.jpg" src="../assets/previews/masterplan-zoning-agent.mp4" data-start="32" data-duration="8"></video><b>Masterplan Zoning</b><span>Code-aware pipeline</span></article>
+        </div>
+      </section>
+
+      <section class="scene" data-composition-id="dashboards" data-start="40" data-duration="8" data-width="1920" data-height="1080" data-label="Dashboards">
+        <img class="brand" src="../assets/loader/evolve.png" alt=""><span class="num">06 / 08</span><p class="eyebrow">Operational visibility</p><h2>Dashboards show the <span class="accent">whole working surface.</span></h2>
+        <div class="dash-grid"><figure><img src="../assets/dashboard-previews/h10-dashboard.jpg" alt="H10 dashboard"><figcaption>H10 Dashboard</figcaption></figure><figure><img src="../assets/dashboard-previews/p25-predictability.jpg" alt="Predictability dashboard"><figcaption>Predictability</figcaption></figure><figure><img src="../assets/dashboard-previews/tep-dashboard.jpg" alt="TEP dashboard"><figcaption>TEP Dashboard</figcaption></figure><figure><img src="../assets/dashboard-previews/ads-ai-bim-build-tracker.jpg" alt="Build tracker dashboard"><figcaption>AI BIM Build Tracker</figcaption></figure></div>
+      </section>
+
+      <section class="scene dark" data-composition-id="film" data-start="48" data-duration="8" data-width="1920" data-height="1080" data-label="Brand film">
+        <img class="brand light" src="../assets/loader/evolve.png" alt=""><span class="num">07 / 08</span><p class="eyebrow">The story in motion</p>
+        <div class="film"><video id="deck-brand-film" controls playsinline preload="metadata" poster="../assets/video/brand-film-poster.jpg" src="../assets/video/brand-film.mp4" data-start="48" data-duration="8" data-has-audio="true"></video><div class="film-copy"><b>The corrected brand film now lands cleanly.</b><p>Opening copy clears the interface transition. Studio and practice beats have room to read. The ending uses deterministic master marks.</p><small>77.099 seconds · H.264 + unchanged AAC audio</small></div></div>
+      </section>
+
+      <section class="scene scene-grid" data-composition-id="share" data-start="56" data-duration="8" data-width="1920" data-height="1080" data-label="Public handoff">
+        <img class="brand" src="../assets/loader/evolve.png" alt=""><span class="num">08 / 08</span>
+        <div class="share"><div><p class="eyebrow">Ready to share</p><h2>One public link. <span class="accent">No login required.</span></h2><p class="lede" style="max-width:90%">The website, films, previews and this presentation are served over HTTPS and tested from the public domain.</p></div><div class="checks"><div class="check"><i>✓</i><div><b>48/48 media files live</b><span>Public requests verified</span></div></div><div class="check"><i>✓</i><div><b>Streaming enabled</b><span>Byte-range playback supported</span></div></div><div class="check"><i>✓</i><div><b>Responsive and accessible</b><span>Keyboard, touch and fullscreen presentation</span></div></div><div class="qr-card"><div class="url">surya-koushik.github.io/ai-research-showcase/</div><a href="../index.html?intro=off">Open the website →</a></div></div></div>
+      </section>
+    </div>
+  </main>
+
+  <aside class="notes" id="notes" aria-live="polite"><b>Speaker notes</b><p id="notesText"></p></aside>
+  <nav class="controls" aria-label="Presentation controls"><button id="prev" type="button" aria-label="Previous slide">←</button><span class="counter" id="counter">1 / 8</span><button id="next" type="button" aria-label="Next slide">→</button><button id="notesBtn" type="button" aria-label="Toggle speaker notes">N</button><button id="full" type="button" aria-label="Toggle fullscreen">⛶</button></nav>
+  <div class="progress" id="progress"></div>
+  <script>
+    (function(){
+      var scenes=Array.from(document.querySelectorAll('.scene'));
+      var manifest=JSON.parse(document.getElementById('slideshow-manifest').textContent);
+      var index=Math.max(0,Math.min(scenes.length-1,parseInt(location.hash.slice(1),10)-1||0));
+      var notes=document.getElementById('notes'),notesText=document.getElementById('notesText');
+      function stopMedia(scene){scene.querySelectorAll('video,audio').forEach(function(m){m.pause()})}
+      function show(next,replace){next=(next+scenes.length)%scenes.length;if(next!==index)stopMedia(scenes[index]);index=next;scenes.forEach(function(s,i){s.classList.toggle('is-active',i===index)});document.getElementById('counter').textContent=(index+1)+' / '+scenes.length;document.getElementById('progress').style.width=((index+1)/scenes.length*100)+'%';notesText.textContent=manifest.slides[index].notes||'';if(!replace)history.replaceState(null,'','#'+(index+1));}
+      document.getElementById('prev').onclick=function(){show(index-1)};document.getElementById('next').onclick=function(){show(index+1)};document.getElementById('notesBtn').onclick=function(){notes.classList.toggle('is-open')};document.getElementById('full').onclick=function(){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen()};
+      addEventListener('keydown',function(e){if(e.target.closest('video,button,a'))return;if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(index+1)}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(index-1)}else if(e.key.toLowerCase()==='n')notes.classList.toggle('is-open');else if(e.key.toLowerCase()==='f')document.getElementById('full').click();else if(e.key==='Escape')notes.classList.remove('is-open')});
+      var x=0;document.getElementById('stage').addEventListener('pointerdown',function(e){x=e.clientX});document.getElementById('stage').addEventListener('pointerup',function(e){var d=e.clientX-x;if(Math.abs(d)>60)show(index+(d<0?1:-1))});
+      addEventListener('hashchange',function(){var n=parseInt(location.hash.slice(1),10);if(n)show(n-1,true)});show(index,true);
+      window.__timelines=window.__timelines||{};scenes.forEach(function(s){if(window.gsap)window.__timelines[s.dataset.compositionId]=window.gsap.timeline({paused:true})});
+    })();
+  </script>
+</body>
+</html>
