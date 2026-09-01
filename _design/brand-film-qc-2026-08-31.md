@@ -1,7 +1,7 @@
 # Brand film quality-control report
 
-Date: 2026-08-31  
-Reviewed master: 77.1 seconds, 1920×1080  
+Date: 2026-08-31<br>
+Reviewed master: 77.1 seconds, 1920×1080<br>
 Updated delivery: `assets/video/brand-film.mp4`
 
 ## Executive result
