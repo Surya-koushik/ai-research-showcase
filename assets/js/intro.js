@@ -76,12 +76,16 @@
     function openFilm() {
       card.classList.add('is-playing', 'is-expanded');
       document.body.classList.add('hero-film-open');
+      /* Use the browser's proven media chrome for seek, volume, captions,
+         playback speed and fullscreen. The overlay keeps only a close action. */
+      heroVideo.controls = true;
       if (closeBtn) closeBtn.focus();
     }
     function closeFilm() {
       heroVideo.pause();
       card.classList.remove('is-playing', 'is-expanded');
       document.body.classList.remove('hero-film-open');
+      heroVideo.controls = false;
       syncPlaybackControl();
       playBtn.focus();
     }
